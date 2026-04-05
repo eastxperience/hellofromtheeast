@@ -1,0 +1,460 @@
+import { useState, useEffect } from "react";
+
+const STATUSES = ["🔵 New", "🟡 Warm", "🔴 Hot", "🟢 Booked", "⚫ Cold"];
+const INTERESTS = ["🚢 Phinisi Liveaboard 3D2N", "⚡ Speedboat Day Trip", "🏔️ Waerebo Cultural Journey", "🔒 Private Charter", "🏢 MICE / Corporate", "❓ Not specified"];
+const SOURCES = ["📱 Instagram", "🛒 GetYourGuide", "🌐 Website", "👥 Referral", "🔎 Google", "📣 Viator"];
+
+const SCRIPTS = [
+  {
+    id: "s1", tag: "⚡ INSTANT", tagColor: "#2d6a4f", label: "Script 01 — Auto-Reply (Away Message)",
+    sub: "Settings → Away Message → paste → ON 24/7",
+    text: `Hello! 🌊 Welcome to *EastXperience* — Komodo's local expert for liveaboard phinisi, private charters, and Waerebo cultural journeys.
+
+You're speaking with a real team, not a bot. We'll reply personally within a few minutes. 🙏
+
+To get you the perfect experience, can you share:
+① Your travel dates (or approximate month)?
+② How many people in your group?
+
+While you reply — explore our experiences:
+👉 eastxperience.rezio.shop
+
+We look forward to building your Komodo journey. 🐉`
+  },
+  {
+    id: "s2", tag: "✍️ < 5 MIN", tagColor: "#b5831a", label: "Script 02 — Warm Lead Response",
+    sub: "Kirim saat lead balas dengan tanggal + jumlah orang. Simpan sebagai Quick Reply.",
+    text: `Hi [Name]! 👋 Thanks for reaching out — [dates] with [X people], perfect.
+
+Based on what you've told me, I'd love to recommend our *3D2N Phinisi Liveaboard* 🚢
+
+You'll sleep on the boat between islands, wake up at anchor in silence, watch manta rays at dawn, and hike Padar before the crowds. Most guests say it's the best 3 days of their lives.
+
+I'm sending you our *Experience Guide* now — real photos, honest info, everything you need. 📎 [attach PDF]
+
+Quick question: are you thinking *private trip* (just your group) or open to joining a *small group* of like-minded travelers?
+
+Either way — I'll build you a custom quote. 🌅`
+  },
+  {
+    id: "s3", tag: "24 JAM", tagColor: "#1a4a7a", label: "Script 03 — Follow-up #1",
+    sub: "Kirim jika tidak ada balasan setelah 24 jam. Quick Reply shortcut: /f1",
+    text: `Hi [Name] — just checking in 🌊
+
+Totally understand if you're still planning — no rush at all.
+
+I wanted to share one thing: *85% of our guests say Komodo exceeded every expectation.* The other 15% wish they'd stayed longer. 😄
+
+If you have any questions — about the boat, the route, what to pack — I'm here. Sometimes one answered question makes all the difference.
+
+What's the one thing you're most curious about? 🐉`
+  },
+  {
+    id: "s4", tag: "48 JAM", tagColor: "#1a4a7a", label: "Script 04 — Follow-up #2",
+    sub: "Kirim jika masih tidak ada balasan setelah 48 jam. Quick Reply: /f2",
+    text: `One thing most travelers don't know about Komodo 👇
+
+The difference between a good trip and an *unforgettable* one isn't the destination — it's the operator.
+
+The wrong boat means crowded decks, rushed stops, guides reading from a script. The right boat means waking up at Padar before sunrise, diving with manta rays at slack tide, and a crew that makes you feel like family.
+
+We've operated in Komodo for years. We know exactly when to go where, and why.
+
+What questions do you have? 🙏`
+  },
+  {
+    id: "s5", tag: "72 JAM · FINAL", tagColor: "#b45309", label: "Script 05 — Follow-up #3 (Terakhir)",
+    sub: "Follow-up terakhir. Graceful exit + scarcity. Quick Reply: /f3",
+    text: `Last one from me, [Name] — I promise 😊
+
+Inboxes get busy and I completely understand.
+
+If Komodo is still on your radar, I'd love to be part of your journey. Our boats do fill up in peak season — we hold spots only for confirmed guests.
+
+Whenever you're ready, even months from now, just say the word and I'll pick up exactly where we left off.
+
+Safe travels wherever you go 🌅
+— EastXperience Team`
+  },
+];
+
+const OBJECTIONS = [
+  { id: "o1", trigger: `💬 "Terlalu mahal / ada yang lebih murah"`, shortcut: "/price",
+    text: `Totally fair — and yes, there are cheaper options out there. 🙏
+
+The difference is in what you get: our boats meet international safety standards, our guides are English-speaking locals with 10+ years on these waters, and we keep group sizes small so you never feel crowded.
+
+One difficult experience in these waters isn't just disappointing — it can be genuinely unsafe.
+
+What matters most to you in this trip? Let me show you exactly what's included.` },
+  { id: "o2", trigger: `💬 "Mau pikir-pikir dulu / tanya pasangan"`, shortcut: "/think",
+    text: `Of course — take all the time you need! 😊
+
+I'll *hold your preferred dates for 48 hours* with no commitment required. After that I'll need to release them to other guests.
+
+Would it help if I sent you a clean summary you can share directly? Sometimes that makes the conversation easier.` },
+  { id: "o3", trigger: `💬 "Aman gak?"`, shortcut: "/safe",
+    text: `Great question — the most important one. 🙏
+
+Safety is our absolute non-negotiable:
+✅ All vessels carry certified safety equipment
+✅ Crew trained in first aid and emergency response
+✅ Weather monitoring 48h before every departure
+✅ 5⭐ Google Reviews — zero serious incidents
+
+I can send you our full safety documentation to review before you decide. Would that help?` },
+  { id: "o4", trigger: `💬 "Bisa dapat diskon?"`, shortcut: "/discount",
+    text: `We don't discount our experiences — and here's why: we've priced them carefully to include everything that makes the difference. 🙏
+
+What I *can* do: I'll include a *welcome pack + sunset briefing + local insider guide* at no extra cost. That's genuinely worth more than any discount.
+
+Shall I confirm that for your dates? 🌅` },
+  { id: "o5", trigger: `💬 "Saya booking lewat GetYourGuide aja"`, shortcut: "/ota",
+    text: `You can absolutely do that — we're listed there too! 😊
+
+The difference with booking direct:
+✅ You talk to us from day one — the actual operator
+✅ We can customize your itinerary
+✅ No platform markup
+✅ Direct relationship if anything changes
+
+Same boat. Same crew. Same experience. Just more personal.
+
+Want me to walk you through what's included?` },
+];
+
+function notify(msg, set) { set(msg); setTimeout(() => set(""), 2500); }
+
+function copyText(text, setNotif) {
+  navigator.clipboard.writeText(text).then(() => notify("✅ Copied! Paste ke WhatsApp.", setNotif));
+}
+
+function today() { return new Date().toISOString().split("T")[0]; }
+function addDays(d, n) {
+  const dt = new Date(d); dt.setDate(dt.getDate() + n);
+  return dt.toISOString().split("T")[0];
+}
+
+export default function App() {
+  const [tab, setTab] = useState("crm");
+  const [leads, setLeads] = useState(() => {
+    try { return JSON.parse(localStorage.getItem("ex_leads") || "[]"); } catch { return []; }
+  });
+  const [form, setForm] = useState({ name: "", wa: "", interest: INTERESTS[0], source: SOURCES[0] });
+  const [notifMsg, setNotifMsg] = useState("");
+  const [filter, setFilter] = useState(null);
+  const [scriptFilter, setScriptFilter] = useState("scripts");
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => { const t = setInterval(() => setNow(new Date()), 1000); return () => clearInterval(t); }, []);
+  useEffect(() => { localStorage.setItem("ex_leads", JSON.stringify(leads)); }, [leads]);
+
+  const todayStr = today();
+  const hotCount = leads.filter(l => l.status === "🔴 Hot").length;
+  const bookedCount = leads.filter(l => l.status === "🟢 Booked").length;
+  const warmCount = leads.filter(l => l.status === "🟡 Warm").length;
+  const dueCount = leads.filter(l => l.followUp <= todayStr && l.status !== "🟢 Booked" && l.status !== "⚫ Cold").length;
+
+  const addLead = () => {
+    if (!form.name || !form.wa) { notify("⚠️ Nama dan nomor WA wajib diisi", setNotifMsg); return; }
+    const lead = { id: Date.now(), ...form, status: "🔵 New", added: todayStr, followUp: addDays(todayStr, 1), notes: "" };
+    setLeads(prev => [lead, ...prev]);
+    setForm(f => ({ ...f, name: "", wa: "" }));
+    notify("✅ Lead ditambahkan — " + form.name, setNotifMsg);
+  };
+
+  const updateLead = (id, key, val) => setLeads(prev => prev.map(l => l.id === id ? { ...l, [key]: val } : l));
+  const removeLead = (id) => { if (confirm("Hapus lead ini?")) setLeads(prev => prev.filter(l => l.id !== id)); };
+  const snooze = (id) => { setLeads(prev => prev.map(l => l.id === id ? { ...l, followUp: addDays(l.followUp || todayStr, 1) } : l)); notify("⏰ Follow-up digeser +1 hari", setNotifMsg); };
+
+  const visibleLeads = filter === "due"
+    ? leads.filter(l => l.followUp <= todayStr && l.status !== "🟢 Booked" && l.status !== "⚫ Cold")
+    : filter ? leads.filter(l => l.status === filter) : leads;
+
+  const tabs = [
+    { id: "crm", label: "📋 CRM" },
+    { id: "scripts", label: "💬 Scripts" },
+    { id: "setup", label: "⚙️ Setup" },
+    { id: "ritual", label: "📅 Ritual" },
+  ];
+
+  const s = {
+    bg: { background: "#f5f0e8", minHeight: "100vh", fontFamily: "'Segoe UI', sans-serif", color: "#1a1a16" },
+    topbar: { background: "#1a1a16", color: "#f5f0e8", padding: "12px 16px", display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, zIndex: 50 },
+    brand: { fontWeight: 800, fontSize: 14, letterSpacing: "0.08em" },
+    clock: { fontFamily: "monospace", fontSize: 11, color: "rgba(245,240,232,0.45)" },
+    tabs: { display: "flex", background: "#fff", borderBottom: "2px solid #ddd6c4", overflowX: "auto" },
+    tab: (active) => ({ padding: "12px 16px", fontWeight: 700, fontSize: 13, cursor: "pointer", borderBottom: active ? "2px solid #1a1a16" : "2px solid transparent", marginBottom: -2, color: active ? "#1a1a16" : "#9b9184", background: "none", border: "none", borderBottom: active ? "2px solid #1a1a16" : "none", whiteSpace: "nowrap", flexShrink: 0 }),
+    stats: { display: "grid", gridTemplateColumns: "repeat(4,1fr)", background: "#fff", borderBottom: "1px solid #ddd6c4" },
+    stat: { padding: "12px 10px", borderRight: "1px solid #ddd6c4", textAlign: "center" },
+    statNum: (c) => ({ fontSize: 24, fontWeight: 800, color: c, lineHeight: 1 }),
+    statLabel: { fontSize: 9, color: "#9b9184", letterSpacing: "0.1em", textTransform: "uppercase", marginTop: 2, fontFamily: "monospace" },
+    main: { padding: 16 },
+    card: { background: "#fff", border: "1px solid #ddd6c4", borderRadius: 8, overflow: "hidden", marginBottom: 12 },
+    cardHead: { background: "#faf7f2", padding: "10px 14px", borderBottom: "1px solid #ddd6c4", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 6 },
+    cardTitle: { fontWeight: 700, fontSize: 13 },
+    cardBody: { padding: 14 },
+    input: { background: "#f5f0e8", border: "1px solid #ddd6c4", borderRadius: 4, padding: "8px 10px", fontSize: 13, width: "100%", outline: "none", fontFamily: "inherit" },
+    select: { background: "#f5f0e8", border: "1px solid #ddd6c4", borderRadius: 4, padding: "8px 10px", fontSize: 13, width: "100%", fontFamily: "inherit" },
+    btn: (bg, c) => ({ background: bg, color: c, border: "none", borderRadius: 4, padding: "8px 14px", fontSize: 12, fontWeight: 700, cursor: "pointer", display: "inline-flex", alignItems: "center", gap: 4, whiteSpace: "nowrap" }),
+    btnSm: (bg, c) => ({ background: bg, color: c, border: "none", borderRadius: 4, padding: "5px 10px", fontSize: 11, fontWeight: 700, cursor: "pointer", whiteSpace: "nowrap" }),
+    badge: (bg, c) => ({ background: bg, color: c, borderRadius: 20, padding: "2px 8px", fontSize: 10, fontWeight: 700, fontFamily: "monospace", display: "inline-block" }),
+    waBox: { background: "#e7ffd9", borderRadius: "0 10px 10px 10px", padding: "12px 14px", fontSize: 13, lineHeight: 1.7, whiteSpace: "pre-wrap", color: "#111", border: "1px solid rgba(37,211,102,0.15)", marginTop: 8 },
+    filterRow: { display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 12 },
+    filterBtn: (active) => ({ padding: "5px 10px", fontSize: 11, fontWeight: 700, borderRadius: 4, cursor: "pointer", border: active ? "2px solid #1a1a16" : "1px solid #ddd6c4", background: active ? "#1a1a16" : "#fff", color: active ? "#f5f0e8" : "#6b6557" }),
+  };
+
+  return (
+    <div style={s.bg}>
+      <div style={s.topbar}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <div style={{ background: "#25d366", borderRadius: 6, width: 26, height: 26, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14 }}>🐉</div>
+          <div>
+            <div style={s.brand}>EASTXPERIENCE</div>
+            <div style={{ fontSize: 9, color: "rgba(245,240,232,0.4)", letterSpacing: "0.1em" }}>LEAD COMMAND CENTER</div>
+          </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
+            <div style={{ width: 6, height: 6, background: "#25d366", borderRadius: "50%" }} />
+            <span style={{ fontFamily: "monospace", fontSize: 10, color: "#25d366" }}>LIVE</span>
+          </div>
+          <div style={s.clock}>{now.toLocaleTimeString("en-GB", { hour: "2-digit", minute: "2-digit" })}</div>
+        </div>
+      </div>
+
+      <div style={s.stats}>
+        {[
+          { num: leads.length, label: "Total Leads", color: "#1a1a16" },
+          { num: hotCount, label: "Hot 🔴", color: "#9b2335" },
+          { num: dueCount, label: "Due ⏰", color: "#b45309" },
+          { num: bookedCount, label: "Booked 🟢", color: "#2d6a4f" },
+        ].map((s2, i) => (
+          <div key={i} style={{ ...s.stat, borderRight: i < 3 ? "1px solid #ddd6c4" : "none" }}>
+            <div style={s.statNum(s2.color)}>{s2.num}</div>
+            <div style={s.statLabel}>{s2.label}</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={s.tabs}>
+        {tabs.map(t => (
+          <button key={t.id} style={s.tab(tab === t.id)} onClick={() => setTab(t.id)}>{t.label}</button>
+        ))}
+      </div>
+
+      <div style={s.main}>
+
+        {tab === "crm" && (
+          <>
+            <div style={s.card}>
+              <div style={s.cardHead}><span style={s.cardTitle}>+ Tambah Lead Baru</span></div>
+              <div style={s.cardBody}>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 8 }}>
+                  <div>
+                    <div style={{ fontSize: 10, color: "#9b9184", marginBottom: 4, fontFamily: "monospace" }}>NAMA</div>
+                    <input style={s.input} placeholder="e.g. Sarah (UK)" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 10, color: "#9b9184", marginBottom: 4, fontFamily: "monospace" }}>NOMOR WA</div>
+                    <input style={s.input} placeholder="+44..." value={form.wa} onChange={e => setForm(f => ({ ...f, wa: e.target.value }))} />
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 10, color: "#9b9184", marginBottom: 4, fontFamily: "monospace" }}>INTEREST</div>
+                    <select style={s.select} value={form.interest} onChange={e => setForm(f => ({ ...f, interest: e.target.value }))}>
+                      {INTERESTS.map(i => <option key={i}>{i}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 10, color: "#9b9184", marginBottom: 4, fontFamily: "monospace" }}>SOURCE</div>
+                    <select style={s.select} value={form.source} onChange={e => setForm(f => ({ ...f, source: e.target.value }))}>
+                      {SOURCES.map(i => <option key={i}>{i}</option>)}
+                    </select>
+                  </div>
+                </div>
+                <button style={s.btn("#1a1a16", "#f5f0e8")} onClick={addLead}>+ Add Lead</button>
+              </div>
+            </div>
+
+            <div style={s.filterRow}>
+              {[
+                { label: "All", val: null },
+                { label: "🔵 New", val: "🔵 New" },
+                { label: "🟡 Warm", val: "🟡 Warm" },
+                { label: "🔴 Hot", val: "🔴 Hot" },
+                { label: "🟢 Booked", val: "🟢 Booked" },
+                { label: "⏰ Due Today", val: "due" },
+              ].map(f2 => (
+                <button key={f2.label} style={s.filterBtn(filter === f2.val)} onClick={() => setFilter(f2.val)}>{f2.label}</button>
+              ))}
+            </div>
+
+            {visibleLeads.length === 0 ? (
+              <div style={{ textAlign: "center", padding: "40px 20px", color: "#9b9184" }}>
+                <div style={{ fontSize: 32, marginBottom: 8 }}>📭</div>
+                <div style={{ fontSize: 13 }}>Belum ada lead. Tambah lead pertamamu di atas.</div>
+              </div>
+            ) : visibleLeads.map(lead => {
+              const isOverdue = lead.followUp < todayStr;
+              const isDueToday = lead.followUp === todayStr;
+              const waLink = `https://wa.me/${(lead.wa || "").replace(/\D/g, "")}`;
+              return (
+                <div key={lead.id} style={{ ...s.card, borderLeft: lead.status === "🔴 Hot" ? "3px solid #9b2335" : lead.status === "🟢 Booked" ? "3px solid #2d6a4f" : "1px solid #ddd6c4" }}>
+                  <div style={{ padding: "10px 14px" }}>
+                    <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 8, flexWrap: "wrap" }}>
+                      <div>
+                        <div style={{ fontWeight: 700, fontSize: 14 }}>{lead.name}</div>
+                        <div style={{ fontSize: 11, color: "#25d366", fontFamily: "monospace", marginTop: 2 }}>{lead.wa}</div>
+                        <div style={{ fontSize: 11, color: "#9b9184", marginTop: 2 }}>{lead.interest}</div>
+                        <div style={{ fontSize: 10, color: "#c8bfaa", marginTop: 2 }}>{lead.source} · {lead.added}</div>
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: 6, alignItems: "flex-end" }}>
+                        <select value={lead.status} onChange={e => updateLead(lead.id, "status", e.target.value)} style={{ ...s.select, width: "auto", fontSize: 11, padding: "4px 8px" }}>
+                          {STATUSES.map(s2 => <option key={s2}>{s2}</option>)}
+                        </select>
+                        <div style={{ fontSize: 11, fontFamily: "monospace", color: isOverdue ? "#9b2335" : isDueToday ? "#b45309" : "#9b9184", fontWeight: isOverdue || isDueToday ? 700 : 400 }}>
+                          {isOverdue ? "⚠️ Overdue" : isDueToday ? "📌 Today" : "📅 " + lead.followUp}
+                        </div>
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", gap: 6, marginTop: 10, flexWrap: "wrap" }}>
+                      <a href={waLink} target="_blank" rel="noreferrer" style={{ ...s.btnSm("#25d366", "#fff"), textDecoration: "none" }}>💬 Open WA</a>
+                      <button style={s.btnSm("#fef3cd", "#b5831a")} onClick={() => snooze(lead.id)}>+1 Hari</button>
+                      <button style={s.btnSm("#fde8eb", "#9b2335")} onClick={() => removeLead(lead.id)}>✕</button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </>
+        )}
+
+        {tab === "scripts" && (
+          <>
+            <div style={s.filterRow}>
+              {[{ id: "scripts", label: "📩 Follow-up Scripts" }, { id: "objections", label: "🎯 Objection Handlers" }].map(f2 => (
+                <button key={f2.id} style={s.filterBtn(scriptFilter === f2.id)} onClick={() => setScriptFilter(f2.id)}>{f2.label}</button>
+              ))}
+            </div>
+            {scriptFilter === "scripts" && SCRIPTS.map(sc => (
+              <div key={sc.id} style={s.card}>
+                <div style={s.cardHead}>
+                  <span style={s.cardTitle}>{sc.label}</span>
+                  <span style={{ background: "rgba(0,0,0,0.06)", color: sc.tagColor, borderRadius: 20, padding: "2px 8px", fontSize: 10, fontWeight: 700 }}>{sc.tag}</span>
+                </div>
+                <div style={s.cardBody}>
+                  <div style={{ fontSize: 11, color: "#9b9184", marginBottom: 6, fontFamily: "monospace" }}>{sc.sub}</div>
+                  <div style={s.waBox}>{sc.text}</div>
+                  <button style={{ ...s.btn("#1a1a16", "#f5f0e8"), marginTop: 10 }} onClick={() => copyText(sc.text, setNotifMsg)}>📋 Copy Script</button>
+                </div>
+              </div>
+            ))}
+            {scriptFilter === "objections" && OBJECTIONS.map(ob => (
+              <div key={ob.id} style={s.card}>
+                <div style={s.cardHead}>
+                  <span style={{ fontSize: 12, fontWeight: 700 }}>{ob.trigger}</span>
+                  <span style={{ background: "#f5f0e8", color: "#9b9184", borderRadius: 20, padding: "2px 8px", fontSize: 10, fontWeight: 700, fontFamily: "monospace" }}>{ob.shortcut}</span>
+                </div>
+                <div style={s.cardBody}>
+                  <div style={s.waBox}>{ob.text}</div>
+                  <button style={{ ...s.btn("#1a1a16", "#f5f0e8"), marginTop: 10 }} onClick={() => copyText(ob.text, setNotifMsg)}>📋 Copy {ob.shortcut}</button>
+                </div>
+              </div>
+            ))}
+          </>
+        )}
+
+        {tab === "setup" && [
+          {
+            icon: "📱", title: "Step 1 — WhatsApp Business", time: "20 menit · Sekarang", color: "#2d6a4f",
+            steps: [
+              ["Download WhatsApp Business", "Install di HP. Gunakan nomor +62811342473"],
+              ["Set Away Message", "Settings → Business Tools → Away Message → paste Script 01 → ON → Always Send"],
+              ["Buat Quick Replies", "Settings → Business Tools → Quick Replies → tambah semua script dengan shortcut /f1 /f2 /f3 /price /think /safe /discount /ota"],
+              ["Buat 5 Label", "🔵 New  🟡 Warm  🔴 Hot  🟢 Booked  ⚫ Cold"],
+              ["Update Business Profile", "Deskripsi, jam kerja, link website, kategori: Tour Operator"],
+            ]
+          },
+          {
+            icon: "📊", title: "Step 2 — Google Sheets CRM", time: "15 menit · Hari ini", color: "#b5831a",
+            steps: [
+              ["Buat Google Sheet baru", "Nama: EastXperience Lead Tracker"],
+              ["Tambahkan kolom", "Name | WA Number | Source | Interest | Status | Date Added | Follow-up Date | Notes"],
+              ["Data validation Status", "Dropdown: New / Warm / Hot / Booked / Cold"],
+              ["Conditional formatting", "Follow-up Date ≤ TODAY() → background merah otomatis"],
+              ["Pin di HP", "Bookmark di browser. Buka setiap pagi jam 9."],
+            ]
+          },
+          {
+            icon: "🎨", title: "Step 3 — Experience Guide PDF", time: "2–3 jam · Minggu ini", color: "#1a4a7a",
+            steps: [
+              ["Buka Canva", "New Design → Presentation 16:9 → 6 slides"],
+              ["Slide 1: Who We Are", "Logo, founded by locals, screenshot 5⭐ Google Reviews"],
+              ["Slide 2–3: Our Experiences", "Phinisi 3D2N sebagai hero. Foto asli saja."],
+              ["Slide 4: Insider Tips", "Manta season, waktu terbaik Padar. Ini halaman authority."],
+              ["Slide 5–6: Guest Stories + Cara Booking", "Testimoni asli. Export PDF. Kirim via WA."],
+            ]
+          },
+        ].map((card, ci) => (
+          <div key={ci} style={{ ...s.card, borderTop: `3px solid ${card.color}` }}>
+            <div style={s.cardHead}>
+              <span style={s.cardTitle}>{card.icon} {card.title}</span>
+              <span style={{ fontFamily: "monospace", fontSize: 10, color: "#9b9184" }}>⏱ {card.time}</span>
+            </div>
+            <div style={s.cardBody}>
+              {card.steps.map(([title, desc], si) => (
+                <div key={si} style={{ display: "flex", gap: 10, padding: "8px 0", borderBottom: si < card.steps.length - 1 ? "1px solid #f0ece0" : "none" }}>
+                  <div style={{ width: 22, height: 22, borderRadius: "50%", background: "#1a1a16", color: "#f5f0e8", fontSize: 10, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{si + 1}</div>
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: 12 }}>{title}</div>
+                    <div style={{ fontSize: 11, color: "#6b6557", marginTop: 2, lineHeight: 1.5 }}>{desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+
+        {tab === "ritual" && (
+          <>
+            <div style={{ background: "#1a1a16", color: "#f5f0e8", borderRadius: 8, padding: "14px 16px", marginBottom: 12 }}>
+              <div style={{ fontWeight: 800, fontSize: 14 }}>📅 15-Menit Daily Ritual</div>
+              <div style={{ fontSize: 11, color: "rgba(245,240,232,0.5)", marginTop: 2 }}>Lakukan setiap pagi. Tanpa pengecualian.</div>
+            </div>
+            {[
+              { time: "09:00", task: "☀️ Buka Lead Tracker", detail: "Filter Follow-up Date ≤ hari ini. Setiap sel merah = uang yang menunggu.", dur: "2 menit" },
+              { time: "09:02", task: "💬 Kirim follow-up via Quick Replies", detail: "Buka WA → lead yang due → ketik /f1, /f2, atau /f3 → tambah nama → send.", dur: "5 menit" },
+              { time: "09:07", task: "🔄 Update status leads", detail: "Yang sudah balas → update status. Set follow-up date baru.", dur: "3 menit" },
+              { time: "09:10", task: "🔴 Action hot leads personal", detail: "Setiap 🔴 Hot dapat pesan personal hari ini. Bukan template. Mereka siap booking.", dur: "5 menit" },
+              { time: "09:15", task: "✅ Done.", detail: "Semua lead sudah disentuh. Kompetitor kamu masih tidur.", dur: "—" },
+            ].map((r, i) => (
+              <div key={i} style={{ display: "flex", gap: 10, marginBottom: 8 }}>
+                <div style={{ textAlign: "right", width: 45, paddingTop: 10, fontFamily: "monospace", fontSize: 10, color: "#9b9184", flexShrink: 0 }}>{r.time}</div>
+                <div style={{ ...s.card, flex: 1, marginBottom: 0 }}>
+                  <div style={{ padding: "10px 12px" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div style={{ fontWeight: 700, fontSize: 13 }}>{r.task}</div>
+                      <span style={{ background: "#f5f0e8", color: "#9b9184", borderRadius: 20, padding: "2px 8px", fontSize: 9, fontFamily: "monospace" }}>{r.dur}</span>
+                    </div>
+                    <div style={{ fontSize: 11, color: "#6b6557", marginTop: 4, lineHeight: 1.5 }}>{r.detail}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <div style={{ background: "#fef3cd", border: "1px solid rgba(181,131,26,0.3)", borderRadius: 8, padding: "12px 14px", marginTop: 4 }}>
+              <div style={{ fontWeight: 700, fontSize: 13, color: "#b5831a", marginBottom: 4 }}>📌 Golden Rule</div>
+              <div style={{ fontSize: 12, color: "#6b6557", lineHeight: 1.6 }}>Lead yang dibalas dalam <strong style={{ color: "#1a1a16" }}>5 menit pertama</strong> convert <strong style={{ color: "#1a1a16" }}>400% lebih tinggi</strong>. Auto-reply menangani 5 menit pertama. Kamu menangani sisanya tiap pagi.</div>
+            </div>
+          </>
+        )}
+
+      </div>
+
+      {notifMsg && (
+        <div style={{ position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)", background: "#1a1a16", color: "#f5f0e8", padding: "10px 18px", borderRadius: 6, fontSize: 13, fontWeight: 700, zIndex: 999, whiteSpace: "nowrap", boxShadow: "0 4px 20px rgba(0,0,0,0.3)" }}>
+          {notifMsg}
+        </div>
+      )}
+    </div>
+  );
+}
