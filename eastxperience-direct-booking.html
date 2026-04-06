@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Direct — EastXperience Komodo</title>
+<meta name="description" content="Book Komodo directly with EastXperience. Save up to 25% vs GetYourGuide. Phinisi liveaboard, speedboat tours, Waerebo village. Local operator since 2017.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════ */
+:root {
+  --navy:       #0a1928;
+  --navy2:      #0f2237;
+  --teal:       #0b7a8a;
+  --teal2:      #12a0b8;
+  --teal-pale:  #e6f5f8;
+  --coral:      #e84c20;
+  --coral2:     #f06540;
+  --coral-pale: #fef0eb;
+  --green:      #1a5c3a;
+  --green2:     #27846e;
+  --green-pale: #e8f5ee;
+  --gold:       #d4900a;
+  --gold2:      #f0b429;
+  --gold-pale:  #fef9e6;
+  --cream:      #fffdf8;
+  --sand:       #fef5e4;
+  --sand2:      #f5e9d0;
+  --text:       #0d1117;
+  --text2:      #374151;
+  --text3:      #6b7280;
+  --text4:      #9ca3af;
+  --white:      #ffffff;
+  --border:     rgba(0,0,0,0.08);
+  --radius-sm:  8px;
+  --radius:     16px;
+  --radius-lg:  24px;
+  --shadow-sm:  0 2px 8px rgba(0,0,0,0.06);
+  --shadow:     0 8px 32px rgba(0,0,0,0.1);
+  --shadow-lg:  0 24px 64px rgba(0,0,0,0.14);
+}
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--cream);
+  color:var(--text);
+  font-family:'Outfit',sans-serif;
+  font-weight:400;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{text-decoration:none}
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav {
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:0 32px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background 0.3s, box-shadow 0.3s;
+}
+nav.scrolled {
+  background:rgba(255,253,248,0.96);
+  box-shadow:0 1px 0 var(--border);
+  backdrop-filter:blur(12px);
+}
+.nav-logo {
+  display:flex;align-items:center;gap:8px;
+}
+.nav-logo-mark {
+  width:34px;height:34px;border-radius:50%;
+  background:var(--coral);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:700;
+  color:white;letter-spacing:-0.5px;
+}
+.nav-logo-text {
+  font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;
+  color:var(--white);letter-spacing:0.02em;
+  transition:color 0.3s;
+}
+nav.scrolled .nav-logo-text{color:var(--text)}
+.nav-links {
+  display:flex;align-items:center;gap:28px;
+}
+.nav-link {
+  font-size:0.8rem;font-weight:500;letter-spacing:0.04em;
+  color:rgba(255,255,255,0.7);transition:color 0.2s;
+  display:none;
+}
+@media(min-width:640px){.nav-link{display:inline}}
+nav.scrolled .nav-link{color:var(--text3)}
+.nav-link:hover{color:var(--coral)!important}
+.nav-btn {
+  background:var(--coral);color:white;
+  font-size:0.78rem;font-weight:600;letter-spacing:0.06em;
+  text-transform:uppercase;
+  padding:9px 20px;border-radius:50px;
+  transition:all 0.2s;white-space:nowrap;
+  display:flex;align-items:center;gap:6px;
+}
+.nav-btn:hover{background:var(--coral2);transform:translateY(-1px);box-shadow:0 4px 16px rgba(232,76,32,0.35)}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero {
+  min-height:100vh;
+  background:var(--navy);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;
+  justify-content:center;padding:100px 32px 80px;
+}
+.hero-blobs {
+  position:absolute;inset:0;pointer-events:none;
+}
+.blob {
+  position:absolute;border-radius:50%;filter:blur(80px);
+  animation:drift 8s ease-in-out infinite alternate;
+}
+.blob-1{width:600px;height:600px;background:rgba(11,122,138,0.25);top:-200px;right:-100px}
+.blob-2{width:400px;height:400px;background:rgba(232,76,32,0.12);bottom:-100px;left:-100px;animation-delay:2s}
+.blob-3{width:300px;height:300px;background:rgba(212,144,10,0.1);top:40%;left:40%;animation-delay:4s}
+@keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(30px,20px) scale(1.05)}}
+
+.hero-inner {
+  max-width:1100px;margin:0 auto;width:100%;
+  display:grid;grid-template-columns:1fr 380px;gap:60px;align-items:center;
+  position:relative;z-index:2;
+}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}}
+
+.hero-left {}
+.hero-tag {
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.25em;
+  text-transform:uppercase;color:var(--gold2);
+  border:1px solid rgba(212,144,10,0.3);
+  padding:6px 14px;border-radius:50px;margin-bottom:28px;
+}
+.hero-tag::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--coral);
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.hero-h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,7vw,5.8rem);
+  line-height:1.0;font-weight:900;
+  color:white;margin-bottom:12px;
+}
+.hero-h1 .line-coral{color:var(--coral)}
+.hero-h1 .line-italic{font-style:italic;font-weight:400;color:rgba(255,255,255,0.55);font-size:0.7em}
+
+.hero-sub {
+  font-size:1rem;color:rgba(255,255,255,0.5);
+  max-width:460px;line-height:1.75;margin-bottom:36px;
+}
+.hero-ctas {
+  display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px;
+}
+.btn-coral {
+  background:var(--coral);color:white;
+  font-size:0.8rem;font-weight:600;letter-spacing:0.06em;
+  text-transform:uppercase;padding:14px 28px;border-radius:50px;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all 0.2s;
+}
+.btn-coral:hover{background:var(--coral2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,76,32,0.4)}
+.btn-ghost-white {
+  background:transparent;color:white;
+  font-size:0.8rem;font-weight:600;letter-spacing:0.06em;
+  text-transform:uppercase;padding:14px 28px;border-radius:50px;
+  border:1.5px solid rgba(255,255,255,0.25);
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all 0.2s;
+}
+.btn-ghost-white:hover{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.08)}
+.btn-wa-green {
+  background:#25d366;color:white;
+  font-size:0.8rem;font-weight:600;letter-spacing:0.06em;
+  text-transform:uppercase;padding:14px 28px;border-radius:50px;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all 0.2s;
+}
+.btn-wa-green:hover{background:#22c55e;transform:translateY(-2px);box-shadow:0 8px 24px rgba(37,211,102,0.4)}
+
+.hero-proof {
+  display:flex;gap:24px;flex-wrap:wrap;
+}
+.hero-proof-item {
+  display:flex;align-items:center;gap:8px;
+}
+.hero-proof-icon {
+  font-size:1.1rem;
+}
+.hero-proof-text {
+  font-size:0.78rem;color:rgba(255,255,255,0.4);line-height:1.35;
+}
+.hero-proof-text strong{color:rgba(255,255,255,0.8);display:block;font-weight:600}
+
+/* HERO RIGHT — savings visual */
+.hero-right {
+  display:flex;flex-direction:column;gap:12px;
+}
+@media(max-width:900px){.hero-right{display:none}}
+.savings-card {
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:var(--radius);
+  padding:20px 22px;
+  backdrop-filter:blur(8px);
+}
+.savings-card-label {
+  font-family:'Space Mono',monospace;
+  font-size:0.54rem;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--text4);
+  margin-bottom:8px;
+}
+.savings-card-row {
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-bottom:6px;
+}
+.savings-card-name {
+  font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.8);
+}
+.savings-card-ota {
+  font-size:0.75rem;color:var(--text4);text-decoration:line-through;
+}
+.savings-card-direct {
+  font-size:0.85rem;font-weight:700;color:var(--gold2);
+}
+.savings-badge {
+  display:inline-block;font-family:'Space Mono',monospace;
+  font-size:0.54rem;letter-spacing:0.1em;text-transform:uppercase;
+  background:rgba(232,76,32,0.2);color:var(--coral2);
+  border:1px solid rgba(232,76,32,0.25);
+  padding:2px 8px;border-radius:20px;margin-top:4px;
+}
+.hero-guarantee {
+  background:rgba(212,144,10,0.12);
+  border:1px solid rgba(212,144,10,0.2);
+  border-radius:var(--radius);padding:16px 20px;
+  display:flex;gap:12px;align-items:center;
+}
+.hero-guarantee-icon{font-size:1.5rem}
+.hero-guarantee-text{font-size:0.78rem;color:rgba(255,255,255,0.6);line-height:1.5}
+.hero-guarantee-text strong{color:var(--gold2);display:block;margin-bottom:2px}
+
+/* ═══════════════════════════════════════════
+   MARQUEE
+═══════════════════════════════════════════ */
+.marquee-wrap {
+  background:var(--coral);overflow:hidden;padding:12px 0;
+  position:relative;
+}
+.marquee-track {
+  display:flex;gap:0;
+  animation:marquee 28s linear infinite;
+  width:max-content;
+}
+.marquee-item {
+  font-family:'Space Mono',monospace;
+  font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(255,255,255,0.9);
+  padding:0 28px;white-space:nowrap;
+  display:flex;align-items:center;gap:28px;
+}
+.marquee-item::after{content:'✦';opacity:0.5;margin-left:28px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════════════════
+   WHY DIRECT
+═══════════════════════════════════════════ */
+.why-section {
+  padding:100px 32px;background:var(--cream);
+}
+.section-inner{max-width:1100px;margin:0 auto}
+
+.section-chip {
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--coral);
+  margin-bottom:20px;
+}
+.section-chip::before{content:'';width:24px;height:2px;background:var(--coral);border-radius:2px}
+
+.section-h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4.5vw,3.2rem);
+  font-weight:700;color:var(--text);
+  line-height:1.15;margin-bottom:14px;
+}
+.section-h2 em{font-style:italic;color:var(--teal)}
+.section-lead {
+  font-size:1rem;color:var(--text3);
+  max-width:560px;line-height:1.8;margin-bottom:56px;
+}
+
+.why-cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+}
+.why-card {
+  border-radius:var(--radius);
+  padding:28px 24px;
+  position:relative;overflow:hidden;
+  transition:transform 0.25s, box-shadow 0.25s;
+}
+.why-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.why-card-1{background:var(--navy);color:white}
+.why-card-2{background:var(--teal-pale)}
+.why-card-3{background:var(--coral-pale)}
+.why-card-4{background:var(--green-pale)}
+.why-card-bg-num {
+  position:absolute;right:-16px;bottom:-24px;
+  font-family:'Playfair Display',serif;font-size:7rem;font-weight:900;
+  opacity:0.06;line-height:1;user-select:none;
+}
+.why-card-icon {
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:18px;
+}
+.why-card-1 .why-card-icon{background:rgba(255,255,255,0.1)}
+.why-card-2 .why-card-icon{background:rgba(11,122,138,0.15)}
+.why-card-3 .why-card-icon{background:rgba(232,76,32,0.12)}
+.why-card-4 .why-card-icon{background:rgba(26,92,58,0.12)}
+.why-card-num {
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;font-weight:700;line-height:1;margin-bottom:6px;
+}
+.why-card-1 .why-card-num{color:var(--gold2)}
+.why-card-2 .why-card-num{color:var(--teal)}
+.why-card-3 .why-card-num{color:var(--coral)}
+.why-card-4 .why-card-num{color:var(--green)}
+.why-card-title {
+  font-size:0.95rem;font-weight:600;margin-bottom:8px;
+}
+.why-card-1 .why-card-title{color:white}
+.why-card-body {font-size:0.82rem;line-height:1.65;color:var(--text3)}
+.why-card-1 .why-card-body{color:rgba(255,255,255,0.55)}
+
+/* ═══════════════════════════════════════════
+   EXPERIENCES
+═══════════════════════════════════════════ */
+.exp-section{
+  padding:100px 32px;
+  background:var(--sand);
+  position:relative;
+}
+.exp-section::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:80px;
+  background:var(--cream);
+  clip-path:ellipse(55% 100% at 50% 0%);
+}
+
+.exp-cards{display:flex;flex-direction:column;gap:16px;margin-top:0}
+
+.exp-card {
+  background:white;border-radius:var(--radius-lg);
+  overflow:hidden;box-shadow:var(--shadow-sm);
+  transition:box-shadow 0.25s, transform 0.25s;
+  display:grid;
+  grid-template-columns:6px 1fr auto;
+}
+@media(max-width:680px){.exp-card{grid-template-columns:6px 1fr;}}
+.exp-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+
+.exp-accent{width:6px}
+.exp-card-phinisi .exp-accent{background:linear-gradient(180deg,var(--navy),var(--teal))}
+.exp-card-speedboat .exp-accent{background:linear-gradient(180deg,var(--teal),var(--teal2))}
+.exp-card-waerebo .exp-accent{background:linear-gradient(180deg,var(--green),var(--green2))}
+
+.exp-body{padding:28px 28px 24px;flex:1}
+.exp-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.exp-tag {
+  font-family:'Space Mono',monospace;
+  font-size:0.54rem;letter-spacing:0.16em;text-transform:uppercase;
+  padding:4px 12px;border-radius:50px;font-weight:400;
+}
+.exp-card-phinisi .exp-tag{background:rgba(10,25,40,0.07);color:var(--navy)}
+.exp-card-speedboat .exp-tag{background:var(--teal-pale);color:var(--teal)}
+.exp-card-waerebo .exp-tag{background:var(--green-pale);color:var(--green)}
+
+.exp-rating {
+  display:flex;align-items:center;gap:5px;
+  font-size:0.78rem;font-weight:600;color:var(--text2);
+}
+.exp-rating .stars{color:#f59e0b;letter-spacing:1px;font-size:0.7rem}
+
+.exp-name {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.4rem,3vw,1.9rem);font-weight:700;
+  line-height:1.1;margin-bottom:10px;color:var(--text);
+}
+.exp-name em{font-style:italic;font-weight:400}
+.exp-card-speedboat .exp-name em{color:var(--teal)}
+.exp-card-waerebo .exp-name em{color:var(--green)}
+.exp-card-phinisi .exp-name em{color:var(--teal)}
+
+.exp-desc{font-size:0.86rem;color:var(--text3);line-height:1.75;margin-bottom:16px;max-width:560px}
+
+.exp-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.pill {
+  font-size:0.72rem;font-weight:500;
+  padding:4px 12px;border-radius:50px;
+  background:var(--sand);border:1px solid var(--sand2);
+  color:var(--text2);
+}
+
+.exp-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.btn-dark {
+  background:var(--navy);color:white;
+  font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  padding:10px 22px;border-radius:50px;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:all 0.2s;
+}
+.btn-dark:hover{background:#0f2237;transform:translateY(-1px);box-shadow:0 4px 14px rgba(10,25,40,0.3)}
+.exp-card-speedboat .btn-dark{background:var(--teal)}
+.exp-card-speedboat .btn-dark:hover{background:var(--teal2)}
+.exp-card-waerebo .btn-dark{background:var(--green)}
+.exp-card-waerebo .btn-dark:hover{background:var(--green2)}
+.btn-outline {
+  background:transparent;color:var(--text3);
+  font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  padding:10px 22px;border-radius:50px;
+  border:1.5px solid var(--sand2);
+  display:inline-flex;align-items:center;gap:6px;
+  transition:all 0.2s;
+}
+.btn-outline:hover{border-color:var(--text3);color:var(--text)}
+
+/* PRICE PANEL */
+.exp-price-panel{
+  min-width:190px;padding:28px 24px;
+  display:flex;flex-direction:column;justify-content:space-between;align-items:flex-end;
+  border-left:1px solid var(--border);
+}
+@media(max-width:680px){.exp-price-panel{display:none}}
+.exp-card-phinisi .exp-price-panel{background:rgba(10,25,40,0.02)}
+.exp-card-speedboat .exp-price-panel{background:rgba(11,122,138,0.03)}
+.exp-card-waerebo .exp-price-panel{background:rgba(26,92,58,0.03)}
+.price-ota-label {
+  font-family:'Space Mono',monospace;
+  font-size:0.5rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--text4);margin-bottom:2px;
+}
+.price-ota-num {
+  font-size:0.82rem;color:var(--text4);text-decoration:line-through;
+  margin-bottom:12px;
+}
+.price-direct-label {
+  font-family:'Space Mono',monospace;
+  font-size:0.5rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--coral);margin-bottom:4px;
+}
+.price-direct-num {
+  font-family:'Playfair Display',serif;
+  font-size:1.9rem;font-weight:700;line-height:1;color:var(--text);
+}
+.price-unit {
+  font-size:0.7rem;color:var(--text4);margin-top:2px;
+  font-family:'Space Mono',monospace;
+}
+.price-save-badge {
+  display:inline-block;margin-top:8px;
+  font-family:'Space Mono',monospace;font-size:0.54rem;letter-spacing:0.1em;text-transform:uppercase;
+  background:var(--coral-pale);color:var(--coral);
+  border:1px solid rgba(232,76,32,0.2);
+  padding:3px 10px;border-radius:50px;
+}
+.price-meta {
+  font-size:0.7rem;color:var(--text4);line-height:1.6;
+  text-align:right;margin-top:auto;padding-top:16px;
+}
+
+/* PHINISI VESSEL TABLE */
+.vessel-table {
+  margin:16px 0 20px;
+  border:1px solid var(--border);border-radius:var(--radius-sm);
+  overflow:hidden;font-size:0.78rem;
+}
+.vessel-table-header {
+  background:var(--navy);color:white;
+  padding:8px 14px;
+  font-family:'Space Mono',monospace;font-size:0.52rem;
+  letter-spacing:0.14em;text-transform:uppercase;
+}
+.vessel-group {
+  border-bottom:1px solid var(--border);
+}
+.vessel-group:last-child{border-bottom:none}
+.vessel-group-header {
+  padding:7px 14px;
+  background:rgba(10,25,40,0.03);
+  font-family:'Space Mono',monospace;font-size:0.52rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--teal);border-bottom:1px solid var(--border);
+}
+.vessel-row {
+  display:flex;justify-content:space-between;align-items:center;
+  padding:6px 14px;border-bottom:1px solid rgba(0,0,0,0.03);
+}
+.vessel-row:last-child{border-bottom:none}
+.vessel-row:hover{background:rgba(10,25,40,0.02)}
+.vessel-row-name{color:var(--text2)}
+.vessel-row-price{font-weight:600;color:var(--text)}
+
+/* ═══════════════════════════════════════════
+   STATS
+═══════════════════════════════════════════ */
+.stats-section {
+  background:var(--teal);
+  padding:80px 32px;overflow:hidden;position:relative;
+}
+.stats-section::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--teal) 0%,var(--navy) 100%);
+}
+.stats-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:0;position:relative;z-index:1;
+}
+.stat-item {
+  text-align:center;padding:20px 16px;
+  border-right:1px solid rgba(255,255,255,0.1);
+}
+.stat-item:last-child{border-right:none}
+@media(max-width:560px){.stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.1)}}
+.stat-num {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,5vw,3rem);font-weight:700;
+  color:white;line-height:1;
+  display:flex;align-items:baseline;justify-content:center;gap:2px;
+}
+.stat-num .suffix{font-size:1.2rem;color:var(--gold2)}
+.stat-label {
+  font-family:'Space Mono',monospace;font-size:0.52rem;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(255,255,255,0.4);margin-top:6px;
+}
+
+/* ═══════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════ */
+.testi-section{padding:100px 32px;background:var(--cream)}
+.testi-grid {
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:16px;margin-top:48px;
+}
+.testi-card {
+  background:white;border-radius:var(--radius);
+  padding:28px 24px;
+  box-shadow:var(--shadow-sm);
+  position:relative;overflow:hidden;
+  transition:transform 0.25s, box-shadow 0.25s;
+}
+.testi-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.testi-card::before{
+  content:'"';
+  position:absolute;top:-16px;right:16px;
+  font-family:'Playfair Display',serif;font-size:8rem;font-weight:900;
+  color:var(--sand2);line-height:1;
+  user-select:none;pointer-events:none;
+}
+.testi-stars{color:#f59e0b;letter-spacing:3px;font-size:0.8rem;margin-bottom:12px}
+.testi-text {
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;font-style:italic;
+  color:var(--text);line-height:1.7;margin-bottom:16px;
+  position:relative;z-index:1;
+}
+.testi-footer{
+  display:flex;align-items:center;gap:10px;
+  padding-top:14px;border-top:1px solid var(--border);
+}
+.testi-avatar {
+  width:36px;height:36px;border-radius:50%;
+  background:var(--sand2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:700;
+  color:var(--text3);flex-shrink:0;
+}
+.testi-author{font-size:0.8rem;font-weight:600;color:var(--text)}
+.testi-meta{font-size:0.7rem;color:var(--text4);margin-top:1px}
+
+.testi-all-link{
+  margin-top:28px;text-align:center;
+}
+.testi-all-link a{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:0.82rem;font-weight:600;color:var(--teal);
+  border-bottom:1.5px solid var(--teal);padding-bottom:2px;
+  transition:gap 0.2s;
+}
+.testi-all-link a:hover{gap:12px}
+
+/* ═══════════════════════════════════════════
+   HOW TO BOOK
+═══════════════════════════════════════════ */
+.steps-section{padding:100px 32px;background:var(--navy);position:relative;overflow:hidden}
+.steps-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 20% 50%,rgba(11,122,138,0.2),transparent 60%),
+             radial-gradient(ellipse 50% 40% at 80% 50%,rgba(232,76,32,0.1),transparent 60%);
+}
+.steps-section .section-chip{color:var(--gold2)}
+.steps-section .section-chip::before{background:var(--gold2)}
+.steps-section .section-h2{color:white}
+.steps-section .section-h2 em{color:var(--coral)}
+.steps-section .section-lead{color:rgba(255,255,255,0.4)}
+
+.steps-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2px;
+  margin-top:0;
+  position:relative;z-index:1;
+}
+@media(max-width:640px){.steps-grid{grid-template-columns:1fr}}
+
+.step-card {
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:var(--radius);
+  padding:32px 28px;
+  position:relative;overflow:hidden;
+  transition:background 0.2s;
+}
+.step-card:hover{background:rgba(255,255,255,0.07)}
+.step-num-bg {
+  position:absolute;top:-20px;right:-12px;
+  font-family:'Playfair Display',serif;
+  font-size:8rem;font-weight:900;
+  color:rgba(255,255,255,0.03);
+  line-height:1;user-select:none;
+}
+.step-num {
+  display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--coral);color:white;
+  font-family:'Space Mono',monospace;font-size:0.72rem;font-weight:700;
+  margin-bottom:18px;
+}
+.step-title{font-size:0.95rem;font-weight:600;color:white;margin-bottom:8px}
+.step-body{font-size:0.82rem;color:rgba(255,255,255,0.45);line-height:1.7}
+.step-tag{
+  margin-top:14px;display:inline-block;
+  font-family:'Space Mono',monospace;font-size:0.52rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold2);
+}
+
+/* ═══════════════════════════════════════════
+   FAQ
+═══════════════════════════════════════════ */
+.faq-section{padding:100px 32px;background:var(--sand)}
+.faq-list{margin-top:0;display:flex;flex-direction:column;gap:8px}
+.faq-item{
+  background:white;border-radius:var(--radius-sm);
+  overflow:hidden;box-shadow:var(--shadow-sm);
+}
+.faq-q {
+  padding:18px 22px;
+  font-size:0.9rem;font-weight:600;color:var(--text);
+  cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:12px;user-select:none;transition:background 0.2s;
+}
+.faq-q:hover{background:var(--cream)}
+.faq-icon {
+  width:28px;height:28px;border-radius:50%;
+  background:var(--sand);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:var(--coral);flex-shrink:0;
+  transition:transform 0.25s, background 0.25s;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--coral);color:white}
+.faq-a{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.35s ease;
+}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a-inner{
+  padding:0 22px 18px;
+  font-size:0.84rem;color:var(--text3);line-height:1.8;
+  border-top:1px solid var(--border);padding-top:14px;
+}
+
+/* ═══════════════════════════════════════════
+   FINAL CTA
+═══════════════════════════════════════════ */
+.cta-section {
+  padding:100px 32px;
+  background:linear-gradient(135deg, var(--coral) 0%, #f59e0b 100%);
+  position:relative;overflow:hidden;text-align:center;
+}
+.cta-section::before{
+  content:'BOOK DIRECT';
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-family:'Playfair Display',serif;font-size:20vw;font-weight:900;
+  color:rgba(255,255,255,0.06);white-space:nowrap;
+  pointer-events:none;user-select:none;
+}
+.cta-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'Space Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(255,255,255,0.7);margin-bottom:24px;
+}
+.cta-h2 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,6vw,4rem);font-weight:700;
+  color:white;line-height:1.1;margin-bottom:12px;
+  position:relative;z-index:1;
+}
+.cta-h2 em{font-style:italic;font-weight:400}
+.cta-sub{font-size:0.95rem;color:rgba(255,255,255,0.7);margin-bottom:36px;position:relative;z-index:1}
+.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.btn-white{
+  background:white;color:var(--coral);
+  font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  padding:14px 32px;border-radius:50px;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all 0.2s;
+}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,0.2)}
+.btn-white-outline{
+  background:transparent;color:white;
+  font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+  padding:14px 32px;border-radius:50px;
+  border:2px solid rgba(255,255,255,0.5);
+  display:inline-flex;align-items:center;gap:8px;
+  transition:all 0.2s;
+}
+.btn-white-outline:hover{border-color:white;background:rgba(255,255,255,0.1)}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{
+  background:var(--navy);padding:60px 32px 32px;
+}
+.footer-inner{max-width:1100px;margin:0 auto}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:48px;
+}
+@media(max-width:640px){.footer-top{grid-template-columns:1fr}}
+.footer-brand {
+  font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;
+  color:white;margin-bottom:10px;
+}
+.footer-brand-sub{font-size:0.78rem;color:rgba(255,255,255,0.25);line-height:1.7}
+.footer-col-title{
+  font-family:'Space Mono',monospace;font-size:0.54rem;letter-spacing:0.2em;
+  text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:14px;
+}
+.footer-links{display:flex;flex-direction:column;gap:8px}
+.footer-link{font-size:0.84rem;color:rgba(255,255,255,0.35);transition:color 0.2s}
+.footer-link:hover{color:var(--gold2)}
+.footer-bottom{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  padding-top:28px;border-top:1px solid rgba(255,255,255,0.06);
+  font-family:'Space Mono',monospace;font-size:0.52rem;letter-spacing:0.1em;
+  color:rgba(255,255,255,0.15);
+}
+.footer-bottom a{color:rgba(212,144,10,0.4);text-decoration:none}
+.footer-bottom a:hover{color:var(--gold2)}
+
+/* ═══════════════════════════════════════════
+   FLOATING WA
+═══════════════════════════════════════════ */
+.wa-float{
+  position:fixed;bottom:24px;right:24px;z-index:150;
+  background:#25d366;width:58px;height:58px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,0.4);
+  transition:all 0.2s;
+}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 8px 30px rgba(37,211,102,0.55)}
+.wa-float svg{width:28px}
+.wa-float-pulse{
+  position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid rgba(37,211,102,0.35);
+  animation:wa-pulse 2.5s ease-out infinite;
+}
+@keyframes wa-pulse{
+  0%{transform:scale(1);opacity:1}
+  100%{transform:scale(1.5);opacity:0}
+}
+
+/* ═══════════════════════════════════════════
+   UTILS
+═══════════════════════════════════════════ */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* SVG WAVE */
+.wave{display:block;width:100%;overflow:hidden;line-height:0}
+.wave svg{display:block;width:100%}
+
+@media(max-width:480px){
+  .why-section,.exp-section,.testi-section,.steps-section,.faq-section,.cta-section{padding:70px 20px}
+  .hero{padding:90px 20px 60px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-mark">EX</div>
+    <div class="nav-logo-text">EastXperience</div>
+  </div>
+  <div class="nav-links">
+    <a href="#experiences" class="nav-link">Experiences</a>
+    <a href="#reviews" class="nav-link">Reviews</a>
+    <a href="#how" class="nav-link">How It Works</a>
+    <a href="https://wa.me/62811342473?text=Hi!%20I%27d%20like%20to%20book%20directly%20with%20EastXperience." class="nav-btn" target="_blank">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Book Direct
+    </a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">🐉 Komodo National Park · Labuan Bajo, Flores</div>
+      <h1 class="hero-h1">
+        Skip the<br>
+        middleman.<br>
+        <span class="line-coral">Save 25%.</span><br>
+        <span class="line-italic">Book with the source.</span>
+      </h1>
+      <p class="hero-sub">GetYourGuide and Viator take 20–25% from every booking. That money doesn't disappear — it just stops improving your experience. Book direct with the local Komodo experts since 2017.</p>
+      <div class="hero-ctas">
+        <a href="#experiences" class="btn-coral">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          View Experiences
+        </a>
+        <a href="https://wa.me/62811342473?text=Hi!%20I%27d%20like%20to%20book%20directly%20with%20EastXperience." class="btn-wa-green" target="_blank">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp Now
+        </a>
+      </div>
+      <div class="hero-proof">
+        <div class="hero-proof-item">
+          <div class="hero-proof-icon">⭐</div>
+          <div class="hero-proof-text"><strong>4.5 / 5.0</strong>93 reviews on GYG</div>
+        </div>
+        <div class="hero-proof-item">
+          <div class="hero-proof-icon">🏝️</div>
+          <div class="hero-proof-text"><strong>Local Operator</strong>Est. 2017, Labuan Bajo</div>
+        </div>
+        <div class="hero-proof-item">
+          <div class="hero-proof-icon">🛡️</div>
+          <div class="hero-proof-text"><strong>Best Price</strong>Guaranteed or we beat it</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="savings-card">
+        <div class="savings-card-label">💰 Direct Booking Savings</div>
+        <div class="savings-card-row">
+          <div class="savings-card-name">🚢 Phinisi Liveaboard 3D2N</div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span class="savings-card-ota">From Rp 4.500.000 OTA</span>
+          <span class="savings-card-direct">From Rp 3.750.000</span>
+        </div>
+        <div class="savings-badge">Save up to 20%</div>
+      </div>
+      <div class="savings-card">
+        <div class="savings-card-label">⚡ Price Comparison</div>
+        <div class="savings-card-row">
+          <span class="savings-card-name">Speedboat Day Tour</span>
+          <span style="display:flex;gap:10px;align-items:center">
+            <span class="savings-card-ota">Rp 2.000.000</span>
+            <span class="savings-card-direct">Rp 1.500.000</span>
+          </span>
+        </div>
+        <div class="savings-card-row">
+          <span class="savings-card-name">Waerebo 2D1N</span>
+          <span style="display:flex;gap:10px;align-items:center">
+            <span class="savings-card-ota">Rp 2.375.000</span>
+            <span class="savings-card-direct">Rp 1.850.000</span>
+          </span>
+        </div>
+        <div class="savings-badge">Rp 500k–525k cheaper</div>
+      </div>
+      <div class="hero-guarantee">
+        <div class="hero-guarantee-icon">🛡️</div>
+        <div class="hero-guarantee-text">
+          <strong>Best Price Guarantee</strong>
+          Found it cheaper on GYG? Show us — we'll beat it, because that listing includes our OTA commission.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MARQUEE ═══ -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item">Book Direct · Save 25%</div>
+    <div class="marquee-item">No OTA Commission</div>
+    <div class="marquee-item">4.5★ · 93 Verified Reviews</div>
+    <div class="marquee-item">Local Operator Since 2017</div>
+    <div class="marquee-item">Komodo National Park Licensed</div>
+    <div class="marquee-item">Free Cancellation</div>
+    <div class="marquee-item">WhatsApp Response &lt; 1 Hour</div>
+    <div class="marquee-item">500+ Guests Hosted</div>
+    <div class="marquee-item">Best Price Guaranteed</div>
+    <!-- Duplicate for infinite loop -->
+    <div class="marquee-item">Book Direct · Save 25%</div>
+    <div class="marquee-item">No OTA Commission</div>
+    <div class="marquee-item">4.5★ · 93 Verified Reviews</div>
+    <div class="marquee-item">Local Operator Since 2017</div>
+    <div class="marquee-item">Komodo National Park Licensed</div>
+    <div class="marquee-item">Free Cancellation</div>
+    <div class="marquee-item">WhatsApp Response &lt; 1 Hour</div>
+    <div class="marquee-item">500+ Guests Hosted</div>
+    <div class="marquee-item">Best Price Guaranteed</div>
+  </div>
+</div>
+
+<!-- ═══ WHY DIRECT ═══ -->
+<section class="why-section">
+<div class="section-inner">
+  <div class="section-chip">The Difference</div>
+  <h2 class="section-h2">Why booking direct is<br><em>always the smarter move</em></h2>
+  <p class="section-lead">OTA platforms exist to capture your booking, not to serve your experience. When you come direct, everything changes.</p>
+  <div class="why-cards fade-up">
+    <div class="why-card why-card-1">
+      <div class="why-card-bg-num">1</div>
+      <div class="why-card-icon">💸</div>
+      <div class="why-card-num">25%</div>
+      <div class="why-card-title">Real Savings</div>
+      <div class="why-card-body">OTAs charge us 20–25% per booking. Book direct and that Rp 500.000+ comes back to you — or we reinvest it into your experience.</div>
+    </div>
+    <div class="why-card why-card-2">
+      <div class="why-card-bg-num">2</div>
+      <div class="why-card-icon">📲</div>
+      <div class="why-card-num">&lt;1hr</div>
+      <div class="why-card-title">Direct Response</div>
+      <div class="why-card-body">No chatbots. No 48-hour ticketing queues. WhatsApp us and you're talking to the actual crew — people who know every tide, reef, and ridge on Komodo.</div>
+    </div>
+    <div class="why-card why-card-3">
+      <div class="why-card-bg-num">3</div>
+      <div class="why-card-icon">🎯</div>
+      <div class="why-card-num">100%</div>
+      <div class="why-card-title">Fully Custom</div>
+      <div class="why-card-body">OTAs lock you into fixed packages. Book direct and we tailor the itinerary, dates, meals, group size — any special request, just ask.</div>
+    </div>
+    <div class="why-card why-card-4">
+      <div class="why-card-bg-num">4</div>
+      <div class="why-card-icon">🏝️</div>
+      <div class="why-card-num">8yrs</div>
+      <div class="why-card-title">Local Authority</div>
+      <div class="why-card-body">We're not a reseller. We've operated in Labuan Bajo since 2017. We know which manta rays are feeding this week — and which sunrise spot the crowds haven't found yet.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ EXPERIENCES ═══ -->
+<section class="exp-section" id="experiences">
+<div class="section-inner">
+  <div class="section-chip fade-up">Our Experiences</div>
+  <h2 class="section-h2 fade-up">Three ways to experience<br><em>Komodo & Flores</em></h2>
+  <p class="section-lead fade-up">All at direct-booking rates — no OTA markup, no platform fees.</p>
+
+  <div class="exp-cards">
+
+    <!-- PHINISI -->
+    <div class="exp-card exp-card-phinisi fade-up">
+      <div class="exp-accent"></div>
+      <div class="exp-body">
+        <div class="exp-header">
+          <span class="exp-tag">🚢 Flagship · 3 Days 2 Nights · Open Trip</span>
+          <div class="exp-rating"><span class="stars">★★★★★</span> 5.0</div>
+        </div>
+        <h3 class="exp-name">Phinisi <em>Liveaboard</em></h3>
+        <p class="exp-desc">Sleep on a traditional wooden phinisi. Wake up at Padar Island at sunrise — before any crowd arrives. Dive alongside manta rays, walk among Komodo dragons, and watch the stars from the deck over open sea. Three vessels, six cabin types. Pick your style.</p>
+        <div class="vessel-table">
+          <div class="vessel-table-header">🚢 Choose Your Vessel & Cabin</div>
+          <div class="vessel-group">
+            <div class="vessel-group-header">KANHA NATHA — Classic</div>
+            <div class="vessel-row"><span class="vessel-row-name">Share Cabin (min 2 pax)</span><span class="vessel-row-price">Rp 3.750.000</span></div>
+            <div class="vessel-row"><span class="vessel-row-name">Private Ocean View (min 2 pax)</span><span class="vessel-row-price">Rp 6.000.000</span></div>
+          </div>
+          <div class="vessel-group">
+            <div class="vessel-group-header">KANHA LOKA — Balanced</div>
+            <div class="vessel-row"><span class="vessel-row-name">Share Cabin (min 2 pax)</span><span class="vessel-row-price">Rp 3.750.000</span></div>
+            <div class="vessel-row"><span class="vessel-row-name">Superior Cabin (min 2 pax)</span><span class="vessel-row-price">Rp 5.000.000</span></div>
+            <div class="vessel-row"><span class="vessel-row-name">Family/Share (4 pax)</span><span class="vessel-row-price">Rp 5.000.000</span></div>
+            <div class="vessel-row"><span class="vessel-row-name">Deluxe Ocean View</span><span class="vessel-row-price">Rp 6.500.000</span></div>
+            <div class="vessel-row"><span class="vessel-row-name">Master Ocean View</span><span class="vessel-row-price">Rp 7.000.000</span></div>
+            <div class="vessel-row"><span class="vessel-row-name">3rd pax Master/Deluxe</span><span class="vessel-row-price">Rp 4.250.000</span></div>
+          </div>
+          <div class="vessel-group">
+            <div class="vessel-group-header">KANHA CITTA — Immersive Premium</div>
+            <div class="vessel-row"><span class="vessel-row-name">Share Cabin (min 2 pax)</span><span class="vessel-row-price">Rp 4.000.000</span></div>
+            <div class="vessel-row"><span class="vessel-row-name">Deluxe Main Deck</span><span class="vessel-row-price">Rp 6.500.000</span></div>
+            <div class="vessel-row"><span class="vessel-row-name">Upper Deck Cabin</span><span class="vessel-row-price">Rp 7.000.000</span></div>
+            <div class="vessel-row"><span class="vessel-row-name">Master Ocean View</span><span class="vessel-row-price">Rp 7.500.000</span></div>
+          </div>
+        </div>
+        <div class="exp-pills">
+          <span class="pill">🦅 Padar Sunrise</span><span class="pill">🐠 Manta Point</span><span class="pill">🏝️ Pink Beach</span>
+          <span class="pill">🐉 Komodo Dragons</span><span class="pill">🌊 Taka Makassar</span>
+          <span class="pill">All Meals</span><span class="pill">Snorkel Gear</span><span class="pill">Park Fee Included</span>
+        </div>
+        <div class="exp-ctas">
+          <a href="https://eastxperience.rezio.shop" class="btn-dark" target="_blank">
+            Book Now
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://wa.me/62811342473?text=Hi!%20I'm%20interested%20in%20the%20Phinisi%20Liveaboard%203D2N.%20Can%20you%20help?" class="btn-outline" target="_blank">Ask via WhatsApp</a>
+        </div>
+      </div>
+      <div class="exp-price-panel">
+        <div>
+          <div class="price-direct-label">Open Trip From</div>
+          <div class="price-direct-num" style="font-size:1.5rem">Rp 3,75<span style="font-size:0.9rem">jt</span></div>
+          <div class="price-unit">per person · share</div>
+          <div class="price-save-badge">3 vessel options</div>
+        </div>
+        <div class="price-meta">
+          Departs Labuan Bajo<br>
+          All meals included<br>
+          Snorkel gear<br>
+          Park fee included
+        </div>
+      </div>
+    </div>
+
+    <!-- SPEEDBOAT -->
+    <div class="exp-card exp-card-speedboat fade-up">
+      <div class="exp-accent"></div>
+      <div class="exp-body">
+        <div class="exp-header">
+          <span class="exp-tag">⚡ Day Tour · Full Day · Open Trip</span>
+          <div class="exp-rating"><span class="stars">★★★★★</span> 4.8</div>
+        </div>
+        <h3 class="exp-name">Komodo Speedboat <em>Day Tour</em></h3>
+        <p class="exp-desc">All the Komodo highlights, zero filler. Our speedboat covers Padar, Pink Beach, Komodo Island, and Manta Point in one action-packed day. Less sailing time = more time actually on the islands. The smart way to see Komodo in a day.</p>
+        <div class="exp-pills">
+          <span class="pill">🦅 Padar Island</span><span class="pill">🏝️ Pink Beach</span><span class="pill">🐉 Komodo Island</span>
+          <span class="pill">🐠 Manta Point</span><span class="pill">⚡ Fast Speedboat</span>
+          <span class="pill">Lunch Included</span><span class="pill">Snorkel Gear</span>
+        </div>
+        <div class="exp-ctas">
+          <a href="https://eastxperience.rezio.shop" class="btn-dark" target="_blank">
+            Book Now
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://wa.me/62811342473?text=Hi!%20I'm%20interested%20in%20the%20Speedboat%20Day%20Tour.%20Can%20you%20help?" class="btn-outline" target="_blank">Ask via WhatsApp</a>
+        </div>
+      </div>
+      <div class="exp-price-panel">
+        <div>
+          <div class="price-ota-label">OTA (GetYourGuide)</div>
+          <div class="price-ota-num">Rp 2.000.000</div>
+          <div class="price-direct-label">Direct Rate</div>
+          <div class="price-direct-num">Rp 1,5<span style="font-size:0.9rem">jt</span></div>
+          <div class="price-unit">per person</div>
+          <div class="price-save-badge">Save Rp 500rb (25%)</div>
+        </div>
+        <div class="price-meta">Min. 2 pax<br>Departs Labuan Bajo<br>10 hours</div>
+      </div>
+    </div>
+
+    <!-- WAEREBO -->
+    <div class="exp-card exp-card-waerebo fade-up">
+      <div class="exp-accent"></div>
+      <div class="exp-body">
+        <div class="exp-header">
+          <span class="exp-tag">🏔️ Cultural Immersion · 2 Days 1 Night</span>
+          <div class="exp-rating"><span class="stars">★★★★½</span> 4.5</div>
+        </div>
+        <h3 class="exp-name">Waerebo <em>Cultural Journey</em></h3>
+        <p class="exp-desc">Flores' most extraordinary experience — a 2-day journey into Wae Rebo, a living village of cone-shaped Mbaru Niang houses, tucked into cloud forest at 1,200m. Trek up, sleep in a traditional house, meet the community. This cannot be Googled; it must be felt.</p>
+        <div class="exp-pills">
+          <span class="pill">🏔️ Forest Trek</span><span class="pill">🏡 Stay in Mbaru Niang</span>
+          <span class="pill">🧵 Cultural Immersion</span><span class="pill">🌿 Local Guide</span>
+          <span class="pill">All Meals D1+D2</span><span class="pill">Village Entrance</span>
+        </div>
+        <div class="exp-ctas">
+          <a href="https://eastxperience.rezio.shop" class="btn-dark" target="_blank">
+            Book Now
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="https://wa.me/62811342473?text=Hi!%20I'm%20interested%20in%20the%20Waerebo%20Cultural%20Journey.%20Can%20you%20help?" class="btn-outline" target="_blank">Ask via WhatsApp</a>
+        </div>
+      </div>
+      <div class="exp-price-panel">
+        <div>
+          <div class="price-ota-label">OTA (GetYourGuide)</div>
+          <div class="price-ota-num">Rp 2.375.000</div>
+          <div class="price-direct-label">Direct Rate</div>
+          <div class="price-direct-num">Rp 1,85<span style="font-size:0.9rem">jt</span></div>
+          <div class="price-unit">per person</div>
+          <div class="price-save-badge">Save Rp 525rb (22%)</div>
+        </div>
+        <div class="price-meta">Min. 2 pax<br>Departs Labuan Bajo<br>93 reviews on GYG</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GUARANTEE -->
+  <div style="margin-top:16px;background:var(--gold-pale);border:1px solid rgba(212,144,10,0.2);border-radius:var(--radius);padding:20px 24px;display:flex;gap:14px;align-items:center" class="fade-up">
+    <span style="font-size:1.6rem">🛡️</span>
+    <div>
+      <div style="font-family:'Space Mono',monospace;font-size:0.56rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);margin-bottom:4px">Best Price Guarantee</div>
+      <div style="font-size:0.84rem;color:var(--text2);line-height:1.6">Found the same trip cheaper on GetYourGuide or Viator? Show us the listing — we'll beat it. That listing includes our commission margin, so you deserve it back.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<section class="stats-section">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-num"><span class="counter" data-target="4.5">0</span><span class="suffix">★</span></div>
+      <div class="stat-label">Average Rating</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span class="counter" data-target="93">0</span><span class="suffix">+</span></div>
+      <div class="stat-label">Verified Reviews</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span class="counter" data-target="500">0</span><span class="suffix">+</span></div>
+      <div class="stat-label">Guests Hosted</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span class="counter" data-target="8">0</span><span class="suffix">yrs</span></div>
+      <div class="stat-label">Operating in Labuan Bajo</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span class="counter" data-target="70">0</span><span class="suffix">%</span></div>
+      <div class="stat-label">International Guests</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><span class="counter" data-target="25">0</span><span class="suffix">%</span></div>
+      <div class="stat-label">You Save vs GYG</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="testi-section" id="reviews">
+<div class="section-inner">
+  <div class="section-chip fade-up">Real Guest Reviews</div>
+  <h2 class="section-h2 fade-up">What guests say about<br><em>their EastXperience</em></h2>
+  <div class="testi-grid">
+    <div class="testi-card fade-up">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Enjoyed the 2 day, 1 night tour to the Wae Rebo village — definitely a different experience! Highly recommend."</div>
+      <div class="testi-footer">
+        <div class="testi-avatar">K</div>
+        <div>
+          <div class="testi-author">Kimberley</div>
+          <div class="testi-meta">Australia · Waerebo Tour · April 2026 · Verified</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card fade-up" style="transition-delay:0.1s">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Our guide Martin went above and beyond to make this trip the highlight of our holiday — sharing stories about the land and his life. We could not have been luckier. 100% recommend!"</div>
+      <div class="testi-footer">
+        <div class="testi-avatar">✦</div>
+        <div>
+          <div class="testi-author">Verified Guest</div>
+          <div class="testi-meta">Waerebo Tour · March 2026 · Verified Booking</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card fade-up" style="transition-delay:0.2s">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Our trip was a fantastic experience — the guide, the village, the people. An unforgettable two days in one of the most beautiful places on earth."</div>
+      <div class="testi-footer">
+        <div class="testi-avatar">L</div>
+        <div>
+          <div class="testi-author">Lea</div>
+          <div class="testi-meta">Singapore · Waerebo Tour · March 2026 · Verified</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="testi-all-link fade-up">
+    <a href="https://www.getyourguide.com/labuan-bajo-l106237/2d1n-exotic-waerebo-village-tour-from-labuan-bajo-t519573" target="_blank">
+      Read all 93 reviews on GetYourGuide
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</div>
+</section>
+
+<!-- ═══ HOW TO BOOK ═══ -->
+<section class="steps-section" id="how">
+<div class="section-inner">
+  <div class="section-chip">Simple Process</div>
+  <h2 class="section-h2">How to book direct<br><em>in 3 easy steps</em></h2>
+  <p class="section-lead">No forms, no queues, no bots. Just real people answering fast.</p>
+  <div class="steps-grid fade-up">
+    <div class="step-card">
+      <div class="step-num-bg">1</div>
+      <div class="step-num">01</div>
+      <div class="step-title">WhatsApp or Book Online</div>
+      <div class="step-body">Message us on WhatsApp with your dates, group size, and preferred experience — or hit "Book Now" on any card above to use our online booking system.</div>
+      <div class="step-tag">↗ Response within 1 hour</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num-bg">2</div>
+      <div class="step-num">02</div>
+      <div class="step-title">Confirm & Customise</div>
+      <div class="step-body">We confirm availability and answer every question. Want a private departure, different stops, or special dietary needs? We handle it all — no extra forms.</div>
+      <div class="step-tag">↗ Fully flexible</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num-bg">3</div>
+      <div class="step-num">03</div>
+      <div class="step-title">Pay & Enjoy</div>
+      <div class="step-body">Secure payment via transfer or card. You'll get instant confirmation, a full trip briefing, and a direct crew contact — not a call centre number.</div>
+      <div class="step-tag">↗ Instant confirmation</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="faq-section">
+<div class="section-inner">
+  <div class="section-chip fade-up">FAQ</div>
+  <h2 class="section-h2 fade-up" style="margin-bottom:36px">Common <em>questions</em></h2>
+  <div class="faq-list fade-up">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is booking direct actually cheaper than GetYourGuide?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes — verifiably. Speedboat: Rp 1.500.000 direct vs Rp 2.000.000 on GYG (save Rp 500.000). Waerebo: Rp 1.850.000 direct vs Rp 2.375.000 on GYG (save Rp 525.000). That saving comes directly from removing the OTA platform commission.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I pay?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Bank transfer (IDR/USD), credit/debit card, or cash on arrival for some experiences. A deposit secures your booking — we'll confirm payment details over WhatsApp. No hidden charges.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What's the cancellation policy?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Full refund for cancellations 7+ days before departure. 50% refund 3–6 days before. Within 3 days, we reschedule to available dates at no extra charge. Weather cancellations are always fully rescheduled or refunded — your safety is never negotiable.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I customise the itinerary?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Absolutely — this is the biggest advantage of booking direct. Private group? We adjust every stop. Special occasion? We'll arrange it. Specific spot you've read about? Let's talk. Just message us on WhatsApp with what you have in mind.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Are your boats licensed and safe?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. All vessels are licensed by Indonesia's Ministry of Transport and operate under Komodo National Park regulations. Our crew hold certified safety training and every trip carries life jackets, first aid kits, and emergency communication equipment.</div></div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">I'm travelling solo — can I still join?<div class="faq-icon">+</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Solo travellers are welcome on shared departures for the Speedboat Day Tour. For Phinisi and Waerebo, minimum is 2 pax — but WhatsApp us and we'll find you the best solution, including pairing you with open trip departures.</div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="cta-section">
+  <div class="cta-chip">The direct booking advantage</div>
+  <h2 class="cta-h2">Ready to skip the middleman<br>and <em>actually save?</em></h2>
+  <p class="cta-sub">Message us now — we reply within the hour, every day of the week.</p>
+  <div class="cta-btns">
+    <a href="https://wa.me/62811342473?text=Hi!%20I'd%20like%20to%20book%20directly%20with%20EastXperience." class="btn-white" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Chat on WhatsApp
+    </a>
+    <a href="https://eastxperience.rezio.shop" class="btn-white-outline" target="_blank">
+      Book Online
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">EastXperience</div>
+        <div class="footer-brand-sub">
+          PT. Salam Dari Timur<br>
+          Labuan Bajo, Flores, Indonesia<br>
+          Komodo National Park Licensed Operator · Est. 2017
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Experiences</div>
+        <div class="footer-links">
+          <a href="#experiences" class="footer-link">Phinisi Liveaboard 3D2N</a>
+          <a href="#experiences" class="footer-link">Speedboat Day Tour</a>
+          <a href="#experiences" class="footer-link">Waerebo Cultural Journey</a>
+          <a href="https://wa.me/62811342473" class="footer-link">Private Charter →</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-links">
+          <a href="https://wa.me/62811342473" class="footer-link">+62 811 342 473</a>
+          <a href="https://instagram.com/eastxperience" class="footer-link">@eastxperience</a>
+          <a href="https://eastxperience.rezio.shop" class="footer-link">Online Booking</a>
+          <a href="https://eastxperience.github.io/timurproject/eastxperience-guide-v2.html" class="footer-link">Experience Guide</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 EastXperience · All rights reserved</span>
+      <span>Built for <a href="#">Direct Booking</a> · No OTA Fees</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ FLOATING WA ═══ -->
+<a href="https://wa.me/62811342473?text=Hi!%20I'd%20like%20to%20book%20directly%20with%20EastXperience." class="wa-float" target="_blank" aria-label="WhatsApp">
+  <div class="wa-float-pulse"></div>
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+/* NAV scroll effect */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* FAQ toggle */
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+/* Fade-up on scroll */
+const fadeObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+
+/* Number counter animation */
+function animateCounter(el) {
+  const target = parseFloat(el.dataset.target);
+  const isFloat = target % 1 !== 0;
+  const duration = 1800;
+  const start = performance.now();
+  const update = (now) => {
+    const progress = Math.min((now - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    const current = target * ease;
+    el.textContent = isFloat ? current.toFixed(1) : Math.round(current);
+    if (progress < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+const counterObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.counter').forEach(animateCounter);
+      counterObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelector('.stats-section') && counterObs.observe(document.querySelector('.stats-section'));
+</script>
+</body>
+</html>
