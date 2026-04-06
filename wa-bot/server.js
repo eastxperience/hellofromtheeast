@@ -90,7 +90,7 @@ PRODUK UTAMA (hafal semua harga dan detail):
 CARA BOOKING:
 1. Tamu konfirmasi tanggal, jumlah pax, pilih trip
 2. Tim kirim invoice
-3. DP 30% via transfer bank BCA: 123-456-789 a.n. PT Salam Dari Timur
+3. DP 30% via transfer bank BCA: 753-506-5233 a.n. PT Salam Dari Timur
 4. Pelunasan H-7 sebelum trip
 5. Konfirmasi via WA setelah transfer
 
