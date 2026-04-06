@@ -198,7 +198,12 @@ app.post('/webhook', async (req, res) => {
   if (phone === WA_NUMBER || phone === `62${WA_NUMBER}`) {
     return res.json({ status: 'self_ignored' });
   }
-
+  
+// Ignore group chat messages — only respond to direct messages
+if (data.isgroup === true || String(phone).includes('@g.us')) {
+  console.log(`👥 Group message ignored from ${phone}`);
+  return res.json({ status: 'group_ignored' });
+}
   console.log(`📥 [${phone}] ${name}: ${message}`);
   res.json({ status: 'processing' });
 
