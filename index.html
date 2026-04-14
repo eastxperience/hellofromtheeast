@@ -77,8 +77,10 @@ tailwind.config = {
   .nav-link:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
   .nav-link:hover:after{transform:scaleX(1)}
   .hero-bg{position:relative;overflow:hidden}
-  .hero-bg .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-  .hero-bg .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,31,23,.15),rgba(11,31,23,.75));z-index:1}
+  .hero-bg .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0}
+  .hero-bg .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,31,23,.2) 0%,rgba(11,31,23,.8) 100%);z-index:1}
+  .urgency-pulse{animation:upulse 2s ease-in-out infinite}
+  @keyframes upulse{0%,100%{opacity:1}50%{opacity:.7}}
   .scroll-snap{scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
   .scroll-snap>*{scroll-snap-align:start}
   /* floating wa */
@@ -150,8 +152,8 @@ tailwind.config = {
     </nav>
     <div class="flex items-center gap-2">
       <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20love%20to%20plan%20a%20trip." class="btn btn-primary !py-2.5 !px-4 text-[13px]">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/></svg>
-        Get Best Price
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+        Build My Trip
       </a>
       <button id="menu-btn" class="md:hidden w-10 h-10 rounded-full border border-ink/10 flex items-center justify-center" aria-label="Menu">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -175,40 +177,45 @@ tailwind.config = {
 <!-- HERO -->
 <section class="relative overflow-hidden">
   <div class="hero-bg relative min-h-[92vh] md:min-h-[88vh] flex items-end">
-    <img class="hero-img" src="https://lh3.googleusercontent.com/d/1z4yhgPBLQphCJIWy5Yz4JOjTxMzZ3890=w2000" alt="EastXperience group trip at Padar Island" fetchpriority="high"/>
+    <img class="hero-img" src="https://lh3.googleusercontent.com/d/1z4yhgPBLQphCJIWy5Yz4JOjTxMzZ3890=w2000" alt="EastXperience group trip Padar Island" fetchpriority="high"/>
     <div class="hero-overlay"></div>
     <div class="absolute inset-0 grain" style="z-index:2"></div>
-    <div class="relative max-w-7xl mx-auto px-5 pb-16 md:pb-24 pt-28 text-bone w-full" style="z-index:3">
-      <span class="chip mb-6">
-        <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
-        Est. Indonesia · Private Journeys
-      </span>
-      <h1 class="font-display text-[44px] leading-[1.02] sm:text-6xl md:text-7xl lg:text-[88px] max-w-4xl">
-        Indonesia,<br/><em class="not-italic text-gold/95">beyond the ordinary.</em>
-      </h1>
-      <p class="mt-6 max-w-xl text-bone/85 text-lg md:text-xl leading-relaxed intro-long">
-        Private, handcrafted journeys across Bandung, Komodo, Flores & the hidden archipelago — designed by locals who know every sunrise.
-      </p>
-      <p class="mt-4 max-w-xl text-bone/85 text-[16px] leading-relaxed intro-short">
-        Private journeys across Indonesia — designed by locals. No middleman, best price guaranteed.
-      </p>
-      <div class="mt-8 flex flex-wrap items-center gap-3">
-        <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20my%20trip." class="btn btn-wa">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-          Get Best Price — Direct
-        </a>
-        <a href="#experiences" class="btn btn-ghost">Explore Experiences →</a>
+    <div class="relative max-w-7xl mx-auto px-5 pb-14 md:pb-24 pt-28 text-bone w-full" style="z-index:3">
+      <div class="flex items-center gap-3 mb-5">
+        <span class="chip">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 urgency-pulse"></span>
+          Replying now · 3 min avg
+        </span>
+        <span class="chip mob-hide">
+          <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+          Peak season Jul–Sep filling fast
+        </span>
       </div>
-      <div class="mt-12 flex items-center gap-6 text-bone/80 text-sm">
-        <div class="flex -space-x-2">
-          <img loading="lazy" class="w-9 h-9 rounded-full border-2 border-ink object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=80" alt=""/>
-          <img loading="lazy" class="w-9 h-9 rounded-full border-2 border-ink object-cover" src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=80&q=80" alt=""/>
-          <img loading="lazy" class="w-9 h-9 rounded-full border-2 border-ink object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt=""/>
+      <h1 class="font-display text-[40px] leading-[1.04] sm:text-6xl md:text-7xl lg:text-[84px] max-w-4xl">
+        Private Indonesia Journeys<br/><em class="not-italic text-gold/95">Crafted by Locals</em>
+      </h1>
+      <p class="mt-5 max-w-xl text-bone/90 text-lg md:text-xl leading-relaxed">
+        Komodo, Flores, Bandung, Bali & Java with direct operator rates. No agency markup. Concierge planning in minutes.
+      </p>
+      <div class="mt-7 flex flex-wrap items-center gap-3">
+        <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20build%20my%20trip." class="btn btn-wa text-[15px] !py-3 !px-5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+          Build My Trip
+        </a>
+        <a href="#experiences" class="btn btn-ghost">See Bestselling Trips ↓</a>
+      </div>
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-bone/80 text-[13px]">
+        <div class="flex items-center gap-2">
+          <div class="flex -space-x-2">
+            <img loading="lazy" class="w-8 h-8 rounded-full border-2 border-ink object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=80" alt=""/>
+            <img loading="lazy" class="w-8 h-8 rounded-full border-2 border-ink object-cover" src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=80&q=80" alt=""/>
+            <img loading="lazy" class="w-8 h-8 rounded-full border-2 border-ink object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt=""/>
+          </div>
+          <span><span class="text-gold">★★★★★</span> 5,000+ guests</span>
         </div>
-        <div>
-          <div class="flex items-center gap-1 text-gold">★★★★★</div>
-          <div class="opacity-80">Loved by 5,000+ travelers across 40+ countries</div>
-        </div>
+        <span>40+ countries</span>
+        <span>Reply &lt; 5 min</span>
+        <span>Direct operator</span>
       </div>
     </div>
   </div>
@@ -238,18 +245,34 @@ tailwind.config = {
   </div>
 </section>
 
-<!-- INTRO -->
-<section class="py-20 md:py-28">
-  <div class="max-w-7xl mx-auto px-5 grid md:grid-cols-12 gap-10 items-end">
-    <div class="md:col-span-7 reveal">
-      <span class="text-[12px] tracking-[.25em] uppercase text-ink/60">— The EastXperience Way</span>
-      <h2 class="font-display text-4xl md:text-6xl mt-4 leading-[1.05]">
-        Not a tour company.<br/>A private atelier for Indonesian journeys.
-      </h2>
+<!-- WHY BOOK DIRECT -->
+<section class="py-16 md:py-24">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+      <span class="text-[12px] tracking-[.25em] uppercase text-ink/60">— Why Book Direct With Us</span>
+      <h2 class="font-display text-3xl md:text-5xl mt-4 leading-[1.05]">Skip the platform. Talk to the people who actually run your trip.</h2>
     </div>
-    <div class="md:col-span-5 text-ink/70 text-[17px] leading-relaxed reveal">
-      <p class="intro-long">We design slow, intentional travel — rooted in real villages, real people, real flavors. Every itinerary is handcrafted by a concierge who lives the place you're about to discover.</p>
-      <p class="intro-short">Handcrafted journeys by locals who live the places you're about to discover.</p>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="p-6 rounded-2xl bg-white border border-ink/5 reveal">
+        <div class="text-3xl mb-3">💰</div>
+        <h3 class="font-display text-xl">Better Rates</h3>
+        <p class="mt-2 text-ink/70 text-[14px] leading-relaxed">No marketplace commission. Direct operator pricing saves you 15–30% vs. booking platforms.</p>
+      </div>
+      <div class="p-6 rounded-2xl bg-white border border-ink/5 reveal">
+        <div class="text-3xl mb-3">⚡</div>
+        <h3 class="font-display text-xl">Faster Planning</h3>
+        <p class="mt-2 text-ink/70 text-[14px] leading-relaxed">WhatsApp reply in under 5 minutes. Full custom itinerary within hours, not days.</p>
+      </div>
+      <div class="p-6 rounded-2xl bg-white border border-ink/5 reveal">
+        <div class="text-3xl mb-3">🧭</div>
+        <h3 class="font-display text-xl">Real Local Specialists</h3>
+        <p class="mt-2 text-ink/70 text-[14px] leading-relaxed">Our team lives between Bandung, Labuan Bajo and Flores. We design from experience, not a database.</p>
+      </div>
+      <div class="p-6 rounded-2xl bg-white border border-ink/5 reveal">
+        <div class="text-3xl mb-3">🛡️</div>
+        <h3 class="font-display text-xl">Priority Support</h3>
+        <p class="mt-2 text-ink/70 text-[14px] leading-relaxed">Dedicated concierge before, during & after your trip. Real humans, available on WhatsApp 7 days.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -262,7 +285,7 @@ tailwind.config = {
         <span class="text-[12px] tracking-[.25em] uppercase text-ink/60">— Featured Experiences</span>
         <h2 class="font-display text-3xl md:text-5xl mt-3">Signature journeys, thoughtfully curated.</h2>
       </div>
-      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20a%20custom%20experience." class="hidden md:inline-flex btn btn-primary">Custom Trip — Best Price</a>
+      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20a%20custom%20trip." class="hidden md:inline-flex btn btn-primary">Build Custom Journey →</a>
     </div>
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -281,9 +304,9 @@ tailwind.config = {
           <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Chase whitewater rapids through Bandung's emerald highlands — a rush of cold spray, rainforest, and sun-warmed laughter.</p>
           <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Whitewater rapids through Bandung's emerald highlands.</p>
           <div class="mt-5">
-            <div class="text-[13px] text-ink/60 mb-3">From IDR 850K · per person</div>
+            <div class="text-[13px] text-ink/60 mb-3">Private journey from <strong class="text-ink">IDR 850K</strong> / person</div>
             <div class="flex gap-2">
-              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20interested%20in%20Bandung%20Rafting." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">Get Best Price</a>
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20interested%20in%20Bandung%20Rafting." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">WhatsApp Direct</a>
               <a target="_blank" rel="noopener" href="https://www.getyourguide.com/bandung-l32327/bandung-pangalengan-river-rafting-adventure-with-lunch-t775512/?partner_id=2FNL47R&amp;currency=USD&amp;travel_agent=1&amp;cmp=share_to_earn" class="btn flex-1 !py-2 !px-3 text-[13px] justify-center bg-ink/[.04] hover:bg-ink hover:text-bone text-ink border border-ink/10">Book on GYG →</a>
             </div>
           </div>
@@ -305,9 +328,9 @@ tailwind.config = {
           <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Crater steam at dawn, volcanic hot springs by noon, and a walk through cloud-touched tea terraces by golden hour.</p>
           <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Volcano crater, hot springs, and cloud-touched tea terraces.</p>
           <div class="mt-5">
-            <div class="text-[13px] text-ink/60 mb-3">From IDR 950K · per person</div>
+            <div class="text-[13px] text-ink/60 mb-3">Private journey from <strong class="text-ink">IDR 950K</strong> / person</div>
             <div class="flex gap-2">
-              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20interested%20in%20Volcano%20Onsen%20Tea." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">Get Best Price</a>
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20interested%20in%20Volcano%20Onsen%20Tea." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">WhatsApp Direct</a>
               <a target="_blank" rel="noopener" href="https://www.getyourguide.com/bandung-l32327/bandung-volcano-crater-onsen-hot-springs-mud-bath-tea-t1016735/?partner_id=2FNL47R&amp;currency=USD&amp;travel_agent=1&amp;cmp=share_to_earn" class="btn flex-1 !py-2 !px-3 text-[13px] justify-center bg-ink/[.04] hover:bg-ink hover:text-bone text-ink border border-ink/10">Book on GYG →</a>
             </div>
           </div>
@@ -329,9 +352,9 @@ tailwind.config = {
           <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Padar's sweeping ridges, Pink Beach's blush shoreline, dragons on Komodo Island — one unforgettable day on open water.</p>
           <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Padar, Pink Beach, Komodo dragons. One epic day.</p>
           <div class="mt-5">
-            <div class="text-[13px] text-ink/60 mb-3">From IDR 1.5M · per person</div>
+            <div class="text-[13px] text-ink/60 mb-3">Private journey from <strong class="text-ink">IDR 1.5M</strong> / person · <span class="text-clay">Bestseller</span></div>
             <div class="flex gap-2">
-              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20interested%20in%20Komodo%20Speedboat." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">Get Best Price</a>
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20interested%20in%20Komodo%20Speedboat." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">WhatsApp Direct</a>
               <a target="_blank" rel="noopener" href="https://www.getyourguide.com/labuan-bajo-l106237/komodo-full-day-speedboat-tour-from-labuan-bajo-t720690/?partner_id=2FNL47R&amp;currency=USD&amp;travel_agent=1&amp;cmp=share_to_earn" class="btn flex-1 !py-2 !px-3 text-[13px] justify-center bg-ink/[.04] hover:bg-ink hover:text-bone text-ink border border-ink/10">Book on GYG →</a>
             </div>
           </div>
@@ -353,9 +376,9 @@ tailwind.config = {
           <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Ancient drum ceremonies, woven ikat, and a secret waterfall — an intimate walk into Manggarai's living heritage.</p>
           <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Drum ceremonies, woven ikat, secret waterfall.</p>
           <div class="mt-5">
-            <div class="text-[13px] text-ink/60 mb-3">From IDR 1.95M · per person</div>
+            <div class="text-[13px] text-ink/60 mb-3">Private journey from <strong class="text-ink">IDR 1.95M</strong> / person</div>
             <div class="flex gap-2">
-              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20interested%20in%20Todo%20Village." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">Get Best Price</a>
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20interested%20in%20Todo%20Village." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">WhatsApp Direct</a>
               <a target="_blank" rel="noopener" href="https://www.getyourguide.com/manggarai-regency-l217587/todo-village-cunca-plias-cultural-nature-day-tour-t1257123/?partner_id=2FNL47R&amp;currency=USD&amp;travel_agent=1&amp;cmp=share_to_earn" class="btn flex-1 !py-2 !px-3 text-[13px] justify-center bg-ink/[.04] hover:bg-ink hover:text-bone text-ink border border-ink/10">Book on GYG →</a>
             </div>
           </div>
@@ -377,9 +400,9 @@ tailwind.config = {
           <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Hike into mist, sleep beneath conical thatched roofs, wake to gongs and mountain silence — Indonesia's most sacred welcome.</p>
           <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Hike into mist, sleep beneath thatched roofs above the clouds.</p>
           <div class="mt-5">
-            <div class="text-[13px] text-ink/60 mb-3">From IDR 2.35M · per person</div>
+            <div class="text-[13px] text-ink/60 mb-3">Private journey from <strong class="text-ink">IDR 2.35M</strong> / person · <span class="text-clay">Iconic</span></div>
             <div class="flex gap-2">
-              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20interested%20in%20Waerebo%202D1N." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">Get Best Price</a>
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20interested%20in%20Waerebo%202D1N." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">WhatsApp Direct</a>
               <a target="_blank" rel="noopener" href="https://www.getyourguide.com/labuan-bajo-l106237/2d1n-exotic-waerebo-village-tour-from-labuan-bajo-t519573/?partner_id=2FNL47R&amp;currency=USD&amp;travel_agent=1&amp;cmp=share_to_earn" class="btn flex-1 !py-2 !px-3 text-[13px] justify-center bg-ink/[.04] hover:bg-ink hover:text-bone text-ink border border-ink/10">Book on GYG →</a>
             </div>
           </div>
@@ -401,9 +424,9 @@ tailwind.config = {
           <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Sleep under galaxies, dive into manta channels, and sail between islands that feel like they belong only to you.</p>
           <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Sleep under galaxies, dive with mantas, sail private islands.</p>
           <div class="mt-5">
-            <div class="text-[13px] text-ink/60 mb-3">From IDR 5.5M · per person</div>
+            <div class="text-[13px] text-ink/60 mb-3">Private sailing from <strong class="text-ink">IDR 5.5M</strong> / person · <span class="text-clay">Premium</span></div>
             <div class="flex gap-2">
-              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20interested%20in%20Komodo%203D2N%20Sailing." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">Get Best Price</a>
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20interested%20in%20Komodo%203D2N%20Sailing." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">WhatsApp Direct</a>
               <a target="_blank" rel="noopener" href="https://www.getyourguide.com/labuan-bajo-l106237/3d2n-komodo-social-community-sailing-experience-t1226320/?partner_id=2FNL47R&amp;currency=USD&amp;travel_agent=1&amp;cmp=share_to_earn" class="btn flex-1 !py-2 !px-3 text-[13px] justify-center bg-ink/[.04] hover:bg-ink hover:text-bone text-ink border border-ink/10">Book on GYG →</a>
             </div>
           </div>
@@ -412,7 +435,56 @@ tailwind.config = {
     </div>
 
     <div class="md:hidden mt-8 flex justify-center">
-      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20a%20custom%20itinerary." class="btn btn-primary">Custom Trip — Best Price</a>
+      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20build%20my%20trip." class="btn btn-primary">Build Custom Journey →</a>
+    </div>
+    <!-- Urgency block under cards -->
+    <div class="mt-10 p-5 md:p-6 rounded-2xl bg-clay/10 border border-clay/20 flex flex-wrap items-center justify-between gap-4 reveal">
+      <div>
+        <div class="flex items-center gap-2 text-clay font-semibold text-[14px]">
+          <span class="w-2 h-2 rounded-full bg-clay urgency-pulse"></span>
+          Peak Season Alert
+        </div>
+        <p class="text-ink/70 text-[14px] mt-1">Jul–Sep dates filling fast. Only limited phinisi departures available weekly. Secure your spot now.</p>
+      </div>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20I%20want%20to%20check%20availability%20for%20peak%20season." class="btn btn-primary !py-2 !px-4 text-[13px] whitespace-nowrap">Check Availability →</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHO TRAVELS WITH US -->
+<section class="py-14 md:py-20 bg-sand/40">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-10 reveal">
+      <span class="text-[12px] tracking-[.25em] uppercase text-ink/60">— Who Travels With Us</span>
+      <h2 class="font-display text-3xl md:text-5xl mt-3">Find your journey style.</h2>
+      <p class="text-ink/60 mt-2 text-[15px]">Tap yours to start planning.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
+      <a href="https://wa.me/62811342473?text=Hi%2C%20we%27re%20planning%20our%20honeymoon%20in%20Indonesia." class="p-5 rounded-2xl bg-white border border-ink/5 text-center hover:shadow-soft hover:-translate-y-1 transition reveal">
+        <div class="text-3xl mb-2">💑</div>
+        <div class="font-display text-[16px]">Honeymoon</div>
+        <div class="text-[12px] text-ink/50 mt-1">Romance & luxury</div>
+      </a>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20planning%20a%20corporate%20retreat%20in%20Indonesia." class="p-5 rounded-2xl bg-white border border-ink/5 text-center hover:shadow-soft hover:-translate-y-1 transition reveal">
+        <div class="text-3xl mb-2">🏢</div>
+        <div class="font-display text-[16px]">Corporate</div>
+        <div class="text-[12px] text-ink/50 mt-1">Team retreats</div>
+      </a>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20planning%20a%20family%20trip%20to%20Indonesia." class="p-5 rounded-2xl bg-white border border-ink/5 text-center hover:shadow-soft hover:-translate-y-1 transition reveal">
+        <div class="text-3xl mb-2">👨‍👩‍👧‍👦</div>
+        <div class="font-display text-[16px]">Family</div>
+        <div class="text-[12px] text-ink/50 mt-1">All ages welcome</div>
+      </a>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20looking%20for%20an%20adventure%20group%20trip." class="p-5 rounded-2xl bg-white border border-ink/5 text-center hover:shadow-soft hover:-translate-y-1 transition reveal">
+        <div class="text-3xl mb-2">🧗</div>
+        <div class="font-display text-[16px]">Adventure</div>
+        <div class="text-[12px] text-ink/50 mt-1">Active & wild</div>
+      </a>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20solo%20premium%20traveler%20looking%20for%20Indonesia%20trip." class="p-5 rounded-2xl bg-white border border-ink/5 text-center hover:shadow-soft hover:-translate-y-1 transition col-span-2 md:col-span-1 reveal">
+        <div class="text-3xl mb-2">✨</div>
+        <div class="font-display text-[16px]">Solo Premium</div>
+        <div class="text-[12px] text-ink/50 mt-1">Curated escapes</div>
+      </a>
     </div>
   </div>
 </section>
@@ -623,20 +695,36 @@ tailwind.config = {
     </div>
     <div class="divide-y divide-ink/10 border-y border-ink/10">
       <details class="py-5 group">
-        <summary class="flex items-center justify-between gap-4"><span class="font-display text-xl">Do you only serve Indonesia?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition">+</span></summary>
-        <p class="mt-3 text-ink/70">Yes — deep focus over broad. From Bandung to Raja Ampat, Indonesia is our craft.</p>
+        <summary class="flex items-center justify-between gap-4"><span class="font-display text-xl">Is payment safe? How do I pay?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition">+</span></summary>
+        <p class="mt-3 text-ink/70">Yes. We accept bank transfer and major payment methods. You'll receive a clear invoice with itemized costs before any payment. No hidden fees, no surprises.</p>
       </details>
       <details class="py-5 group">
-        <summary class="flex items-center justify-between gap-4"><span class="font-display text-xl">How personalized is each trip?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition">+</span></summary>
-        <p class="mt-3 text-ink/70">Entirely. Every itinerary is written by a human concierge and refined with you over WhatsApp until it feels exactly right.</p>
+        <summary class="flex items-center justify-between gap-4"><span class="font-display text-xl">Are you better than booking on GetYourGuide?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition">+</span></summary>
+        <p class="mt-3 text-ink/70">We're the same operator behind many GYG listings — but direct booking means no platform commission, so you get better rates, more flexible customization, and priority support.</p>
       </details>
       <details class="py-5 group">
-        <summary class="flex items-center justify-between gap-4"><span class="font-display text-xl">What's the fastest way to book?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition">+</span></summary>
-        <p class="mt-3 text-ink/70">WhatsApp +62 811 3424 73. We typically respond within 5 minutes during Indonesia hours.</p>
+        <summary class="flex items-center justify-between gap-4"><span class="font-display text-xl">Do you speak English? Other languages?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition">+</span></summary>
+        <p class="mt-3 text-ink/70">Fluent English is our standard. Our team also speaks Indonesian, and basic Mandarin. All communication is fast, clear, and friendly.</p>
+      </details>
+      <details class="py-5 group">
+        <summary class="flex items-center justify-between gap-4"><span class="font-display text-xl">What's your refund & cancellation policy?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition">+</span></summary>
+        <p class="mt-3 text-ink/70">Flexible cancellation windows depending on the trip. We provide clear terms upfront — no fine print, no gotchas. Plans change, we understand.</p>
+      </details>
+      <details class="py-5 group">
+        <summary class="flex items-center justify-between gap-4"><span class="font-display text-xl">Is hotel pickup included?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition">+</span></summary>
+        <p class="mt-3 text-ink/70">Yes, most trips include hotel pickup and drop-off within the service area. We confirm all logistics before your trip so you just relax.</p>
+      </details>
+      <details class="py-5 group">
+        <summary class="flex items-center justify-between gap-4"><span class="font-display text-xl">Are there any hidden fees?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition">+</span></summary>
+        <p class="mt-3 text-ink/70">Zero. The price we quote is the price you pay. National park entrance fees and specific extras are always listed upfront.</p>
+      </details>
+      <details class="py-5 group">
+        <summary class="flex items-center justify-between gap-4"><span class="font-display text-xl">How fast can you plan my trip?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition">+</span></summary>
+        <p class="mt-3 text-ink/70">WhatsApp reply in under 5 minutes. Full custom itinerary proposal within hours. We've had guests book and travel within 48 hours.</p>
       </details>
       <details class="py-5 group">
         <summary class="flex items-center justify-between gap-4"><span class="font-display text-xl">Can you handle groups and families?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition">+</span></summary>
-        <p class="mt-3 text-ink/70">Absolutely — from couples to multi-generational families and private buyouts. Tell us your pace, we design around it.</p>
+        <p class="mt-3 text-ink/70">From couples to 30+ person groups, multi-generational families, and private buyouts. Tell us your pace, we design around it.</p>
       </details>
     </div>
   </div>
@@ -649,17 +737,25 @@ tailwind.config = {
     <div class="absolute inset-0 bg-ink/70"></div>
   </div>
   <div class="relative max-w-5xl mx-auto px-5 py-24 md:py-36 text-center text-bone">
-    <span class="chip mb-6">Limited trips each month · Crafted, not mass-produced</span>
+    <div class="flex items-center justify-center gap-2 mb-6">
+      <span class="chip"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 urgency-pulse"></span> Limited trips each month</span>
+      <span class="chip mob-hide">Most guests book 2–4 weeks ahead</span>
+    </div>
     <h2 class="font-display text-4xl md:text-7xl leading-[1.02]">
-      Your journey <em class="not-italic text-gold">starts here.</em>
+      Ready to go?<br/><em class="not-italic text-gold">Let's build your trip.</em>
     </h2>
-    <p class="mt-5 text-bone/80 text-lg max-w-xl mx-auto">Tell us a little about you. We'll reply with an itinerary worth saving forever.</p>
+    <p class="mt-5 text-bone/80 text-lg max-w-xl mx-auto">Message us now. You'll get a reply in minutes and a custom itinerary within hours. No commitment, no pressure.</p>
     <div class="mt-8 flex flex-wrap justify-center gap-3">
-      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20start%20planning." class="btn btn-wa">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        Get Best Price Now
+      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27m%20ready%20to%20plan%20my%20trip." class="btn btn-wa text-[15px] !py-3 !px-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+        Build My Trip Now
       </a>
-      <a href="mailto:hello@eastxperience.com" class="btn btn-ghost">Email the Concierge</a>
+      <a href="mailto:hello@eastxperience.com" class="btn btn-ghost">Email Concierge</a>
+    </div>
+    <div class="mt-6 flex flex-wrap justify-center gap-4 text-bone/60 text-[13px]">
+      <span>✓ No hidden fees</span>
+      <span>✓ Free cancellation window</span>
+      <span>✓ English-speaking team</span>
     </div>
   </div>
 </section>
@@ -679,7 +775,7 @@ tailwind.config = {
       <p class="mt-5 max-w-sm text-bone/70">Private journeys, curated by locals. Handcrafted across Indonesia since day one.</p>
       <a href="https://wa.me/62811342473" class="btn btn-wa mt-6">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
-        Get Best Price · +62 811 3424 73
+        Build My Trip · +62 811 3424 73
       </a>
     </div>
     <div class="md:col-span-3">
@@ -708,10 +804,10 @@ tailwind.config = {
 </footer>
 
 <!-- Floating WhatsApp -->
-<a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20love%20to%20get%20the%20best%20price." class="fab" aria-label="Get Best Price">
+<a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20build%20my%20trip." class="fab" aria-label="Build My Trip">
   <span class="pulse"></span>
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 18l6-6-6-6"/></svg>
-  <span class="text-[13px]">Best Price</span>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+  <span class="text-[13px]">Build My Trip</span>
 </a>
 
 <!-- JSON-LD -->
