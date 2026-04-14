@@ -76,7 +76,9 @@ tailwind.config = {
   .nav-link{position:relative;font-weight:500}
   .nav-link:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
   .nav-link:hover:after{transform:scaleX(1)}
-  .hero-bg{background-image:linear-gradient(180deg,rgba(11,31,23,.15),rgba(11,31,23,.75)),url('https://lh3.googleusercontent.com/d/1z4yhgPBLQphCJIWy5Yz4JOjTxMzZ3890=w2000&v=2');background-size:cover;background-position:center}
+  .hero-bg{position:relative;overflow:hidden}
+  .hero-bg .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+  .hero-bg .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,31,23,.15),rgba(11,31,23,.75));z-index:1}
   .scroll-snap{scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
   .scroll-snap>*{scroll-snap-align:start}
   /* floating wa */
@@ -173,8 +175,10 @@ tailwind.config = {
 <!-- HERO -->
 <section class="relative overflow-hidden">
   <div class="hero-bg relative min-h-[92vh] md:min-h-[88vh] flex items-end">
-    <div class="absolute inset-0 grain"></div>
-    <div class="relative max-w-7xl mx-auto px-5 pb-16 md:pb-24 pt-28 text-bone w-full">
+    <img class="hero-img" src="https://lh3.googleusercontent.com/d/1z4yhgPBLQphCJIWy5Yz4JOjTxMzZ3890=w2000" alt="EastXperience group trip at Padar Island" fetchpriority="high"/>
+    <div class="hero-overlay"></div>
+    <div class="absolute inset-0 grain" style="z-index:2"></div>
+    <div class="relative max-w-7xl mx-auto px-5 pb-16 md:pb-24 pt-28 text-bone w-full" style="z-index:3">
       <span class="chip mb-6">
         <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
         Est. Indonesia · Private Journeys
