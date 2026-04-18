@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ECE8E0">
+<title>Reserve Your Waerebo Journey · EastXperience</title>
+<meta name="description" content="Book your 2D1N Waerebo Village experience directly with EastXperience. Shared or private journeys, fast confirmation, best direct price. Daily departures from Labuan Bajo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+--mist:#ECE8E0;--earth:#7A5C43;--moss:#55624D;
+--forest:#203328;--sunrise:#C98E5B;--stone:#6D6B67;
+--white:#fff;--border:rgba(32,51,40,.09);
+--gold:#C8A86B;--ivory:#F7F2E8;
+--rc:20px;--rp:999px;--t:220ms ease;
+--shadow:0 20px 56px rgba(32,51,40,.13);
+--shadow-sm:0 6px 22px rgba(32,51,40,.09);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--mist);color:var(--forest);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:300;letter-spacing:-.025em;line-height:1.1}
+input,select,textarea,button{font-family:'Inter',system-ui,sans-serif}
+
+/* ── Header ── */
+.site-header{position:sticky;top:0;z-index:80;background:rgba(236,232,224,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(32,51,40,.07)}
+.hdr{max-width:980px;margin:0 auto;padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.back-link{display:flex;align-items:center;gap:6px;color:rgba(32,51,40,.45);font-size:13px;font-weight:500;text-decoration:none;transition:color var(--t);flex-shrink:0}
+.back-link:hover{color:var(--forest)}
+.back-link svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.brand{display:flex;align-items:center;gap:8px;font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--forest);letter-spacing:-.01em;white-space:nowrap;text-decoration:none}
+@media(min-width:620px){.brand{position:absolute;left:50%;transform:translateX(-50%)}}
+.brand img{width:32px;height:32px;flex-shrink:0}
+.lang-wrap{position:relative}
+.lang-btn{display:flex;align-items:center;gap:5px;background:transparent;border:1.5px solid rgba(32,51,40,.12);border-radius:var(--rp);padding:6px 12px;cursor:pointer;font-size:12px;font-weight:600;color:var(--stone);transition:all var(--t);line-height:1}
+.lang-btn:hover{border-color:rgba(201,142,91,.5);color:var(--sunrise)}
+.lang-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .18s}
+.lang-btn.open svg{transform:rotate(180deg)}
+.lang-dd{position:absolute;top:calc(100% + 8px);right:0;background:var(--white);border:1.5px solid var(--border);border-radius:14px;box-shadow:0 14px 42px rgba(32,51,40,.14);z-index:999;display:none;min-width:170px;overflow:hidden}
+.lang-dd.open{display:block;animation:fadeUp .18s ease both}
+.lang-item{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:11px 16px;background:none;border:none;border-bottom:1px solid rgba(32,51,40,.05);font-size:13px;color:var(--forest);cursor:pointer;transition:background .12s}
+.lang-item:last-child{border-bottom:none}
+.lang-item:hover{background:rgba(201,142,91,.08)}
+.lang-item.active{color:var(--sunrise);font-weight:600}
+.lang-flag{font-size:16px;line-height:1}
+
+/* ── Mini Hero ── */
+.mini-hero{background:var(--forest);position:relative;overflow:hidden;padding:52px 20px 48px}
+.mini-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 60% 40%,rgba(201,142,91,.07) 0%,transparent 65%),radial-gradient(ellipse 50% 80% at 10% 80%,rgba(85,98,77,.3) 0%,transparent 55%)}
+.hero-grain{position:absolute;inset:0;z-index:1;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");background-size:200px}
+.mini-hero-inner{position:relative;z-index:2;max-width:980px;margin:0 auto;text-align:center}
+.hero-label{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:rgba(201,142,91,.75);display:block;margin-bottom:14px}
+.mini-hero h1{font-size:clamp(28px,5vw,50px);color:var(--ivory);margin-bottom:12px;line-height:1.05}
+.mini-hero p{font-size:16px;color:rgba(236,232,224,.62);max-width:480px;margin:0 auto 28px;line-height:1.65}
+.trust-chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:28px}
+.chip{padding:6px 14px;border-radius:var(--rp);font-size:11.5px;font-weight:600;letter-spacing:.035em;border:1px solid rgba(255,255,255,.13);background:rgba(255,255,255,.07);color:rgba(255,255,255,.78);display:flex;align-items:center;gap:6px}
+.chip-dot{width:6px;height:6px;border-radius:50%;background:#5ab86e;animation:blink 2.2s ease infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ── Progress Bar ── */
+.progress-wrap{max-width:460px;margin:0 auto}
+.progress-steps{display:flex;align-items:center;gap:0;justify-content:center}
+.p-step{display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;position:relative}
+.p-step:not(:last-child)::after{content:'';position:absolute;top:14px;left:calc(50% + 14px);right:calc(-50% + 14px);height:1px;background:rgba(255,255,255,.15);z-index:0}
+.p-step.active:not(:last-child)::after{background:rgba(201,142,91,.4)}
+.p-dot{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:rgba(255,255,255,.4);position:relative;z-index:1;transition:all .3s ease;background:transparent}
+.p-step.active .p-dot{border-color:var(--sunrise);color:var(--sunrise);background:rgba(201,142,91,.12)}
+.p-step.done .p-dot{border-color:var(--sunrise);background:var(--sunrise);color:var(--white)}
+.p-label{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.28)}
+.p-step.active .p-label{color:rgba(201,142,91,.8)}
+.p-step.done .p-label{color:rgba(201,142,91,.6)}
+
+/* ── Page Layout ── */
+.page{max-width:980px;margin:0 auto;padding:36px 20px 140px;display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start}
+@media(max-width:860px){.page{grid-template-columns:1fr;padding:24px 16px 160px}}
+
+/* ── Form Card ── */
+.form-card{background:var(--white);border:1.5px solid var(--border);border-radius:24px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.fc-section{padding:28px 28px 0;border-bottom:1px solid var(--border)}
+.fc-section:last-of-type{border-bottom:none;padding-bottom:28px}
+.fc-section-head{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.fc-section-num{width:26px;height:26px;border-radius:50%;background:rgba(201,142,91,.12);border:1.5px solid rgba(201,142,91,.3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--sunrise);flex-shrink:0}
+.fc-section-title{font-family:'Fraunces',serif;font-size:17px;font-weight:400;color:var(--forest)}
+.fc-section-sub{font-size:12.5px;color:var(--stone);margin-top:2px}
+
+/* ── Journey Toggle ── */
+.journey-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
+.jcard{border:2px solid var(--border);border-radius:16px;padding:18px 16px;cursor:pointer;transition:all .22s ease;position:relative;background:var(--white);text-align:left}
+.jcard:hover{border-color:rgba(201,142,91,.4);background:rgba(201,142,91,.03)}
+.jcard.selected{border-color:var(--sunrise);background:rgba(201,142,91,.06)}
+.jcard-radio{position:absolute;opacity:0;width:0;height:0}
+.jcard-check{width:20px;height:20px;border-radius:50%;border:2px solid rgba(32,51,40,.15);display:flex;align-items:center;justify-content:center;margin-bottom:12px;transition:all .2s}
+.jcard.selected .jcard-check{border-color:var(--sunrise);background:var(--sunrise)}
+.jcard.selected .jcard-check::after{content:'';width:8px;height:8px;border-radius:50%;background:var(--white)}
+.jcard-icon{font-size:24px;margin-bottom:8px;display:block}
+.jcard-title{font-family:'Fraunces',serif;font-size:16px;font-weight:400;color:var(--forest);margin-bottom:4px}
+.jcard-sub{font-size:12px;color:var(--stone);line-height:1.5}
+.jcard-badge{display:inline-block;margin-top:8px;padding:3px 9px;border-radius:var(--rp);font-size:10.5px;font-weight:600;letter-spacing:.04em;background:rgba(201,142,91,.1);color:var(--sunrise)}
+
+/* ── Fields ── */
+.fields-grid{display:grid;gap:14px}
+.fields-2{grid-template-columns:1fr 1fr}
+.fields-3{grid-template-columns:1fr 1fr 1fr}
+@media(max-width:560px){.fields-2,.fields-3{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:11.5px;font-weight:600;color:var(--stone);text-transform:uppercase;letter-spacing:.07em;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.opt-tag{font-size:10px;font-weight:500;color:rgba(109,107,103,.7);text-transform:none;letter-spacing:0;background:rgba(32,51,40,.05);padding:2px 7px;border-radius:999px}
+.consent-row{display:flex;gap:10px;align-items:flex-start;padding:14px 16px;background:rgba(32,51,40,.03);border:1px solid rgba(32,51,40,.08);border-radius:12px;margin-top:14px;cursor:pointer;user-select:none}
+.consent-row input{margin-top:2px;width:16px;height:16px;accent-color:var(--sunrise);cursor:pointer;flex-shrink:0}
+.consent-text{font-size:12.5px;color:var(--stone);line-height:1.55}
+.consent-text a{color:var(--earth);text-decoration:underline}
+.field input,.field select,.field textarea{border:1.5px solid rgba(32,51,40,.12);border-radius:12px;padding:13px 15px;font-size:15px;color:var(--forest);background:var(--white);transition:border-color .18s,box-shadow .18s;outline:none;-webkit-appearance:none;width:100%}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--sunrise);box-shadow:0 0 0 3px rgba(201,142,91,.1)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(32,51,40,.28)}
+.field select{background-image:url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%236D6B67' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+.field textarea{resize:none;min-height:80px;line-height:1.55}
+
+/* ── Fitness & Sex Pills ── */
+.fpill-row{display:flex;gap:8px;flex-wrap:wrap}
+.fpill{padding:9px 16px;border:1.5px solid var(--border);border-radius:var(--rp);font-size:13.5px;font-weight:500;cursor:pointer;transition:all .2s;background:var(--white);color:var(--forest);display:flex;align-items:center;gap:6px}
+.fpill:hover{border-color:rgba(201,142,91,.4);background:rgba(201,142,91,.04)}
+.fpill.selected{border-color:var(--sunrise);background:rgba(201,142,91,.08);font-weight:600}
+.sex-pills{display:flex;gap:8px}
+.sex-pill{flex:1;padding:11px 10px;border:1.5px solid var(--border);border-radius:12px;font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;background:var(--white);color:var(--stone);text-align:center;display:flex;align-items:center;justify-content:center;gap:6px}
+.sex-pill:hover{border-color:rgba(201,142,91,.4);color:var(--forest)}
+.sex-pill.selected{border-color:var(--sunrise);background:rgba(201,142,91,.08);color:var(--forest);font-weight:600}
+
+/* ── Toggle Switch ── */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border)}
+.toggle-row:last-child{border-bottom:none}
+.toggle-label{font-size:14.5px;color:var(--forest);font-weight:500}
+.toggle-sub{font-size:12px;color:var(--stone);margin-top:2px}
+.toggle{position:relative;width:44px;height:24px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:rgba(32,51,40,.12);border-radius:var(--rp);cursor:pointer;transition:background .2s}
+.toggle-slider::before{content:'';position:absolute;width:18px;height:18px;border-radius:50%;background:var(--white);top:3px;left:3px;transition:transform .2s;box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.toggle input:checked + .toggle-slider{background:var(--sunrise)}
+.toggle input:checked + .toggle-slider::before{transform:translateX(20px)}
+
+/* ── Nudge Banner ── */
+.nudge{border-radius:12px;padding:11px 14px;font-size:13px;line-height:1.5;display:flex;align-items:flex-start;gap:9px;animation:fadeUp .28s ease both}
+.nudge-info{background:rgba(201,142,91,.08);border:1px solid rgba(201,142,91,.22);color:var(--earth)}
+.nudge-urgent{background:rgba(184,80,60,.06);border:1px solid rgba(184,80,60,.2);color:#a0422d}
+.nudge-success{background:rgba(85,98,77,.08);border:1px solid rgba(85,98,77,.22);color:var(--moss)}
+.nudge-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+
+/* ── Traveler Cards ── */
+.traveler-stack{display:flex;flex-direction:column;gap:10px;margin-bottom:6px}
+.trav-card{border:1.5px solid var(--border);border-radius:16px;overflow:hidden;background:var(--white);transition:border-color .22s,box-shadow .22s}
+.trav-card.open{border-color:rgba(201,142,91,.35);box-shadow:0 4px 18px rgba(32,51,40,.08)}
+.trav-card-header{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;user-select:none;transition:background .15s}
+.trav-card-header:hover{background:rgba(201,142,91,.03)}
+.trav-card-avatar{width:36px;height:36px;border-radius:50%;background:rgba(201,142,91,.1);border:1.5px solid rgba(201,142,91,.25);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:14px;color:var(--sunrise);font-weight:600;flex-shrink:0;transition:all .2s}
+.trav-card.open .trav-card-avatar{background:var(--sunrise);color:var(--white);border-color:var(--sunrise)}
+.trav-card-identity{flex:1;min-width:0}
+.trav-card-name{font-size:14.5px;font-weight:600;color:var(--forest);display:flex;align-items:center;gap:7px}
+.trav-lead-badge{padding:2px 8px;border-radius:var(--rp);font-size:10px;font-weight:700;letter-spacing:.05em;background:rgba(32,51,40,.06);color:var(--stone);text-transform:uppercase}
+.trav-card-preview{font-size:12px;color:var(--stone);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:220px}
+.trav-card-status{width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(32,51,40,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .22s;font-size:10px;color:var(--stone)}
+.trav-card.complete .trav-card-status{background:rgba(85,98,77,.12);border-color:rgba(85,98,77,.3);color:var(--moss)}
+.trav-card-chevron{flex-shrink:0;color:var(--stone);transition:transform .25s;font-size:16px;line-height:1}
+.trav-card.open .trav-card-chevron{transform:rotate(180deg)}
+.trav-card-body{display:none;padding:0 18px 18px;animation:fadeUp .22s ease both}
+.trav-card.open .trav-card-body{display:block}
+.trav-card-divider{height:1px;background:var(--border);margin-bottom:16px}
+
+/* ── DOB Row ── */
+.dob-row{display:grid;grid-template-columns:1fr 1.6fr 1fr;gap:8px}
+@media(max-width:420px){.dob-row{grid-template-columns:1fr 1fr 1fr}}
+
+/* ── Copy Nationality CTA ── */
+.copy-nat-btn{display:none;align-items:center;gap:6px;padding:7px 13px;border:1.5px solid rgba(201,142,91,.35);border-radius:var(--rp);background:rgba(201,142,91,.07);color:var(--earth);font-size:12px;font-weight:600;cursor:pointer;transition:all .18s;margin-top:8px;width:fit-content}
+.copy-nat-btn:hover{background:rgba(201,142,91,.14);border-color:var(--sunrise)}
+.copy-nat-btn.visible{display:flex}
+
+/* ── Decrease Confirm Banner ── */
+.decrease-banner{background:rgba(184,80,60,.05);border:1.5px solid rgba(184,80,60,.18);border-radius:14px;padding:14px 16px;margin:8px 0;animation:fadeUp .22s ease both;display:none}
+.decrease-banner-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.decrease-banner-msg{font-size:13px;color:#a0422d;flex:1;line-height:1.45}
+.decrease-banner-btns{display:flex;gap:8px;flex-shrink:0}
+.decrease-btn-cancel{padding:8px 16px;border:1.5px solid rgba(32,51,40,.14);border-radius:var(--rp);background:var(--white);color:var(--forest);font-size:13px;font-weight:600;cursor:pointer;transition:all .18s}
+.decrease-btn-cancel:hover{background:rgba(32,51,40,.05)}
+.decrease-btn-confirm{padding:8px 16px;border:1.5px solid rgba(184,80,60,.3);border-radius:var(--rp);background:rgba(184,80,60,.07);color:#a0422d;font-size:13px;font-weight:600;cursor:pointer;transition:all .18s}
+.decrease-btn-confirm:hover{background:rgba(184,80,60,.14)}
+
+/* ── Privacy Note ── */
+.privacy-note{display:flex;align-items:flex-start;gap:9px;background:rgba(32,51,40,.04);border:1px solid rgba(32,51,40,.07);border-radius:12px;padding:12px 14px;margin-top:4px}
+.privacy-icon{font-size:14px;flex-shrink:0;margin-top:1px;opacity:.6}
+.privacy-text{font-size:12px;color:var(--stone);line-height:1.55}
+
+/* ── Price Card (Sidebar) ── */
+.price-sidebar{position:sticky;top:82px}
+.price-card{background:var(--white);border:1.5px solid var(--border);border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+.pc-header{background:var(--forest);padding:22px 22px 20px;position:relative;overflow:hidden}
+.pc-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 70% 30%,rgba(201,142,91,.1) 0%,transparent 60%)}
+.pc-header-inner{position:relative;z-index:1}
+.pc-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(201,142,91,.65);margin-bottom:10px;display:block}
+.pc-journey-type{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.pc-type-badge{padding:4px 12px;border-radius:var(--rp);font-size:12px;font-weight:700;letter-spacing:.04em;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.15)}
+.pc-price-row{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.pc-per-pax{flex:1}
+.pc-per-label{font-size:10.5px;color:rgba(236,232,224,.42);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+.pc-per-amount{font-family:'Fraunces',serif;font-size:26px;color:var(--ivory);line-height:1}
+.pc-per-usd{font-size:11px;color:rgba(201,142,91,.7);margin-top:3px}
+.pc-total-block{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 14px;text-align:right}
+.pc-total-label{font-size:10.5px;color:rgba(236,232,224,.4);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.pc-total-amount{font-family:'Fraunces',serif;font-size:18px;color:var(--ivory);line-height:1}
+.pc-body{padding:18px 22px}
+.pc-line{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid rgba(32,51,40,.06)}
+.pc-line:last-of-type{border-bottom:none}
+.pc-line-label{font-size:13px;color:var(--stone)}
+.pc-line-val{font-size:13px;font-weight:600;color:var(--forest)}
+.pc-note{background:rgba(201,142,91,.07);border-radius:10px;padding:10px 13px;font-size:12px;color:var(--stone);line-height:1.55;margin-bottom:18px;border:1px solid rgba(201,142,91,.15)}
+.pc-note em{color:var(--earth);font-style:normal;font-weight:600}
+
+/* ── CTA Button ── */
+.btn-reserve{width:100%;padding:17px 24px;border-radius:var(--rp);background:var(--forest);color:var(--ivory);font-family:'Fraunces',serif;font-size:17px;font-weight:600;border:none;cursor:pointer;transition:all .22s ease;display:flex;align-items:center;justify-content:center;gap:9px;letter-spacing:-.01em}
+.btn-reserve:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(32,51,40,.28)}
+.btn-reserve:active{transform:translateY(0)}
+.btn-reserve svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.cta-below{text-align:center;margin-top:10px;font-size:12.5px;color:var(--stone);line-height:1.55}
+.cta-below strong{color:var(--forest)}
+
+/* ── Trust Bar ── */
+.trust-bar{border-top:1px solid var(--border);padding:16px 22px;display:flex;flex-direction:column;gap:7px}
+.trust-item{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--stone)}
+.trust-item::before{content:'✓';color:var(--moss);font-weight:700;font-size:12px;flex-shrink:0}
+
+/* ── Success State ── */
+.success-state{padding:48px 28px;text-align:center}
+.success-icon{width:72px;height:72px;border-radius:50%;background:rgba(85,98,77,.1);border:2px solid rgba(85,98,77,.25);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:32px}
+.success-title{font-family:'Fraunces',serif;font-size:26px;color:var(--forest);margin-bottom:10px;font-style:italic}
+.success-sub{font-size:15px;color:var(--stone);line-height:1.65;max-width:360px;margin:0 auto 28px}
+.btn-wa-open{display:inline-flex;align-items:center;gap:9px;padding:16px 28px;border-radius:var(--rp);background:#25D366;color:var(--white);font-size:15px;font-weight:600;border:none;cursor:pointer;transition:all .22s;text-decoration:none}
+.btn-wa-open:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,211,102,.32)}
+.btn-wa-open svg{width:20px;height:20px;fill:var(--white);flex-shrink:0}
+
+/* ── Sticky Mobile CTA ── */
+.sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:90;background:rgba(236,232,224,.97);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(32,51,40,.1);padding:12px 16px;padding-bottom:calc(12px + env(safe-area-inset-bottom));display:none;gap:12px;align-items:center}
+@media(max-width:860px){.sticky-cta{display:flex}}
+.sticky-price-info{flex:1;min-width:0}
+.sticky-price-num{font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--forest);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sticky-price-sub{font-size:11px;color:var(--stone);white-space:nowrap}
+.btn-sticky-reserve{flex-shrink:0;padding:13px 22px;border-radius:var(--rp);background:var(--forest);color:var(--ivory);font-family:'Fraunces',serif;font-size:14.5px;font-weight:600;border:none;cursor:pointer;transition:all .22s;white-space:nowrap}
+.btn-sticky-reserve:hover{background:var(--earth)}
+
+/* ── Mobile Price Strip ── */
+.mobile-price-strip{display:none;background:var(--white);border:1.5px solid var(--border);border-radius:16px;padding:16px 18px;margin-bottom:16px}
+@media(max-width:860px){.mobile-price-strip{display:block}}
+.mps-row{display:flex;align-items:center;justify-content:space-between}
+.mps-label{font-size:12px;color:var(--stone);font-weight:500}
+.mps-amount{font-family:'Fraunces',serif;font-size:20px;color:var(--forest)}
+.mps-pax{font-size:12px;color:var(--stone)}
+.mps-usd{font-size:11.5px;color:var(--sunrise)}
+
+/* ── Animations ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.fade-in{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+.price-update{animation:priceFlash .4s ease}
+@keyframes priceFlash{0%{opacity:.3}100%{opacity:1}}
+@keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.trav-card{animation:cardIn .28s ease both}
+
+/* ── Responsive ── */
+@media(max-width:600px){
+  .journey-cards{grid-template-columns:1fr}
+  .mini-hero h1{font-size:26px}
+  .fc-section{padding:20px 18px 0}
+  .fc-section:last-of-type{padding-bottom:20px}
+  .trav-card-preview{max-width:140px}
+}
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="site-header">
+  <div class="hdr">
+    <a href="waerebo-final.html" class="back-link">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      <span data-i18n="back">Back</span>
+    </a>
+    <div class="brand">
+      <img src="images/logo-eastxperience.svg" alt="EastXperience" width="32" height="32">
+      EastXperience
+    </div>
+    <div class="lang-wrap">
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()">
+        <span id="langFlag">🇬🇧</span>
+        <span id="langCode">EN</span>
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="lang-dd" id="langDd">
+        <button class="lang-item active" onclick="setLang('en')"><span class="lang-flag">🇬🇧</span> English</button>
+        <button class="lang-item" onclick="setLang('id')"><span class="lang-flag">🇮🇩</span> Bahasa Indonesia</button>
+        <button class="lang-item" onclick="setLang('zh')"><span class="lang-flag">🇨🇳</span> 中文</button>
+        <button class="lang-item" onclick="setLang('ja')"><span class="lang-flag">🇯🇵</span> 日本語</button>
+        <button class="lang-item" onclick="setLang('ko')"><span class="lang-flag">🇰🇷</span> 한국어</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Mini Hero ── -->
+<section class="mini-hero">
+  <div class="hero-grain"></div>
+  <div class="mini-hero-inner">
+    <span class="hero-label">EastXperience · Waerebo</span>
+    <h1 data-i18n="heroTitle">Reserve Your Waerebo Journey</h1>
+    <p data-i18n="heroSub">Traveler details collected upfront — no back-and-forth. We confirm quickly.</p>
+    <div class="trust-chips">
+      <div class="chip"><span class="chip-dot"></span><span data-i18n="chip1">Daily Departures</span></div>
+      <div class="chip">👤 <span data-i18n="chip2">1 Pax Can Go</span></div>
+      <div class="chip">⚡ <span data-i18n="chip3">Fast Confirmation</span></div>
+      <div class="chip">🏷️ <span data-i18n="chip4">Direct Best Price</span></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-steps">
+        <div class="p-step active" id="ps1">
+          <div class="p-dot">1</div>
+          <div class="p-label" data-i18n="step1">Journey</div>
+        </div>
+        <div class="p-step" id="ps2">
+          <div class="p-dot">2</div>
+          <div class="p-label" data-i18n="step2">Travelers</div>
+        </div>
+        <div class="p-step" id="ps3">
+          <div class="p-dot">3</div>
+          <div class="p-label" data-i18n="step3">Confirm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Main Layout ── -->
+<div class="page">
+
+  <!-- ── Left: Form ── -->
+  <div>
+
+    <!-- Mobile price strip -->
+    <div class="mobile-price-strip fade-in" id="mobilePriceStrip">
+      <div class="mps-row">
+        <div>
+          <div class="mps-label" data-i18n="estTotal">Estimated Total</div>
+          <div class="mps-amount" id="mpsTotal">IDR 1,850,000</div>
+        </div>
+        <div style="text-align:right">
+          <div class="mps-pax" id="mpsPax">1 pax · Shared</div>
+          <div class="mps-usd" id="mpsUsd">≈ USD 114</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card fade-in" id="mainFormCard">
+
+      <!-- Section A: Journey Type -->
+      <div class="fc-section" style="padding-bottom:24px">
+        <div class="fc-section-head">
+          <div class="fc-section-num">A</div>
+          <div>
+            <div class="fc-section-title" data-i18n="sectionATitle">Choose Your Journey Type</div>
+          </div>
+        </div>
+        <div class="journey-cards">
+          <label class="jcard selected" id="jcShared" onclick="selectJourney('shared')">
+            <input type="radio" name="journey" value="shared" class="jcard-radio" checked>
+            <div class="jcard-check"></div>
+            <span class="jcard-icon">🌿</span>
+            <div class="jcard-title" data-i18n="sharedTitle">Shared Journey</div>
+            <div class="jcard-sub" data-i18n="sharedSub">Perfect for solo travelers & flexible explorers</div>
+            <span class="jcard-badge" data-i18n="sharedBadge">From IDR 1,850,000</span>
+          </label>
+          <label class="jcard" id="jcPrivate" onclick="selectJourney('private')">
+            <input type="radio" name="journey" value="private" class="jcard-radio">
+            <div class="jcard-check"></div>
+            <span class="jcard-icon">🏔️</span>
+            <div class="jcard-title" data-i18n="privateTitle">Private Journey</div>
+            <div class="jcard-sub" data-i18n="privateSub">More privacy, custom pace, exclusive experience</div>
+            <span class="jcard-badge" data-i18n="privateBadge">From IDR 5,500,000</span>
+          </label>
+        </div>
+        <div id="journeyNudge"></div>
+      </div>
+
+      <!-- Section B: Trip Details -->
+      <div class="fc-section" style="padding-bottom:24px">
+        <div class="fc-section-head">
+          <div class="fc-section-num">B</div>
+          <div>
+            <div class="fc-section-title" data-i18n="sectionBTitle">Trip Details</div>
+          </div>
+        </div>
+        <div class="fields-grid">
+          <div class="fields-grid fields-2">
+            <div class="field">
+              <label for="depDate" data-i18n="fieldDate">Departure Date</label>
+              <input type="date" id="depDate" name="depDate" onchange="updatePrice(); checkDateUrgency()">
+            </div>
+            <div class="field">
+              <label for="numPax" data-i18n="fieldPax">Number of Travelers</label>
+              <select id="numPax" name="numPax" onchange="onPaxChange()">
+                <option value="1">1</option><option value="2">2</option>
+                <option value="3">3</option><option value="4">4</option>
+                <option value="5">5</option><option value="6">6</option>
+                <option value="7">7</option><option value="8">8</option>
+                <option value="9">9</option><option value="10">10</option>
+              </select>
+            </div>
+          </div>
+          <div class="field">
+            <label data-i18n="fieldFitness">Group Fitness Level</label>
+            <div class="fpill-row">
+              <button type="button" class="fpill" data-fitness="beginner" onclick="selectFitness(this)">
+                <span>🌱</span><span data-i18n="fitBeginner">Beginner</span>
+              </button>
+              <button type="button" class="fpill selected" data-fitness="moderate" onclick="selectFitness(this)">
+                <span>🚶</span><span data-i18n="fitModerate">Moderate</span>
+              </button>
+              <button type="button" class="fpill" data-fitness="active" onclick="selectFitness(this)">
+                <span>🏃</span><span data-i18n="fitActive">Active</span>
+              </button>
+            </div>
+          </div>
+          <div id="groupNudge"></div>
+          <div id="dateNudge"></div>
+          <div id="soloNudge"></div>
+        </div>
+      </div>
+
+      <!-- Section C: Traveler Database -->
+      <div class="fc-section" style="padding-bottom:24px">
+        <div class="fc-section-head">
+          <div class="fc-section-num">C</div>
+          <div>
+            <div class="fc-section-title" data-i18n="sectionCTitle">Traveler Information</div>
+            <div class="fc-section-sub" data-i18n="sectionCSub">One form per traveler — eliminates back-and-forth</div>
+          </div>
+        </div>
+        <!-- Dynamically rendered traveler cards -->
+        <div class="traveler-stack" id="travelerStack"></div>
+        <!-- Copy nationality CTA -->
+        <button type="button" class="copy-nat-btn" id="copyNatBtn" onclick="copyNationalityToAll()">
+          <span>🌏</span><span data-i18n="copyNat">Copy nationality to all travelers</span>
+        </button>
+        <div style="height:8px"></div>
+        <div class="privacy-note">
+          <span class="privacy-icon">🔒</span>
+          <span class="privacy-text" data-i18n="privacyNote">Your information is used only for booking coordination and trip operations. Never shared with third parties.</span>
+        </div>
+      </div>
+
+      <!-- Section D: Primary Contact -->
+      <div class="fc-section" style="padding-bottom:24px">
+        <div class="fc-section-head">
+          <div class="fc-section-num">D</div>
+          <div>
+            <div class="fc-section-title" data-i18n="sectionDTitle">Primary Contact</div>
+            <div class="fc-section-sub" data-i18n="sectionDSub">We'll reach you here with your confirmation</div>
+          </div>
+        </div>
+        <div class="fields-grid">
+          <div class="fields-grid fields-2">
+            <div class="field">
+              <label for="contactEmail" data-i18n="fieldEmail">Email Address</label>
+              <input type="email" id="contactEmail" name="contactEmail" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div class="field">
+              <label for="whatsapp" data-i18n="fieldWA">WhatsApp Number</label>
+              <input type="tel" id="whatsapp" name="whatsapp" placeholder="+62 …" autocomplete="tel">
+            </div>
+          </div>
+          <div class="field">
+            <label for="hotel" data-i18n="fieldHotel">Hotel in Labuan Bajo <span style="font-weight:400;text-transform:none;color:var(--stone)">(optional)</span></label>
+            <input type="text" id="hotel" name="hotel" placeholder="e.g. Ayana, Bintang Flores…">
+          </div>
+        </div>
+      </div>
+
+      <!-- Section E: Preferences -->
+      <div class="fc-section" style="padding-bottom:28px">
+        <div class="fc-section-head">
+          <div class="fc-section-num">E</div>
+          <div>
+            <div class="fc-section-title" data-i18n="sectionETitle">Preferences</div>
+          </div>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-label" data-i18n="toggleTransfer">Airport Transfer Needed?</div>
+            <div class="toggle-sub" data-i18n="toggleTransferSub">Labuan Bajo airport pickup / drop</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="needTransfer">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="toggle-row">
+          <div>
+            <div class="toggle-label" data-i18n="toggleHotel">Need Hotel Recommendation?</div>
+            <div class="toggle-sub" data-i18n="toggleHotelSub">We'll suggest options that fit your budget</div>
+          </div>
+          <label class="toggle">
+            <input type="checkbox" id="needHotel">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div style="padding-top:16px">
+          <div class="field">
+            <label for="specialReq" data-i18n="fieldSpecial">Special Requests</label>
+            <textarea id="specialReq" name="specialReq" placeholder="Anything else we should know…" rows="3"></textarea>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /form-card -->
+
+    <!-- Success State -->
+    <div class="form-card fade-in" id="successCard" style="display:none">
+      <div class="success-state">
+        <div class="success-icon">🏔️</div>
+        <div class="success-title" id="successTitle">Thank you.</div>
+        <div class="success-sub" data-i18n="successSub">Your Waerebo booking request is complete. Our team will review your traveler details and reply on WhatsApp shortly.</div>
+        <a class="btn-wa-open" id="waBtn" href="#" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-i18n="openWA">Open WhatsApp</span>
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /left -->
+
+  <!-- ── Right: Price Sidebar ── -->
+  <div class="price-sidebar">
+    <div class="price-card fade-in">
+      <div class="pc-header">
+        <div class="pc-header-inner">
+          <span class="pc-label" data-i18n="priceSummary">Price Summary</span>
+          <div class="pc-journey-type">
+            <div class="pc-type-badge" id="pcTypeBadge">Shared Journey</div>
+          </div>
+          <div class="pc-price-row">
+            <div class="pc-per-pax">
+              <div class="pc-per-label" data-i18n="perPerson">Per Person</div>
+              <div class="pc-per-amount" id="pcPerAmount">IDR 1,850,000</div>
+              <div class="pc-per-usd" id="pcPerUsd">≈ USD 114</div>
+            </div>
+            <div class="pc-total-block">
+              <div class="pc-total-label" data-i18n="estTotal">Total</div>
+              <div class="pc-total-amount" id="pcTotal">IDR 1,850,000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-line"><span class="pc-line-label" data-i18n="pcPax">Travelers</span><span class="pc-line-val" id="pcPaxLine">1 person</span></div>
+        <div class="pc-line"><span class="pc-line-label" data-i18n="pcType">Journey Type</span><span class="pc-line-val" id="pcTypeLine">Shared</span></div>
+        <div class="pc-line"><span class="pc-line-label" data-i18n="pcDate">Date</span><span class="pc-line-val" id="pcDateLine">—</span></div>
+        <div class="pc-line"><span class="pc-line-label" data-i18n="pcUSD">USD Equiv.</span><span class="pc-line-val" id="pcUsdLine">≈ USD 114</span></div>
+        <div style="height:14px"></div>
+        <div class="pc-note"><em data-i18n="priceNoteEm">Final confirmation</em><span data-i18n="priceNote"> based on exact date &amp; availability.</span></div>
+        <div id="sidebarNudge" style="margin-bottom:14px"></div>
+        <label class="consent-row" for="consentBox">
+          <input type="checkbox" id="consentBox" checked>
+          <span class="consent-text" data-i18n="consentText">I agree to be contacted via WhatsApp or email about this booking request.</span>
+        </label>
+        <div style="height:14px"></div>
+        <button class="btn-reserve" id="reserveBtn" onclick="submitReservation()">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014 11c-1.29-2.66-2.48-5.66-3.07-8.63A2 2 0 012.92 2H6a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+          <span data-i18n="ctaBtn">Submit Traveler Details</span>
+        </button>
+        <div class="cta-below">
+          <strong data-i18n="noPayment">No payment required today.</strong><br>
+          <span data-i18n="confirmFirst">We confirm first.</span>
+        </div>
+      </div>
+      <div class="trust-bar">
+        <div class="trust-item" data-i18n="trust1">Local specialist team</div>
+        <div class="trust-item" data-i18n="trust2">Human support, not bots</div>
+        <div class="trust-item" data-i18n="trust3">No hidden fees</div>
+        <div class="trust-item" data-i18n="trust4">Transparent communication</div>
+        <div class="trust-item" data-i18n="trust5">Better than marketplace middleman</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<!-- ── Sticky Mobile CTA ── -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-price-info">
+    <div class="sticky-price-num" id="stickyPriceNum">IDR 1,850,000</div>
+    <div class="sticky-price-sub" id="stickyPriceSub">1 pax · Shared Journey</div>
+  </div>
+  <button class="btn-sticky-reserve" onclick="submitReservation()" data-i18n="ctaBtn">Submit Details</button>
+</div>
+
+<script>
+// ── i18n ──
+const translations = {
+  en:{
+    back:"Back",heroTitle:"Reserve Your Waerebo Journey",heroSub:"Traveler details collected upfront — no back-and-forth. We confirm quickly.",
+    chip1:"Daily Departures",chip2:"1 Pax Can Go",chip3:"Fast Confirmation",chip4:"Direct Best Price",
+    step1:"Journey",step2:"Travelers",step3:"Confirm",
+    sectionATitle:"Choose Your Journey Type",sharedTitle:"Shared Journey",sharedSub:"Perfect for solo travelers & flexible explorers",sharedBadge:"From IDR 1,850,000",
+    privateTitle:"Private Journey",privateSub:"More privacy, custom pace, exclusive experience",privateBadge:"From IDR 5,500,000",
+    sectionBTitle:"Trip Details",fieldDate:"Departure Date",fieldPax:"Number of Travelers",
+    fieldFitness:"Group Fitness Level",fitBeginner:"Beginner",fitModerate:"Moderate",fitActive:"Active",
+    sectionCTitle:"Traveler Information",sectionCSub:"One form per traveler — eliminates back-and-forth",
+    privacyNote:"Your information is used only for booking coordination and trip operations. Never shared with third parties.",
+    copyNat:"Copy nationality to all travelers",
+    sectionDTitle:"Primary Contact",sectionDSub:"We'll reach you here with your confirmation",
+    fieldEmail:"Email Address",fieldWA:"WhatsApp Number",fieldHotel:"Hotel in Labuan Bajo",
+    sectionETitle:"Preferences",toggleTransfer:"Airport Transfer Needed?",toggleTransferSub:"Labuan Bajo airport pickup / drop",
+    toggleHotel:"Need Hotel Recommendation?",toggleHotelSub:"We'll suggest options that fit your budget",
+    fieldSpecial:"Special Requests",
+    priceSummary:"Price Summary",perPerson:"Per Person",estTotal:"Estimated Total",pcPax:"Travelers",pcType:"Journey Type",pcDate:"Date",pcUSD:"USD Equiv.",
+    priceNoteEm:"Final confirmation",priceNote:" based on exact date & availability.",
+    ctaBtn:"Submit Traveler Details",noPayment:"No payment required today.",confirmFirst:"We confirm first.",
+    trust1:"Local specialist team",trust2:"Human support, not bots",trust3:"No hidden fees",trust4:"Transparent communication",trust5:"Better than marketplace middleman",
+    successSub:"Your Waerebo booking request is complete. Our team will review your traveler details and reply on WhatsApp shortly.",
+    openWA:"Open WhatsApp",
+    nudgeSolo:"✨ Best value for solo travelers.",nudgeGroup:"🏔️ Excellent private group value.",nudgeUrgent:"⏳ Limited slots likely — dates this close fill fast.",nudgeBigGroup:"💡 For larger groups, Private may be better value.",
+    person:"person",people:"people",shared:"Shared",private:"Private",leadGuest:"Lead Guest",
+    errWA:"Please enter your WhatsApp number.",errDate:"Please select a departure date.",errEmail:"Please enter your email.",
+    errTraveler1:"Please enter the first name for Traveler",errConsent:"Please confirm you agree to be contacted.",
+    optional:"optional",consentText:"I agree to be contacted via WhatsApp or email about this booking request.",
+    fldLastName:"Last Name",fldFirstName:"First Name",fldSex:"Sex",fldDOB:"Date of Birth",fldPassport:"Passport Number",fldNat:"Nationality",fldDietary:"Dietary Requirements",
+    sexMale:"Male",sexFemale:"Female",
+    dobDay:"Day",dobMonth:"Month",dobYear:"Year",
+    dietaryDefault:"None",
+    natSelect:"Select nationality…",
+    travelerLabel:"Traveler",enterDetails:"Enter details below",
+    decreaseConfirm:"Remove Traveler",
+    months:["January","February","March","April","May","June","July","August","September","October","November","December"],
+  },
+  id:{
+    back:"Kembali",heroTitle:"Pesan Perjalanan Waerebo Anda",heroSub:"Detail wisatawan dikumpulkan langsung — tanpa bolak-balik chat. Kami konfirmasi cepat.",
+    chip1:"Keberangkatan Harian",chip2:"1 Orang Bisa",chip3:"Konfirmasi Cepat",chip4:"Harga Terbaik Langsung",
+    step1:"Perjalanan",step2:"Wisatawan",step3:"Konfirmasi",
+    sectionATitle:"Pilih Jenis Perjalanan",sharedTitle:"Perjalanan Bersama",sharedSub:"Ideal untuk solo traveler & penjelajah fleksibel",sharedBadge:"Mulai IDR 1.850.000",
+    privateTitle:"Perjalanan Privat",privateSub:"Lebih privat, kecepatan sendiri, pengalaman eksklusif",privateBadge:"Mulai IDR 5.500.000",
+    sectionBTitle:"Detail Perjalanan",fieldDate:"Tanggal Keberangkatan",fieldPax:"Jumlah Wisatawan",
+    fieldFitness:"Tingkat Kebugaran Grup",fitBeginner:"Pemula",fitModerate:"Menengah",fitActive:"Aktif",
+    sectionCTitle:"Informasi Wisatawan",sectionCSub:"Satu formulir per wisatawan — mengurangi bolak-balik chat",
+    privacyNote:"Informasi Anda hanya digunakan untuk koordinasi pemesanan dan operasional perjalanan. Tidak dibagikan kepada pihak ketiga.",
+    copyNat:"Salin kebangsaan ke semua wisatawan",
+    sectionDTitle:"Kontak Utama",sectionDSub:"Kami akan menghubungi Anda di sini dengan konfirmasi",
+    fieldEmail:"Alamat Email",fieldWA:"Nomor WhatsApp",fieldHotel:"Hotel di Labuan Bajo",
+    sectionETitle:"Preferensi",toggleTransfer:"Butuh Transfer Bandara?",toggleTransferSub:"Jemput/antar bandara Labuan Bajo",
+    toggleHotel:"Butuh Rekomendasi Hotel?",toggleHotelSub:"Kami akan sarankan pilihan sesuai budget Anda",
+    fieldSpecial:"Permintaan Khusus",
+    priceSummary:"Ringkasan Harga",perPerson:"Per Orang",estTotal:"Total Estimasi",pcPax:"Wisatawan",pcType:"Jenis Perjalanan",pcDate:"Tanggal",pcUSD:"Setara USD",
+    priceNoteEm:"Konfirmasi akhir",priceNote:" berdasarkan tanggal & ketersediaan.",
+    ctaBtn:"Kirim Detail Wisatawan",noPayment:"Tidak ada pembayaran hari ini.",confirmFirst:"Kami konfirmasi dulu.",
+    trust1:"Tim spesialis lokal",trust2:"Dukungan manusia, bukan bot",trust3:"Tidak ada biaya tersembunyi",trust4:"Komunikasi transparan",trust5:"Lebih baik dari perantara marketplace",
+    successSub:"Permintaan reservasi Waerebo Anda lengkap. Tim kami akan meninjau detail wisatawan dan membalas via WhatsApp segera.",
+    openWA:"Buka WhatsApp",
+    nudgeSolo:"✨ Nilai terbaik untuk solo traveler.",nudgeGroup:"🏔️ Nilai grup privat yang luar biasa.",nudgeUrgent:"⏳ Slot terbatas — tanggal dekat ini cepat penuh.",nudgeBigGroup:"💡 Untuk grup besar, Perjalanan Privat mungkin lebih hemat.",
+    person:"orang",people:"orang",shared:"Bersama",private:"Privat",leadGuest:"Tamu Utama",
+    errWA:"Masukkan nomor WhatsApp Anda.",errDate:"Pilih tanggal keberangkatan.",errEmail:"Masukkan email Anda.",errTraveler1:"Masukkan nama depan untuk Wisatawan",errConsent:"Mohon konfirmasi persetujuan Anda untuk dihubungi.",
+    optional:"opsional",consentText:"Saya setuju untuk dihubungi melalui WhatsApp atau email terkait permintaan pemesanan ini.",
+    fldLastName:"Nama Belakang",fldFirstName:"Nama Depan",fldSex:"Jenis Kelamin",fldDOB:"Tanggal Lahir",fldPassport:"Nomor Paspor",fldNat:"Kebangsaan",fldDietary:"Kebutuhan Diet",
+    sexMale:"Laki-laki",sexFemale:"Perempuan",
+    dobDay:"Tgl",dobMonth:"Bulan",dobYear:"Tahun",
+    dietaryDefault:"Tidak ada",natSelect:"Pilih kebangsaan…",travelerLabel:"Wisatawan",enterDetails:"Masukkan detail di bawah",decreaseConfirm:"Hapus Wisatawan",
+    months:["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"],
+  },
+  zh:{
+    back:"返回",heroTitle:"预订您的瓦尔博之旅",heroSub:"提前收集旅客信息 — 无需来回沟通，我们迅速确认。",
+    chip1:"每日出发",chip2:"1人可行",chip3:"快速确认",chip4:"直接最优价格",
+    step1:"行程",step2:"旅客",step3:"确认",
+    sectionATitle:"选择旅行类型",sharedTitle:"拼团出发",sharedSub:"适合独行旅客和灵活探索者",sharedBadge:"起价 IDR 1,850,000",
+    privateTitle:"私人定制",privateSub:"更私密、自定节奏、独家体验",privateBadge:"起价 IDR 5,500,000",
+    sectionBTitle:"行程详情",fieldDate:"出发日期",fieldPax:"旅客人数",
+    fieldFitness:"团队体能水平",fitBeginner:"初级",fitModerate:"中级",fitActive:"活跃",
+    sectionCTitle:"旅客信息",sectionCSub:"每位旅客单独填写 — 省去来回沟通",
+    privacyNote:"您的信息仅用于预订协调和旅行操作，不会与第三方共享。",
+    copyNat:"将国籍复制给所有旅客",
+    sectionDTitle:"主要联系人",sectionDSub:"我们将通过此方式发送确认信息",
+    fieldEmail:"电子邮件",fieldWA:"WhatsApp号码",fieldHotel:"拉布安巴约的酒店",
+    sectionETitle:"偏好设置",toggleTransfer:"需要机场接送吗？",toggleTransferSub:"拉布安巴约机场接/送",
+    toggleHotel:"需要酒店推荐吗？",toggleHotelSub:"我们会推荐适合您预算的选择",
+    fieldSpecial:"特殊要求",
+    priceSummary:"价格摘要",perPerson:"每人",estTotal:"预计总价",pcPax:"旅客",pcType:"行程类型",pcDate:"日期",pcUSD:"美元等值",
+    priceNoteEm:"最终确认",priceNote:"基于具体日期和可用性。",
+    ctaBtn:"提交旅客资料",noPayment:"今天无需付款。",confirmFirst:"我们先确认。",
+    trust1:"本地专业团队",trust2:"真人客服支持",trust3:"无隐藏费用",trust4:"透明沟通",trust5:"优于平台中间商",
+    successSub:"您的瓦尔博预订申请已完成。我们的团队将审核旅客资料并很快通过WhatsApp回复。",
+    openWA:"打开WhatsApp",
+    nudgeSolo:"✨ 独行旅客的最佳价值。",nudgeGroup:"🏔️ 绝佳的私人团体价值。",nudgeUrgent:"⏳ 名额有限 — 近期日期很快满员。",nudgeBigGroup:"💡 大团体选私人行程可能更划算。",
+    person:"人",people:"人",shared:"拼团",private:"私人",leadGuest:"主要旅客",
+    errWA:"请输入WhatsApp号码。",errDate:"请选择出发日期。",errEmail:"请输入电子邮件。",errTraveler1:"请输入旅客的名字",errConsent:"请确认同意我们与您联系。",
+    optional:"选填",consentText:"我同意通过WhatsApp或电子邮件就此预订请求与我联系。",
+    fldLastName:"姓",fldFirstName:"名",fldSex:"性别",fldDOB:"出生日期",fldPassport:"护照号码",fldNat:"国籍",fldDietary:"饮食要求",
+    sexMale:"男",sexFemale:"女",dobDay:"日",dobMonth:"月",dobYear:"年",dietaryDefault:"无",natSelect:"选择国籍…",travelerLabel:"旅客",enterDetails:"在下方填写信息",decreaseConfirm:"移除旅客",
+    months:["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"],
+  },
+  ja:{
+    back:"戻る",heroTitle:"ワエレボの旅を予約する",heroSub:"旅行者情報を事前に収集 — やり取り不要で迅速に確認します。",
+    chip1:"毎日出発",chip2:"1名から参加可",chip3:"迅速な確認",chip4:"直接最安値",
+    step1:"旅程",step2:"旅行者",step3:"確認",
+    sectionATitle:"旅行タイプを選択",sharedTitle:"シェアド・ジャーニー",sharedSub:"一人旅や柔軟な旅行者に最適",sharedBadge:"IDR 1,850,000〜",
+    privateTitle:"プライベート・ジャーニー",privateSub:"プライバシー重視、マイペース、限定体験",privateBadge:"IDR 5,500,000〜",
+    sectionBTitle:"旅程詳細",fieldDate:"出発日",fieldPax:"旅行者数",
+    fieldFitness:"グループの体力レベル",fitBeginner:"初心者",fitModerate:"中級",fitActive:"アクティブ",
+    sectionCTitle:"旅行者情報",sectionCSub:"旅行者1名ずつ記入 — 確認のやり取りが不要に",
+    privacyNote:"お客様の情報は予約調整と旅行運営のみに使用されます。第三者と共有することはありません。",
+    copyNat:"全旅行者に国籍をコピー",
+    sectionDTitle:"主な連絡先",sectionDSub:"確認はこちらに送ります",
+    fieldEmail:"メールアドレス",fieldWA:"WhatsApp番号",fieldHotel:"ラブアンバジョのホテル",
+    sectionETitle:"ご希望",toggleTransfer:"空港送迎は必要ですか？",toggleTransferSub:"ラブアンバジョ空港の送迎",
+    toggleHotel:"ホテルの推薦が必要ですか？",toggleHotelSub:"ご予算に合った提案をします",
+    fieldSpecial:"特別リクエスト",
+    priceSummary:"料金概要",perPerson:"1人あたり",estTotal:"合計(概算)",pcPax:"旅行者",pcType:"旅程タイプ",pcDate:"日程",pcUSD:"USD換算",
+    priceNoteEm:"最終確認",priceNote:"は正確な日程と空き状況によります。",
+    ctaBtn:"旅行者情報を送信",noPayment:"本日のお支払いは不要です。",confirmFirst:"まず確認します。",
+    trust1:"現地スペシャリストチーム",trust2:"人による対応",trust3:"隠れた費用なし",trust4:"透明なコミュニケーション",trust5:"マーケットプレイスより直接",
+    successSub:"ワエレボの予約申請が完了しました。チームが旅行者情報を確認し、まもなくWhatsAppでご連絡します。",
+    openWA:"WhatsAppを開く",
+    nudgeSolo:"✨ 一人旅に最適な価値。",nudgeGroup:"🏔️ プライベートグループに絶好の価値。",nudgeUrgent:"⏳ 空きわずか — 近い日程はすぐ埋まります。",nudgeBigGroup:"💡 大グループはプライベートがお得な場合があります。",
+    person:"名",people:"名",shared:"シェアド",private:"プライベート",leadGuest:"リードゲスト",
+    errWA:"WhatsApp番号を入力してください。",errDate:"出発日を選択してください。",errEmail:"メールアドレスを入力してください。",errTraveler1:"旅行者の名を入力してください",errConsent:"連絡に同意することを確認してください。",
+    optional:"任意",consentText:"本予約リクエストに関してWhatsAppまたはメールで連絡を受けることに同意します。",
+    fldLastName:"姓",fldFirstName:"名",fldSex:"性別",fldDOB:"生年月日",fldPassport:"パスポート番号",fldNat:"国籍",fldDietary:"食事制限",
+    sexMale:"男性",sexFemale:"女性",dobDay:"日",dobMonth:"月",dobYear:"年",dietaryDefault:"なし",natSelect:"国籍を選択…",travelerLabel:"旅行者",enterDetails:"下記に入力してください",decreaseConfirm:"旅行者を削除",
+    months:["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"],
+  },
+  ko:{
+    back:"뒤로",heroTitle:"와에레보 여행 예약하기",heroSub:"여행자 정보를 미리 수집합니다 — 왕복 채팅 없이 빠르게 확인합니다.",
+    chip1:"매일 출발",chip2:"1인 가능",chip3:"빠른 확인",chip4:"직접 최저가",
+    step1:"여정",step2:"여행자",step3:"확인",
+    sectionATitle:"여행 유형 선택",sharedTitle:"공유 여정",sharedSub:"혼자 여행하는 분과 유연한 탐험가에게 완벽",sharedBadge:"IDR 1,850,000부터",
+    privateTitle:"프라이빗 여정",privateSub:"더 많은 프라이버시, 자유로운 페이스, 독점 경험",privateBadge:"IDR 5,500,000부터",
+    sectionBTitle:"여행 세부사항",fieldDate:"출발 날짜",fieldPax:"여행자 수",
+    fieldFitness:"그룹 체력 수준",fitBeginner:"초급",fitModerate:"중급",fitActive:"활동적",
+    sectionCTitle:"여행자 정보",sectionCSub:"여행자 1인당 양식 작성 — 반복 문의 없이",
+    privacyNote:"귀하의 정보는 예약 조정 및 여행 운영에만 사용됩니다. 제3자와 공유되지 않습니다.",
+    copyNat:"모든 여행자에게 국적 복사",
+    sectionDTitle:"주요 연락처",sectionDSub:"확인 내용을 이 연락처로 보내드립니다",
+    fieldEmail:"이메일 주소",fieldWA:"WhatsApp 번호",fieldHotel:"라부안 바조 호텔",
+    sectionETitle:"선호사항",toggleTransfer:"공항 픽업이 필요하신가요?",toggleTransferSub:"라부안 바조 공항 픽업/드롭",
+    toggleHotel:"호텔 추천이 필요하신가요?",toggleHotelSub:"예산에 맞는 옵션을 제안해 드립니다",
+    fieldSpecial:"특별 요청사항",
+    priceSummary:"요금 요약",perPerson:"1인당",estTotal:"예상 총액",pcPax:"여행자",pcType:"여행 유형",pcDate:"날짜",pcUSD:"USD 환산",
+    priceNoteEm:"최종 확인",priceNote:"은 정확한 날짜와 가용성에 따릅니다.",
+    ctaBtn:"여행자 정보 제출",noPayment:"오늘 결제 불필요.",confirmFirst:"먼저 확인합니다.",
+    trust1:"현지 전문가 팀",trust2:"실제 사람이 지원",trust3:"숨겨진 비용 없음",trust4:"투명한 소통",trust5:"중간 플랫폼보다 직접",
+    successSub:"와에레보 예약 신청이 완료되었습니다. 팀이 여행자 정보를 검토하고 곧 WhatsApp으로 연락드리겠습니다.",
+    openWA:"WhatsApp 열기",
+    nudgeSolo:"✨ 혼자 여행하는 분께 최고의 가치.",nudgeGroup:"🏔️ 훌륭한 프라이빗 그룹 가치.",nudgeUrgent:"⏳ 남은 자리 제한 — 가까운 날짜는 빨리 찹니다.",nudgeBigGroup:"💡 대규모 그룹은 프라이빗이 더 저렴할 수 있습니다.",
+    person:"명",people:"명",shared:"공유",private:"프라이빗",leadGuest:"대표 여행자",
+    errWA:"WhatsApp 번호를 입력해 주세요.",errDate:"출발일을 선택해 주세요.",errEmail:"이메일 주소를 입력해 주세요.",errTraveler1:"여행자의 이름을 입력해 주세요",errConsent:"연락에 동의하시는지 확인해 주세요.",
+    optional:"선택",consentText:"본 예약 요청에 관하여 WhatsApp 또는 이메일로 연락 받는 것에 동의합니다.",
+    fldLastName:"성",fldFirstName:"이름",fldSex:"성별",fldDOB:"생년월일",fldPassport:"여권 번호",fldNat:"국적",fldDietary:"식이 요건",
+    sexMale:"남성",sexFemale:"여성",dobDay:"일",dobMonth:"월",dobYear:"년",dietaryDefault:"없음",natSelect:"국적 선택…",travelerLabel:"여행자",enterDetails:"아래 정보를 입력해 주세요",decreaseConfirm:"여행자 제거",
+    months:["1월","2월","3월","4월","5월","6월","7월","8월","9월","10월","11월","12월"],
+  }
+};
+
+const NATIONALITIES = ["Afghan","Albanian","Algerian","American","Andorran","Angolan","Argentine","Armenian","Australian","Austrian","Azerbaijani","Bahamian","Bahraini","Bangladeshi","Belarusian","Belgian","Belizean","Beninese","Bhutanese","Bolivian","Bosnian","Brazilian","British","Bruneian","Bulgarian","Burkinabe","Burmese","Cambodian","Cameroonian","Canadian","Chilean","Chinese","Colombian","Congolese","Costa Rican","Croatian","Cuban","Cypriot","Czech","Danish","Dominican","Dutch","Ecuadorian","Egyptian","Emirati","Ethiopian","Fijian","Filipino","Finnish","French","Georgian","German","Ghanaian","Greek","Guatemalan","Haitian","Honduran","Hungarian","Icelandic","Indian","Indonesian","Iranian","Iraqi","Irish","Israeli","Italian","Ivorian","Jamaican","Japanese","Jordanian","Kazakhstani","Kenyan","Korean","Kuwaiti","Kyrgyz","Laotian","Latvian","Lebanese","Libyan","Lithuanian","Luxembourgish","Macedonian","Malagasy","Malaysian","Maldivian","Malian","Maltese","Mauritanian","Mauritian","Mexican","Moldovan","Mongolian","Montenegrin","Moroccan","Mozambican","Namibian","Nepalese","New Zealander","Nicaraguan","Nigerian","Norwegian","Omani","Pakistani","Panamanian","Paraguayan","Peruvian","Polish","Portuguese","Qatari","Romanian","Russian","Rwandan","Saudi","Senegalese","Serbian","Singaporean","Slovak","Slovenian","Somali","South African","Spanish","Sri Lankan","Sudanese","Swedish","Swiss","Syrian","Taiwanese","Tajik","Tanzanian","Thai","Togolese","Tunisian","Turkish","Ugandan","Ukrainian","Uruguayan","Uzbek","Venezuelan","Vietnamese","Yemeni","Zambian","Zimbabwean","Other"];
+
+let currentLang = 'en';
+let currentJourney = 'shared';
+let currentFitness = 'moderate';
+let currentPax = 1;
+
+// ── Pricing ──
+const sharedPricePerPax = 1850000;
+const privatePrices = {1:5500000,2:3000000,3:2700000,4:2100000,5:2000000,6:2300000,7:2200000,8:2100000,9:2000000,10:1900000};
+const usdRate = 16200;
+
+function getPricePerPax(journey, pax){
+  return journey === 'shared' ? sharedPricePerPax : (privatePrices[pax] || privatePrices[10]);
+}
+function formatIDR(n){ return 'IDR ' + n.toLocaleString('id-ID'); }
+function formatUSD(n){ return '≈ USD ' + Math.round(n / usdRate).toLocaleString(); }
+
+function updatePrice(){
+  const pax = currentPax;
+  const journey = currentJourney;
+  const t = translations[currentLang];
+  const perPax = getPricePerPax(journey, pax);
+  const total = perPax * pax;
+
+  document.getElementById('pcPerAmount').textContent = formatIDR(perPax);
+  document.getElementById('pcPerUsd').textContent = formatUSD(perPax);
+  document.getElementById('pcTotal').textContent = formatIDR(total);
+  document.getElementById('pcUsdLine').textContent = formatUSD(total);
+  document.getElementById('pcPaxLine').textContent = pax + ' ' + (pax===1 ? t.person : t.people);
+  document.getElementById('pcTypeLine').textContent = journey === 'shared' ? t.shared : t.private;
+  document.getElementById('pcTypeBadge').textContent = journey === 'shared' ? t.sharedTitle : t.privateTitle;
+
+  const dateEl = document.getElementById('depDate');
+  document.getElementById('pcDateLine').textContent = dateEl.value
+    ? new Date(dateEl.value+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})
+    : '—';
+
+  document.getElementById('mpsTotal').textContent = formatIDR(total);
+  document.getElementById('mpsPax').textContent = pax + ' pax · ' + (journey === 'shared' ? t.shared : t.private);
+  document.getElementById('mpsUsd').textContent = formatUSD(total);
+  document.getElementById('stickyPriceNum').textContent = formatIDR(total);
+  document.getElementById('stickyPriceSub').textContent = pax + ' pax · ' + (journey === 'shared' ? t.sharedTitle : t.privateTitle);
+
+  ['pcPerAmount','pcTotal','mpsTotal'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.remove('price-update'); void el.offsetWidth; el.classList.add('price-update');
+  });
+
+  checkNudges();
+}
+
+function checkNudges(){
+  const pax = currentPax;
+  const t = translations[currentLang];
+
+  const groupEl = document.getElementById('groupNudge');
+  const soloEl = document.getElementById('soloNudge');
+  const sideEl = document.getElementById('sidebarNudge');
+
+  if(currentJourney === 'shared' && pax >= 4){
+    groupEl.innerHTML = `<div class="nudge nudge-info"><span class="nudge-icon">💡</span>${t.nudgeBigGroup}</div>`;
+    soloEl.innerHTML = ''; sideEl.innerHTML = '';
+  } else if(currentJourney === 'private' && pax >= 4){
+    groupEl.innerHTML = `<div class="nudge nudge-success"><span class="nudge-icon">🏔️</span>${t.nudgeGroup}</div>`;
+    soloEl.innerHTML = '';
+    sideEl.innerHTML = `<div class="nudge nudge-success" style="margin-bottom:14px"><span class="nudge-icon">🏔️</span>${t.nudgeGroup}</div>`;
+  } else if(currentJourney === 'shared' && pax === 1){
+    soloEl.innerHTML = `<div class="nudge nudge-info"><span class="nudge-icon">✨</span>${t.nudgeSolo}</div>`;
+    groupEl.innerHTML = ''; sideEl.innerHTML = '';
+  } else {
+    groupEl.innerHTML = ''; soloEl.innerHTML = ''; sideEl.innerHTML = '';
+  }
+}
+
+function checkDateUrgency(){
+  const v = document.getElementById('depDate').value;
+  const el = document.getElementById('dateNudge');
+  const t = translations[currentLang];
+  if(!v){ el.innerHTML=''; updatePrice(); return; }
+  const diff = (new Date(v+'T00:00:00') - new Date()) / 86400000;
+  el.innerHTML = (diff >= 0 && diff <= 14)
+    ? `<div class="nudge nudge-urgent"><span class="nudge-icon">⏳</span>${t.nudgeUrgent}</div>` : '';
+  updatePrice();
+}
+
+// ── Journey ──
+function selectJourney(type){
+  currentJourney = type;
+  document.getElementById('jcShared').classList.toggle('selected', type==='shared');
+  document.getElementById('jcPrivate').classList.toggle('selected', type==='private');
+  updateProgress(1);
+  updatePrice();
+}
+
+// ── Fitness ──
+function selectFitness(el){
+  document.querySelectorAll('.fpill').forEach(p => p.classList.remove('selected'));
+  el.classList.add('selected');
+  currentFitness = el.dataset.fitness;
+}
+
+// ── Progress ──
+function updateProgress(step){
+  for(let i=1;i<=3;i++){
+    const ps = document.getElementById('ps'+i);
+    ps.classList.remove('active','done');
+    if(i < step) ps.classList.add('done');
+    else if(i === step) ps.classList.add('active');
+  }
+}
+
+// ── Traveler Cards ──
+function natOptions(selectedVal){
+  const t = translations[currentLang];
+  let opts = `<option value="">${t.natSelect}</option>`;
+  NATIONALITIES.forEach(n => {
+    opts += `<option value="${n}"${selectedVal===n?' selected':''}>${n}</option>`;
+  });
+  return opts;
+}
+
+function monthOptions(t){
+  let opts = `<option value="">${t.dobMonth}</option>`;
+  t.months.forEach((m,i) => { opts += `<option value="${i+1}">${m}</option>`; });
+  return opts;
+}
+
+function dayOptions(t){
+  let opts = `<option value="">${t.dobDay}</option>`;
+  for(let d=1;d<=31;d++) opts += `<option value="${d}">${d}</option>`;
+  return opts;
+}
+
+function yearOptions(t){
+  const thisYear = new Date().getFullYear();
+  let opts = `<option value="">${t.dobYear}</option>`;
+  for(let y=thisYear-16;y>=thisYear-90;y--) opts += `<option value="${y}">${y}</option>`;
+  return opts;
+}
+
+function buildTravelerCard(index, t, preservedData){
+  const isFirst = index === 1;
+  const isNew = !preservedData;
+  const pd = preservedData || {};
+  const cardId = `tc-${index}`;
+
+  return `
+  <div class="trav-card ${isFirst ? 'open' : ''}" id="${cardId}" style="animation-delay:${(index-1)*0.06}s">
+    <div class="trav-card-header" onclick="toggleTravCard(${index})">
+      <div class="trav-card-avatar" id="tca-${index}">${index}</div>
+      <div class="trav-card-identity">
+        <div class="trav-card-name">
+          ${t.travelerLabel} ${index}
+          ${isFirst ? `<span class="trav-lead-badge">${t.leadGuest}</span>` : ''}
+        </div>
+        <div class="trav-card-preview" id="tcp-${index}">${t.enterDetails}</div>
+      </div>
+      <div class="trav-card-status" id="tcs-${index}">—</div>
+      <div class="trav-card-chevron">▾</div>
+    </div>
+    <div class="trav-card-body" id="tcb-${index}">
+      <div class="trav-card-divider"></div>
+      <div class="fields-grid">
+        <div class="fields-grid fields-2">
+          <div class="field">
+            <label>${t.fldLastName}</label>
+            <input type="text" id="t${index}_last" placeholder="e.g. Smith" value="${pd.last||''}"
+              oninput="updateCardPreview(${index}); ${isFirst ? 'suggestSurnameToOthers()' : ''}">
+          </div>
+          <div class="field">
+            <label>${t.fldFirstName}</label>
+            <input type="text" id="t${index}_first" placeholder="e.g. James" value="${pd.first||''}"
+              oninput="updateCardPreview(${index})">
+          </div>
+        </div>
+        <div class="field">
+          <label>${t.fldSex} <span class="opt-tag">${t.optional}</span></label>
+          <div class="sex-pills">
+            <button type="button" class="sex-pill ${pd.sex==='M'?'selected':''}" onclick="selectSex(${index},'M')" id="t${index}_sex_M">
+              ♂ ${t.sexMale}
+            </button>
+            <button type="button" class="sex-pill ${pd.sex==='F'?'selected':''}" onclick="selectSex(${index},'F')" id="t${index}_sex_F">
+              ♀ ${t.sexFemale}
+            </button>
+          </div>
+          <input type="hidden" id="t${index}_sex" value="${pd.sex||''}">
+        </div>
+        <div class="field">
+          <label>${t.fldDOB} <span class="opt-tag">${t.optional}</span></label>
+          <div class="dob-row">
+            <select id="t${index}_dob_d" aria-label="Day">
+              ${dayOptions(t)}
+            </select>
+            <select id="t${index}_dob_m" aria-label="Month">
+              ${monthOptions(t)}
+            </select>
+            <select id="t${index}_dob_y" aria-label="Year">
+              ${yearOptions(t)}
+            </select>
+          </div>
+        </div>
+        <div class="fields-grid fields-2">
+          <div class="field">
+            <label>${t.fldPassport} <span class="opt-tag">${t.optional}</span></label>
+            <input type="text" id="t${index}_passport" placeholder="e.g. A1234567" value="${pd.passport||''}"
+              style="text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+          </div>
+          <div class="field">
+            <label>${t.fldNat} <span class="opt-tag">${t.optional}</span></label>
+            <select id="t${index}_nat" onchange="${isFirst ? 'onT1NatChange()' : ''}">
+              ${natOptions(pd.nat||'')}
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label>${t.fldDietary} <span class="opt-tag">${t.optional}</span></label>
+          <input type="text" id="t${index}_dietary" placeholder="${t.dietaryDefault}" value="${isNew ? t.dietaryDefault : (pd.dietary||'')}">
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderTravelerCards(pax, preserve){
+  const t = translations[currentLang];
+  const stack = document.getElementById('travelerStack');
+  const oldData = collectAllTravelerData();
+
+  let html = '';
+  for(let i=1;i<=pax;i++){
+    const pd = (preserve && oldData[i-1]) ? oldData[i-1] : null;
+    html += buildTravelerCard(i, t, pd);
+  }
+  stack.innerHTML = html;
+
+  // Restore DOB selects (can't be done via value attribute for select)
+  if(preserve){
+    oldData.forEach((d, idx) => {
+      const i = idx+1;
+      if(i > pax) return;
+      const ds = document.getElementById(`t${i}_dob_d`);
+      const ms = document.getElementById(`t${i}_dob_m`);
+      const ys = document.getElementById(`t${i}_dob_y`);
+      if(ds && d.dob_d) ds.value = d.dob_d;
+      if(ms && d.dob_m) ms.value = d.dob_m;
+      if(ys && d.dob_y) ys.value = d.dob_y;
+      if(i > 1) updateCardPreview(i);
+    });
+    if(pax >= 1) updateCardPreview(1);
+  }
+
+  onT1NatChange();
+}
+
+function toggleTravCard(index){
+  const card = document.getElementById(`tc-${index}`);
+  const isOpen = card.classList.contains('open');
+  // On mobile, close all others first
+  if(window.innerWidth <= 860 && !isOpen){
+    document.querySelectorAll('.trav-card.open').forEach(c => c.classList.remove('open'));
+  }
+  card.classList.toggle('open', !isOpen);
+  updateProgress(2);
+}
+
+function selectSex(index, sex){
+  document.getElementById(`t${index}_sex_M`).classList.toggle('selected', sex==='M');
+  document.getElementById(`t${index}_sex_F`).classList.toggle('selected', sex==='F');
+  document.getElementById(`t${index}_sex`).value = sex;
+  updateCardPreview(index);
+}
+
+function updateCardPreview(index){
+  const last = (document.getElementById(`t${index}_last`)?.value||'').trim();
+  const first = (document.getElementById(`t${index}_first`)?.value||'').trim();
+  const previewEl = document.getElementById(`tcp-${index}`);
+  const statusEl = document.getElementById(`tcs-${index}`);
+  const card = document.getElementById(`tc-${index}`);
+  const t = translations[currentLang];
+
+  if(first || last){
+    previewEl.textContent = [first, last].filter(Boolean).join(' ');
+    statusEl.textContent = '✓';
+    statusEl.style.color = 'var(--moss)';
+    card.classList.add('complete');
+  } else {
+    previewEl.textContent = t.enterDetails;
+    statusEl.textContent = '—';
+    statusEl.style.color = '';
+    card.classList.remove('complete');
+  }
+}
+
+function onT1NatChange(){
+  const nat = document.getElementById('t1_nat')?.value;
+  const btn = document.getElementById('copyNatBtn');
+  if(nat && currentPax > 1){
+    btn.classList.add('visible');
+  } else {
+    btn.classList.remove('visible');
+  }
+}
+
+function copyNationalityToAll(){
+  const nat = document.getElementById('t1_nat')?.value;
+  if(!nat) return;
+  for(let i=2; i<=currentPax; i++){
+    const sel = document.getElementById(`t${i}_nat`);
+    if(sel) sel.value = nat;
+  }
+  const btn = document.getElementById('copyNatBtn');
+  const orig = btn.querySelector('[data-i18n="copyNat"]')?.textContent || btn.textContent;
+  btn.style.background = 'rgba(85,98,77,.1)';
+  btn.style.borderColor = 'rgba(85,98,77,.35)';
+  btn.style.color = 'var(--moss)';
+  setTimeout(() => {
+    btn.style.background=''; btn.style.borderColor=''; btn.style.color='';
+  }, 1200);
+}
+
+function suggestSurnameToOthers(){
+  const lastName = document.getElementById('t1_last')?.value.trim();
+  if(!lastName || currentPax < 2) return;
+  for(let i=2; i<=currentPax; i++){
+    const el = document.getElementById(`t${i}_last`);
+    if(el && !el.value.trim()){
+      el.placeholder = lastName + '?';
+    }
+  }
+}
+
+function collectAllTravelerData(){
+  const data = [];
+  for(let i=1; i<=currentPax; i++){
+    data.push({
+      last: document.getElementById(`t${i}_last`)?.value.trim()||'',
+      first: document.getElementById(`t${i}_first`)?.value.trim()||'',
+      sex: document.getElementById(`t${i}_sex`)?.value||'',
+      dob_d: document.getElementById(`t${i}_dob_d`)?.value||'',
+      dob_m: document.getElementById(`t${i}_dob_m`)?.value||'',
+      dob_y: document.getElementById(`t${i}_dob_y`)?.value||'',
+      passport: document.getElementById(`t${i}_passport`)?.value.trim()||'',
+      nat: document.getElementById(`t${i}_nat`)?.value||'',
+      dietary: document.getElementById(`t${i}_dietary`)?.value.trim()||'',
+    });
+  }
+  return data;
+}
+
+// ── Pax Change ──
+let pendingPaxDecrease = null;
+
+function onPaxChange(){
+  const newPax = parseInt(document.getElementById('numPax').value);
+  if(newPax === currentPax) return;
+  hideDecreaseConfirm();
+  if(newPax > currentPax){
+    const t = translations[currentLang];
+    const stack = document.getElementById('travelerStack');
+    for(let i = currentPax + 1; i <= newPax; i++){
+      stack.insertAdjacentHTML('beforeend', buildTravelerCard(i, t, null));
+    }
+    currentPax = newPax;
+    onT1NatChange();
+    suggestSurnameToOthers();
+    updateProgress(2);
+    updatePrice();
+  } else {
+    pendingPaxDecrease = newPax;
+    showDecreaseConfirm(newPax);
+  }
+}
+
+function showDecreaseConfirm(targetPax){
+  let banner = document.getElementById('decreaseBanner');
+  if(!banner){
+    banner = document.createElement('div');
+    banner.id = 'decreaseBanner';
+    banner.className = 'decrease-banner';
+    document.getElementById('travelerStack').insertAdjacentElement('afterend', banner);
+  }
+  const removing = currentPax - targetPax;
+  const travelers = removing === 1 ? `Traveler ${currentPax}` : `Travelers ${targetPax + 1}–${currentPax}`;
+  banner.innerHTML = `<div class="decrease-banner-inner">
+    <span class="decrease-banner-msg">Remove ${travelers}? Any entered data will be lost.</span>
+    <div class="decrease-banner-btns">
+      <button class="decrease-btn-cancel" onclick="cancelDecreaseConfirm()">Keep</button>
+      <button class="decrease-btn-confirm" onclick="confirmDecrease()">Remove</button>
+    </div>
+  </div>`;
+  banner.style.display = 'block';
+}
+
+function cancelDecreaseConfirm(){
+  document.getElementById('numPax').value = currentPax;
+  pendingPaxDecrease = null;
+  hideDecreaseConfirm();
+}
+
+function confirmDecrease(){
+  if(pendingPaxDecrease === null) return;
+  const targetPax = pendingPaxDecrease;
+  for(let i = currentPax; i > targetPax; i--){
+    const card = document.getElementById(`tc-${i}`);
+    if(card){
+      card.style.transition = 'opacity .18s ease, transform .18s ease';
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(-6px)';
+      setTimeout(() => card.remove(), 180);
+    }
+  }
+  currentPax = targetPax;
+  pendingPaxDecrease = null;
+  hideDecreaseConfirm();
+  onT1NatChange();
+  updatePrice();
+}
+
+function hideDecreaseConfirm(){
+  const banner = document.getElementById('decreaseBanner');
+  if(banner) banner.style.display = 'none';
+}
+
+// ── Language ──
+function toggleLang(){
+  document.getElementById('langDd').classList.toggle('open');
+  document.getElementById('langBtn').classList.toggle('open');
+}
+
+function setLang(lang){
+  currentLang = lang;
+  const flags = {en:'🇬🇧',id:'🇮🇩',zh:'🇨🇳',ja:'🇯🇵',ko:'🇰🇷'};
+  document.getElementById('langFlag').textContent = flags[lang];
+  document.getElementById('langCode').textContent = lang.toUpperCase();
+  document.getElementById('langDd').classList.remove('open');
+  document.getElementById('langBtn').classList.remove('open');
+  document.querySelectorAll('.lang-item').forEach(el => el.classList.remove('active'));
+  event.target.closest('.lang-item').classList.add('active');
+  applyTranslations();
+  renderTravelerCards(currentPax, true);
+  updatePrice();
+}
+
+function applyTranslations(){
+  const t = translations[currentLang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if(t[key] !== undefined) el.textContent = t[key];
+  });
+  document.documentElement.lang = currentLang;
+}
+
+document.addEventListener('click', e => {
+  if(!e.target.closest('.lang-wrap')){
+    document.getElementById('langDd').classList.remove('open');
+    document.getElementById('langBtn').classList.remove('open');
+  }
+});
+
+// ── Submit ──
+function submitReservation(){
+  const t = translations[currentLang];
+  const wa = document.getElementById('whatsapp').value.trim();
+  const email = document.getElementById('contactEmail').value.trim();
+  const date = document.getElementById('depDate').value;
+
+  if(!date){ alert(t.errDate); document.getElementById('depDate').focus(); return; }
+  if(!email){ alert(t.errEmail); document.getElementById('contactEmail').focus(); return; }
+  if(!wa){ alert(t.errWA); document.getElementById('whatsapp').focus(); return; }
+  if(!document.getElementById('consentBox').checked){ alert(t.errConsent); document.getElementById('consentBox').focus(); return; }
+
+  // Validate at least first name for each traveler
+  const travData = collectAllTravelerData();
+  for(let i=0; i<travData.length; i++){
+    if(!travData[i].first){
+      alert(`${t.errTraveler1} ${i+1}.`);
+      const card = document.getElementById(`tc-${i+1}`);
+      if(!card.classList.contains('open')) toggleTravCard(i+1);
+      document.getElementById(`t${i+1}_first`)?.focus();
+      return;
+    }
+  }
+
+  const pax = currentPax;
+  const perPax = getPricePerPax(currentJourney, pax);
+  const total = perPax * pax;
+  const dateStr = new Date(date+'T00:00:00').toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+  const journeyLabel = currentJourney === 'shared' ? 'Shared Journey' : 'Private Journey';
+  const hotel = document.getElementById('hotel').value.trim() || '—';
+  const transfer = document.getElementById('needTransfer').checked ? 'Yes' : 'No';
+  const hotelHelp = document.getElementById('needHotel').checked ? 'Yes' : 'No';
+  const notes = document.getElementById('specialReq').value.trim() || '—';
+
+  let travLines = '';
+  travData.forEach((d, idx) => {
+    const n = idx+1;
+    const dobStr = d.dob_d && d.dob_m && d.dob_y
+      ? `${String(d.dob_d).padStart(2,'0')}/${String(d.dob_m).padStart(2,'0')}/${d.dob_y}` : '—';
+    const sexStr = d.sex === 'M' ? 'Male' : d.sex === 'F' ? 'Female' : '—';
+    travLines += `\n*Traveler ${n}${n===1?' (Lead)':''}*\n`
+      + `Last Name: ${d.last||'—'}\n`
+      + `First Name: ${d.first||'—'}\n`
+      + `Sex: ${sexStr}\n`
+      + `DOB: ${dobStr}\n`
+      + `Passport: ${d.passport||'—'}\n`
+      + `Nationality: ${d.nat||'—'}\n`
+      + `Dietary: ${d.dietary||'None'}\n`;
+  });
+
+  const msg = `*Waerebo Booking Request*\n`
+    + `━━━━━━━━━━━━━━━━\n`
+    + `Journey Type: ${journeyLabel}\n`
+    + `Date: ${dateStr}\n`
+    + `Pax: ${pax}\n`
+    + `Grand Total: ${formatIDR(total)} (${formatUSD(total)})\n`
+    + `Fitness: ${currentFitness.charAt(0).toUpperCase()+currentFitness.slice(1)}\n`
+    + `━━━━━━━━━━━━━━━━`
+    + travLines
+    + `━━━━━━━━━━━━━━━━\n`
+    + `*Primary Contact*\n`
+    + `Email: ${email}\n`
+    + `WhatsApp: ${wa}\n`
+    + `Hotel: ${hotel}\n`
+    + `Airport Transfer: ${transfer}\n`
+    + `Hotel Help Needed: ${hotelHelp}\n`
+    + `Special Requests: ${notes}`;
+
+  const waUrl = `https://wa.me/62811342473?text=${encodeURIComponent(msg)}`;
+
+  // Show success
+  document.getElementById('mainFormCard').style.display = 'none';
+  document.getElementById('mobilePriceStrip').style.display = 'none';
+  document.getElementById('successCard').style.display = 'block';
+  document.getElementById('successTitle').textContent = `Thank you, ${travData[0].first}.`;
+  document.getElementById('waBtn').href = waUrl;
+  document.getElementById('stickyCta').style.display = 'none';
+  updateProgress(3);
+  document.getElementById('successCard').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+// ── Fade-in observer ──
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold:.06});
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// ── Init ──
+document.getElementById('depDate').min = new Date().toISOString().split('T')[0];
+renderTravelerCards(1, false);
+updatePrice();
+applyTranslations();
+</script>
+</body>
+</html>
