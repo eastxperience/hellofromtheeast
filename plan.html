@@ -196,8 +196,59 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--ivory);color:var(
 .ty-heading{font-family:'Fraunces',serif;font-size:28px;font-weight:300;color:var(--forest);margin-bottom:12px}
 .ty-sub{color:var(--stone);font-size:14px;line-height:1.7;margin-bottom:26px}
 
+/* ── Curate It for Me Card (bespoke / concierge) ── */
+.curate-card{background:linear-gradient(150deg,#FBF7EC 0%,#F2E8D2 58%,#E7D8B2 100%);position:relative;overflow:hidden;border:2px solid rgba(200,168,107,.24)}
+.curate-card::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(circle at 22% 18%,rgba(200,168,107,.20) 0%,transparent 40%),
+  radial-gradient(circle at 78% 82%,rgba(200,168,107,.14) 0%,transparent 45%);z-index:1;pointer-events:none}
+.curate-card .curate-art{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.9}
+.curate-card .card-content{position:relative;z-index:2}
+.curate-card .cc{background:var(--forest);color:#F7F2E8;z-index:3}
+.curate-card:hover{border-color:var(--gold);box-shadow:0 18px 48px rgba(200,168,107,.26)}
+.curate-card.selected{border-color:var(--gold);background:linear-gradient(150deg,#FBF7EC 0%,#F5E8C8 58%,#E9D59E 100%)}
+.curate-kicker{display:inline-flex;align-items:center;gap:6px;font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.curate-kicker::before{content:'';display:inline-block;width:14px;height:1px;background:var(--gold);opacity:.55}
+.curate-title{font-family:'Fraunces',serif;font-size:15.5px;font-weight:500;color:var(--forest);line-height:1.2;letter-spacing:-.01em}
+.curate-title .sparkle{color:var(--gold);font-weight:400;margin-right:2px}
+.curate-sub{font-size:10.5px;color:rgba(14,42,31,.55);margin-top:4px;font-style:italic;font-family:'Fraunces',serif}
+
+/* ── Specific Date Picker ── */
+.date-specific{margin-top:18px;background:var(--white);border:1.5px dashed rgba(200,168,107,.4);border-radius:18px;padding:16px 18px;transition:all var(--t)}
+.date-specific:hover{border-color:var(--gold);background:#fffdf7}
+.date-specific.has-value{border-style:solid;border-color:var(--gold);background:rgba(200,168,107,.05)}
+.date-specific-label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--stone);margin-bottom:10px}
+.date-specific-label svg{flex-shrink:0;color:var(--gold)}
+.date-input{width:100%;background:transparent;border:none;border-radius:10px;padding:10px 12px;font-family:'Inter',sans-serif;font-size:15px;color:var(--forest);font-weight:500;background:rgba(247,242,232,.6);transition:all var(--t);-webkit-appearance:none}
+.date-input:focus{outline:none;background:#fff;box-shadow:0 0 0 2px rgba(200,168,107,.3)}
+.date-input::-webkit-calendar-picker-indicator{filter:sepia(1) saturate(2) hue-rotate(5deg) brightness(.95);cursor:pointer;opacity:.7}
+.date-clear{background:none;border:none;font-size:11px;color:var(--stone);cursor:pointer;padding:6px 0 0;text-decoration:underline;font-family:inherit;display:none}
+.date-specific.has-value .date-clear{display:inline-block}
+
+/* ── Budget Section ── */
+.budget-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.budget-grid .budget-tile:last-child{grid-column:1/-1}
+.budget-tile{padding:15px 16px;background:var(--white);border:2px solid var(--border);border-radius:18px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;transition:border-color var(--t),background var(--t),transform var(--t),box-shadow var(--t);position:relative;min-height:76px;display:flex;flex-direction:column;justify-content:center}
+.budget-tile:hover{border-color:var(--gold);box-shadow:0 6px 22px rgba(200,168,107,.14);transform:translateY(-1px)}
+.budget-tile.selected{border-color:var(--gold);background:rgba(200,168,107,.055)}
+.budget-tile .cc{top:50%;right:12px;transform:scale(0) translateY(-50%)}
+.budget-tile.selected .cc{opacity:1;transform:scale(1) translateY(-50%)}
+.budget-range{font-family:'Fraunces',serif;font-size:15.5px;font-weight:500;color:var(--forest);line-height:1.2;letter-spacing:-.01em}
+.budget-unit{font-size:11.5px;color:var(--stone);margin-top:3px;font-weight:400}
+.budget-tile.luxe{background:linear-gradient(140deg,#FBF7EC 0%,#F5EAD0 100%);border-color:rgba(200,168,107,.3)}
+.budget-tile.luxe .budget-range{color:var(--forest)}
+.budget-tile.luxe .budget-range .sparkle{color:var(--gold);margin-right:3px}
+.budget-tile.recommend{background:rgba(14,42,31,.03);border-style:dashed}
+.budget-tile.recommend .budget-range{font-style:italic;font-weight:400}
+
+/* ── Group Budget Toggle ── */
+.budget-mode-wrap{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:14px;flex-wrap:wrap}
+.budget-mode-hint{font-size:11.5px;color:var(--stone);line-height:1.4}
+.budget-mode-toggle{display:inline-flex;background:rgba(14,42,31,.05);border-radius:var(--rp);padding:3px;gap:2px;flex-shrink:0}
+.budget-mode-btn{background:transparent;border:none;padding:7px 14px;font-family:inherit;font-size:11.5px;font-weight:600;color:var(--stone);cursor:pointer;border-radius:var(--rp);transition:all var(--t);letter-spacing:.02em}
+.budget-mode-btn.active{background:var(--white);color:var(--forest);box-shadow:0 2px 8px rgba(14,42,31,.08)}
+
 /* ── Mobile ── */
-@media(max-width:680px){.g3{grid-template-columns:repeat(2,1fr)}.img-card{height:196px}.photo-card{aspect-ratio:1/1}.tier-card{padding:16px}.summary-card{padding:22px 18px 20px}.step-nav{padding:28px 0 22px}.step-intro{padding:28px 0 22px}.header-inner{gap:10px}.lang-btn span.lang-code{display:none}}
+@media(max-width:680px){.g3{grid-template-columns:repeat(2,1fr)}.img-card{height:196px}.photo-card{aspect-ratio:1/1}.tier-card{padding:16px}.summary-card{padding:22px 18px 20px}.step-nav{padding:28px 0 22px}.step-intro{padding:28px 0 22px}.header-inner{gap:10px}.lang-btn span.lang-code{display:none}.budget-grid{grid-template-columns:1fr}.budget-grid .budget-tile:last-child{grid-column:auto}.budget-mode-wrap{flex-direction:column;align-items:flex-start}.curate-title{font-size:14.5px}.date-specific{padding:14px 16px}}
 @media(max-width:400px){.g3{grid-template-columns:1fr}.img-card{height:180px}}
 @media(max-width:340px){.prio-tag{font-size:13px;padding:10px 14px}}
 </style>
@@ -377,12 +428,40 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--ivory);color:var(
       </div>
     </div>
 
-    <div class="pick-card photo-card sc" onclick="pickDest(this,'recommendation')"
-      style="background:linear-gradient(145deg,#0e2a1f 0%,#1c4a34 100%)">
+    <div class="pick-card photo-card curate-card sc" onclick="pickDest(this,'recommendation')">
       <div class="cc">✓</div>
+      <svg class="curate-art" viewBox="0 0 240 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="routeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#C8A86B" stop-opacity=".85"/>
+            <stop offset="100%" stop-color="#8E6A2E" stop-opacity=".35"/>
+          </linearGradient>
+        </defs>
+        <!-- compass ring -->
+        <circle cx="198" cy="48" r="22" fill="none" stroke="#C8A86B" stroke-width=".8" opacity=".45"/>
+        <circle cx="198" cy="48" r="14" fill="none" stroke="#C8A86B" stroke-width=".6" opacity=".35"/>
+        <path d="M198 30 L201 48 L198 66 L195 48 Z" fill="#C8A86B" opacity=".6"/>
+        <!-- dotted route -->
+        <path d="M32 258 Q70 200 110 210 T185 160 Q210 140 214 96" fill="none" stroke="url(#routeGrad)" stroke-width="1.6" stroke-dasharray="2 5" stroke-linecap="round"/>
+        <!-- waypoints -->
+        <circle cx="32" cy="258" r="4.5" fill="#C8A86B"/>
+        <circle cx="32" cy="258" r="8" fill="none" stroke="#C8A86B" stroke-width=".8" opacity=".5"/>
+        <circle cx="110" cy="210" r="3" fill="#C8A86B" opacity=".8"/>
+        <circle cx="185" cy="160" r="3" fill="#C8A86B" opacity=".7"/>
+        <circle cx="214" cy="96" r="4" fill="#C8A86B"/>
+        <circle cx="214" cy="96" r="8" fill="none" stroke="#C8A86B" stroke-width=".8" opacity=".5"/>
+        <!-- faint latitude lines -->
+        <path d="M0 120 H240" stroke="#C8A86B" stroke-width=".4" opacity=".18"/>
+        <path d="M0 180 H240" stroke="#C8A86B" stroke-width=".4" opacity=".14"/>
+        <path d="M0 240 H240" stroke="#C8A86B" stroke-width=".4" opacity=".1"/>
+        <!-- sparkle stars -->
+        <path d="M55 70 l1.6 3.4 3.4 1.6 -3.4 1.6 -1.6 3.4 -1.6 -3.4 -3.4 -1.6 3.4 -1.6z" fill="#C8A86B" opacity=".7"/>
+        <path d="M160 280 l1 2.2 2.2 1 -2.2 1 -1 2.2 -1 -2.2 -2.2 -1 2.2 -1z" fill="#C8A86B" opacity=".55"/>
+      </svg>
       <div class="card-content">
-        <div style="font-size:10.5px;color:rgba(255,255,255,.52);margin-bottom:3px">Not sure yet</div>
-        <div class="serif" style="font-size:14.5px;color:#fff;font-weight:400">✦ Curate It for Me</div>
+        <span class="curate-kicker" data-i18n="curate_kicker">Not sure yet</span>
+        <div class="curate-title"><span class="sparkle">✦</span><span data-i18n="curate_title">Curate It for Me</span></div>
+        <div class="curate-sub" data-i18n="curate_sub">Tailored around your style</div>
       </div>
     </div>
   </div>
@@ -454,8 +533,61 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--ivory);color:var(
         <div><div style="font-weight:600;font-size:14px">Flexible</div><div style="font-size:12px;color:var(--stone);margin-top:2px">No fixed dates yet</div></div>
       </div>
     </div>
+
+    <!-- ── Specific date picker ─────────────────── -->
+    <div class="date-specific" id="date-specific-box">
+      <div class="date-specific-label">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <span data-i18n="date_specific_label">Have a preferred date? (optional)</span>
+      </div>
+      <input type="date" id="inp-specific-date" class="date-input" onchange="pickSpecificDate(this.value)" aria-label="Specific travel date">
+      <button type="button" class="date-clear" onclick="clearSpecificDate()" data-i18n="date_clear">Clear date</button>
+    </div>
     <div style="height:8px"></div>
   </div>
+
+  <!-- ── Budget phase (sibling of when-phase) ─────── -->
+  <div class="phase" id="budget-phase">
+    <div class="divider">
+      <span class="gold-label" style="margin:0;white-space:nowrap" data-i18n="budget_label">What budget feels right for this journey?</span>
+    </div>
+    <div class="budget-mode-wrap" id="budget-mode-wrap" style="display:none">
+      <span class="budget-mode-hint" data-i18n="budget_mode_hint">Budget shown per person. Travelling as a group?</span>
+      <div class="budget-mode-toggle" role="tablist">
+        <button type="button" class="budget-mode-btn active" data-mode="perperson" onclick="setBudgetMode('perperson')" data-i18n="budget_mode_pp">Per person</button>
+        <button type="button" class="budget-mode-btn" data-mode="total" onclick="setBudgetMode('total')" data-i18n="budget_mode_total">Total group</button>
+      </div>
+    </div>
+    <div class="budget-grid" id="budget-grid">
+      <div class="budget-tile pick-card" onclick="pickBudget(this,'under5')">
+        <div class="cc">✓</div>
+        <div class="budget-range"><span data-i18n="budget_b1_range">Under IDR 5M</span></div>
+        <div class="budget-unit" data-budget-unit data-i18n="budget_unit_pp">per person</div>
+      </div>
+      <div class="budget-tile pick-card" onclick="pickBudget(this,'5to10')">
+        <div class="cc">✓</div>
+        <div class="budget-range"><span data-i18n="budget_b2_range">IDR 5M – 10M</span></div>
+        <div class="budget-unit" data-budget-unit data-i18n="budget_unit_pp">per person</div>
+      </div>
+      <div class="budget-tile pick-card" onclick="pickBudget(this,'10to20')">
+        <div class="cc">✓</div>
+        <div class="budget-range"><span data-i18n="budget_b3_range">IDR 10M – 20M</span></div>
+        <div class="budget-unit" data-budget-unit data-i18n="budget_unit_pp">per person</div>
+      </div>
+      <div class="budget-tile pick-card luxe" onclick="pickBudget(this,'luxury')">
+        <div class="cc">✓</div>
+        <div class="budget-range"><span class="sparkle">✦</span><span data-i18n="budget_b4_range">Luxury / Best Available</span></div>
+        <div class="budget-unit" data-i18n="budget_b4_sub">Private villas, jets, yachts</div>
+      </div>
+      <div class="budget-tile pick-card recommend" onclick="pickBudget(this,'recommend')">
+        <div class="cc">✓</div>
+        <div class="budget-range" data-i18n="budget_b5_range">Need a recommendation</div>
+        <div class="budget-unit" data-i18n="budget_b5_sub">We'll guide the range that fits your plan</div>
+      </div>
+    </div>
+    <div style="height:10px"></div>
+  </div>
+
   <div class="micro-copy" id="mc3"></div>
 </div>
 
@@ -624,11 +756,11 @@ var V={
    TRANSLATIONS
 ════════════════════════════════════════════════════════ */
 var T={
-  en:{back:'Back',step1_h:'What kind of journey<br><em>calls to you?</em>',step1_sub:'Select one — we\'ll build everything around it.',step2_sub:'Each island has its own magic.',step3_sub:'We tailor every detail to your group.',step4_sub:'Comfort is personal. Tell us yours.',when_label:'When would you love to go?',prio_label:'What matters most?',prio_hint:'&ensp;Choose up to 2',cont_btn:'See My Journey Concept →',form_lead:'Where shall we send it?',inp_name:'Your name',inp_wa:'WhatsApp number',inp_email:'Email (optional)',submit_btn:'Receive My Curated Plan',step5_sub:'Your Journey Concept',ty_heading:'Thank you.',ty_sub:'Your journey brief has been sent to our concierge team.<br>Opening WhatsApp now…',wa_open:'Open WhatsApp →'},
-  id:{back:'Kembali',step1_h:'Perjalanan seperti apa yang<br><em>memanggil Anda?</em>',step1_sub:'Pilih satu — kami akan membangun segalanya di sekitarnya.',step2_sub:'Setiap pulau memiliki keajaibannya sendiri.',step3_sub:'Kami menyesuaikan setiap detail untuk kelompok Anda.',step4_sub:'Kenyamanan itu personal. Ceritakan milik Anda.',when_label:'Kapan Anda ingin pergi?',prio_label:'Apa yang paling penting?',prio_hint:'&ensp;Pilih hingga 2',cont_btn:'Lihat Konsep Perjalanan Saya →',form_lead:'Ke mana kami harus mengirimkannya?',inp_name:'Nama Anda',inp_wa:'Nomor WhatsApp',inp_email:'Email (opsional)',submit_btn:'Terima Rencana Saya',step5_sub:'Konsep Perjalanan Anda',ty_heading:'Terima kasih.',ty_sub:'Ringkasan perjalanan Anda telah dikirim ke tim concierge kami.<br>Membuka WhatsApp sekarang…',wa_open:'Buka WhatsApp →'},
-  zh:{back:'返回',step1_h:'什么样的旅程<br><em>在召唤您？</em>',step1_sub:'选择一个 — 我们将围绕它构建一切。',step2_sub:'每个岛屿都有其独特的魅力。',step3_sub:'我们为您的团队量身定制每个细节。',step4_sub:'舒适是个人的。告诉我们您的偏好。',when_label:'您希望什么时候出发？',prio_label:'什么最重要？',prio_hint:'&ensp;最多选择2个',cont_btn:'查看我的旅程概念 →',form_lead:'我们应该发送到哪里？',inp_name:'您的姓名',inp_wa:'WhatsApp号码',inp_email:'电子邮件（可选）',submit_btn:'接收我的定制计划',step5_sub:'您的旅程概念',ty_heading:'谢谢。',ty_sub:'您的旅程摘要已发送给我们的礼宾团队。<br>正在打开WhatsApp…',wa_open:'打开WhatsApp →'},
-  ja:{back:'戻る',step1_h:'どんな旅が<br><em>あなたを呼んでいますか？</em>',step1_sub:'1つ選んでください — それに合わせてすべてを構築します。',step2_sub:'各島には独自の魔法があります。',step3_sub:'グループに合わせてすべての詳細を調整します。',step4_sub:'快適さは個人的なものです。あなたのものを教えてください。',when_label:'いつ行きたいですか？',prio_label:'最も重要なことは？',prio_hint:'&ensp;最大2つ選択',cont_btn:'旅のコンセプトを見る →',form_lead:'どこに送ればよいですか？',inp_name:'お名前',inp_wa:'WhatsApp番号',inp_email:'メール（任意）',submit_btn:'キュレートされた計画を受け取る',step5_sub:'あなたの旅のコンセプト',ty_heading:'ありがとうございます。',ty_sub:'旅のブリーフがコンシェルジュチームに送信されました。<br>WhatsAppを開いています…',wa_open:'WhatsAppを開く →'},
-  ko:{back:'뒤로',step1_h:'어떤 여행이<br><em>당신을 부르고 있나요?</em>',step1_sub:'하나를 선택하세요 — 그것을 중심으로 모든 것을 구성합니다.',step2_sub:'각 섬마다 고유한 마법이 있습니다.',step3_sub:'그룹에 맞게 모든 세부 사항을 조정합니다.',step4_sub:'편안함은 개인적입니다. 당신의 것을 알려주세요.',when_label:'언제 가고 싶으신가요?',prio_label:'가장 중요한 것은?',prio_hint:'&ensp;최대 2개 선택',cont_btn:'내 여행 개념 보기 →',form_lead:'어디로 보내드릴까요?',inp_name:'성함',inp_wa:'WhatsApp 번호',inp_email:'이메일 (선택사항)',submit_btn:'큐레이션된 계획 받기',step5_sub:'당신의 여행 개념',ty_heading:'감사합니다.',ty_sub:'여행 브리핑이 컨시어지 팀에 전송되었습니다.<br>WhatsApp을 열고 있습니다…',wa_open:'WhatsApp 열기 →'}
+  en:{back:'Back',step1_h:'What kind of journey<br><em>calls to you?</em>',step1_sub:'Select one — we\'ll build everything around it.',step2_sub:'Each island has its own magic.',step3_sub:'We tailor every detail to your group.',step4_sub:'Comfort is personal. Tell us yours.',when_label:'When would you love to go?',prio_label:'What matters most?',prio_hint:'&ensp;Choose up to 2',cont_btn:'See My Journey Concept →',form_lead:'Where shall we send it?',inp_name:'Your name',inp_wa:'WhatsApp number',inp_email:'Email (optional)',submit_btn:'Receive My Curated Plan',step5_sub:'Your Journey Concept',ty_heading:'Thank you.',ty_sub:'Your journey brief has been sent to our concierge team.<br>Opening WhatsApp now…',wa_open:'Open WhatsApp →',curate_kicker:'Not sure yet',curate_title:'Curate It for Me',curate_sub:'Tailored around your style',date_specific_label:'Have a preferred date? (optional)',date_clear:'Clear date',budget_label:'What budget feels right for this journey?',budget_mode_hint:'Budget shown per person. Travelling as a group?',budget_mode_pp:'Per person',budget_mode_total:'Total group',budget_unit_pp:'per person',budget_unit_total:'total for group',budget_b1_range:'Under IDR 5M',budget_b2_range:'IDR 5M – 10M',budget_b3_range:'IDR 10M – 20M',budget_b4_range:'Luxury / Best Available',budget_b4_sub:'Private villas, jets, yachts',budget_b5_range:'Need a recommendation',budget_b5_sub:'We\'ll guide the range that fits your plan'},
+  id:{back:'Kembali',step1_h:'Perjalanan seperti apa yang<br><em>memanggil Anda?</em>',step1_sub:'Pilih satu — kami akan merancang semuanya di sekitarnya.',step2_sub:'Setiap pulau punya pesonanya sendiri.',step3_sub:'Kami sesuaikan setiap detail untuk grup Anda.',step4_sub:'Kenyamanan itu personal. Ceritakan milik Anda.',when_label:'Kapan Anda ingin berangkat?',prio_label:'Apa yang paling penting?',prio_hint:'&ensp;Pilih hingga 2',cont_btn:'Lihat Konsep Perjalanan Saya →',form_lead:'Ke mana kami kirimkan?',inp_name:'Nama Anda',inp_wa:'Nomor WhatsApp',inp_email:'Email (opsional)',submit_btn:'Terima Rencana Saya',step5_sub:'Konsep Perjalanan Anda',ty_heading:'Terima kasih.',ty_sub:'Ringkasan perjalanan Anda telah dikirim ke tim concierge kami.<br>Membuka WhatsApp sekarang…',wa_open:'Buka WhatsApp →',curate_kicker:'Belum yakin',curate_title:'Rancangkan untuk Saya',curate_sub:'Disusun sesuai gaya Anda',date_specific_label:'Punya tanggal spesifik? (opsional)',date_clear:'Hapus tanggal',budget_label:'Budget seperti apa yang terasa pas?',budget_mode_hint:'Budget ditampilkan per orang. Bepergian grup?',budget_mode_pp:'Per orang',budget_mode_total:'Total grup',budget_unit_pp:'per orang',budget_unit_total:'total untuk grup',budget_b1_range:'Di bawah IDR 5M',budget_b2_range:'IDR 5M – 10M',budget_b3_range:'IDR 10M – 20M',budget_b4_range:'Mewah / Terbaik',budget_b4_sub:'Villa privat, jet, yacht',budget_b5_range:'Butuh rekomendasi',budget_b5_sub:'Kami bantu tentukan range yang pas'},
+  zh:{back:'返回',step1_h:'什么样的旅程<br><em>在召唤您？</em>',step1_sub:'选择一个 — 我们将围绕它构建一切。',step2_sub:'每个岛屿都有其独特的魅力。',step3_sub:'我们为您的团队量身定制每个细节。',step4_sub:'舒适是个人的。告诉我们您的偏好。',when_label:'您希望什么时候出发？',prio_label:'什么最重要？',prio_hint:'&ensp;最多选择2个',cont_btn:'查看我的旅程概念 →',form_lead:'我们应该发送到哪里？',inp_name:'您的姓名',inp_wa:'WhatsApp号码',inp_email:'电子邮件（可选）',submit_btn:'接收我的定制计划',step5_sub:'您的旅程概念',ty_heading:'谢谢。',ty_sub:'您的旅程摘要已发送给我们的礼宾团队。<br>正在打开WhatsApp…',wa_open:'打开WhatsApp →',curate_kicker:'还不确定',curate_title:'为我定制',curate_sub:'为您的风格量身打造',date_specific_label:'有首选日期吗？（可选）',date_clear:'清除日期',budget_label:'您觉得合适的预算是多少？',budget_mode_hint:'预算按每人显示。团队出行？',budget_mode_pp:'每人',budget_mode_total:'团队总额',budget_unit_pp:'每人',budget_unit_total:'团队总额',budget_b1_range:'5百万印尼盾以下',budget_b2_range:'5–10百万印尼盾',budget_b3_range:'10–20百万印尼盾',budget_b4_range:'奢华 / 最佳体验',budget_b4_sub:'私人别墅、专机、游艇',budget_b5_range:'需要推荐',budget_b5_sub:'我们将推荐合适的预算范围'},
+  ja:{back:'戻る',step1_h:'どんな旅が<br><em>あなたを呼んでいますか？</em>',step1_sub:'1つ選んでください — それに合わせてすべてを構築します。',step2_sub:'各島には独自の魔法があります。',step3_sub:'グループに合わせてすべての詳細を調整します。',step4_sub:'快適さは個人的なものです。あなたのものを教えてください。',when_label:'いつ行きたいですか？',prio_label:'最も重要なことは？',prio_hint:'&ensp;最大2つ選択',cont_btn:'旅のコンセプトを見る →',form_lead:'どこに送ればよいですか？',inp_name:'お名前',inp_wa:'WhatsApp番号',inp_email:'メール（任意）',submit_btn:'キュレートされた計画を受け取る',step5_sub:'あなたの旅のコンセプト',ty_heading:'ありがとうございます。',ty_sub:'旅のブリーフがコンシェルジュチームに送信されました。<br>WhatsAppを開いています…',wa_open:'WhatsAppを開く →',curate_kicker:'まだ決めていません',curate_title:'私に合わせて提案',curate_sub:'あなたのスタイルに合わせて',date_specific_label:'ご希望の日付は？（任意）',date_clear:'日付をクリア',budget_label:'この旅にふさわしい予算は？',budget_mode_hint:'予算は1人あたり表示です。グループ旅行？',budget_mode_pp:'1人あたり',budget_mode_total:'グループ合計',budget_unit_pp:'1人あたり',budget_unit_total:'グループ合計',budget_b1_range:'500万IDR未満',budget_b2_range:'500万〜1000万IDR',budget_b3_range:'1000万〜2000万IDR',budget_b4_range:'ラグジュアリー / 最上位',budget_b4_sub:'プライベートヴィラ、ジェット、ヨット',budget_b5_range:'おすすめが欲しい',budget_b5_sub:'最適な予算帯をご提案します'},
+  ko:{back:'뒤로',step1_h:'어떤 여행이<br><em>당신을 부르고 있나요?</em>',step1_sub:'하나를 선택하세요 — 그것을 중심으로 모든 것을 구성합니다.',step2_sub:'각 섬마다 고유한 마법이 있습니다.',step3_sub:'그룹에 맞게 모든 세부 사항을 조정합니다.',step4_sub:'편안함은 개인적입니다. 당신의 것을 알려주세요.',when_label:'언제 가고 싶으신가요?',prio_label:'가장 중요한 것은?',prio_hint:'&ensp;최대 2개 선택',cont_btn:'내 여행 개념 보기 →',form_lead:'어디로 보내드릴까요?',inp_name:'성함',inp_wa:'WhatsApp 번호',inp_email:'이메일 (선택사항)',submit_btn:'큐레이션된 계획 받기',step5_sub:'당신의 여행 개념',ty_heading:'감사합니다.',ty_sub:'여행 브리핑이 컨시어지 팀에 전송되었습니다.<br>WhatsApp을 열고 있습니다…',wa_open:'WhatsApp 열기 →',curate_kicker:'아직 미정',curate_title:'나에게 맞춰 큐레이션',curate_sub:'당신의 스타일에 맞게',date_specific_label:'원하는 날짜가 있나요? (선택)',date_clear:'날짜 지우기',budget_label:'이 여정에 어울리는 예산은?',budget_mode_hint:'예산은 1인 기준입니다. 단체 여행인가요?',budget_mode_pp:'1인당',budget_mode_total:'단체 총액',budget_unit_pp:'1인당',budget_unit_total:'단체 총액',budget_b1_range:'IDR 500만 이하',budget_b2_range:'IDR 500만 – 1000만',budget_b3_range:'IDR 1000만 – 2000만',budget_b4_range:'럭셔리 / 최고급',budget_b4_sub:'프라이빗 빌라, 전용기, 요트',budget_b5_range:'추천이 필요해요',budget_b5_sub:'적합한 예산 범위를 안내합니다'}
 };
 var currentLang='en';
 
@@ -671,7 +803,7 @@ var _trustIdx=0,_trustTimer=null;
 /* ════════════════════════════════════════════════════════
    STATE
 ════════════════════════════════════════════════════════ */
-var S={step:1,journey:null,destination:null,group:null,timing:null,style:null,priorities:[],score:0,segment:'standard'};
+var S={step:1,journey:null,destination:null,group:null,timing:null,specificDate:null,budget:null,budgetMode:'perperson',style:null,priorities:[],score:0,segment:'standard'};
 var _stepTimes={};
 var _nudgeTimer=null,_nudgeDismissed=false;
 
@@ -938,9 +1070,13 @@ function applyVoice(){
 function goBack(from){
   if(from===3){
     document.getElementById('when-phase').classList.remove('open');
+    document.getElementById('budget-phase').classList.remove('open');
     document.querySelectorAll('#when-grid .pick-card').forEach(function(c){c.classList.remove('selected');});
     document.querySelectorAll('#who-grid .pick-card').forEach(function(c){c.classList.remove('selected');});
-    S.group=null;S.timing=null;
+    document.querySelectorAll('#budget-grid .budget-tile').forEach(function(c){c.classList.remove('selected');});
+    clearSpecificDate();
+    document.getElementById('budget-mode-wrap').style.display='none';
+    S.group=null;S.timing=null;S.budget=null;S.budgetMode='perperson';
   }else if(from===4){
     document.getElementById('prio-phase').classList.remove('open');
     document.querySelectorAll('#style-grid .pick-card').forEach(function(c){c.classList.remove('selected');});
@@ -1008,7 +1144,87 @@ function pickWhen(el,val){
   var msgs={'within30':'We\'ll prioritise your booking right away.','1-3months':'Perfect timing — let\'s craft something exceptional.','3-6months':'Plenty of time for something truly extraordinary.','flexible':'Great journeys begin with curiosity. We\'re ready when you are.'};
   micro('mc3',msgs[val]||'Great — shaping this around your timing.');
   track('step3_selected_timing',{timing:val});
-  setTimeout(function(){goTo(4);},340);
+  revealBudgetPhase();
+}
+
+/* ════════════════════════════════════════════════════════
+   STEP 3 — Specific Date (optional)
+════════════════════════════════════════════════════════ */
+function pickSpecificDate(val){
+  var box=document.getElementById('date-specific-box');
+  if(!val){clearSpecificDate();return;}
+  S.specificDate=val;
+  box.classList.add('has-value');
+  // Auto-derive timing window from the picked date if user hasn't selected one
+  var picked=new Date(val+'T00:00:00');
+  var today=new Date();today.setHours(0,0,0,0);
+  var days=Math.max(0,Math.round((picked-today)/86400000));
+  if(!S.timing){
+    var auto='flexible';
+    if(days<=30)auto='within30';
+    else if(days<=90)auto='1-3months';
+    else if(days<=180)auto='3-6months';
+    S.timing=auto;
+    var autoMap={within30:0,'1-3months':1,'3-6months':2,'flexible':3};
+    var cards=document.querySelectorAll('#when-grid .pick-card');
+    if(cards[autoMap[auto]]){
+      cards.forEach(function(c){c.classList.remove('selected');});
+      cards[autoMap[auto]].classList.add('selected');
+    }
+  }
+  micro('mc3','We\'ll shape your plan around that exact date.');
+  track('step3_specific_date',{date:val,days_ahead:days});
+  revealBudgetPhase();
+}
+
+function clearSpecificDate(){
+  S.specificDate=null;
+  var inp=document.getElementById('inp-specific-date');
+  if(inp)inp.value='';
+  document.getElementById('date-specific-box').classList.remove('has-value');
+  track('step3_specific_date_cleared',{});
+}
+
+/* ════════════════════════════════════════════════════════
+   STEP 3 — Budget
+════════════════════════════════════════════════════════ */
+function revealBudgetPhase(){
+  var p=document.getElementById('budget-phase');
+  if(p.classList.contains('open'))return;
+  // Show group toggle for multi-traveller groups
+  var groupModes=['family','friends','corporate'];
+  if(groupModes.indexOf(S.group)!==-1){
+    document.getElementById('budget-mode-wrap').style.display='flex';
+  }
+  p.classList.add('open');
+  setTimeout(function(){p.scrollIntoView({behavior:'smooth',block:'nearest'});},180);
+}
+
+function setBudgetMode(mode){
+  S.budgetMode=mode;
+  document.querySelectorAll('.budget-mode-btn').forEach(function(b){
+    b.classList.toggle('active',b.dataset.mode===mode);
+  });
+  var tr=T[currentLang]||T.en;
+  var unitLabel=mode==='total'?(tr.budget_unit_total||'total for group'):(tr.budget_unit_pp||'per person');
+  document.querySelectorAll('[data-budget-unit]').forEach(function(el){el.textContent=unitLabel;});
+  track('step3_budget_mode',{mode:mode});
+}
+
+function pickBudget(el,val){
+  document.querySelectorAll('#budget-grid .budget-tile').forEach(function(c){c.classList.remove('selected');});
+  el.classList.add('selected','flash');
+  S.budget=val;
+  var msgs={
+    under5:'Smart choice. We have beautiful options in this range.',
+    '5to10':'Great sweet spot — expect genuinely elevated experiences.',
+    '10to20':'Exceptional tier. Private touches, premium stays, unforgettable moments.',
+    luxury:'Exquisite. Private yachts, exclusive villas, truly bespoke.',
+    recommend:'Perfect. We\'ll recommend the range that fits your journey best.'
+  };
+  micro('mc3',msgs[val]||'Noted. Your journey is almost ready.');
+  track('step3_selected_budget',{budget:val,mode:S.budgetMode});
+  setTimeout(function(){goTo(4);},380);
 }
 
 /* ════════════════════════════════════════════════════════
@@ -1060,11 +1276,13 @@ function pickPrio(el,val){
 function calcScore(){
   var s=0;
   if(S.timing==='within30')s+=25;else if(S.timing==='1-3months')s+=15;else if(S.timing==='3-6months')s+=8;
+  if(S.specificDate)s+=12;
   if(S.style==='luxury')s+=20;else if(S.style==='premium')s+=14;else if(S.style==='smart')s+=7;
   if(S.group==='corporate')s+=15;else if(S.group==='family')s+=12;else if(S.group==='couple'||S.group==='friends')s+=10;else if(S.group==='solo')s+=8;
   if(S.destination&&S.destination!=='recommendation')s+=15;else s+=8;
   if(S.priorities.indexOf('privacy')!==-1||S.priorities.indexOf('romance')!==-1)s+=5;
   if(S.journey==='corporate'||S.group==='corporate')s+=10;
+  if(S.budget==='luxury')s+=18;else if(S.budget==='10to20')s+=12;else if(S.budget==='5to10')s+=7;else if(S.budget==='under5')s+=3;
   S.score=s;return s;
 }
 function getSegment(){
@@ -1107,8 +1325,16 @@ function buildStep5(){
   var tagData=[];
   if(S.journey)tagData.push(S.journey);
   if(S.style)tagData.push(S.style);
-  if(S.timing)tagData.push(S.timing);
-  setHTML('sum-tags',tagData.map(function(t){return'<span class="sum-tag">'+t.replace(/-/g,' ')+'</span>';}).join(''));
+  if(S.specificDate){
+    var fd=formatSpecificDate(S.specificDate);
+    if(fd)tagData.push(fd);
+  }else if(S.timing){tagData.push(S.timing);}
+  if(S.budget){
+    var BTag={under5:'under 5M',' 5to10':'5M–10M','10to20':'10M–20M',luxury:'luxury ✦',recommend:'budget flex'};
+    var btm={under5:'under 5M','5to10':'5M–10M','10to20':'10M–20M',luxury:'luxury ✦',recommend:'budget flex'};
+    tagData.push(btm[S.budget]||S.budget);
+  }
+  setHTML('sum-tags',tagData.map(function(t){return'<span class="sum-tag">'+String(t).replace(/-/g,' ')+'</span>';}).join(''));
   track('reached_step5',{journey:S.journey,destination:S.destination,group:S.group,style:S.style,segment:S.segment,score:S.score,time_on_step4:_stepTimes[5]?Math.round((_stepTimes[5]-(_stepTimes[4]||_stepTimes[5]))/1000):0});
 }
 
@@ -1131,6 +1357,15 @@ function buildTeaser(){
 /* ════════════════════════════════════════════════════════
    WA MESSAGE BUILDER
 ════════════════════════════════════════════════════════ */
+function formatSpecificDate(iso){
+  if(!iso)return null;
+  try{
+    var d=new Date(iso+'T00:00:00');
+    var opts={weekday:'short',day:'numeric',month:'short',year:'numeric'};
+    return d.toLocaleDateString('en-GB',opts);
+  }catch(e){return iso;}
+}
+
 function buildWA(name){
   var JL={marine:'Islands & Marine',culture:'Culture & Heritage',romance:'Romance & Honeymoon',adventure:'Adventure & Hiking',wellness:'Wellness & Retreat',family:'Family & Multi-gen',corporate:'Corporate & Events'};
   var DL={komodo:'Komodo & Flores',bali:'Bali',java:'Java',flores:'Flores Highlands',bandung:'Bandung & West Java',recommendation:'Open to expert recommendation'};
@@ -1138,9 +1373,21 @@ function buildWA(name){
   var TL={'within30':'Within 30 days ⚡','1-3months':'1–3 months','3-6months':'3–6 months','flexible':'Flexible / no fixed dates'};
   var SL={luxury:'Luxury Private ✦',premium:'Premium Comfort',smart:'Smart Value'};
   var PL={'easy-planning':'Easy Planning','privacy':'Privacy','best-views':'Best Views','family-friendly':'Family Friendly','romance':'Romance','adventure':'Adventure'};
+  var BL={under5:'Under IDR 5M',' 5to10':'IDR 5M – 10M','10to20':'IDR 10M – 20M',luxury:'Luxury / Best Available ✦',recommend:'Need a recommendation'};
+  var BLmap={under5:'Under IDR 5M','5to10':'IDR 5M – 10M','10to20':'IDR 10M – 20M',luxury:'Luxury / Best Available ✦',recommend:'Need a recommendation'};
   var prioTxt=S.priorities.map(function(p){return PL[p]||p;}).join(' + ')||'Open';
   var dialCode='+'+COUNTRIES[selectedCountryIdx].c;
-  return'Hi EastXperience! 🌏\n\nI\'ve just completed your journey planner.\n\n*My Journey Profile:*\n• Name: '+name+'\n• Journey: '+(JL[S.journey]||S.journey)+'\n• Destination: '+(DL[S.destination]||S.destination)+'\n• Group: '+(GL[S.group]||S.group)+'\n• Timing: '+(TL[S.timing]||S.timing)+'\n• Style: '+(SL[S.style]||S.style)+'\n• Priorities: '+prioTxt+'\n\nI\'d love to receive a custom itinerary proposal. Looking forward to hearing from you! ✨';
+  var budgetTxt='—';
+  if(S.budget){
+    budgetTxt=BLmap[S.budget]||S.budget;
+    if(S.budget!=='recommend'&&S.budget!=='luxury'){
+      budgetTxt+=' ('+(S.budgetMode==='total'?'total for group':'per person')+')';
+    }
+  }
+  var timingTxt=(TL[S.timing]||S.timing||'—');
+  var specific=formatSpecificDate(S.specificDate);
+  if(specific)timingTxt=specific+' ('+timingTxt+')';
+  return'Hi EastXperience! 🌏\n\nI\'ve just completed your journey planner.\n\n*My Journey Profile:*\n• Name: '+name+'\n• Journey: '+(JL[S.journey]||S.journey)+'\n• Destination: '+(DL[S.destination]||S.destination)+'\n• Group: '+(GL[S.group]||S.group)+'\n• Timing: '+timingTxt+'\n• Budget: '+budgetTxt+'\n• Style: '+(SL[S.style]||S.style)+'\n• Priorities: '+prioTxt+'\n\nI\'d love to receive a custom itinerary proposal. Looking forward to hearing from you! ✨';
 }
 
 /* ════════════════════════════════════════════════════════
@@ -1204,6 +1451,14 @@ document.addEventListener('keydown',function(e){
   var lang=detectLang();
   if(lang!=='en')setLang(lang);
   else{document.getElementById('lang-label').textContent='EN';}
+
+  // Specific date input: min = today
+  var dateInp=document.getElementById('inp-specific-date');
+  if(dateInp){
+    var t=new Date();
+    var iso=t.getFullYear()+'-'+String(t.getMonth()+1).padStart(2,'0')+'-'+String(t.getDate()).padStart(2,'0');
+    dateInp.min=iso;
+  }
 
   startTrustRotator();
   _stepTimes[1]=Date.now();
