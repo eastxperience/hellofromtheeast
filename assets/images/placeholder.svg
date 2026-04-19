@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" preserveAspectRatio="xMidYMid slice">
+<defs><linearGradient id="g" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0" stop-color="#243B2E"/><stop offset="1" stop-color="#0B1F17"/></linearGradient></defs>
+<rect width="1200" height="1500" fill="url(#g)"/>
+<g fill="#C9A24B" opacity=".6" font-family="serif" font-size="48" text-anchor="middle">
+<text x="600" y="740">EastXperience</text>
+<text x="600" y="800" font-size="22" fill="#F6F1E7" opacity=".7">Add your photo here</text></g></svg>

@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F7F2E8">
+<title>Plan Your Journey · EastXperience</title>
+<meta name="description" content="Your private Indonesia journey, crafted by specialists. Komodo, Bali, Java, Flores, Bandung.">
+<link rel="icon" type="image/svg+xml" href="Eastxperience-Logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/romance.webp" fetchpriority="high">
+<link rel="preload" as="image" href="images/marine.webp" fetchpriority="high">
+<link rel="preload" as="image" href="images/culture.webp" fetchpriority="high">
+<link rel="preload" as="image" href="images/adventure.webp">
+<link rel="preload" as="image" href="images/family.webp">
+<link rel="preload" as="image" href="images/wellness.webp">
+
+<style>
+:root{--ivory:#F7F2E8;--forest:#0E2A1F;--gold:#C8A86B;--stone:#5C5E5A;--border:rgba(14,42,31,.09);--white:#fff;--rc:22px;--rp:999px;--t:220ms ease}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--ivory);color:var(--forest);min-height:100svh;overflow-x:hidden;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.serif{font-family:'Fraunces',Georgia,serif}
+.step-heading{font-family:'Fraunces',Georgia,serif;font-size:clamp(25px,4.8vw,39px);font-weight:300;line-height:1.18;letter-spacing:-.02em;margin-bottom:10px}
+.step-heading em{font-style:italic;font-weight:300}
+.step-sub{color:var(--stone);font-size:15px;line-height:1.55}
+.gold-label{font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);margin-bottom:14px}
+
+/* ── Step System ── */
+.step{display:none}
+.step.active{display:block;animation:sIn .42s cubic-bezier(.25,.46,.45,.94) both}
+.step.out{display:block;animation:sOut .28s cubic-bezier(.55,.06,.68,.19) both;pointer-events:none}
+@keyframes sIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes sOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(-28px)}}
+.step.active .sc{animation:cIn .44s ease both}
+.step.active .sc:nth-child(1){animation-delay:.03s}
+.step.active .sc:nth-child(2){animation-delay:.07s}
+.step.active .sc:nth-child(3){animation-delay:.12s}
+.step.active .sc:nth-child(4){animation-delay:.17s}
+.step.active .sc:nth-child(5){animation-delay:.22s}
+.step.active .sc:nth-child(6){animation-delay:.27s}
+@keyframes cIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Header ── */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(247,242,232,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(14,42,31,.06)}
+.header-inner{max-width:920px;margin:0 auto;padding:0 20px;height:58px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.back-link{display:flex;align-items:center;gap:6px;color:rgba(14,42,31,.35);font-size:13px;font-weight:500;text-decoration:none;transition:color var(--t);flex-shrink:0}
+.back-link:hover{color:rgba(14,42,31,.7)}
+.brand-mark{display:flex;align-items:center;gap:8px;font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--forest);letter-spacing:-.01em;flex-shrink:0;text-decoration:none}
+.brand-mark img{width:32px;height:32px;flex-shrink:0}
+.prog-track{display:flex;gap:5px;width:100px;align-items:center;flex-shrink:0}
+.prog-dot{height:4px;border-radius:99px;background:rgba(14,42,31,.1);transition:all .5s cubic-bezier(.4,0,.2,1);flex:1}
+.prog-dot.active{background:var(--gold);flex:2.6}
+.prog-dot.done{background:rgba(200,168,107,.38)}
+
+/* ── Language Selector ── */
+.lang-wrap{position:relative;flex-shrink:0}
+.lang-btn{display:flex;align-items:center;gap:4px;background:transparent;border:1.5px solid rgba(14,42,31,.1);border-radius:var(--rp);padding:5px 10px;cursor:pointer;font-size:12px;font-weight:600;color:var(--stone);font-family:inherit;transition:all var(--t);line-height:1}
+.lang-btn:hover{border-color:rgba(200,168,107,.5);color:var(--gold)}
+.lang-dropdown{position:absolute;top:calc(100% + 7px);right:0;background:#fff;border:1.5px solid rgba(14,42,31,.09);border-radius:14px;box-shadow:0 12px 36px rgba(14,42,31,.13);z-index:999;display:none;min-width:176px;overflow:hidden}
+.lang-dropdown.open{display:block;animation:cIn .18s ease both}
+.lang-item{display:flex;align-items:center;gap:9px;width:100%;text-align:left;padding:11px 16px;background:none;border:none;border-bottom:1px solid rgba(14,42,31,.05);font-size:13.5px;font-family:inherit;color:var(--forest);cursor:pointer;transition:background .13s}
+.lang-item:last-child{border-bottom:none}
+.lang-item:hover{background:rgba(200,168,107,.07)}
+.lang-item.active{color:var(--gold);font-weight:600}
+
+/* ── Layout ── */
+.planner-main{max-width:920px;margin:0 auto;padding:0 18px 100px}
+.step-intro{padding:36px 0 26px}
+.step-nav{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:36px 0 26px}
+.back-btn{background:transparent;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;color:rgba(14,42,31,.3);font-size:13px;font-weight:500;font-family:inherit;padding:4px 0;transition:color var(--t);flex-shrink:0;margin-top:4px}
+.back-btn:hover{color:rgba(14,42,31,.65)}
+
+/* ── Pick Cards ── */
+.pick-card{cursor:pointer;border-radius:var(--rc);border:2px solid transparent;position:relative;overflow:hidden;user-select:none;-webkit-tap-highlight-color:transparent;transition:transform var(--t),box-shadow var(--t),border-color var(--t);contain:layout paint}
+.pick-card:hover{will-change:transform}
+.pick-card:hover{transform:translateY(-4px);box-shadow:0 18px 48px rgba(14,42,31,.13)}
+.pick-card:active{transform:scale(.975);transition-duration:80ms}
+.pick-card.selected{border-color:var(--gold)!important}
+.pick-card.flash{animation:gFlash .45s ease}
+@keyframes gFlash{0%{box-shadow:0 0 0 0 rgba(200,168,107,.5)}60%{box-shadow:0 0 0 12px rgba(200,168,107,0)}100%{box-shadow:0 0 0 0 rgba(200,168,107,0)}}
+.cc{position:absolute;top:10px;right:10px;width:24px;height:24px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(0);transition:opacity .18s,transform .32s cubic-bezier(.34,1.56,.64,1);color:#fff;font-size:12px;font-weight:700;z-index:10;pointer-events:none}
+.pick-card.selected .cc{opacity:1;transform:scale(1)}
+
+/* ── Image Cards ── */
+.img-card{height:280px;background-size:110%;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;padding:20px 18px;transition:transform var(--t),box-shadow var(--t),border-color var(--t),background-size .55s ease}
+.img-card:hover{background-size:116%}
+.img-card::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,28,18,.9) 20%,rgba(10,28,18,.08) 100%);z-index:1;transition:opacity var(--t)}
+.img-card:hover::before{opacity:.84}
+.img-card .card-content,.img-card .cc{z-index:2}
+.img-card .cc{z-index:3}
+
+/* ── Photo Cards ── */
+.photo-card{aspect-ratio:3/4;background-size:110%;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;padding:14px 13px;transition:transform var(--t),box-shadow var(--t),border-color var(--t),background-size .55s ease}
+.photo-card:hover{background-size:116%}
+.photo-card::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,28,18,.88) 32%,rgba(10,28,18,.04) 100%);z-index:1}
+.photo-card .card-content,.photo-card .cc{z-index:2}
+.photo-card .cc{z-index:3}
+
+/* ── Who / When Cards ── */
+.who-card{padding:15px 18px;background:var(--white);border:2px solid var(--border);border-radius:18px;display:flex;align-items:center;gap:14px;min-height:68px;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;transition:border-color var(--t),background var(--t),transform var(--t),box-shadow var(--t)}
+.who-card:hover{border-color:var(--gold);box-shadow:0 6px 22px rgba(200,168,107,.14)}
+.who-card.selected{border-color:var(--gold);background:rgba(200,168,107,.055)}
+.who-card .cc{top:50%;right:12px;transform:scale(0) translateY(-50%)}
+.who-card.selected .cc{opacity:1;transform:scale(1) translateY(-50%)}
+
+/* ── Tier Cards ── */
+.tier-card{padding:20px;background:var(--white);border:2px solid var(--border);border-radius:var(--rc);cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;transition:all var(--t)}
+.tier-card:hover{border-color:var(--gold);transform:translateY(-2px);box-shadow:0 10px 30px rgba(14,42,31,.1)}
+.tier-card.selected{border-color:var(--gold);background:rgba(200,168,107,.055)}
+
+/* ── Priority Tags ── */
+.prio-tag{padding:11px 18px;background:var(--white);border:2px solid var(--border);border-radius:var(--rp);font-size:14px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;user-select:none;-webkit-tap-highlight-color:transparent;transition:all var(--t)}
+.prio-tag:hover{border-color:var(--gold)}
+.prio-tag.selected{border-color:var(--gold);background:rgba(200,168,107,.09);color:var(--forest)}
+.prio-tag.locked{opacity:.32;cursor:not-allowed;pointer-events:none}
+
+/* ── Phase Reveal ── */
+.phase{max-height:0;overflow:hidden;opacity:0;transition:max-height .7s cubic-bezier(.4,0,.2,1),opacity .5s ease}
+.phase.open{max-height:900px;opacity:1}
+
+/* ── Divider ── */
+.divider{display:flex;align-items:center;gap:14px;margin:26px 0 18px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:rgba(14,42,31,.09)}
+
+/* ── Micro-Copy ── */
+.micro-copy{text-align:center;font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--gold);min-height:22px;margin-top:14px;opacity:0;transform:translateY(6px);transition:opacity .55s ease,transform .55s ease}
+.micro-copy.show{opacity:1;transform:translateY(0)}
+
+/* ── Toast ── */
+#toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-110px);background:var(--forest);color:var(--ivory);padding:10px 22px;border-radius:var(--rp);font-size:13px;white-space:nowrap;z-index:9999;transition:transform .42s cubic-bezier(.34,1.56,.64,1);pointer-events:none;box-shadow:0 10px 36px rgba(14,42,31,.22);border:1px solid rgba(200,168,107,.2)}
+#toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ── Summary Card ── */
+.summary-card{background:var(--forest);border-radius:var(--rc);padding:28px 24px 24px;margin-bottom:22px}
+.summary-lines{font-family:'Fraunces',serif;font-size:clamp(16px,3vw,21px);font-weight:300;line-height:1.58;color:#F7F2E8;margin-bottom:18px}
+.summary-line-3{font-size:13.5px;font-style:italic;color:rgba(247,242,232,.52);margin-top:8px;display:block}
+.sum-tag{display:inline-flex;align-items:center;padding:5px 13px;background:rgba(200,168,107,.14);border:1px solid rgba(200,168,107,.28);border-radius:var(--rp);font-size:11.5px;font-weight:500;color:rgba(247,242,232,.72);text-transform:capitalize;margin:3px}
+
+/* ── Teaser Card ── */
+.teaser-card{background:rgba(200,168,107,.07);border:1px solid rgba(200,168,107,.2);border-radius:16px;padding:17px 19px;margin-bottom:20px;display:none}
+.teaser-card.show{display:block;animation:cIn .45s ease both}
+
+/* ── Form ── */
+.fi{width:100%;background:var(--white);border:1.5px solid rgba(14,42,31,.13);border-radius:14px;padding:15px 18px;color:var(--forest);font-family:'Inter',sans-serif;font-size:15px;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none}
+.fi:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,168,107,.11)}
+.fi::placeholder{color:rgba(14,42,31,.28)}
+.fi.err{border-color:#C0614A;animation:shake .32s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* ── Phone Selector ── */
+.phone-wrap{position:relative;flex-shrink:0}
+.dial-btn{display:flex;align-items:center;gap:5px;padding:0 13px;background:var(--white);border:1.5px solid rgba(14,42,31,.13);border-right:none;border-radius:14px 0 0 14px;cursor:pointer;height:100%;min-height:52px;color:var(--forest);font-size:14px;font-family:inherit;white-space:nowrap;transition:border-color .2s}
+.dial-btn:hover{border-color:rgba(200,168,107,.45)}
+.dial-btn:focus{outline:none;border-color:var(--gold)}
+.dial-chevron{opacity:.4;transition:transform .2s}
+.dial-btn[aria-expanded="true"] .dial-chevron{transform:rotate(180deg)}
+.dial-dropdown{position:absolute;top:calc(100% + 6px);left:0;width:264px;background:#fff;border:1.5px solid rgba(14,42,31,.1);border-radius:14px;box-shadow:0 16px 48px rgba(14,42,31,.14);z-index:999;display:none;overflow:hidden}
+.dial-dropdown.open{display:block;animation:cIn .16s ease both}
+.dial-search{width:100%;border:none;border-bottom:1px solid rgba(14,42,31,.07);padding:12px 15px;font-family:'Inter',sans-serif;font-size:14px;color:var(--forest);outline:none;background:#fafaf8}
+.dial-list{max-height:210px;overflow-y:auto}
+.country-item{display:flex;align-items:center;gap:10px;padding:10px 15px;cursor:pointer;font-size:13.5px;transition:background .13s}
+.country-item:hover{background:rgba(200,168,107,.08)}
+.country-item.selected-c{background:rgba(200,168,107,.11);font-weight:500}
+.country-code-sm{color:var(--stone);font-size:12.5px;margin-left:auto;flex-shrink:0}
+
+/* ── Buttons ── */
+.cta-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:18px 28px;background:var(--forest);color:var(--ivory);border-radius:var(--rp);font-family:'Fraunces',serif;font-size:17px;font-weight:600;cursor:pointer;border:none;transition:all var(--t);letter-spacing:-.01em;-webkit-tap-highlight-color:transparent}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(14,42,31,.28)}
+.cta-btn:active{transform:scale(.988)}
+.cta-btn:disabled{opacity:.65;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+.wa-final-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:17px 28px;background:#25D366;color:#0B1F17;border-radius:var(--rp);font-family:'Fraunces',serif;font-size:17px;font-weight:600;text-decoration:none;transition:all var(--t);letter-spacing:-.01em}
+.wa-final-btn:hover{transform:translateY(-2px);box-shadow:0 14px 38px rgba(37,211,102,.32)}
+.spin{width:17px;height:17px;flex-shrink:0;border:2px solid rgba(247,242,232,.25);border-top-color:var(--ivory);border-radius:50%;animation:rot .7s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+
+/* ── Grids ── */
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.g2{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+
+/* ── Rotating Trust ── */
+#trust-rot{min-height:18px;transition:opacity .38s ease;display:inline-block}
+#trust-rot.fade{opacity:0}
+
+/* ── Abandonment Nudge ── */
+#nudge{position:fixed;bottom:-90px;left:50%;transform:translateX(-50%);z-index:8888;transition:bottom .52s cubic-bezier(.34,1.56,.64,1);background:var(--forest);color:var(--ivory);padding:13px 20px 13px 18px;border-radius:var(--rp);font-size:13.5px;white-space:nowrap;box-shadow:0 12px 40px rgba(14,42,31,.32);border:1px solid rgba(200,168,107,.18);display:flex;align-items:center;gap:12px;cursor:pointer}
+#nudge.show{bottom:22px}
+#nudge-close{background:none;border:none;color:rgba(247,242,232,.38);cursor:pointer;font-size:19px;line-height:1;padding:0;flex-shrink:0;transition:color .15s}
+#nudge-close:hover{color:rgba(247,242,232,.7)}
+
+/* ── Thank-You ── */
+.ty-screen{text-align:center;padding:32px 0 0;display:none}
+.ty-icon{font-size:44px;margin-bottom:20px;display:block}
+.ty-heading{font-family:'Fraunces',serif;font-size:28px;font-weight:300;color:var(--forest);margin-bottom:12px}
+.ty-sub{color:var(--stone);font-size:14px;line-height:1.7;margin-bottom:26px}
+
+/* ── Mobile ── */
+@media(max-width:680px){.g3{grid-template-columns:repeat(2,1fr)}.img-card{height:196px}.photo-card{aspect-ratio:1/1}.tier-card{padding:16px}.summary-card{padding:22px 18px 20px}.step-nav{padding:28px 0 22px}.step-intro{padding:28px 0 22px}.header-inner{gap:10px}.lang-btn span.lang-code{display:none}}
+@media(max-width:400px){.g3{grid-template-columns:1fr}.img-card{height:180px}}
+@media(max-width:340px){.prio-tag{font-size:13px;padding:10px 14px}}
+</style>
+</head>
+<body>
+
+<div id="toast"></div>
+
+<!-- Abandonment Nudge -->
+<div id="nudge" role="status" aria-live="polite" onclick="dismissNudge()">
+  <span id="nudge-msg">Need ideas? We can recommend what suits you best.&ensp;✦</span>
+  <button id="nudge-close" onclick="dismissNudge(event)" aria-label="Dismiss">×</button>
+</div>
+
+<!-- ── Header ─────────────────────────────────────── -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="back-link">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      <span data-i18n="back">Back</span>
+    </a>
+    <div class="brand-mark">
+      <img src="images/logo-eastxperience.svg" alt="EastXperience" width="32" height="32">
+      EastXperience
+    </div>
+    <!-- Language Selector -->
+    <div class="lang-wrap">
+      <button class="lang-btn" id="lang-btn" type="button" onclick="toggleLang(event)" aria-label="Select language" aria-haspopup="listbox">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+        <span id="lang-label" class="lang-code">EN</span>
+      </button>
+      <div class="lang-dropdown" id="lang-dropdown" role="listbox">
+        <button class="lang-item active" onclick="setLang('en')" data-lang="en">🇬🇧 English</button>
+        <button class="lang-item" onclick="setLang('id')" data-lang="id">🇮🇩 Bahasa Indonesia</button>
+        <button class="lang-item" onclick="setLang('zh')" data-lang="zh">🇨🇳 中文</button>
+        <button class="lang-item" onclick="setLang('ja')" data-lang="ja">🇯🇵 日本語</button>
+        <button class="lang-item" onclick="setLang('ko')" data-lang="ko">🇰🇷 한국어</button>
+      </div>
+    </div>
+    <div class="prog-track" id="prog-bar">
+      <div class="prog-dot active" id="d1"></div>
+      <div class="prog-dot" id="d2"></div>
+      <div class="prog-dot" id="d3"></div>
+      <div class="prog-dot" id="d4"></div>
+      <div class="prog-dot" id="d5"></div>
+    </div>
+  </div>
+</header>
+
+<main class="planner-main">
+
+<!-- ════════════════════════════════════════════════
+     STEP 1 · Dream Entry
+════════════════════════════════════════════════ -->
+<div class="step active" data-step="1">
+  <div class="step-intro">
+    <h2 class="step-heading" data-i18n="step1_h">What kind of journey<br><em>calls to you?</em></h2>
+    <p class="step-sub" data-i18n="step1_sub">Select one — we'll build everything around it.</p>
+  </div>
+
+  <div class="g3">
+    <div class="pick-card img-card sc" onclick="pickJourney(this,'romance')"
+      style="background-image:url('images/romance.webp')">
+      <div class="cc">✓</div>
+      <div class="card-content">
+        <div class="serif" style="font-size:19px;font-weight:400;color:#fff;margin-bottom:4px">Romantic Escape</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.58)">Private moments crafted for two</div>
+      </div>
+    </div>
+
+    <div class="pick-card img-card sc" onclick="pickJourney(this,'marine')"
+      style="background-image:url('images/marine.webp')">
+      <div class="cc">✓</div>
+      <div class="card-content">
+        <div class="serif" style="font-size:19px;font-weight:400;color:#fff;margin-bottom:4px">Ocean Freedom</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.58)">Islands, reefs &amp; open water</div>
+      </div>
+    </div>
+
+    <div class="pick-card img-card sc" onclick="pickJourney(this,'culture')"
+      style="background-image:url('images/culture.webp')">
+      <div class="cc">✓</div>
+      <div class="card-content">
+        <div class="serif" style="font-size:19px;font-weight:400;color:#fff;margin-bottom:4px">Meaningful Discovery</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.58)">Temples, traditions &amp; living art</div>
+      </div>
+    </div>
+
+    <div class="pick-card img-card sc" onclick="pickJourney(this,'adventure')"
+      style="background-image:url('images/adventure.webp')">
+      <div class="cc">✓</div>
+      <div class="card-content">
+        <div class="serif" style="font-size:19px;font-weight:400;color:#fff;margin-bottom:4px">Wild Adventure</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.58)">Volcanoes, trails &amp; raw nature</div>
+      </div>
+    </div>
+
+    <div class="pick-card img-card sc" onclick="pickJourney(this,'family')"
+      style="background-image:url('images/family.webp')">
+      <div class="cc">✓</div>
+      <div class="card-content">
+        <div class="serif" style="font-size:19px;font-weight:400;color:#fff;margin-bottom:4px">Family Memories</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.58)">For every age, beautifully planned</div>
+      </div>
+    </div>
+
+    <div class="pick-card img-card sc" onclick="pickJourney(this,'wellness')"
+      style="background-image:url('images/wellness.webp')">
+      <div class="cc">✓</div>
+      <div class="card-content">
+        <div class="serif" style="font-size:19px;font-weight:400;color:#fff;margin-bottom:4px">Full Reset</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.58)">Slow down, restore, return different</div>
+      </div>
+    </div>
+  </div>
+  <div class="micro-copy" id="mc1"></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════
+     STEP 2 · Destination
+════════════════════════════════════════════════ -->
+<div class="step" data-step="2">
+  <div class="step-nav">
+    <div>
+      <h2 class="step-heading" id="h2">Where does your<br><em>heart pull you?</em></h2>
+      <p class="step-sub" data-i18n="step2_sub">Each island has its own magic.</p>
+    </div>
+    <button class="back-btn" onclick="goBack(2)">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg><span data-i18n="back">Back</span>
+    </button>
+  </div>
+
+  <div class="g3">
+    <div class="pick-card photo-card sc" data-bg="images/komodo.jpg" onclick="pickDest(this,'komodo')"
+      style="background-color:#1a3a2a">
+      <div class="cc">✓</div>
+      <div class="card-content">
+        <div style="font-size:10.5px;color:rgba(255,255,255,.52);margin-bottom:3px">Komodo &amp; Flores</div>
+        <div class="serif" style="font-size:14.5px;color:#fff;font-weight:400">Dragons &amp; Pink Beaches</div>
+      </div>
+    </div>
+
+    <div class="pick-card photo-card sc" data-bg="images/flores.jpg" onclick="pickDest(this,'flores')"
+      style="background-color:#1a3a2a">
+      <div class="cc">✓</div>
+      <div class="card-content">
+        <div style="font-size:10.5px;color:rgba(255,255,255,.52);margin-bottom:3px">Flores Highlands</div>
+        <div class="serif" style="font-size:14.5px;color:#fff;font-weight:400">Lakes, Coffee &amp; Waterfalls</div>
+      </div>
+    </div>
+
+    <div class="pick-card photo-card sc" data-bg="images/bali.jpg" onclick="pickDest(this,'bali')"
+      style="background-color:#1a3a2a">
+      <div class="cc">✓</div>
+      <div class="card-content">
+        <div style="font-size:10.5px;color:rgba(255,255,255,.52);margin-bottom:3px">Bali</div>
+        <div class="serif" style="font-size:14.5px;color:#fff;font-weight:400">Spiritual &amp; Cultural Heart</div>
+      </div>
+    </div>
+
+    <div class="pick-card photo-card sc" data-bg="images/java.jpg" onclick="pickDest(this,'java')"
+      style="background-color:#1a3a2a">
+      <div class="cc">✓</div>
+      <div class="card-content">
+        <div style="font-size:10.5px;color:rgba(255,255,255,.52);margin-bottom:3px">Java</div>
+        <div class="serif" style="font-size:14.5px;color:#fff;font-weight:400">Volcanoes &amp; Ancient Temples</div>
+      </div>
+    </div>
+
+    <div class="pick-card photo-card sc" data-bg="images/bandung.jpg" onclick="pickDest(this,'bandung')"
+      style="background-color:#1a3a2a">
+      <div class="cc">✓</div>
+      <div class="card-content">
+        <div style="font-size:10.5px;color:rgba(255,255,255,.52);margin-bottom:3px">Bandung &amp; West Java</div>
+        <div class="serif" style="font-size:14.5px;color:#fff;font-weight:400">Cool Highlands &amp; Culture</div>
+      </div>
+    </div>
+
+    <div class="pick-card photo-card sc" onclick="pickDest(this,'recommendation')"
+      style="background:linear-gradient(145deg,#0e2a1f 0%,#1c4a34 100%)">
+      <div class="cc">✓</div>
+      <div class="card-content">
+        <div style="font-size:10.5px;color:rgba(255,255,255,.52);margin-bottom:3px">Not sure yet</div>
+        <div class="serif" style="font-size:14.5px;color:#fff;font-weight:400">✦ Curate It for Me</div>
+      </div>
+    </div>
+  </div>
+  <div class="micro-copy" id="mc2"></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════
+     STEP 3 · Who + When
+════════════════════════════════════════════════ -->
+<div class="step" data-step="3">
+  <div class="step-nav">
+    <div>
+      <h2 class="step-heading" id="h3">Who's joining<br><em>the adventure?</em></h2>
+      <p class="step-sub" data-i18n="step3_sub">We tailor every detail to your group.</p>
+    </div>
+    <button class="back-btn" onclick="goBack(3)">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg><span data-i18n="back">Back</span>
+    </button>
+  </div>
+
+  <div class="g2" id="who-grid">
+    <div class="who-card pick-card sc" onclick="pickWho(this,'solo')">
+      <div class="cc">✓</div>
+      <span style="font-size:22px;flex-shrink:0" aria-hidden="true">🧳</span>
+      <div><div style="font-weight:600;font-size:14px">Solo Explorer</div><div style="font-size:12px;color:var(--stone);margin-top:2px">Just me</div></div>
+    </div>
+    <div class="who-card pick-card sc" onclick="pickWho(this,'couple')">
+      <div class="cc">✓</div>
+      <span style="font-size:22px;flex-shrink:0" aria-hidden="true">💑</span>
+      <div><div style="font-weight:600;font-size:14px">Couple</div><div style="font-size:12px;color:var(--stone);margin-top:2px">2 people</div></div>
+    </div>
+    <div class="who-card pick-card sc" onclick="pickWho(this,'family')">
+      <div class="cc">✓</div>
+      <span style="font-size:22px;flex-shrink:0" aria-hidden="true">👨‍👩‍👧‍👦</span>
+      <div><div style="font-weight:600;font-size:14px">Family with Kids</div><div style="font-size:12px;color:var(--stone);margin-top:2px">Children included</div></div>
+    </div>
+    <div class="who-card pick-card sc" onclick="pickWho(this,'friends')">
+      <div class="cc">✓</div>
+      <span style="font-size:22px;flex-shrink:0" aria-hidden="true">👯</span>
+      <div><div style="font-weight:600;font-size:14px">Friends Group</div><div style="font-size:12px;color:var(--stone);margin-top:2px">3–8 people</div></div>
+    </div>
+    <div class="who-card pick-card sc" style="grid-column:1/-1" onclick="pickWho(this,'corporate')">
+      <div class="cc">✓</div>
+      <span style="font-size:22px;flex-shrink:0" aria-hidden="true">💼</span>
+      <div><div style="font-weight:600;font-size:14px">Corporate Team</div><div style="font-size:12px;color:var(--stone);margin-top:2px">Group 10+</div></div>
+    </div>
+  </div>
+
+  <div class="phase" id="when-phase">
+    <div class="divider">
+      <span class="gold-label" style="margin:0;white-space:nowrap" data-i18n="when_label">When would you love to go?</span>
+    </div>
+    <div class="g2" id="when-grid">
+      <div class="who-card pick-card" onclick="pickWhen(this,'within30')">
+        <div class="cc">✓</div>
+        <div><div style="font-weight:600;font-size:14px">Within 30 Days</div><div style="font-size:12px;color:var(--gold);font-weight:500;margin-top:2px">⚡ Priority booking</div></div>
+      </div>
+      <div class="who-card pick-card" onclick="pickWhen(this,'1-3months')">
+        <div class="cc">✓</div>
+        <div><div style="font-weight:600;font-size:14px">1–3 Months</div><div style="font-size:12px;color:var(--stone);margin-top:2px">Good planning window</div></div>
+      </div>
+      <div class="who-card pick-card" onclick="pickWhen(this,'3-6months')">
+        <div class="cc">✓</div>
+        <div><div style="font-weight:600;font-size:14px">3–6 Months</div><div style="font-size:12px;color:var(--stone);margin-top:2px">Plenty of time</div></div>
+      </div>
+      <div class="who-card pick-card" onclick="pickWhen(this,'flexible')">
+        <div class="cc">✓</div>
+        <div><div style="font-weight:600;font-size:14px">Flexible</div><div style="font-size:12px;color:var(--stone);margin-top:2px">No fixed dates yet</div></div>
+      </div>
+    </div>
+    <div style="height:8px"></div>
+  </div>
+  <div class="micro-copy" id="mc3"></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════
+     STEP 4 · Style + Priorities
+════════════════════════════════════════════════ -->
+<div class="step" data-step="4">
+  <div class="step-nav">
+    <div>
+      <h2 class="step-heading" id="h4">How do you like<br><em>to travel?</em></h2>
+      <p class="step-sub" data-i18n="step4_sub">Comfort is personal. Tell us yours.</p>
+    </div>
+    <button class="back-btn" onclick="goBack(4)">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg><span data-i18n="back">Back</span>
+    </button>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:10px" id="style-grid">
+    <div class="tier-card pick-card sc" onclick="pickStyle(this,'smart')">
+      <div class="cc">✓</div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <span style="font-size:24px;flex-shrink:0" aria-hidden="true">⚖️</span>
+        <div>
+          <div class="serif" style="font-size:17px;font-weight:600;margin-bottom:4px">Smart Value</div>
+          <div style="font-size:13px;color:var(--stone)">Best experiences, smartest budget</div>
+        </div>
+      </div>
+    </div>
+    <div class="tier-card pick-card sc" onclick="pickStyle(this,'premium')">
+      <div class="cc">✓</div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <span style="font-size:24px;flex-shrink:0" aria-hidden="true">⭐</span>
+        <div>
+          <div class="serif" style="font-size:17px;font-weight:600;margin-bottom:4px">Premium Comfort</div>
+          <div style="font-size:13px;color:var(--stone)">4★+ properties, guided, fully supported</div>
+        </div>
+      </div>
+    </div>
+    <div class="tier-card pick-card sc" onclick="pickStyle(this,'luxury')">
+      <div class="cc">✓</div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <span style="font-size:24px;flex-shrink:0" aria-hidden="true">✦</span>
+        <div>
+          <div class="serif" style="font-size:17px;font-weight:600;margin-bottom:4px">Luxury Private</div>
+          <div style="font-size:13px;color:var(--stone)">Private boats, exclusive villas, butler service</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase" id="prio-phase">
+    <div class="divider">
+      <span class="gold-label" style="margin:0;white-space:nowrap" data-i18n="prio_label">What matters most?<span data-i18n="prio_hint" style="font-weight:400;color:var(--stone);text-transform:none;letter-spacing:0;font-size:11px">&ensp;Choose up to 2</span></span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:9px" id="prio-grid">
+      <div class="prio-tag" onclick="pickPrio(this,'easy-planning')">📋 Easy Planning</div>
+      <div class="prio-tag" onclick="pickPrio(this,'privacy')">🔒 Privacy</div>
+      <div class="prio-tag" onclick="pickPrio(this,'best-views')">🏔 Best Views</div>
+      <div class="prio-tag" onclick="pickPrio(this,'family-friendly')">👨‍👩‍👧 Family Friendly</div>
+      <div class="prio-tag" onclick="pickPrio(this,'romance')">💑 Romance</div>
+      <div class="prio-tag" onclick="pickPrio(this,'adventure')">🧗 Adventure</div>
+    </div>
+    <div style="margin-top:24px">
+      <button id="cont-btn" style="display:none" class="cta-btn" onclick="goTo(5)" data-i18n="cont_btn">
+        See My Journey Concept →
+      </button>
+    </div>
+    <div style="height:10px"></div>
+  </div>
+  <div class="micro-copy" id="mc4"></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════
+     STEP 5 · Magic Close
+════════════════════════════════════════════════ -->
+<div class="step" data-step="5">
+  <div class="step-nav">
+    <div>
+      <h2 class="step-heading" id="h5">Your private journey<br><em>concept is ready.</em></h2>
+    </div>
+    <button class="back-btn" onclick="goBack(5)">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg><span data-i18n="back">Back</span>
+    </button>
+  </div>
+
+  <div class="summary-card">
+    <div class="gold-label" style="color:rgba(200,168,107,.62)" data-i18n="step5_sub">Your Journey Concept</div>
+    <div class="summary-lines" id="sum-lines"></div>
+    <div id="sum-tags" style="display:flex;flex-wrap:wrap;margin:-3px"></div>
+  </div>
+
+  <!-- Teaser Card -->
+  <div class="teaser-card" id="teaser-card">
+    <div class="gold-label" style="margin-bottom:7px">✦ Your Suggested Itinerary</div>
+    <p id="teaser-text" style="font-family:'Fraunces',serif;font-size:15px;font-weight:300;line-height:1.68;color:var(--forest)"></p>
+  </div>
+
+  <div id="form-block">
+    <p style="font-size:14px;color:var(--stone);margin-bottom:18px;line-height:1.65;font-weight:500" data-i18n="form_lead">Where shall we send it?</p>
+    <div style="display:flex;flex-direction:column;gap:11px;margin-bottom:22px">
+      <input type="text" id="inp-name" class="fi" data-i18n-ph="inp_name" placeholder="Your name" autocomplete="given-name">
+      <div style="display:flex">
+        <!-- Phone Selector -->
+        <div class="phone-wrap">
+          <button class="dial-btn" id="dial-btn" type="button" onclick="toggleDial(event)" aria-haspopup="listbox" aria-expanded="false" aria-label="Select country code">
+            <span id="dial-flag">🇮🇩</span>
+            <span id="dial-code" style="font-size:13.5px;font-weight:500">+62</span>
+            <svg class="dial-chevron" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="dial-dropdown" id="dial-dropdown" role="listbox">
+            <input type="text" class="dial-search" id="dial-search" placeholder="Search country…" oninput="filterCountries(this.value)" autocomplete="off">
+            <div class="dial-list" id="dial-list"></div>
+          </div>
+        </div>
+        <input type="tel" id="inp-wa" class="fi" style="border-radius:0 14px 14px 0;border-left:none" data-i18n-ph="inp_wa" placeholder="WhatsApp number" autocomplete="tel">
+      </div>
+      <input type="email" id="inp-email" class="fi" data-i18n-ph="inp_email" placeholder="Email (optional)" autocomplete="email">
+    </div>
+
+    <button class="cta-btn" id="submit-btn" onclick="handleSubmit()" style="margin-bottom:13px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span data-i18n="submit_btn">Receive My Curated Plan</span>
+    </button>
+    <div style="margin-top:4px">
+      <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;padding:10px 0 4px">
+        <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--stone);white-space:nowrap"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>40+ countries</span>
+        <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--stone);white-space:nowrap"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Reply in ~4 min</span>
+        <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--stone);white-space:nowrap"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Real local specialists</span>
+        <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--stone);white-space:nowrap"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>No hidden markup</span>
+      </div>
+      <p style="text-align:center;font-size:11px;color:rgba(92,94,90,.5);padding-top:2px">No spam. No pressure. Your details stay private.</p>
+    </div>
+  </div>
+
+  <div class="ty-screen" id="ty">
+    <span class="ty-icon" aria-hidden="true">✨</span>
+    <h3 class="ty-heading" data-i18n="ty_heading">Thank you.</h3>
+    <p class="ty-sub" data-i18n="ty_sub">Your journey brief has been sent to our concierge team.<br>Opening WhatsApp now…</p>
+    <a id="wa-link" href="#" target="_blank" rel="noopener noreferrer" class="wa-final-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <span data-i18n="wa_open">Open WhatsApp →</span>
+    </a>
+  </div>
+</div>
+
+</main>
+
+<script>
+/* ════════════════════════════════════════════════════════
+   ADAPTIVE VOICE SYSTEM
+════════════════════════════════════════════════════════ */
+var V={
+  romance:{s1:'Beautiful choice.',h2:'Where shall your love story unfold?',h3:'Tell us a little about you two.',h4:'How the two of you love to travel.',h5:'Your private escape\nis taking shape.',dest:{komodo:'Komodo\'s untouched waters and pink beaches — an extraordinary backdrop for something intimate.',flores:'Flores is the archipelago\'s best-kept secret. Raw, beautiful, entirely yours.',bali:'Bali\'s clifftop villas and golden sunsets were made for moments exactly like these.',java:'Java\'s ancient temples and crater lakes carry a rare, dreamlike quality.',bandung:'The tea hills of Bandung offer a cooler, quieter kind of beauty.',recommendation:'We love curating surprises for couples. Expect something extraordinary.'},style_luxury:'Impeccable. Privacy, exclusivity, and spaces that feel designed for two.',grp:{couple:'A private escape for two',solo:'A solo journey',family:'A family journey',friends:'A group adventure',corporate:'A team retreat'}},
+  marine:{s1:'The real Indonesia lives between its islands.',h2:'Which waters are calling you?',h3:'Who\'s exploring with you?',h4:'How you like to discover.',h5:'Your ocean expedition\nis taking shape.',dest:{komodo:'The world\'s finest manta ray encounters, pink sand beaches, and the last wild dragons.',flores:'Flores opens into the coral triangle — the richest marine ecosystem on earth.',bali:'Bali\'s underwater world is often overlooked. That\'s exactly why it\'s remarkable.',java:'Java\'s southern coasts and surf breaks are wild and largely untouched.',bandung:'The highland lakes here offer something entirely different — and worth it.',recommendation:'We\'ll route you through water that most travelers never find.'},style_luxury:'Perfect. Private liveaboards and exclusive dive access — this is what we do best.',grp:{couple:'An ocean escape for two',solo:'A solo expedition',family:'A family adventure',friends:'A group expedition',corporate:'A team retreat'}},
+  culture:{s1:'You\'ll find layers here that most visitors never reach.',h2:'Where does curiosity take you?',h3:'Who\'s exploring with you?',h4:'How deeply you like to travel.',h5:'Your cultural journey\nis taking shape.',dest:{komodo:'Beyond the dragons — a living culture shaped entirely by the sea.',flores:'Wae Rebo village is one of Indonesia\'s most extraordinary human encounters.',bali:'Bali\'s cultural depth surprises even those who\'ve been before.',java:'Borobudur at sunrise changes people. Java is the cultural heart of the archipelago.',bandung:'A city of art, design, and colonial history woven into highland air.',recommendation:'We\'ll take you somewhere that quietly shifts your perspective.'},style_luxury:'Excellent. Exclusive access — private ceremonies, galleries, and local ateliers not on any app.',grp:{couple:'A journey for two',solo:'A solo discovery',family:'A family journey',friends:'A group exploration',corporate:'A team retreat'}},
+  adventure:{s1:'Time to push the limits.',h2:'Where does the challenge call you?',h3:'Who\'s going with you?',h4:'How you like to push the limits.',h5:'Your adventure\nis taking shape.',dest:{komodo:'Trek Padar at dawn. Dive with mantas. Sleep under open skies. Classic Komodo.',flores:'Few places test and reward like the trails above Flores.',bali:'Mount Agung, jungle gorges, and surf that rivals anywhere in the world.',java:'Bromo at sunrise. Ijen\'s blue fire at 2am. Java demands respect — and rewards it.',bandung:'Crater lakes, volcanic hikes, and canyon rivers within an hour of the city.',recommendation:'We know the trails that aren\'t on any app. You won\'t be disappointed.'},style_luxury:'Understood. Private expeditions — access, guides, equipment, all arranged.',grp:{couple:'An escape for two',solo:'A solo expedition',family:'A family adventure',friends:'A group expedition',corporate:'A team challenge'}},
+  family:{s1:'We\'ve shaped hundreds of family memories here. Yours will be different.',h2:'Which part of Indonesia calls to your family?',h3:'Tell us about your group.',h4:'How your family travels best.',h5:'Your family journey\nis taking shape.',dest:{komodo:'Seeing Komodo dragons with children creates memories that last a lifetime.',flores:'The waterfalls, villages, and people of Flores are unforgettable for families.',bali:'Bali is endlessly engaging for all ages — and safe to navigate with kids.',java:'Borobudur and the volcanic landscapes leave children genuinely awestruck.',bandung:'Cooler, calmer, beautifully scenic — ideal when you need everyone comfortable.',recommendation:'We design family trips that children remember and parents actually enjoy.'},style_luxury:'Understood. Seamless end-to-end — every detail handled so you can just be present.',grp:{couple:'A journey for two',solo:'A solo journey',family:'A family journey',friends:'A friends trip',corporate:'A team retreat'}},
+  wellness:{s1:'Indonesia\'s healing traditions are unlike anything in the world.',h2:'Where does stillness call you?',h3:'Who is travelling with you?',h4:'How you like to restore.',h5:'Your retreat\nis taking shape.',dest:{komodo:'The volcanic silence of Komodo from a Phinisi at dawn — there\'s nothing quite like it.',flores:'Flores moves at a different pace. That\'s exactly the point.',bali:'Bali\'s healing traditions run deep. This is the right island for what you\'re seeking.',java:'Java\'s ancient forest meditation sites and mountain air are profoundly restorative.',bandung:'The tea plantation air of Bandung carries something almost medicinal.',recommendation:'We know which corners of Indonesia feel like a genuine full reset.'},style_luxury:'Perfect. Slow, private, intentional — the way travel was always meant to feel.',grp:{couple:'A retreat for two',solo:'A solo retreat',family:'A family retreat',friends:'A group retreat',corporate:'A team retreat'}},
+  corporate:{s1:'We\'ll make your team trip legendary.',h2:'Which setting suits your team?',h3:'Tell us about your group.',h4:'How your team travels.',h5:'Your retreat concept\nis taking shape.',dest:{komodo:'A Komodo team retreat is unlike anything your competitors have done.',flores:'Off the beaten path — exactly what makes it unforgettable for teams.',bali:'Bali has the infrastructure, the magic, and the venues for exceptional team experiences.',java:'Borobudur for a corporate group — transformative and entirely memorable.',bandung:'Close enough to Jakarta to be practical. Beautiful enough to feel like a proper escape.',recommendation:'We\'ll recommend based on your team size and exactly what you\'re trying to achieve.'},style_luxury:'Understood. Full buyouts, dedicated guides, seamless logistics — one point of contact.',grp:{couple:'A journey for two',solo:'A solo journey',family:'A family journey',friends:'A group trip',corporate:'A corporate retreat'}},
+  _d:{s1:'Beautiful choice.',h2:'Where does your heart pull you?',h3:'Who\'s travelling with you?',h4:'How do you like to travel?',h5:'Your journey\nis taking shape.',dest:{komodo:'One of earth\'s most untouched frontiers. An excellent choice.',flores:'The archipelago\'s best-kept highland secret.',bali:'Bali surprises even those who\'ve been before.',java:'The most underestimated island in the archipelago.',bandung:'Cool air, beautiful hills, genuine culture.',recommendation:'We love curating the unexpected. Expect something you won\'t forget.'},style_luxury:'We specialise in this. Quiet luxury, total privacy, exceptional access.',grp:{couple:'A journey for two',solo:'A solo journey',family:'A family journey',friends:'A group adventure',corporate:'A corporate retreat'}}
+};
+
+/* ════════════════════════════════════════════════════════
+   TRANSLATIONS
+════════════════════════════════════════════════════════ */
+var T={
+  en:{back:'Back',step1_h:'What kind of journey<br><em>calls to you?</em>',step1_sub:'Select one — we\'ll build everything around it.',step2_sub:'Each island has its own magic.',step3_sub:'We tailor every detail to your group.',step4_sub:'Comfort is personal. Tell us yours.',when_label:'When would you love to go?',prio_label:'What matters most?',prio_hint:'&ensp;Choose up to 2',cont_btn:'See My Journey Concept →',form_lead:'Where shall we send it?',inp_name:'Your name',inp_wa:'WhatsApp number',inp_email:'Email (optional)',submit_btn:'Receive My Curated Plan',step5_sub:'Your Journey Concept',ty_heading:'Thank you.',ty_sub:'Your journey brief has been sent to our concierge team.<br>Opening WhatsApp now…',wa_open:'Open WhatsApp →'},
+  id:{back:'Kembali',step1_h:'Perjalanan seperti apa yang<br><em>memanggil Anda?</em>',step1_sub:'Pilih satu — kami akan membangun segalanya di sekitarnya.',step2_sub:'Setiap pulau memiliki keajaibannya sendiri.',step3_sub:'Kami menyesuaikan setiap detail untuk kelompok Anda.',step4_sub:'Kenyamanan itu personal. Ceritakan milik Anda.',when_label:'Kapan Anda ingin pergi?',prio_label:'Apa yang paling penting?',prio_hint:'&ensp;Pilih hingga 2',cont_btn:'Lihat Konsep Perjalanan Saya →',form_lead:'Ke mana kami harus mengirimkannya?',inp_name:'Nama Anda',inp_wa:'Nomor WhatsApp',inp_email:'Email (opsional)',submit_btn:'Terima Rencana Saya',step5_sub:'Konsep Perjalanan Anda',ty_heading:'Terima kasih.',ty_sub:'Ringkasan perjalanan Anda telah dikirim ke tim concierge kami.<br>Membuka WhatsApp sekarang…',wa_open:'Buka WhatsApp →'},
+  zh:{back:'返回',step1_h:'什么样的旅程<br><em>在召唤您？</em>',step1_sub:'选择一个 — 我们将围绕它构建一切。',step2_sub:'每个岛屿都有其独特的魅力。',step3_sub:'我们为您的团队量身定制每个细节。',step4_sub:'舒适是个人的。告诉我们您的偏好。',when_label:'您希望什么时候出发？',prio_label:'什么最重要？',prio_hint:'&ensp;最多选择2个',cont_btn:'查看我的旅程概念 →',form_lead:'我们应该发送到哪里？',inp_name:'您的姓名',inp_wa:'WhatsApp号码',inp_email:'电子邮件（可选）',submit_btn:'接收我的定制计划',step5_sub:'您的旅程概念',ty_heading:'谢谢。',ty_sub:'您的旅程摘要已发送给我们的礼宾团队。<br>正在打开WhatsApp…',wa_open:'打开WhatsApp →'},
+  ja:{back:'戻る',step1_h:'どんな旅が<br><em>あなたを呼んでいますか？</em>',step1_sub:'1つ選んでください — それに合わせてすべてを構築します。',step2_sub:'各島には独自の魔法があります。',step3_sub:'グループに合わせてすべての詳細を調整します。',step4_sub:'快適さは個人的なものです。あなたのものを教えてください。',when_label:'いつ行きたいですか？',prio_label:'最も重要なことは？',prio_hint:'&ensp;最大2つ選択',cont_btn:'旅のコンセプトを見る →',form_lead:'どこに送ればよいですか？',inp_name:'お名前',inp_wa:'WhatsApp番号',inp_email:'メール（任意）',submit_btn:'キュレートされた計画を受け取る',step5_sub:'あなたの旅のコンセプト',ty_heading:'ありがとうございます。',ty_sub:'旅のブリーフがコンシェルジュチームに送信されました。<br>WhatsAppを開いています…',wa_open:'WhatsAppを開く →'},
+  ko:{back:'뒤로',step1_h:'어떤 여행이<br><em>당신을 부르고 있나요?</em>',step1_sub:'하나를 선택하세요 — 그것을 중심으로 모든 것을 구성합니다.',step2_sub:'각 섬마다 고유한 마법이 있습니다.',step3_sub:'그룹에 맞게 모든 세부 사항을 조정합니다.',step4_sub:'편안함은 개인적입니다. 당신의 것을 알려주세요.',when_label:'언제 가고 싶으신가요?',prio_label:'가장 중요한 것은?',prio_hint:'&ensp;최대 2개 선택',cont_btn:'내 여행 개념 보기 →',form_lead:'어디로 보내드릴까요?',inp_name:'성함',inp_wa:'WhatsApp 번호',inp_email:'이메일 (선택사항)',submit_btn:'큐레이션된 계획 받기',step5_sub:'당신의 여행 개념',ty_heading:'감사합니다.',ty_sub:'여행 브리핑이 컨시어지 팀에 전송되었습니다.<br>WhatsApp을 열고 있습니다…',wa_open:'WhatsApp 열기 →'}
+};
+var currentLang='en';
+
+/* ════════════════════════════════════════════════════════
+   TRIP TEASER MATRIX (journey × destination)
+════════════════════════════════════════════════════════ */
+var TEASER={
+  romance:{komodo:'4 nights on Komodo — private Padar sunrise, pink beach at dusk, and anchored under the stars aboard a Phinisi.',flores:'4 nights in Flores — Wae Rebo village at dawn, Kelimutu crater lakes, and hilltop dinners no restaurant can replicate.',bali:'5 nights in Bali — a clifftop villa above the Indian Ocean, private temple ceremony, and a rice terrace sunrise for two.',java:'4 nights in Java — Borobudur at first light, crater rim at Bromo, and a colonial heritage suite in Solo.',bandung:'3 nights in Bandung — a tea plantation villa, volcano crater walk at golden hour, and dawn spa rituals.',recommendation:'A surprise itinerary crafted for two — the island\'s most romantic corners in a sequence we\'ve perfected over years.'},
+  marine:{komodo:'6 nights liveaboard — manta ray encounters at Manta Point, world-class dive sites, and Padar ridge at sunrise.',flores:'5 nights in Flores — the coral triangle\'s richest reefs, hidden lagoons, and a private snorkel guide throughout.',bali:'4 nights in Bali — Nusa Penida\'s Manta Bay, Amed\'s Liberty wreck dive, and Tulamben\'s famed wall.',java:'4 nights on Java\'s southern coast — uncrowded surf breaks, dramatic sea cliffs, and untouched reef systems.',bandung:'3 nights near Bandung — volcanic crater lakes, highland rivers, and landscapes unlike anywhere else.',recommendation:'A bespoke ocean route through waters most guests never reach — curated around your dive level and interests.'},
+  culture:{komodo:'4 nights in Komodo — Bajo fishing villages, ancient boat-building traditions, and a way of life unchanged for centuries.',flores:'5 nights in Flores — Wae Rebo village homestay, ikat weaving workshops, and local market mornings.',bali:'5 nights in Bali — private temple access, Ubud\'s artist ateliers, and a Legong dance performed in the palace courtyard.',java:'5 nights in Java — Borobudur before the crowds, Prambanan at dusk, and a Wayang kulit performance in Yogyakarta.',bandung:'3 nights in Bandung — colonial architecture walks, a vibrant art scene, and highland Sundanese traditions.',recommendation:'A cultural deep-dive for curious minds — somewhere that quietly shifts your perspective on the world.'},
+  adventure:{komodo:'5 nights in Komodo — Padar ridge trek at dawn, dive with mantas, and sleeping under open skies on a private boat.',flores:'4 nights in Flores — Inerie volcano summit, Riung\'s 17 Islands by kayak, and Cunca Rami waterfall canyon.',bali:'4 nights in Bali — Mount Agung summit at 3am, jungle gorge rappelling, and a dawn surf session at Uluwatu.',java:'5 nights in Java — Ijen blue fire at 2am, Bromo crater rim at dawn, and Semeru base camp approach.',bandung:'3 nights in Bandung — Tangkuban Perahu crater, canyon river tubing, and highland paragliding.',recommendation:'A raw adventure route built around your fitness and curiosity — trails that aren\'t on any map.'},
+  family:{komodo:'5 nights in Komodo — guided dragon trek (safe for children), pink beach afternoon, and stargazing from the boat deck.',flores:'4 nights in Flores — waterfall swims, village visits, and people who make children feel genuinely welcome.',bali:'6 nights in Bali — a family villa with a pool, kids\' cooking class, rice terrace walk, and a temple visit.',java:'5 nights in Java — Borobudur at sunrise (children are genuinely awestruck), volcano viewing, and a scenic train journey.',bandung:'3 nights in Bandung — cooler air, kid-friendly highland farms, open gardens, and an easy family pace.',recommendation:'A family itinerary designed so children remember it and parents actually relax — our specialty for 10 years.'},
+  wellness:{komodo:'4 nights on a Phinisi — morning yoga on deck, volcanic silence, clean food, and swimming in untouched bays.',flores:'4 nights in Flores — highland air, slow mornings, forest meditation trails, and a village healer session.',bali:'6 nights in Bali — Ubud retreat villa, daily Balinese healing treatments, forest bathing, and a sunrise ceremony.',java:'4 nights in Java — ancient forest meditation sites, volcanic mineral springs, and mountain air that genuinely resets you.',bandung:'3 nights in Bandung — tea plantation walks, volcanic hot springs, and traditional Sundanese spa rituals.',recommendation:'A full-reset itinerary — the hidden corners of Indonesia that move at a completely different pace.'},
+  corporate:{komodo:'A Komodo team retreat — Padar sunrise hike for the whole team, private Phinisi, and an experience your competitors haven\'t thought of.',flores:'An off-grid Flores retreat — private villa, team challenges in raw nature, and a setting that sparks genuine conversation.',bali:'A Bali corporate retreat — resort buyout options, Ubud team experiences, and a program that actually recharges your people.',java:'A Java team journey — Borobudur at sunrise for 20+, cultural immersion, and a genuinely transformative experience.',bandung:'A Bandung team escape — close to Jakarta, beautifully scenic, and practical for groups of any size.',recommendation:'A custom corporate program built around your team\'s goals — one point of contact, zero details to manage.'}
+};
+
+/* ════════════════════════════════════════════════════════
+   COUNTRIES (30 · phone selector)
+════════════════════════════════════════════════════════ */
+var COUNTRIES=[
+  {f:'🇮🇩',c:'62',n:'Indonesia'},{f:'🇸🇬',c:'65',n:'Singapore'},{f:'🇲🇾',c:'60',n:'Malaysia'},
+  {f:'🇦🇺',c:'61',n:'Australia'},{f:'🇬🇧',c:'44',n:'United Kingdom'},{f:'🇺🇸',c:'1',n:'United States'},
+  {f:'🇨🇳',c:'86',n:'China'},{f:'🇯🇵',c:'81',n:'Japan'},{f:'🇰🇷',c:'82',n:'South Korea'},
+  {f:'🇮🇳',c:'91',n:'India'},{f:'🇩🇪',c:'49',n:'Germany'},{f:'🇫🇷',c:'33',n:'France'},
+  {f:'🇳🇱',c:'31',n:'Netherlands'},{f:'🇨🇭',c:'41',n:'Switzerland'},{f:'🇦🇪',c:'971',n:'UAE'},
+  {f:'🇸🇦',c:'966',n:'Saudi Arabia'},{f:'🇭🇰',c:'852',n:'Hong Kong'},{f:'🇹🇼',c:'886',n:'Taiwan'},
+  {f:'🇵🇭',c:'63',n:'Philippines'},{f:'🇹🇭',c:'66',n:'Thailand'},{f:'🇻🇳',c:'84',n:'Vietnam'},
+  {f:'🇳🇿',c:'64',n:'New Zealand'},{f:'🇨🇦',c:'1',n:'Canada'},{f:'🇧🇷',c:'55',n:'Brazil'},
+  {f:'🇮🇹',c:'39',n:'Italy'},{f:'🇪🇸',c:'34',n:'Spain'},{f:'🇸🇪',c:'46',n:'Sweden'},
+  {f:'🇳🇴',c:'47',n:'Norway'},{f:'🇩🇰',c:'45',n:'Denmark'},{f:'🇧🇪',c:'32',n:'Belgium'}
+];
+var selectedCountryIdx=0;
+
+/* ════════════════════════════════════════════════════════
+   TRUST ROTATION
+════════════════════════════════════════════════════════ */
+var TRUST_MSGS=['Trusted by guests from 40+ countries','Average reply time: 4 minutes','Real local specialists — no middlemen','No hidden platform markup, ever','5,000+ private journeys crafted'];
+var _trustIdx=0,_trustTimer=null;
+
+/* ════════════════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════════════════ */
+var S={step:1,journey:null,destination:null,group:null,timing:null,style:null,priorities:[],score:0,segment:'standard'};
+var _stepTimes={};
+var _nudgeTimer=null,_nudgeDismissed=false;
+
+/* ════════════════════════════════════════════════════════
+   ANALYTICS (GTM / GA4)
+════════════════════════════════════════════════════════ */
+function track(event,data){
+  data=data||{};
+  data.event=event;
+  if(window.gtag)window.gtag('event',event,data);
+  if(window.dataLayer)window.dataLayer.push(data);
+}
+
+/* ════════════════════════════════════════════════════════
+   LANGUAGE
+════════════════════════════════════════════════════════ */
+function detectLang(){
+  var saved=localStorage.getItem('ex_lang');
+  if(saved&&T[saved])return saved;
+  var nav=(navigator.language||'').toLowerCase().slice(0,2);
+  var map={id:'id',zh:'zh',ja:'ja',ko:'ko'};
+  return map[nav]||'en';
+}
+
+function toggleLang(e){
+  e.stopPropagation();
+  var dd=document.getElementById('lang-dropdown');
+  dd.classList.toggle('open');
+  document.getElementById('lang-btn').setAttribute('aria-expanded',dd.classList.contains('open'));
+}
+
+function closeLang(){document.getElementById('lang-dropdown').classList.remove('open');}
+
+function setLang(l){
+  if(!T[l])l='en';
+  currentLang=l;
+  localStorage.setItem('ex_lang',l);
+  document.getElementById('lang-label').textContent=l.toUpperCase();
+  document.querySelectorAll('.lang-item').forEach(function(btn){
+    btn.classList.toggle('active',btn.dataset.lang===l);
+  });
+  document.documentElement.lang=l;
+  applyTranslations();
+  applyVoice();
+  closeLang();
+  track('language_changed',{language:l});
+}
+
+function applyTranslations(){
+  var tr=T[currentLang]||T.en;
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var key=el.getAttribute('data-i18n');
+    if(tr[key]!==undefined)el.innerHTML=tr[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
+    var key=el.getAttribute('data-i18n-ph');
+    if(tr[key]!==undefined)el.placeholder=tr[key];
+  });
+}
+
+/* ════════════════════════════════════════════════════════
+   PHONE SELECTOR
+════════════════════════════════════════════════════════ */
+function renderCountries(list){
+  var html='';
+  list.forEach(function(item,realIdx){
+    html+='<div class="country-item'+(realIdx===selectedCountryIdx?' selected-c':'')+'" onclick="selectCountry('+realIdx+')">'+
+      '<span>'+item.f+'</span><span>'+item.n+'</span>'+
+      '<span class="country-code-sm">+'+item.c+'</span></div>';
+  });
+  document.getElementById('dial-list').innerHTML=html;
+}
+
+function filterCountries(q){
+  q=q.toLowerCase().trim();
+  var filtered=COUNTRIES.map(function(c,i){return{c:c,i:i};}).filter(function(x){
+    return !q||x.c.n.toLowerCase().includes(q)||x.c.c.includes(q);
+  });
+  var html='';
+  filtered.forEach(function(x){
+    html+='<div class="country-item'+(x.i===selectedCountryIdx?' selected-c':'')+'" onclick="selectCountry('+x.i+')">'+
+      '<span>'+x.c.f+'</span><span>'+x.c.n+'</span>'+
+      '<span class="country-code-sm">+'+x.c.c+'</span></div>';
+  });
+  document.getElementById('dial-list').innerHTML=html;
+}
+
+function selectCountry(idx){
+  selectedCountryIdx=idx;
+  var c=COUNTRIES[idx];
+  document.getElementById('dial-flag').textContent=c.f;
+  document.getElementById('dial-code').textContent='+'+c.c;
+  closeDial();
+  document.getElementById('inp-wa').focus();
+}
+
+function toggleDial(e){
+  e.stopPropagation();
+  var dd=document.getElementById('dial-dropdown');
+  var isOpen=dd.classList.contains('open');
+  dd.classList.toggle('open');
+  document.getElementById('dial-btn').setAttribute('aria-expanded',!isOpen);
+  if(!isOpen){
+    document.getElementById('dial-search').value='';
+    renderCountries(COUNTRIES);
+    setTimeout(function(){document.getElementById('dial-search').focus();},60);
+  }
+}
+
+function closeDial(){
+  document.getElementById('dial-dropdown').classList.remove('open');
+  document.getElementById('dial-btn').setAttribute('aria-expanded','false');
+}
+
+function autoDetectCountry(){
+  var nav=(navigator.language||'').toUpperCase();
+  var map={ID:0,SG:1,MY:2,AU:3,GB:4,US:5,CN:6,JP:7,KR:8,IN:9,DE:10,FR:11,NL:12,CH:13,AE:14,SA:15,HK:16,TW:17,PH:18,TH:19,VN:20,NZ:21,CA:22,BR:23,IT:24,ES:25,SE:26,NO:27,DK:28,BE:29};
+  var code=nav.slice(-2);
+  var idx=map[code];
+  if(idx!==undefined){selectCountry(idx);}
+}
+
+/* ════════════════════════════════════════════════════════
+   TRUST ROTATOR
+════════════════════════════════════════════════════════ */
+function startTrustRotator(){
+  _trustTimer=setInterval(function(){
+    var el=document.getElementById('trust-rot');
+    if(!el)return;
+    el.classList.add('fade');
+    setTimeout(function(){
+      _trustIdx=(_trustIdx+1)%TRUST_MSGS.length;
+      el.textContent=TRUST_MSGS[_trustIdx];
+      el.classList.remove('fade');
+    },380);
+  },4000);
+}
+
+/* ════════════════════════════════════════════════════════
+   ABANDONMENT INTELLIGENCE
+════════════════════════════════════════════════════════ */
+function startNudgeTimer(){
+  if(_nudgeDismissed)return;
+  if(_nudgeTimer)clearTimeout(_nudgeTimer);
+  _nudgeTimer=setTimeout(showNudge,30000);
+}
+
+function showNudge(){
+  if(_nudgeDismissed)return;
+  var msgs={1:'Need ideas? We can recommend what suits you best.&ensp;✦',2:'Not sure which island? We can curate the perfect match.&ensp;✦',3:'Every detail is tailored to your group. Keep going.&ensp;✦',4:'Almost there — your journey concept is nearly ready.&ensp;✦',5:'Your plan is waiting. Takes 30 seconds to receive it.&ensp;✦'};
+  document.getElementById('nudge-msg').innerHTML=msgs[S.step]||msgs[1];
+  document.getElementById('nudge').classList.add('show');
+  track('nudge_shown',{step:S.step,journey:S.journey});
+}
+
+function dismissNudge(e){
+  if(e){e.stopPropagation();}
+  _nudgeDismissed=true;
+  document.getElementById('nudge').classList.remove('show');
+  if(_nudgeTimer)clearTimeout(_nudgeTimer);
+}
+
+function savePartialState(){
+  try{localStorage.setItem('ex_partial',JSON.stringify({s:S,ts:Date.now()}));}catch(e){}
+}
+
+function trackAbandon(){
+  if(S.step<1)return;
+  var timeOnStep=_stepTimes[S.step]?Math.round((Date.now()-_stepTimes[S.step])/1000):0;
+  track('abandoned_step'+S.step,{journey:S.journey,destination:S.destination,group:S.group,step:S.step,time_on_step:timeOnStep});
+  if(S.step>=4)savePartialState();
+}
+document.addEventListener('visibilitychange',function(){
+  if(document.hidden&&S.step>=1)trackAbandon();
+});
+window.addEventListener('beforeunload',function(){
+  if(S.step>=4)savePartialState();
+});
+
+/* ════════════════════════════════════════════════════════
+   LAZY LOAD BACKGROUND IMAGES
+════════════════════════════════════════════════════════ */
+function initLazyBg(){
+  var cards=document.querySelectorAll('[data-bg]');
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          var el=entry.target;
+          el.style.backgroundImage='url(\''+el.dataset.bg+'\')';
+          obs.unobserve(el);
+        }
+      });
+    },{rootMargin:'200px'});
+    cards.forEach(function(c){obs.observe(c);});
+  }else{
+    cards.forEach(function(c){c.style.backgroundImage='url(\''+c.dataset.bg+'\')';});
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   UTILITIES
+════════════════════════════════════════════════════════ */
+var _tt=null;
+function toast(msg,ms){
+  ms=ms||2200;var t=document.getElementById('toast');
+  if(_tt)clearTimeout(_tt);
+  t.textContent=msg;t.classList.add('show');
+  _tt=setTimeout(function(){t.classList.remove('show');},ms);
+}
+function vo(){return V[S.journey]||V._d;}
+function micro(id,msg){
+  var el=document.getElementById(id);if(!el)return;
+  el.textContent=msg;
+  requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('show');});});
+}
+function setHTML(id,html){var el=document.getElementById(id);if(el)el.innerHTML=html;}
+function setText(id,txt){var el=document.getElementById(id);if(el)el.innerHTML=txt.replace('\n','<br>');}
+
+/* ════════════════════════════════════════════════════════
+   PROGRESS
+════════════════════════════════════════════════════════ */
+function updateProg(n){
+  for(var i=1;i<=5;i++){
+    var d=document.getElementById('d'+i);
+    d.classList.remove('active','done');
+    if(i===n)d.classList.add('active');
+    else if(i<n)d.classList.add('done');
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   NAVIGATION
+════════════════════════════════════════════════════════ */
+function goTo(n){
+  var curr=document.querySelector('.step[data-step="'+S.step+'"]');
+  curr.classList.remove('active');curr.classList.add('out');
+  if(n>=3&&!_nudgeDismissed)startNudgeTimer();
+  setTimeout(function(){
+    curr.classList.remove('out');
+    S.step=n;
+    _stepTimes[n]=Date.now();
+    var next=document.querySelector('.step[data-step="'+n+'"]');
+    next.classList.add('active');
+    updateProg(n);
+    window.scrollTo({top:0,behavior:'smooth'});
+    applyVoice();
+    if(n===5){buildStep5();buildTeaser();}
+    if(n!==5){
+      var _prev=_stepTimes[n-1]||_stepTimes[n];
+      track('reached_step'+n,{journey:S.journey,destination:S.destination,group:S.group,time_on_prev_step:Math.round(((_stepTimes[n]||Date.now())-_prev)/1000)});
+    }
+  },300);
+}
+
+function applyVoice(){
+  var v=vo();
+  if(S.step>=2&&v.h2)setText('h2',v.h2);
+  if(S.step>=3&&v.h3)setText('h3',v.h3);
+  if(S.step>=4&&v.h4)setText('h4',v.h4);
+  if(S.step===5&&v.h5)setText('h5',v.h5);
+}
+
+function goBack(from){
+  if(from===3){
+    document.getElementById('when-phase').classList.remove('open');
+    document.querySelectorAll('#when-grid .pick-card').forEach(function(c){c.classList.remove('selected');});
+    document.querySelectorAll('#who-grid .pick-card').forEach(function(c){c.classList.remove('selected');});
+    S.group=null;S.timing=null;
+  }else if(from===4){
+    document.getElementById('prio-phase').classList.remove('open');
+    document.querySelectorAll('#style-grid .pick-card').forEach(function(c){c.classList.remove('selected');});
+    document.querySelectorAll('#prio-grid .prio-tag').forEach(function(t){t.classList.remove('selected','locked');});
+    document.getElementById('cont-btn').style.display='none';
+    S.style=null;S.priorities=[];
+  }else if(from===5){
+    document.getElementById('ty').style.display='none';
+    document.getElementById('form-block').style.display='block';
+    var b=document.getElementById('submit-btn');
+    b.disabled=false;
+    b.innerHTML='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> <span data-i18n="submit_btn">Receive My Curated Plan</span>';
+    applyTranslations();
+  }
+  goTo(from-1);
+}
+
+/* ════════════════════════════════════════════════════════
+   STEP 1 — Journey
+════════════════════════════════════════════════════════ */
+function pickJourney(el,val){
+  document.querySelectorAll('[data-step="1"] .pick-card').forEach(function(c){c.classList.remove('selected');});
+  el.classList.add('selected','flash');
+  S.journey=val;
+  micro('mc1',vo().s1);
+  track('step1_selected_journey',{journey:val});
+  setTimeout(function(){goTo(2);},320);
+}
+
+/* ════════════════════════════════════════════════════════
+   STEP 2 — Destination
+════════════════════════════════════════════════════════ */
+function pickDest(el,val){
+  document.querySelectorAll('[data-step="2"] .pick-card').forEach(function(c){c.classList.remove('selected');});
+  el.classList.add('selected','flash');
+  S.destination=val;
+  var v=vo();var msg=(v.dest&&v.dest[val])||'Now we know where to begin.';
+  micro('mc2',msg);
+  track('step2_selected_destination',{journey:S.journey,destination:val});
+  setTimeout(function(){goTo(3);},340);
+}
+
+/* ════════════════════════════════════════════════════════
+   STEP 3 — Who
+════════════════════════════════════════════════════════ */
+function pickWho(el,val){
+  document.querySelectorAll('#who-grid .pick-card').forEach(function(c){c.classList.remove('selected');});
+  el.classList.add('selected','flash');
+  S.group=val;
+  track('step3_selected_group',{journey:S.journey,group:val});
+  setTimeout(function(){
+    var p=document.getElementById('when-phase');
+    p.classList.add('open');
+    setTimeout(function(){p.scrollIntoView({behavior:'smooth',block:'nearest'});},180);
+  },260);
+}
+
+/* ════════════════════════════════════════════════════════
+   STEP 3 — When
+════════════════════════════════════════════════════════ */
+function pickWhen(el,val){
+  document.querySelectorAll('#when-grid .pick-card').forEach(function(c){c.classList.remove('selected');});
+  el.classList.add('selected','flash');
+  S.timing=val;
+  var msgs={'within30':'We\'ll prioritise your booking right away.','1-3months':'Perfect timing — let\'s craft something exceptional.','3-6months':'Plenty of time for something truly extraordinary.','flexible':'Great journeys begin with curiosity. We\'re ready when you are.'};
+  micro('mc3',msgs[val]||'Great — shaping this around your timing.');
+  track('step3_selected_timing',{timing:val});
+  setTimeout(function(){goTo(4);},340);
+}
+
+/* ════════════════════════════════════════════════════════
+   STEP 4 — Style
+════════════════════════════════════════════════════════ */
+function pickStyle(el,val){
+  document.querySelectorAll('#style-grid .pick-card').forEach(function(c){c.classList.remove('selected');});
+  el.classList.add('selected','flash');
+  S.style=val;
+  if(val==='luxury'){var v=vo();micro('mc4',v.style_luxury||'We specialise in this. Quiet luxury, total privacy, exceptional access.');}
+  track('step4_selected_style',{style:val});
+  setTimeout(function(){
+    var p=document.getElementById('prio-phase');
+    p.classList.add('open');
+    setTimeout(function(){p.scrollIntoView({behavior:'smooth',block:'nearest'});},180);
+  },260);
+}
+
+/* ════════════════════════════════════════════════════════
+   STEP 4 — Priorities (max 2)
+════════════════════════════════════════════════════════ */
+function pickPrio(el,val){
+  if(el.classList.contains('locked'))return;
+  if(el.classList.contains('selected')){
+    el.classList.remove('selected');
+    S.priorities=S.priorities.filter(function(p){return p!==val;});
+  }else{
+    if(S.priorities.length>=2)return;
+    el.classList.add('selected');
+    S.priorities.push(val);
+  }
+  document.querySelectorAll('#prio-grid .prio-tag').forEach(function(t){
+    if(!t.classList.contains('selected')){
+      if(S.priorities.length>=2)t.classList.add('locked');
+      else t.classList.remove('locked');
+    }
+  });
+  track('step4_selected_priorities',{priorities:S.priorities.slice(),journey:S.journey});
+  var btn=document.getElementById('cont-btn');
+  if(S.priorities.length>=1){
+    btn.style.display='flex';
+    if(S.priorities.length===2)micro('mc4','We already have ideas for you.');
+  }else{btn.style.display='none';}
+}
+
+/* ════════════════════════════════════════════════════════
+   LEAD SCORING (hidden)
+════════════════════════════════════════════════════════ */
+function calcScore(){
+  var s=0;
+  if(S.timing==='within30')s+=25;else if(S.timing==='1-3months')s+=15;else if(S.timing==='3-6months')s+=8;
+  if(S.style==='luxury')s+=20;else if(S.style==='premium')s+=14;else if(S.style==='smart')s+=7;
+  if(S.group==='corporate')s+=15;else if(S.group==='family')s+=12;else if(S.group==='couple'||S.group==='friends')s+=10;else if(S.group==='solo')s+=8;
+  if(S.destination&&S.destination!=='recommendation')s+=15;else s+=8;
+  if(S.priorities.indexOf('privacy')!==-1||S.priorities.indexOf('romance')!==-1)s+=5;
+  if(S.journey==='corporate'||S.group==='corporate')s+=10;
+  S.score=s;return s;
+}
+function getSegment(){
+  calcScore();
+  var j=S.journey,g=S.group,d=S.destination,st=S.style,sc=S.score;
+  if(j==='romance'||g==='couple')return'romance';
+  if(j==='corporate'||g==='corporate')return'corporate';
+  if(d==='komodo'||j==='marine')return'marine';
+  if(sc>=50&&st==='luxury')return'luxury';
+  if(g==='family')return'family';
+  if(j==='wellness')return'wellness';
+  if(sc<28)return'nurture';
+  return'standard';
+}
+
+/* ════════════════════════════════════════════════════════
+   STEP 5 — Editorial Summary
+════════════════════════════════════════════════════════ */
+function buildStep5(){
+  S.segment=getSegment();
+  var v=vo();
+  var DL={komodo:'Komodo & Flores',flores:'Flores',bali:'Bali',java:'Java',bandung:'Bandung',recommendation:'across Indonesia'};
+  var TL={'within30':'this month','1-3months':'over the coming months','3-6months':'later this year','flexible':'on your timeline'};
+  var PL={'easy-planning':'effortless planning','privacy':'absolute privacy','best-views':'the finest views in the archipelago','family-friendly':'seamless family experiences','romance':'unforgettable romance','adventure':'raw, genuine adventure'};
+  var grp=(v.grp&&v.grp[S.group])||'A private journey';
+  var dest=DL[S.destination]||'Indonesia';
+  var timing=TL[S.timing]||'';
+  var prios=S.priorities.map(function(p){return PL[p];}).filter(Boolean);
+  var l1=grp+' to '+dest;
+  if(timing)l1+=', '+timing+'.';else l1+='.';
+  var l2='';
+  if(prios.length===1)l2='Shaped around '+prios[0]+'.';
+  else if(prios.length===2)l2='Shaped around '+prios[0]+' and '+prios[1]+'.';
+  var kickers={romance:'We already know exactly where to begin.',corporate:'We\'re ready to build this around your team\'s goals.',marine:'We know waters that will take your breath away.',luxury:'Expect access that isn\'t available anywhere else.',family:'Every detail will be built around your family\'s comfort.',wellness:'We\'ll slow everything down — in the best possible way.',nurture:'We\'ll send you ideas — no obligation, no pressure.',standard:'We already know exactly where to begin.'};
+  var l3=kickers[S.segment]||'We already know exactly where to begin.';
+  var html='<span>'+l1+'</span>';
+  if(l2)html+='<span style="display:block;margin-top:5px">'+l2+'</span>';
+  html+='<span class="summary-line-3">'+l3+'</span>';
+  setHTML('sum-lines',html);
+  var tagData=[];
+  if(S.journey)tagData.push(S.journey);
+  if(S.style)tagData.push(S.style);
+  if(S.timing)tagData.push(S.timing);
+  setHTML('sum-tags',tagData.map(function(t){return'<span class="sum-tag">'+t.replace(/-/g,' ')+'</span>';}).join(''));
+  track('reached_step5',{journey:S.journey,destination:S.destination,group:S.group,style:S.style,segment:S.segment,score:S.score,time_on_step4:_stepTimes[5]?Math.round((_stepTimes[5]-(_stepTimes[4]||_stepTimes[5]))/1000):0});
+}
+
+/* ════════════════════════════════════════════════════════
+   STEP 5 — Trip Teaser
+════════════════════════════════════════════════════════ */
+function buildTeaser(){
+  var j=S.journey,d=S.destination,g=S.group;
+  var card=document.getElementById('teaser-card');
+  var txt=document.getElementById('teaser-text');
+  if(!d){card.classList.remove('show');return;}
+  var key=(g==='corporate'&&TEASER.corporate)?'corporate':j;
+  var jMap=TEASER[key]||TEASER[j]||TEASER.romance;
+  var suggestion=jMap[d]||jMap.recommendation||'';
+  if(!suggestion){card.classList.remove('show');return;}
+  txt.textContent=suggestion;
+  card.classList.add('show');
+}
+
+/* ════════════════════════════════════════════════════════
+   WA MESSAGE BUILDER
+════════════════════════════════════════════════════════ */
+function buildWA(name){
+  var JL={marine:'Islands & Marine',culture:'Culture & Heritage',romance:'Romance & Honeymoon',adventure:'Adventure & Hiking',wellness:'Wellness & Retreat',family:'Family & Multi-gen',corporate:'Corporate & Events'};
+  var DL={komodo:'Komodo & Flores',bali:'Bali',java:'Java',flores:'Flores Highlands',bandung:'Bandung & West Java',recommendation:'Open to expert recommendation'};
+  var GL={solo:'Solo (1 person)',couple:'Couple (2 pax)',friends:'Friends group (3–8)',family:'Family with kids',corporate:'Corporate team (10+)'};
+  var TL={'within30':'Within 30 days ⚡','1-3months':'1–3 months','3-6months':'3–6 months','flexible':'Flexible / no fixed dates'};
+  var SL={luxury:'Luxury Private ✦',premium:'Premium Comfort',smart:'Smart Value'};
+  var PL={'easy-planning':'Easy Planning','privacy':'Privacy','best-views':'Best Views','family-friendly':'Family Friendly','romance':'Romance','adventure':'Adventure'};
+  var prioTxt=S.priorities.map(function(p){return PL[p]||p;}).join(' + ')||'Open';
+  var dialCode='+'+COUNTRIES[selectedCountryIdx].c;
+  return'Hi EastXperience! 🌏\n\nI\'ve just completed your journey planner.\n\n*My Journey Profile:*\n• Name: '+name+'\n• Journey: '+(JL[S.journey]||S.journey)+'\n• Destination: '+(DL[S.destination]||S.destination)+'\n• Group: '+(GL[S.group]||S.group)+'\n• Timing: '+(TL[S.timing]||S.timing)+'\n• Style: '+(SL[S.style]||S.style)+'\n• Priorities: '+prioTxt+'\n\nI\'d love to receive a custom itinerary proposal. Looking forward to hearing from you! ✨';
+}
+
+/* ════════════════════════════════════════════════════════
+   FORM SUBMIT
+════════════════════════════════════════════════════════ */
+function flashErr(id){
+  var el=document.getElementById(id);
+  el.classList.add('err');el.focus();
+  setTimeout(function(){el.classList.remove('err');},1800);
+}
+
+function handleSubmit(){
+  var name=document.getElementById('inp-name').value.trim();
+  var rawWa=document.getElementById('inp-wa').value.trim().replace(/\D/g,'');
+  if(!name){flashErr('inp-name');return;}
+  if(!rawWa||rawWa.length<5){flashErr('inp-wa');return;}
+
+  var msg=buildWA(name);
+  var url='https://wa.me/62811342473?text='+encodeURIComponent(msg);
+  document.getElementById('wa-link').href=url;
+
+  track('submit_clicked',{journey:S.journey,destination:S.destination,group:S.group,style:S.style,segment:S.segment,score:S.score});
+
+  var btn=document.getElementById('submit-btn');
+  btn.disabled=true;
+  btn.innerHTML='<span class="spin"></span>&ensp;Crafting your journey brief\u2026';
+
+  setTimeout(function(){
+    document.getElementById('form-block').style.display='none';
+    var ty=document.getElementById('ty');
+    ty.style.cssText='display:block;opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease';
+    requestAnimationFrame(function(){requestAnimationFrame(function(){
+      ty.style.opacity='1';ty.style.transform='translateY(0)';
+    });});
+    toast('\u2728 Your journey brief is ready \u2014 opening WhatsApp',3000);
+    track('whatsapp_opened',{segment:S.segment,score:S.score});
+    setTimeout(function(){window.open(url,'_blank');},700);
+  },1300);
+}
+
+/* ════════════════════════════════════════════════════════
+   CLOSE DROPDOWNS ON OUTSIDE CLICK
+════════════════════════════════════════════════════════ */
+document.addEventListener('click',function(e){
+  if(!document.getElementById('lang-btn').contains(e.target)&&!document.getElementById('lang-dropdown').contains(e.target))closeLang();
+  if(!document.getElementById('dial-btn').contains(e.target)&&!document.getElementById('dial-dropdown').contains(e.target))closeDial();
+});
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){closeLang();closeDial();}
+});
+
+/* ════════════════════════════════════════════════════════
+   INIT
+════════════════════════════════════════════════════════ */
+(function init(){
+  updateProg(1);
+  initLazyBg();
+  renderCountries(COUNTRIES);
+  autoDetectCountry();
+
+  var lang=detectLang();
+  if(lang!=='en')setLang(lang);
+  else{document.getElementById('lang-label').textContent='EN';}
+
+  startTrustRotator();
+  _stepTimes[1]=Date.now();
+  track('planner_opened',{referrer:document.referrer||'direct'});
+})();
+</script>
+</body>
+</html>
