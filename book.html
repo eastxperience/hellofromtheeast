@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en" data-product="waerebo">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#203328">
+<title>Reserve Your Journey · EastXperience</title>
+<meta name="description" content="Reserve direct — Indonesia's most iconic experiences. No payment today. Confirmed in under 10 minutes. Free reschedule.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://eastxperience.github.io/hellofromtheeast/book.html">
+<link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+<link rel="dns-prefetch" href="https://wa.me">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/ex-core.css">
+
+<!-- ═══════════════════════════════════════════════════════════
+     FOUC-FREE THEME BOOTSTRAP — runs before CSS paints
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+  (function () {
+    var p = (new URLSearchParams(location.search).get('product') || 'waerebo').toLowerCase();
+    // Whitelist to prevent attribute-selector injection of unknown slugs
+    var valid = ['waerebo','komodo-speedboat','komodo-sailing-3d2n','todo-village','bandung-rafting','bandung-volcano'];
+    if (valid.indexOf(p) === -1) p = 'waerebo';
+    document.documentElement.setAttribute('data-product', p);
+  })();
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     PER-PRODUCT THEME TOKENS — zero runtime cost
+     ═══════════════════════════════════════════════════════════ -->
+<style>
+  :root { --bg:#F6F1E7; --ink:#203328; --ink-deep:#0B1F17; --accent:#C98E5B; --accent-2:#C9A24B; --muted:#6B7280; }
+  :root[data-product="komodo-speedboat"]    { --bg:#F4EFE4; --ink:#0A1F3D; --ink-deep:#061531; --accent:#E9A23A; --accent-2:#F5C26B; --muted:#5B6A7E; }
+  :root[data-product="komodo-sailing-3d2n"] { --bg:#F8F3EA; --ink:#0A1736; --ink-deep:#040B22; --accent:#FF7A3C; --accent-2:#FFB47A; --muted:#56647D; }
+  :root[data-product="todo-village"]        { --bg:#EFE6D8; --ink:#3B2416; --ink-deep:#261308; --accent:#B8522E; --accent-2:#E89B6F; --muted:#7A6556; }
+  :root[data-product="bandung-rafting"]     { --bg:#F2F4F1; --ink:#0F2A1C; --ink-deep:#071810; --accent:#2A8FD4; --accent-2:#66B8ED; --muted:#5E7368; }
+  :root[data-product="bandung-volcano"]     { --bg:#EFEBE3; --ink:#1C1F1A; --ink-deep:#0E100C; --accent:#A38256; --accent-2:#D8BB8A; --muted:#6F6E66; }
+  :root[data-product="waerebo"]             { --bg:#F6F1E7; --ink:#203328; --ink-deep:#0B1F17; --accent:#C98E5B; --accent-2:#C9A24B; --muted:#6B7280; }
+
+  body { background: var(--bg); color: var(--ink); }
+  .btn-primary { background: var(--ink); color:#fff; }
+  .btn-primary:hover { box-shadow: 0 20px 50px -14px rgba(0,0,0,.35); }
+  .hdr-wa { background: var(--ink); }
+  h1 em, h2 em { color: var(--accent); font-style: italic; }
+
+  /* ─── Trust ribbon — responsive, always shows the 3 strongest signals on mobile ─── */
+  .trust-ribbon {
+    background: linear-gradient(90deg, var(--ink-deep) 0%, var(--ink) 72%, var(--accent) 150%);
+    color: rgba(255,255,255,.86);
+    font-size: 12px; padding: 11px 16px;
+    display: flex; gap: 18px; justify-content: center; flex-wrap: wrap;
+  }
+  .trust-ribbon span { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+  .trust-ribbon span::before { content: "✓"; color: var(--accent-2); font-weight: 700; }
+  @media (max-width: 720px) {
+    .trust-ribbon { font-size: 11px; gap: 12px; padding: 9px 10px; }
+    .trust-ribbon span.tr-secondary { display: none; }
+  }
+
+  /* ─── Book card — numbered header (Aman pattern, no step indicator) ─── */
+  .book-card-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 6px; }
+  .book-card-num {
+    font-family: 'Fraunces', serif; font-size: 13px; font-style: italic;
+    color: var(--accent); letter-spacing: .12em; text-transform: uppercase;
+    flex-shrink: 0;
+  }
+  .book-card h2 { margin-bottom: 0 !important; }
+  .book-card .sub { margin-top: 8px; }
+
+  /* ─── Hero — a little more cinematic ─── */
+  .book-hero { opacity: 0; transition: opacity .55s ease; min-height: 220px; }
+  .book-hero.ready { opacity: 1; }
+  @media (min-width: 780px) { .book-hero { min-height: 240px; } }
+
+  /* ─── Option grid auto-adapt ─── */
+  .opt-grid-auto { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  @media (max-width: 520px) { .opt-grid-auto { grid-template-columns: 1fr; } }
+
+  /* ─── "What happens next" timeline inside submit card ─── */
+  .next-steps {
+    background: rgba(0,0,0,.025); border-radius: 14px;
+    padding: 18px 22px; margin-bottom: 18px;
+  }
+  .next-steps-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .14em; color: var(--accent); margin-bottom: 12px;
+  }
+  .next-steps ol { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .next-steps li { display: flex; gap: 12px; align-items: flex-start; font-size: 13.5px; color: var(--ink); line-height: 1.5; }
+  .next-steps li .n {
+    flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--accent); color: #fff;
+    display: grid; place-items: center;
+    font-family: 'Fraunces', serif; font-size: 12px; font-weight: 600;
+    margin-top: 1px;
+  }
+  .next-steps li strong { font-weight: 600; color: var(--ink); }
+  .next-steps li span { color: var(--muted); display: block; font-size: 12.5px; margin-top: 1px; }
+
+  /* ─── Inline testimonial card ─── */
+  .mini-testi {
+    background: #fff; border: 1.5px solid var(--line); border-radius: var(--r-lg);
+    padding: 24px 26px; margin-bottom: 18px;
+    display: flex; gap: 18px; align-items: flex-start;
+  }
+  .mini-testi-mark {
+    flex-shrink: 0; font-family: 'Fraunces', serif; font-size: 42px; font-style: italic;
+    color: var(--accent); line-height: .8; opacity: .65;
+  }
+  .mini-testi-body p {
+    font-family: 'Fraunces', serif; font-size: 16px; font-style: italic;
+    color: var(--ink); line-height: 1.55; margin-bottom: 8px; letter-spacing: -.005em;
+  }
+  .mini-testi-body .who { font-size: 12px; color: var(--muted); }
+  .mini-testi-body .who::before { content: "— "; }
+  @media (max-width: 480px) { .mini-testi { padding: 20px 20px; gap: 14px; } .mini-testi-body p { font-size: 15px; } }
+
+  /* ─── Privacy microcopy under submit ─── */
+  .privacy-row {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    font-size: 11.5px; color: var(--muted); margin-top: 4px;
+  }
+  .privacy-row span { display: inline-flex; align-items: center; gap: 5px; }
+  .privacy-row span::before { content: "✓"; color: var(--accent); font-weight: 700; }
+
+  /* ─── Honeypot (anti-bot) — visually hidden ─── */
+  .hp-field { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; opacity: 0; }
+
+  /* ─── Toast (inline error, no alert()) ─── */
+  .toast {
+    position: fixed; left: 50%; bottom: 96px; transform: translate(-50%, 20px);
+    background: #0B1F17; color: #fff; font-size: 13.5px; font-weight: 500;
+    padding: 13px 20px; border-radius: 10px;
+    box-shadow: 0 18px 50px -15px rgba(0,0,0,.5);
+    opacity: 0; pointer-events: none; transition: opacity .25s ease, transform .25s ease;
+    z-index: 95; max-width: calc(100vw - 32px); text-align: center;
+  }
+  .toast.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+
+  /* ─── Loader dot for submit ─── */
+  .btn-loading { position: relative; pointer-events: none; opacity: .78; }
+  .btn-loading::after {
+    content: ""; width: 14px; height: 14px; border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.3); border-top-color: #fff;
+    animation: spin .7s linear infinite; margin-left: 6px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ─── Invalid state ─── */
+  .invalid { border-color: #CC1F1F !important; background: rgba(204,31,31,.04) !important; }
+
+  /* ─── Submit card micro-tuning ─── */
+  .book-submit { padding: 24px 26px; gap: 14px; }
+  .book-submit .btn { font-size: 16px; font-weight: 600; letter-spacing: -.01em; }
+
+  /* ─── Summary tuning ─── */
+  .summ-total .l { letter-spacing: -.01em; }
+  .summ-trust .t::before { background-color: rgba(201,142,91,.14) !important; }
+
+  /* ─── Small-screen breathing ─── */
+  @media (max-width: 480px) {
+    .book-card { padding: 22px 18px 18px; }
+    .book-card h2 { font-size: 20px; }
+    .book-hero h1 { font-size: 26px !important; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- TRUST RIBBON (order matters: 3 strongest signals first) -->
+<div class="trust-ribbon" role="region" aria-label="Booking guarantees">
+  <span>No payment today</span>
+  <span>Confirmed in under 10 minutes</span>
+  <span>Direct operator · 0% OTA fee</span>
+  <span class="tr-secondary" data-trust-reschedule>Free reschedule</span>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="hdr">
+    <a class="hdr-back" href="index.html" data-back-link>← Experience details</a>
+    <a class="hdr-brand" href="index.html">
+      <img src="assets/logo.svg" alt="EastXperience" onerror="this.onerror=null;this.src='images/logo-eastxperience.svg'">
+      <span>EastXperience</span>
+    </a>
+    <div class="hdr-right">
+      <a class="hdr-wa" href="https://wa.me/62811342473" target="_blank" rel="noopener" data-wa-header>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.88 11.88 0 0 0 12.07 0C5.52 0 .17 5.35.17 11.9c0 2.1.55 4.14 1.6 5.95L0 24l6.32-1.66a11.88 11.88 0 0 0 5.75 1.46h.01c6.55 0 11.9-5.35 11.9-11.9 0-3.18-1.24-6.17-3.46-8.42z"/></svg>
+        Concierge
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="book-shell">
+
+  <!-- ═══ LEFT COLUMN · FORM ═══ -->
+  <form id="bookForm" data-booking data-gateway="whatsapp" autocomplete="on" novalidate>
+
+    <!-- Mini hero -->
+    <div class="book-hero reveal" id="bookHero">
+      <span class="eyebrow">Reserve your journey</span>
+      <h1 data-bind="headline">Two days. <em>One sacred night.</em></h1>
+      <p data-bind="subhead">Loading your journey…</p>
+    </div>
+
+    <!-- CARD 1 — Journey -->
+    <section class="book-card reveal">
+      <div class="book-card-head">
+        <span class="book-card-num">01</span>
+        <h2>Choose your journey</h2>
+      </div>
+      <p class="sub" data-bind="optionsSub">Same experience. You choose the level of privacy.</p>
+
+      <div class="opt-grid-auto" data-bind-options><!-- options injected --></div>
+
+      <div class="field" style="margin-top:22px">
+        <label for="date">Preferred date</label>
+        <input type="date" id="date" name="date" required>
+        <div class="hint" data-bind="dateHint">Pick any upcoming date. If it's full, we'll suggest the nearest alternatives.</div>
+      </div>
+
+      <div class="field" style="margin-bottom:0">
+        <div class="lbl">Travelers</div>
+        <div class="pax-row" data-pax data-min="1" data-max="10" id="paxGroup">
+          <div class="pax-lbl"><span class="t">Number of guests</span><span class="s" data-bind="paxHint">adults & children</span></div>
+          <div class="pax-ctrl">
+            <button type="button" class="pax-btn" data-act="-" aria-label="Decrease guests">−</button>
+            <span class="pax-n" aria-live="polite">2</span>
+            <button type="button" class="pax-btn" data-act="+" aria-label="Increase guests">+</button>
+            <input type="hidden" name="pax" value="2">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARD 2 — You -->
+    <section class="book-card reveal">
+      <div class="book-card-head">
+        <span class="book-card-num">02</span>
+        <h2>Your details</h2>
+      </div>
+      <p class="sub">So a real human can confirm via WhatsApp in under 10 minutes.</p>
+
+      <div class="field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" placeholder="As on passport" autocomplete="name" required>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="whatsapp">WhatsApp (with country code)</label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="+33 6 12 34 56 78" autocomplete="tel" required inputmode="tel">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@email.com" autocomplete="email" required inputmode="email">
+        </div>
+      </div>
+
+      <div class="field-row" style="margin-bottom:0">
+        <div class="field">
+          <label for="nationality">Nationality</label>
+          <input type="text" id="nationality" name="nationality" placeholder="e.g. France" autocomplete="country-name" required>
+        </div>
+        <div class="field">
+          <label for="pickup" data-bind="pickupLabel">Hotel / Pickup</label>
+          <input type="text" id="pickup" name="pickup" autocomplete="street-address" data-bind-attr="pickupPlaceholder|placeholder">
+        </div>
+      </div>
+
+      <!-- honeypot (hidden, bots fill it) -->
+      <div class="hp-field" aria-hidden="true">
+        <label for="website">Website</label>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+    </section>
+
+    <!-- INLINE TESTIMONIAL — product-specific social proof -->
+    <div class="mini-testi reveal" id="miniTesti">
+      <div class="mini-testi-mark">"</div>
+      <div class="mini-testi-body">
+        <p data-bind="testimonial">Loading…</p>
+        <div class="who" data-bind="testimonialWho">—</div>
+      </div>
+    </div>
+
+    <!-- CARD 3 — Preferences -->
+    <section class="book-card reveal">
+      <div class="book-card-head">
+        <span class="book-card-num">03</span>
+        <h2>Preferences <span style="font-size:13px;color:var(--muted);font-weight:400;font-family:'Inter',sans-serif;letter-spacing:0"> · optional</span></h2>
+      </div>
+      <p class="sub" data-bind="prefsSub">Tell us anything that would make the journey better.</p>
+
+      <div class="field">
+        <div class="lbl">Dietary</div>
+        <div class="chip-row">
+          <label class="chip"><input type="checkbox" name="dietary" value="Vegetarian">Vegetarian</label>
+          <label class="chip"><input type="checkbox" name="dietary" value="Vegan">Vegan</label>
+          <label class="chip"><input type="checkbox" name="dietary" value="Halal">Halal</label>
+          <label class="chip"><input type="checkbox" name="dietary" value="Gluten-free">Gluten-free</label>
+          <label class="chip"><input type="checkbox" name="dietary" value="Pescatarian">Pescatarian</label>
+          <label class="chip"><input type="checkbox" name="dietary" value="Nut allergy">Nut allergy</label>
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:0">
+        <label for="notes">Anything else?</label>
+        <textarea id="notes" name="notes" data-bind-attr="notesPlaceholder|placeholder"></textarea>
+      </div>
+    </section>
+
+    <!-- SUBMIT CARD -->
+    <div class="book-submit reveal">
+
+      <!-- What happens next (trust accelerator) -->
+      <div class="next-steps">
+        <div class="next-steps-title">What happens after you press reserve</div>
+        <ol>
+          <li><span class="n">1</span><div><strong>No payment today.</strong> <span>Your card is not charged.</span></div></li>
+          <li><span class="n">2</span><div><strong>A real human replies on WhatsApp</strong> <span>in under 10 minutes (not a bot, not a ticketing system).</span></div></li>
+          <li><span class="n">3</span><div><strong>We send a secure link for the deposit</strong> <span data-bind="depositNote">(typically 30–50%). Balance on arrival.</span></div></li>
+        </ol>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="submitBtn" data-bind="submitLabel">Reserve This Date  →</button>
+
+      <div class="privacy-row">
+        <span>Your info stays with us</span>
+        <span>No spam, ever</span>
+        <span data-bind="reschedule">Free reschedule</span>
+      </div>
+
+      <p class="legal" data-bind="legal">No payment today. We confirm via WhatsApp within 10 minutes, then send a secure link for the deposit. Free reschedule.</p>
+    </div>
+  </form>
+
+  <!-- ═══ RIGHT COLUMN · LIVE SUMMARY ═══ -->
+  <aside class="book-summary reveal" aria-label="Booking summary">
+    <span class="summ-eyebrow">Your journey</span>
+    <h3 class="summ-title" data-bind="name">Loading…</h3>
+
+    <div class="summ-line"><span>Option</span><span class="v" data-out="type" aria-live="polite">—</span></div>
+    <div class="summ-line"><span>Price</span><span class="v" data-out="unit">—</span></div>
+    <div class="summ-line"><span>Travelers</span><span class="v" data-out="pax">2 travelers</span></div>
+    <div class="summ-line"><span>Duration</span><span class="v" data-bind="duration">—</span></div>
+
+    <div class="summ-total" role="status" aria-live="polite">
+      <div><div class="l">Today's total</div><div class="summ-note" data-out="sub">—</div></div>
+      <div class="n" data-out="total">—</div>
+    </div>
+
+    <div class="summ-trust">
+      <div class="t">No payment today</div>
+      <div class="t">Confirmation under 10 minutes</div>
+      <div class="t" data-bind="reschedule">Free reschedule up to 7 days</div>
+      <div class="t" data-bind="rating">★ 4.9 · 200+ journeys completed</div>
+    </div>
+  </aside>
+</div>
+
+<!-- ═══ STICKY MOBILE PRICE BAR ═══ -->
+<div class="book-sticky">
+  <div class="book-sticky-left">
+    <div class="p-label">Total · <span data-out="pax">2 travelers</span></div>
+    <div class="p-num" data-out="total">—</div>
+  </div>
+  <button type="button" class="btn btn-primary" onclick="document.getElementById('bookForm').requestSubmit()">Reserve →</button>
+</div>
+
+<!-- ═══ THANK-YOU OVERLAY ═══ -->
+<div class="book-thankyou" role="dialog" aria-modal="true" aria-labelledby="tyTitle" id="thankyou">
+  <div class="book-thankyou-card">
+    <div class="icon">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-11" stroke="currentColor" style="color:var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h3 id="tyTitle">Request <em style="color:var(--accent);font-style:italic">sent</em></h3>
+    <p>We've opened WhatsApp with your full journey details. Press send — a real person replies in under 10 minutes. No payment today.</p>
+    <button type="button" class="btn btn-outline" data-close-ty>Close</button>
+  </div>
+</div>
+
+<!-- Inline toast (replaces alert) -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>© 2026 EastXperience · <a href="https://wa.me/62811342473">+62 811 3424 73</a> · <a href="mailto:hello@eastxperience.com">hello@eastxperience.com</a></p>
+  </div>
+</footer>
+
+<script src="assets/js/ex-core.js"></script>
+
+<!-- ═══════════════════════════════════════════════════════════
+     UNIVERSAL BOOKING ENGINE — data-driven, analytics-ready,
+     payment-gateway-ready (currently WhatsApp handoff)
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  // ═════════════ PRODUCT REGISTRY ═════════════
+  // Single source of truth. Add a new product here and the page just works.
+  const PRODUCTS = {
+    'waerebo': {
+      name: 'Waerebo Village · 2D1N',
+      shortName: 'Waerebo Village',
+      headline: 'Two days. <em>One sacred night.</em>',
+      subhead: 'UNESCO heritage village in the Flores highlands. Overnight in a traditional Mbaru Niang, with elders, around the fire.',
+      heroImg: 'waerebo images/IMG_0799.JPG',
+      detailsUrl: 'waerebo-final.html',
+      duration: '2 days · 1 night',
+      nights: 1,
+      rating: '★ 4.9 · 200+ journeys completed',
+      reschedule: 'Free reschedule up to 7 days',
+      depositNote: '(50% deposit to confirm · balance on arrival)',
+      pickupLabel: 'Hotel / Pickup in Labuan Bajo',
+      pickupPlaceholder: 'Hotel name, Labuan Bajo or Ruteng',
+      notesPlaceholder: 'Fitness level, travelling with kids, starting point (Labuan Bajo or Ruteng), anything we should prep for.',
+      dateHint: 'Departures year-round. Dry season (Apr–Nov) recommended for clearest highland views.',
+      paxHint: 'ages 8 – 75 welcome',
+      optionsSub: 'Same guide. Same village. Same sacred overnight. You choose the level of privacy.',
+      prefsSub: 'Meals are home-cooked by host families — tell us about any restriction.',
+      submitLabel: 'Reserve This Date  →',
+      legal: 'No payment today. We confirm availability via WhatsApp within 10 minutes, then send a secure payment link (50% deposit). Free reschedule up to 7 days before departure.',
+      testimonial: 'The elders sang us welcome as the mist rolled through the roofs. I\'ve never felt more present in a place in my life.',
+      testimonialWho: 'Elena R. · Barcelona · February 2026',
+      options: [
+        { val: 'shared',  label: 'Shared Journey',  price: 1850000,  mode: 'per-person', desc: 'Up to 8 travelers. Native Manggarai guide, all-inclusive.', priceText: 'IDR 1,850,000 / person' },
+        { val: 'private', label: 'Private Journey', price: 12000000, mode: 'flat',       desc: 'Your group, your pace. Dedicated guide & vehicle.',         priceText: 'From IDR 12,000,000 · whole group' }
+      ],
+      maxPax: 8
+    },
+
+    'komodo-speedboat': {
+      name: 'Komodo One Day Speedboat',
+      shortName: 'Komodo Speedboat',
+      headline: 'One day. <em>Five islands.</em>',
+      subhead: 'Padar sunrise · Komodo dragons · Pink Beach · Manta Point · Taka Makassar · Kanawa. The most iconic day in Indonesia, done cinematically.',
+      heroImg: 'https://images.unsplash.com/photo-1589308078059-be1415eab4c3?auto=format&fit=crop&w=1800&q=82',
+      detailsUrl: 'komodo-speedboat-final.html',
+      duration: '~13 hours · dawn → dusk',
+      nights: 0,
+      rating: '★ 4.96 · 412 journeys completed',
+      reschedule: 'Free reroute for weather',
+      depositNote: '(50% deposit to confirm · balance on the day)',
+      pickupLabel: 'Hotel / Pickup in Labuan Bajo',
+      pickupPlaceholder: 'Hotel name or area',
+      notesPlaceholder: 'Kids\' ages, non-swimmers, drone permit, honeymoon, photographer onboard, etc.',
+      dateHint: 'Dry season · Apr → Nov. If the date is full, we\'ll suggest the closest alternatives.',
+      paxHint: 'ages 5 – 78 welcome',
+      optionsSub: 'Same boat. Same islands. You choose how private.',
+      prefsSub: 'Lunch is fresh-cooked onboard — tell us about any restriction.',
+      submitLabel: 'Reserve This Date  →',
+      legal: 'No payment today. We confirm availability via WhatsApp within 10 minutes, then send a secure payment link (50% deposit). Free reroute for weather.',
+      testimonial: 'We were the only boat at Padar for sunrise. By the time the ferries arrived, we were already swimming at Pink Beach.',
+      testimonialWho: 'Amélie L. · Paris · honeymoon',
+      options: [
+        { val: 'shared',  label: 'Shared Speedboat', price: 2450000,  mode: 'per-person', desc: 'Up to 10 curated travelers. Great for solo, couples & small families.', priceText: 'IDR 2,450,000 / person' },
+        { val: 'private', label: 'Private Charter',  price: 14500000, mode: 'flat',       desc: 'Whole speedboat · route flexibility · custom menu. Best value for 4+.', priceText: 'From IDR 14,500,000 · whole boat' }
+      ],
+      maxPax: 10
+    },
+
+    'komodo-sailing-3d2n': {
+      name: 'Komodo 3D2N Social Sailing',
+      shortName: 'Komodo 3D2N Sailing',
+      headline: 'Three days. <em>Two nights at sea.</em>',
+      subhead: 'A curated social sailing across Komodo. 12 like-minded travelers · private boat · deck sunsets · bioluminescent nights.',
+      heroImg: 'https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?auto=format&fit=crop&w=1800&q=82',
+      detailsUrl: 'komodo-sailing-3d2n-final.html',
+      duration: '3 days · 2 nights',
+      nights: 2,
+      rating: '★ 4.98 · 236 sailings completed',
+      reschedule: 'Free reschedule up to 14 days',
+      depositNote: '(30% deposit to confirm · balance 7 days before sailing)',
+      pickupLabel: 'Hotel / Pickup in Labuan Bajo',
+      pickupPlaceholder: 'Hotel name or area',
+      notesPlaceholder: 'Seasickness tendency, birthday onboard, scuba certified, photography requests, etc.',
+      dateHint: 'Departures 3× per week · dry season Apr → Nov. If full, we\'ll suggest the nearest.',
+      paxHint: '12 max · curated group',
+      optionsSub: 'Same boat, same crew, same sunsets. You choose the privacy of your cabin.',
+      prefsSub: 'All meals cooked fresh onboard — tell us about any restriction.',
+      submitLabel: 'Reserve My Cabin  →',
+      legal: 'No payment today. We confirm cabin availability via WhatsApp within 10 minutes, then send a secure payment link (30% deposit). Free reschedule up to 14 days before sailing.',
+      testimonial: 'Day three we swam through bioluminescence. The whole trip felt like a movie. Cabin mates became lifelong friends.',
+      testimonialWho: 'Daniel K. · Berlin · September 2025',
+      options: [
+        { val: 'twin',   label: 'Twin Share Cabin',    price: 6800000, mode: 'per-person', desc: 'Share a cabin with a vetted same-gender traveler. Most social option.', priceText: 'IDR 6,800,000 / person' },
+        { val: 'double', label: 'Shared Double Cabin', price: 8200000, mode: 'per-person', desc: 'Private double en-suite for two. Couples & friends.',                  priceText: 'IDR 8,200,000 / person' },
+        { val: 'solo',   label: 'Private Solo Cabin',  price: 9500000, mode: 'per-person', desc: 'En-suite cabin for one. No roommate. Maximum privacy.',                 priceText: 'IDR 9,500,000 / person' }
+      ],
+      maxPax: 12
+    },
+
+    'todo-village': {
+      name: 'Todo Village · Heritage Day',
+      shortName: 'Todo Village',
+      headline: 'The ancestral village <em>time forgot.</em>',
+      subhead: 'Traditional Manggarai homes · sacred songke weaving · Cunca Plias waterfall · home-cooked highland lunch.',
+      heroImg: 'https://images.unsplash.com/photo-1541679486598-05f8bbb21b7e?auto=format&fit=crop&w=1800&q=82',
+      detailsUrl: 'todo-village-final.html',
+      duration: '~10 hours · sunrise to dusk',
+      nights: 0,
+      rating: '★ 4.9 · max 8 guests per departure',
+      reschedule: 'Free reschedule up to 7 days',
+      depositNote: '(50% deposit to confirm · 70% of your payment goes directly to Todo)',
+      pickupLabel: 'Hotel / Pickup in Labuan Bajo',
+      pickupPlaceholder: 'Hotel name, Labuan Bajo',
+      notesPlaceholder: 'Interest in weaving workshop, overnight add-on in Ruteng, translator requests, etc.',
+      dateHint: '3 departures per week. Peak season (Jul–Sep) books 3 weeks out.',
+      paxHint: 'max 8 · small group',
+      optionsSub: 'Same ancestral welcome. You choose how private the day feels.',
+      prefsSub: 'Lunch is home-cooked by a village family — tell us about any restriction.',
+      submitLabel: 'Reserve This Date  →',
+      legal: 'No payment today. We confirm availability via WhatsApp within 10 minutes, then send a secure payment link (50% deposit). 70% of what you pay goes directly to Todo Village.',
+      testimonial: 'The matriarch handed me the loom and laughed at my first row. I took home a songke piece — and a story I\'ll tell forever.',
+      testimonialWho: 'Sophie M. · Melbourne · June 2025',
+      options: [
+        { val: 'shared',  label: 'Shared Journey',  price: 1450000, mode: 'per-person', desc: 'Up to 8 travelers · private 4WD · born-there Manggarai guide.', priceText: 'IDR 1,450,000 / person' },
+        { val: 'private', label: 'Private Journey', price: 6800000, mode: 'flat',       desc: 'Exclusive 4WD & guide · deep-interview sessions · flexible pace.', priceText: 'From IDR 6,800,000 · whole group' }
+      ],
+      maxPax: 8
+    },
+
+    'bandung-rafting': {
+      name: 'Bandung Rafting · Palayangan River',
+      shortName: 'Bandung Rafting',
+      headline: '12 km of <em>rapids & rainforest.</em>',
+      subhead: 'Grade 2–3 whitewater on the Palayangan · jungle corridors · waterfall swim · Sundanese lunch.',
+      heroImg: 'https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=1800&q=82',
+      detailsUrl: 'bandung-rafting-final.html',
+      duration: '~8 hours · pickup to drop-off',
+      nights: 0,
+      rating: '★ 4.92 · daily departures',
+      reschedule: 'Free reschedule up to 3 days',
+      depositNote: '(30% deposit to confirm · balance on the day)',
+      pickupLabel: 'Hotel / Pickup in Bandung',
+      pickupPlaceholder: 'Bandung hotel name or area',
+      notesPlaceholder: 'Swimming confidence, dedicated photographer add-on, kids\' ages, etc.',
+      dateHint: 'Daily departures year-round. Weekends sell out 10 days ahead.',
+      paxHint: 'ages 10+ · comfortable swimmers',
+      optionsSub: 'Same river, same guides. Choose shared raft or private group.',
+      prefsSub: 'Sundanese lunch served riverside — tell us about any restriction.',
+      submitLabel: 'Reserve This Date  →',
+      legal: 'No payment today. We confirm availability via WhatsApp within 10 minutes, then send a secure payment link (30% deposit). Free reschedule up to 3 days before departure.',
+      testimonial: 'Grade 3 rapids one minute, waterfall swim the next. The guides kept it thrilling and safe — our teens keep asking to go back.',
+      testimonialWho: 'The Wirawan family · Jakarta',
+      options: [
+        { val: 'shared',  label: 'Shared Raft',     price: 850000,  mode: 'per-person', desc: 'Up to 4 per raft. Certified river guide + safety kayaker.', priceText: 'IDR 850,000 / person' },
+        { val: 'private', label: 'Private Charter', price: 4800000, mode: 'flat',       desc: 'Your own raft, guide, photographer & custom lunch.',         priceText: 'From IDR 4,800,000 · whole group' }
+      ],
+      maxPax: 6
+    },
+
+    'bandung-volcano': {
+      name: 'Bandung Volcano & Onsen Day',
+      shortName: 'Volcano & Onsen',
+      headline: 'Crater sunrise. <em>Private onsen.</em>',
+      subhead: 'Kawah Putih at dawn · 42°C volcanic spring booked solo · mud bath · century-old tea-house lunch.',
+      heroImg: 'https://images.unsplash.com/photo-1516496636080-14fb876e029d?auto=format&fit=crop&w=1800&q=82',
+      detailsUrl: 'bandung-volcano-final.html',
+      duration: '~12 hours · pre-dawn to dusk',
+      nights: 0,
+      rating: '★ 4.94 · max 4 departures / week',
+      reschedule: 'Free reschedule up to 5 days',
+      depositNote: '(30% deposit to confirm · balance on the day)',
+      pickupLabel: 'Hotel / Pickup in Bandung',
+      pickupPlaceholder: 'Bandung or Jakarta hotel',
+      notesPlaceholder: 'Preferred onsen time slot, dietary needs, photography requests, etc.',
+      dateHint: 'Max 4 departures per week to protect pacing. Peak weekends book 2 weeks out.',
+      paxHint: 'ages 12 – 78 welcome',
+      optionsSub: 'Same private onsen, same luxury van. Choose shared or fully private.',
+      prefsSub: 'Tea-house lunch at a century-old plantation — tell us about any restriction.',
+      submitLabel: 'Reserve This Date  →',
+      legal: 'No payment today. We confirm availability via WhatsApp within 10 minutes, then send a secure payment link (30% deposit). Free reschedule up to 5 days before departure.',
+      testimonial: 'We watched sunrise rise over a white crater lake, then sank into 42° water with no one else for miles. Deeply restorative.',
+      testimonialWho: 'Mika T. · Tokyo · March 2026',
+      options: [
+        { val: 'shared',  label: 'Shared Journey',  price: 1200000, mode: 'per-person', desc: 'Up to 6 sharing a private luxury van. Onsen still booked solo.', priceText: 'IDR 1,200,000 / person' },
+        { val: 'private', label: 'Private Journey', price: 5400000, mode: 'flat',       desc: 'Exclusive van, guide & pacing. Ideal for couples and families.',   priceText: 'From IDR 5,400,000 · whole group' }
+      ],
+      maxPax: 6
+    }
+  };
+
+  // ═════════════ ANALYTICS HOOK ═════════════
+  // Ready for GA4 / GTM / Segment / Plausible / Mixpanel. No-op if none loaded.
+  function track(event, payload) {
+    payload = payload || {};
+    (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: event }, payload));
+    if (typeof window.gtag === 'function') window.gtag('event', event, payload);
+  }
+  window.ExBooking = { track: track, PRODUCTS: PRODUCTS };
+
+  // ═════════════ BOOTSTRAP ═════════════
+  const slug = document.documentElement.getAttribute('data-product') || 'waerebo';
+  const cfg = PRODUCTS[slug] || PRODUCTS['waerebo'];
+
+  // Meta
+  document.title = 'Reserve · ' + cfg.shortName + ' · EastXperience';
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if (metaDesc) metaDesc.setAttribute('content', 'Reserve direct · ' + cfg.name + ' · no payment today, confirmed in under 10 minutes.');
+
+  // Bind text
+  document.querySelectorAll('[data-bind]').forEach(el => {
+    const key = el.getAttribute('data-bind');
+    if (cfg[key] != null) el.innerHTML = cfg[key];
+  });
+  document.querySelectorAll('[data-bind-attr]').forEach(el => {
+    const [key, attr] = el.getAttribute('data-bind-attr').split('|');
+    if (cfg[key] != null && attr) el.setAttribute(attr, cfg[key]);
+  });
+
+  // Hero bg
+  const hero = document.getElementById('bookHero');
+  if (hero && cfg.heroImg) {
+    const img = new Image();
+    const url = cfg.heroImg;
+    img.onload = () => {
+      hero.style.background =
+        'linear-gradient(to top, rgba(11,31,23,.82) 0%, rgba(11,31,23,.38) 55%, rgba(11,31,23,.15) 100%), url("' + url.replace(/"/g, '\\"') + '") center / cover no-repeat';
+      hero.classList.add('ready');
+    };
+    img.onerror = () => {
+      hero.style.background = 'linear-gradient(135deg, var(--ink-deep), var(--ink))';
+      hero.classList.add('ready');
+    };
+    img.src = url;
+  }
+
+  // Back link
+  const back = document.querySelector('[data-back-link]');
+  if (back && cfg.detailsUrl) back.href = cfg.detailsUrl;
+
+  // Concierge WA
+  const waHeader = document.querySelector('[data-wa-header]');
+  if (waHeader) waHeader.href = 'https://wa.me/62811342473?text=' + encodeURIComponent('Hi EastXperience, I\'d like help booking ' + cfg.name + '.');
+
+  // Pax max
+  const paxGroup = document.getElementById('paxGroup');
+  if (paxGroup && cfg.maxPax) paxGroup.setAttribute('data-max', String(cfg.maxPax));
+
+  // Options — rendered with first one checked
+  const optWrap = document.querySelector('[data-bind-options]');
+  if (optWrap) {
+    optWrap.innerHTML = cfg.options.map((o, i) => `
+      <label class="opt${i === 0 ? ' is-checked' : ''}">
+        <input type="radio" name="type" value="${o.val}" data-price="${o.price}" data-mode="${o.mode}" data-label="${o.label}" ${i === 0 ? 'checked' : ''}>
+        <div class="opt-title">${o.label}</div>
+        <div class="opt-sub">${o.desc}</div>
+        <div class="opt-price">${o.priceText}</div>
+      </label>`).join('');
+  }
+
+  // Min date = today
+  const dateIn = document.getElementById('date');
+  if (dateIn) dateIn.min = new Date().toISOString().split('T')[0];
+
+  // Fire view
+  track('view_booking', { product_id: slug, product_name: cfg.name });
+
+  // ═════════════ PRICE + SELECTION STATE ═════════════
+  const form = document.getElementById('bookForm');
+  const fmt = n => 'IDR ' + n.toLocaleString('en-US');
+
+  function syncOptCheckedClass() {
+    form.querySelectorAll('.opt').forEach(o => {
+      o.classList.toggle('is-checked', o.querySelector('input')?.checked === true);
+    });
+    form.querySelectorAll('.chip').forEach(c => {
+      c.classList.toggle('is-checked', c.querySelector('input')?.checked === true);
+    });
+  }
+
+  function recalc() {
+    const type = form.querySelector('input[name="type"]:checked');
+    const paxVal = parseInt(form.querySelector('[name="pax"]').value || '1', 10);
+    if (!type) return;
+
+    const unit = parseInt(type.dataset.price, 10);
+    const mode = type.dataset.mode;
+    const total = mode === 'flat' ? unit : unit * paxVal;
+
+    const setAll = (sel, val) => document.querySelectorAll(sel).forEach(e => e.textContent = val);
+    setAll('[data-out="unit"]', fmt(unit) + (mode === 'flat' ? ' · whole group' : ' / person'));
+    setAll('[data-out="pax"]',  paxVal + (paxVal === 1 ? ' traveler' : ' travelers'));
+    setAll('[data-out="type"]', type.dataset.label);
+    setAll('[data-out="total"]', fmt(total));
+    setAll('[data-out="sub"]',   mode === 'flat' ? 'whole group price' : paxVal + ' × ' + fmt(unit));
+  }
+
+  form.addEventListener('change', e => {
+    syncOptCheckedClass();
+    recalc();
+    if (e.target.name === 'type') {
+      track('select_option', {
+        product_id: slug, option_id: e.target.value,
+        value: parseInt(e.target.dataset.price, 10), currency: 'IDR'
+      });
+    }
+  });
+  form.addEventListener('pax:change', recalc);
+  // Initial synchronous paint — no "—" flash
+  syncOptCheckedClass();
+  recalc();
+
+  // ═════════════ TOAST ═════════════
+  const toastEl = document.getElementById('toast');
+  let toastTimer;
+  function toast(msg) {
+    if (!toastEl) return;
+    toastEl.textContent = msg;
+    toastEl.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toastEl.classList.remove('on'), 3400);
+  }
+
+  // ═════════════ SUBMIT / GATEWAY HANDOFF ═════════════
+  // SWAPPABLE: to integrate Stripe / Midtrans / Xendit, replace `processBooking`.
+  //   - Keep payload shape intact.
+  //   - Return { ok, via, checkoutUrl? }.
+  //   - For popup-blocker safety, you may need to return a pre-opened window handle.
+  function processBookingViaWhatsApp(payload, preOpenedWin) {
+    const url = 'https://wa.me/62811342473?text=' + encodeURIComponent(payload.summaryText);
+    if (preOpenedWin && !preOpenedWin.closed) {
+      preOpenedWin.location.href = url;
+    } else {
+      window.open(url, '_blank', 'noopener');
+    }
+    return { ok: true, via: 'whatsapp' };
+  }
+
+  function buildSummary(p) {
+    return [
+      '*EastXperience · Booking Request*',
+      '—',
+      '*Journey:* ' + p.product_name,
+      '*Option:* ' + p.option_label,
+      '*Date:* ' + (p.date || '—'),
+      p.nights ? '*Nights:* ' + p.nights : '',
+      '*Travelers:* ' + p.pax,
+      '*Total (est.):* ' + fmt(p.total),
+      '—',
+      '*Name:* ' + (p.name || '—'),
+      '*Nationality:* ' + (p.nationality || '—'),
+      '*WhatsApp:* ' + (p.whatsapp || '—'),
+      '*Email:* ' + (p.email || '—'),
+      '*Pickup:* ' + (p.pickup || '—'),
+      p.dietary ? '*Dietary:* ' + p.dietary : '',
+      p.notes ? '*Notes:* ' + p.notes : '',
+      '—',
+      'Please confirm availability. Thank you.'
+    ].filter(Boolean).join('\n');
+  }
+
+  function firstInvalid() {
+    const required = [
+      ['name', 'Please enter your full name.'],
+      ['whatsapp', 'Please enter a WhatsApp number (with country code).'],
+      ['email', 'Please enter a valid email.'],
+      ['nationality', 'Please enter your nationality.'],
+      ['date', 'Please pick a preferred date.']
+    ];
+    for (const [name, msg] of required) {
+      const f = form.elements[name];
+      if (!f || !f.value.trim()) return { name, field: f, msg };
+      if (name === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim())) return { name, field: f, msg: 'That email doesn\'t look right.' };
+    }
+    return null;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Honeypot — silently drop bots
+    if (form.elements['website'] && form.elements['website'].value) {
+      track('booking_honeypot_rejected', { product_id: slug });
+      return;
+    }
+
+    const bad = firstInvalid();
+    if (bad) {
+      bad.field.classList.add('invalid');
+      bad.field.focus({ preventScroll: true });
+      try { bad.field.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch {}
+      toast(bad.msg);
+      track('booking_validation_error', { product_id: slug, field: bad.name });
+      return;
+    }
+
+    // CRITICAL: open the WhatsApp tab synchronously inside the user gesture to avoid popup blockers.
+    // We navigate it to the real URL immediately after building the payload.
+    const preOpened = window.open('about:blank', '_blank', 'noopener');
+
+    const btn = document.getElementById('submitBtn');
+    btn.classList.add('btn-loading');
+    btn.disabled = true;
+
+    const data = new FormData(form);
+    const type = form.querySelector('input[name="type"]:checked');
+    const unit = parseInt(type.dataset.price, 10);
+    const mode = type.dataset.mode;
+    const paxVal = parseInt(data.get('pax') || '1', 10);
+    const total = mode === 'flat' ? unit : unit * paxVal;
+    const dietary = [...form.querySelectorAll('input[name="dietary"]:checked')].map(c => c.value).join(', ');
+
+    const payload = {
+      product_id: slug,
+      product_name: cfg.name,
+      option_id: type.value,
+      option_label: type.dataset.label,
+      option_mode: mode,
+      unit_price: unit,
+      total: total,
+      currency: 'IDR',
+      nights: cfg.nights,
+      date: data.get('date'),
+      pax: paxVal,
+      name: data.get('name'),
+      whatsapp: data.get('whatsapp'),
+      email: data.get('email'),
+      nationality: data.get('nationality'),
+      pickup: data.get('pickup'),
+      dietary: dietary,
+      notes: data.get('notes')
+    };
+    payload.summaryText = buildSummary(payload);
+
+    track('begin_checkout', { product_id: slug, value: total, currency: 'IDR', option_id: type.value, pax: paxVal });
+
+    try {
+      const result = processBookingViaWhatsApp(payload, preOpened);
+      track('booking_submitted', { product_id: slug, via: result.via, value: total, currency: 'IDR', option_id: type.value, pax: paxVal });
+      document.getElementById('thankyou').classList.add('on');
+    } catch (err) {
+      track('booking_error', { product_id: slug, message: String(err) });
+      toast('Something went wrong. Please try again or message us on WhatsApp.');
+      if (preOpened && !preOpened.closed) preOpened.close();
+    } finally {
+      btn.classList.remove('btn-loading');
+      btn.disabled = false;
+    }
+  });
+
+  // Clear invalid state as the user fixes it
+  form.addEventListener('input', e => e.target.classList?.remove('invalid'));
+
+  // ═════════════ THANK-YOU OVERLAY UX ═════════════
+  const ty = document.getElementById('thankyou');
+  function closeTY() { ty.classList.remove('on'); }
+  document.querySelectorAll('[data-close-ty]').forEach(b => b.addEventListener('click', closeTY));
+  // Backdrop click
+  ty.addEventListener('click', e => { if (e.target === ty) closeTY(); });
+  // Escape
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && ty.classList.contains('on')) closeTY(); });
+})();
+</script>
+
+<noscript>
+  <div style="padding:20px;background:#0B1F17;color:#fff;text-align:center;font-family:sans-serif">
+    JavaScript is disabled. Please <a href="https://wa.me/62811342473" style="color:#C98E5B">message us on WhatsApp</a> to reserve.
+  </div>
+</noscript>
+
+</body>
+</html>

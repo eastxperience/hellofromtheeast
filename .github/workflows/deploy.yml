@@ -1,0 +1,119 @@
+name: Validate & Deploy to GitHub Pages
+
+# ─────────────────────────────────────────────────────────────
+# EastXperience · hellofromtheeast
+# Triggers on every push to main (and manual dispatch).
+# 1. Validates HTML + JS syntax for plan.html and index.html
+# 2. Deploys the whole site to GitHub Pages via actions/deploy-pages
+# ─────────────────────────────────────────────────────────────
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Validate HTML & JS
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Validate HTML structure
+        run: |
+          python3 <<'PY'
+          import html.parser as hp, sys, os
+          class V(hp.HTMLParser):
+              def __init__(self): super().__init__(); self.err=[]
+              def error(self,m): self.err.append(m)
+          failed = False
+          for f in ("index.html", "plan.html"):
+              if not os.path.exists(f):
+                  print(f"skip: {f} missing"); continue
+              v = V()
+              with open(f, "r", encoding="utf-8") as fp:
+                  v.feed(fp.read())
+              if v.err:
+                  print(f"FAIL {f}: {v.err}"); failed = True
+              else:
+                  print(f"OK   {f}")
+          sys.exit(1 if failed else 0)
+          PY
+
+      - name: Validate inline JavaScript
+        run: |
+          python3 <<'PY'
+          import re, os, subprocess, sys
+          failed = False
+          for f in ("index.html", "plan.html"):
+              if not os.path.exists(f):
+                  continue
+              with open(f, "r", encoding="utf-8") as fp:
+                  html = fp.read()
+              # Only JS scripts, skip JSON-LD and other non-JS types
+              scripts = re.findall(
+                  r'<script(?![^>]*type=["\'](?:application/ld\+json|text/template)["\'])[^>]*>([\s\S]*?)</script>',
+                  html, re.I
+              )
+              joined = "\n;\n".join(s for s in scripts if s.strip())
+              if not joined.strip():
+                  continue
+              tmp = f"/tmp/{f}.js"
+              with open(tmp, "w", encoding="utf-8") as tp:
+                  tp.write(joined)
+              r = subprocess.run(["node", "--check", tmp], capture_output=True, text=True)
+              if r.returncode != 0:
+                  print(f"FAIL {f} JS:\n{r.stderr}"); failed = True
+              else:
+                  print(f"OK   {f} JS")
+          sys.exit(1 if failed else 0)
+          PY
+
+      - name: Check CTA routing
+        run: |
+          count=$(grep -cE 'href="plan\.html"' index.html || true)
+          echo "Start Planning CTAs routed to plan.html: $count"
+          if [ "$count" -lt 1 ]; then
+            echo "::warning::No CTAs in index.html point to plan.html"
+          fi
+
+  build:
+    name: Build Pages artifact
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    name: Deploy to Pages
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

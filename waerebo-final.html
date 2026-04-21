@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#ECE8E0">
-<title>Waerebo Tour Direct Booking | 2D1N Waerebo Village Experience | EastXperience</title>
-<meta name="description" content="Book direct Waerebo 2D1N experience from Labuan Bajo. Daily departures, 1 pax can go, shared & private options. Better value direct with EastXperience.">
-<meta property="og:title" content="Sleep Above the Clouds in Waerebo · EastXperience">
-<meta property="og:description" content="A rare mountain wellness journey into one of Indonesia's last living traditional villages. From IDR 1,850,000/person.">
+<title>Waerebo Living Heritage Experience | Direct Booking EastXperience</title>
+<meta name="description" content="Stay overnight in the UNESCO-recognised mountain village of Waerebo, Flores. A privately guided living heritage experience with a community-conscious approach. Direct booking with EastXperience.">
+<meta property="og:title" content="Waerebo Living Heritage Experience · EastXperience">
+<meta property="og:description" content="One village. Eight conical homes. A thousand years of wisdom. A privately guided overnight journey into the Flores highlands — where heritage is still alive."  >
 <meta property="og:type" content="website">
 <meta property="og:image" content="waerebo images/IMG_0799.JPG">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="images/logo-eastxperience.svg">
 <link rel="preload" as="image" href="waerebo images/IMG_0799.JPG" fetchpriority="high">
-<link rel="prefetch" href="book-waerebo-final.html">
+<link rel="prefetch" href="book.html?product=waerebo">
 <link rel="dns-prefetch" href="https://wa.me">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,7 +58,7 @@ h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:300;letter-spacing:-.0
 .hdr-wa:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(32,51,40,.25)}
 
 /* Hero */
-.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 80px;overflow:hidden}
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:100px 0 80px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg::before{content:'';position:absolute;inset:0;
 background:linear-gradient(to right,rgba(20,40,28,.84) 0%,rgba(20,40,28,.74) 38%,rgba(20,40,28,.32) 65%,rgba(20,40,28,.16) 100%),linear-gradient(to top,rgba(20,40,28,.52) 0%,transparent 30%);z-index:1}
@@ -299,13 +299,92 @@ footer a:hover{text-decoration:underline}
 /* CTA microcopy */
 .cta-micro{margin-top:14px;font-size:12px;color:rgba(236,232,224,.38);font-style:italic;font-family:'Fraunces',serif}
 
+/* Heritage intro */
+.heritage-intro{background:var(--forest);padding:90px 0;position:relative;overflow:hidden}
+.heritage-intro::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 80% at 15% 50%,rgba(201,142,91,.07) 0%,transparent 60%)}
+.heritage-intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.heritage-intro-text{position:relative;z-index:1}
+.heritage-intro-text h2{font-size:clamp(28px,4vw,48px);color:var(--ivory);margin-bottom:20px;font-style:italic}
+.heritage-intro-text p{color:rgba(236,232,224,.62);font-size:16px;line-height:1.75;margin-bottom:16px}
+.heritage-pillars{position:relative;z-index:1;display:flex;flex-direction:column;gap:16px}
+.heritage-pillar{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-radius:var(--rc);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.heritage-pillar-icon{width:36px;height:36px;border-radius:10px;background:rgba(201,142,91,.12);border:1px solid rgba(201,142,91,.22);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;margin-top:2px}
+.heritage-pillar h4{font-family:'Fraunces',serif;font-size:15px;font-weight:400;color:var(--ivory);margin-bottom:4px}
+.heritage-pillar p{font-size:12.5px;color:rgba(236,232,224,.5);line-height:1.55;margin:0}
+
+/* Community impact */
+.community-sec{background:var(--ivory);border-top:1px solid rgba(32,51,40,.07)}
+.impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:10px}
+.impact-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--rc);padding:28px 24px;text-align:center;transition:transform var(--t),box-shadow var(--t),border-color var(--t)}
+.impact-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:rgba(201,142,91,.3)}
+.impact-icon{font-size:28px;margin-bottom:12px;display:block}
+.impact-card h4{font-family:'Fraunces',serif;font-size:18px;font-weight:400;color:var(--forest);margin-bottom:8px}
+.impact-card p{font-size:13px;color:var(--stone);line-height:1.6;margin:0}
+
+/* Founder credibility */
+.founder-sec{background:var(--mist);border-top:1px solid rgba(32,51,40,.07);border-bottom:1px solid rgba(32,51,40,.07)}
+.founder-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.founder-text h2{font-size:clamp(24px,3.5vw,38px);color:var(--forest);margin-bottom:16px}
+.founder-text p{font-size:15.5px;color:var(--stone);line-height:1.75;margin-bottom:12px}
+.founder-text p:last-of-type{margin-bottom:0}
+.founder-cred{display:flex;flex-direction:column;gap:20px;justify-content:center}
+.aa-badge{display:flex;align-items:center;gap:18px;padding:22px 24px;background:var(--white);border:1.5px solid rgba(32,51,40,.1);border-radius:var(--rc);max-width:400px}
+.aa-logo-wrap{flex-shrink:0}
+.aa-logo-text{flex:1}
+.aa-logo-text .aa-label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--stone);margin-bottom:4px;display:block}
+.aa-logo-text .aa-name{font-family:'Fraunces',serif;font-size:14px;color:var(--forest);line-height:1.3}
+.aa-logo-text .aa-sub{font-size:11.5px;color:var(--stone);margin-top:3px;display:block;font-style:italic}
+.founder-quote{font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:var(--forest);line-height:1.6;padding:24px 28px;background:var(--white);border-radius:var(--rc);border-left:3px solid rgba(201,142,91,.5);position:relative}
+.founder-quote::before{content:'\201C';font-size:60px;color:rgba(201,142,91,.15);position:absolute;top:-8px;left:16px;line-height:1;font-family:'Fraunces',serif}
+
+/* Immersion experience */
+.immersion-sec{background:var(--forest);padding:90px 0;overflow:hidden;position:relative}
+.immersion-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 85% 30%,rgba(201,142,91,.06) 0%,transparent 55%)}
+.immersion-modules{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;z-index:1}
+.im-module{padding:32px 22px;border-right:1px solid rgba(255,255,255,.07);position:relative;transition:background var(--t)}
+.im-module:last-child{border-right:none}
+.im-module:hover{background:rgba(255,255,255,.03)}
+.im-num{font-family:'Fraunces',serif;font-size:11px;color:rgba(201,142,91,.5);text-transform:uppercase;letter-spacing:.18em;margin-bottom:16px;display:block}
+.im-title{font-family:'Fraunces',serif;font-size:19px;font-style:italic;color:var(--ivory);margin-bottom:12px;line-height:1.25}
+.im-desc{font-size:12.5px;color:rgba(236,232,224,.48);line-height:1.65}
+
+/* Who this is for */
+.for-sec{background:var(--white)}
+.for-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px}
+.for-card{border-radius:var(--rc);padding:32px 28px}
+.for-card.yes-card{background:var(--forest)}
+.for-card.no-card{background:var(--mist);border:1.5px solid var(--border)}
+.for-card-label{font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;margin-bottom:16px;display:block}
+.for-card.yes-card .for-card-label{color:rgba(201,142,91,.7)}
+.for-card.no-card .for-card-label{color:var(--stone)}
+.for-card h3{font-family:'Fraunces',serif;font-size:22px;margin-bottom:20px}
+.for-card.yes-card h3{color:var(--ivory)}
+.for-card.no-card h3{color:var(--forest)}
+.for-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.for-list li{font-size:14px;line-height:1.5;display:flex;align-items:flex-start;gap:10px}
+.for-card.yes-card .for-list li{color:rgba(236,232,224,.75)}
+.for-card.no-card .for-list li{color:var(--stone)}
+.for-list li::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;margin-top:7px}
+.for-card.yes-card .for-list li::before{background:rgba(201,142,91,.7)}
+.for-card.no-card .for-list li::before{background:rgba(32,51,40,.25)}
+
 /* Responsive additions */
+@media(max-width:900px){
+.heritage-intro-grid,.founder-inner,.for-grid{grid-template-columns:1fr}
+.heritage-intro-grid{gap:40px}
+.immersion-modules{grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.07)}
+.im-module{border-right:none;background:var(--forest)}
+.impact-grid{grid-template-columns:1fr 1fr}
+}
 @media(max-width:640px){
 .pricing-grid{grid-template-columns:1fr}
 .hiw-steps{grid-template-columns:1fr;gap:28px}
 .hiw-steps::before{display:none}
 .trust-item{padding:6px 12px}
 .trust-item-text{font-size:11px}
+.immersion-modules{grid-template-columns:1fr}
+.impact-grid{grid-template-columns:1fr}
+.aa-badge{flex-direction:column;text-align:center}
 }
 
 /* Animations */
@@ -385,31 +464,32 @@ footer a:hover{text-decoration:underline}
 </div>
 <div class="hero-inner">
   <div class="hero-badges">
-    <span class="hbadge pulse-green" data-i="badge_daily">Daily Available · 1 Pax Confirmed</span>
-    <span class="hbadge" data-i="badge_unesco">UNESCO Heritage Site</span>
-    <span class="hbadge" data-i="badge_op">Direct Local Operator · No Middleman</span>
+    <span class="hbadge pulse-green">Limited overnight capacity</span>
+    <span class="hbadge">UNESCO Cultural Landscape</span>
+    <span class="hbadge">Direct local operator</span>
+    <span class="hbadge">Community-based journey</span>
   </div>
-  <h1 data-i="hero_title">Sleep Above the Clouds<br><em>in Waerebo</em></h1>
-  <p class="hero-sub" data-i="hero_sub">A 2D1N wellness journey into Flores highlands — where silence, culture, and mountain air reset something inside you.</p>
+  <h1>One Village.<br>Eight Conical Homes.<br><em>A Thousand Years of Wisdom.</em></h1>
+  <p class="hero-sub">A privately guided overnight journey into the Flores highlands. Stay inside a traditional Mbaru Niang and enter a community where architecture, ritual, and identity still breathe together.</p>
   <div class="hero-price-row">
     <div class="price-block">
-      <div class="price-from" data-i="price_from">From · 2 Days / 1 Night</div>
+      <div class="price-from">From · 2 Days / 1 Night</div>
       <div class="price-main">IDR 1,850,000</div>
       <div class="price-usd">≈ USD 114 / person · all-inclusive</div>
     </div>
-    <div class="price-note serif" data-i="price_note">★ 4.9 · 200+ journeys completed · Confirmed in under 10 minutes.</div>
+    <div class="price-note serif">★ 4.9 · 200+ journeys curated · Ethical visitor guidelines included.</div>
   </div>
   <div class="hero-ctas">
-    <a href="book-waerebo-final.html" class="btn-hero-main" data-i="btn_check">Check Available Dates →</a>
-    <a href="https://wa.me/62811342473?text=Hello%20EastXperience%2C%20I%27d%20like%20to%20inquire%20about%20Waerebo%20trip.%0A%0ADate%3A%0APax%3A%0ACountry%3A" class="btn-hero-wa" target="_blank" rel="noopener">
+    <a href="book.html?product=waerebo" class="btn-hero-main">Reserve Direct →</a>
+    <a href="https://wa.me/62811342473?text=Hello%20EastXperience%2C%20I%27d%20like%20to%20speak%20with%20the%20curator%20about%20Waerebo.%0A%0ADate%3A%0APax%3A%0ACountry%3A" class="btn-hero-wa" target="_blank" rel="noopener">
       <svg class="wa-ico" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      <span data-i="btn_wa">Ask the Concierge</span>
+      Speak with Curator
     </a>
   </div>
   <div class="hero-rotate-wrap">
     <span class="hero-rotate" id="hero-rotate"></span>
   </div>
-  <p class="hero-foot serif" data-i="hero_cap">No payment today · Village overnight capacity is strictly limited.</p>
+  <p class="hero-foot serif">No payment today · Access remains intimate by design.</p>
 </div>
 </section>
 
@@ -434,34 +514,125 @@ footer a:hover{text-decoration:underline}
 </div>
 </div>
 
-<!-- WHY NOW -->
-<section class="sec">
+<!-- LIVING HERITAGE INTRO -->
+<section class="heritage-intro">
 <div class="wrap">
-  <div class="why-now-text fade-in">
-    <span class="gold-label" data-i="sec2_label">Why People Need This Now</span>
-    <div class="why-statement" data-i="why_statement">No traffic.<br>No notifications.<br>No malls. No noise.<br><br>Just mountain mist, firelight,<br>and perspective.</div>
-    <p class="why-sub" data-i="why_sub">Waerebo is not a destination you visit. It is a place that finds you when you are ready to slow down.</p>
+  <div class="heritage-intro-grid">
+    <div class="heritage-intro-text fade-in">
+      <span class="gold-label" style="color:rgba(201,142,91,.6)">Waerebo Living Heritage Experience</span>
+      <h2>This is not sightseeing.<br>This is participation in a living cultural landscape.</h2>
+      <p>At 1,200 metres above sea level, surrounded by cloud forest and accessible only on foot, Wae Rebo has stood unchanged for centuries. The Manggarai community here did not build these homes for visitors. That is precisely what makes an invitation to enter so rare.</p>
+      <p>The Mbaru Niang — eight towering conical structures of timber, bamboo, and palm fibre — are not monuments. Families live, cook, gather, and sleep inside them today, as their ancestors did a thousand years ago.</p>
+      <p>What you encounter here is not preservation for display. It is continuity in practice.</p>
+    </div>
+    <div class="heritage-pillars fade-in">
+      <div class="heritage-pillar">
+        <div class="heritage-pillar-icon">🏛</div>
+        <div>
+          <h4>UNESCO Asia-Pacific Heritage Award</h4>
+          <p>The Mbaru Niang architecture is recognised under the UNESCO Asia-Pacific Awards for Cultural Heritage Conservation — one of few living villages to hold this distinction.</p>
+        </div>
+      </div>
+      <div class="heritage-pillar">
+        <div class="heritage-pillar-icon">🌿</div>
+        <div>
+          <h4>Remote by Nature, Intimate by Design</h4>
+          <p>There are no roads into Wae Rebo. The four-hour highland trek is not an obstacle — it is the threshold between the ordinary world and something older.</p>
+        </div>
+      </div>
+      <div class="heritage-pillar">
+        <div class="heritage-pillar-icon">🤝</div>
+        <div>
+          <h4>A Real Community, Not a Showcase</h4>
+          <p>Manggarai families live here year-round. Customs, rituals, and language remain fully intact. Guests are welcomed, not observed from a distance.</p>
+        </div>
+      </div>
+      <div class="heritage-pillar">
+        <div class="heritage-pillar-icon">🌙</div>
+        <div>
+          <h4>Sleep Inside the Architecture</h4>
+          <p>Overnight access inside the Mbaru Niang is granted to a small number of guests each day — one of Southeast Asia's rarest sleeping arrangements.</p>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="reset-cards" style="margin-top:40px">
-    <div class="rc-card rc1 fade-in">
-      <div class="rc-icon">📵</div>
-      <h3 data-i="rc1_title">Digital Detox</h3>
-      <p data-i="rc1_desc">No signal above the treeline. Two full days of genuine disconnection from everything except what matters.</p>
+</div>
+</section>
+
+<!-- COMMUNITY FIRST IMPACT -->
+<section class="sec community-sec">
+<div class="wrap">
+  <div class="sec-head fade-in">
+    <span class="gold-label">Community First</span>
+    <h2>Every booking sustains<br><em>the village ecosystem</em></h2>
+    <p style="max-width:540px;color:var(--stone);font-size:16px;line-height:1.65;margin-top:12px">Responsible tourism is not a tagline. It is the structure of how this journey operates. When you book direct, the majority of what you pay flows back to the people who make this experience possible.</p>
+  </div>
+  <div class="impact-grid">
+    <div class="impact-card fade-in">
+      <span class="impact-icon">👣</span>
+      <h4>Local Guides</h4>
+      <p>Every trek is led by a Flores-born guide with deep knowledge of the land, language, and community protocols. Not an intermediary — a genuine ambassador.</p>
     </div>
-    <div class="rc-card rc2 fade-in">
-      <div class="rc-icon">🌿</div>
-      <h3 data-i="rc2_title">Slow Travel</h3>
-      <p data-i="rc2_desc">No rush. A walk that earns your arrival. A village that operates on a rhythm older than any city you have ever known.</p>
+    <div class="impact-card fade-in">
+      <span class="impact-icon">🏠</span>
+      <h4>Host Families</h4>
+      <p>Your overnight stay directly compensates the family whose home you sleep in. Meals are prepared by the community. Entrance fees go to the village council.</p>
     </div>
-    <div class="rc-card rc3 fade-in">
-      <div class="rc-icon">🤝</div>
-      <h3 data-i="rc3_title">Authentic Human Connection</h3>
-      <p data-i="rc3_desc">Shared meals, a welcome ceremony, and the rare privilege of being a guest in a real community.</p>
+    <div class="impact-card fade-in">
+      <span class="impact-icon">🌾</span>
+      <h4>Cultural Continuity</h4>
+      <p>Visitor income supports the maintenance of the Mbaru Niang structures and the preservation of oral traditions, weaving practices, and ceremonial customs.</p>
     </div>
-    <div class="rc-card rc4 fade-in">
-      <div class="rc-icon">🌄</div>
-      <h3 data-i="rc4_title">Meaningful Reset</h3>
-      <p data-i="rc4_desc">Guests leave Waerebo quieter than when they arrived. Something shifts at altitude. It always does.</p>
+    <div class="impact-card fade-in">
+      <span class="impact-icon">📋</span>
+      <h4>Ethical Visitor Guidelines</h4>
+      <p>Every guest receives a briefing on respectful behaviour, dress code, and cultural protocols before arrival — prepared with the village's input.</p>
+    </div>
+    <div class="impact-card fade-in">
+      <span class="impact-icon">🚫</span>
+      <h4>No Mass Tourism</h4>
+      <p>Overnight capacity is strictly limited by the village. We work within those limits. There are no workarounds and no exceptions for larger groups.</p>
+    </div>
+    <div class="impact-card fade-in">
+      <span class="impact-icon">♻️</span>
+      <h4>Leave No Trace</h4>
+      <p>Guests carry out all waste. Single-use plastics are not permitted above Denge village. This is standard — not optional.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOUNDER CREDIBILITY -->
+<section class="sec founder-sec">
+<div class="wrap">
+  <div class="founder-inner">
+    <div class="founder-text fade-in">
+      <span class="gold-label">Designed with Sustainable Tourism Principles</span>
+      <h2>Curated from the field,<br>refined through study</h2>
+      <p>This journey has been shaped by years of direct field experience in Flores and Nusa Tenggara Timur — and refined through formal learning in Sustainable Tourism Management as part of the Australia Awards Indonesia programme.</p>
+      <p>The result is a Waerebo experience built around three commitments: genuine community benefit, educated cultural context, and a standard of care that respects both the guest and the village.</p>
+      <p>You will notice the difference in how your guide frames the community, how the logistics are handled, and how the village is treated after you leave.</p>
+    </div>
+    <div class="founder-cred fade-in">
+      <div class="founder-quote">
+        The communities we visit are not backdrops. They are the reason this journey exists. Every decision — from group size to briefing content — is made with the village first.
+        <div style="margin-top:18px;font-family:'Inter',sans-serif;font-style:normal;font-size:12.5px;color:var(--stone)">— Herdi, Founder · EastXperience</div>
+      </div>
+      <div class="aa-badge">
+        <div class="aa-logo-wrap">
+          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Australia Awards">
+            <rect width="44" height="44" rx="8" fill="#1B3A5C" fill-opacity="0.08"/>
+            <g transform="translate(22,22)">
+              <polygon points="0,-13 3.1,-4.8 13,-4.8 5.2,1.8 8.0,10.5 0,5.2 -8.0,10.5 -5.2,1.8 -13,-4.8 -3.1,-4.8" fill="#1B3A5C" opacity="0.75"/>
+            </g>
+          </svg>
+        </div>
+        <div class="aa-logo-text">
+          <span class="aa-label">Founder Background</span>
+          <div class="aa-name">Australia Awards Indonesia</div>
+          <span class="aa-sub">Short Course · Sustainable Tourism Management</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -531,6 +702,44 @@ footer a:hover{text-decoration:underline}
     <div class="pg-item pg-4">
       <img src="waerebo images/8ca4a8e4-6345-4e30-ac72-a07627484489.JPG" alt="Full panorama of Waerebo village with all seven Mbaru Niang cone houses" loading="lazy" style="object-position:center 35%">
       <span class="pg-cap" data-i="pg4_cap">Where tradition still lives above the clouds</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- IMMERSION EXPERIENCE -->
+<section class="immersion-sec">
+<div class="wrap">
+  <div class="sec-head fade-in" style="margin-bottom:48px">
+    <span class="gold-label" style="color:rgba(201,142,91,.6)">The Wae Rebo Arc</span>
+    <h2 style="color:var(--ivory);font-size:clamp(28px,4vw,48px)">Five moments that<br><em style="color:rgba(201,142,91,.8)">stay with you</em></h2>
+    <p style="color:rgba(236,232,224,.5);max-width:480px;margin-top:12px;font-size:15.5px;line-height:1.65">Not a sequence of activities. A progression of presence — from arrival at the forest threshold to the quiet you carry home.</p>
+  </div>
+  <div class="immersion-modules fade-in">
+    <div class="im-module">
+      <span class="im-num">I</span>
+      <div class="im-title">Arrival Through the Clouds</div>
+      <p class="im-desc">The four-hour ascent through highland forest is not preamble. The path itself begins the shift — each step further from the pace you arrived with.</p>
+    </div>
+    <div class="im-module">
+      <span class="im-num">II</span>
+      <div class="im-title">Coffee by Firelight</div>
+      <p class="im-desc">Evening in the village. The mist comes down. A fire in the centre of the Mbaru Niang, shared coffee, and conversation without an agenda. Many guests say this is when they finally exhale.</p>
+    </div>
+    <div class="im-module">
+      <span class="im-num">III</span>
+      <div class="im-title">Stories Inside Mbaru Niang</div>
+      <p class="im-desc">Your guide translates what the architecture means — the five tiers, the clan symbols, the ceremony that consecrates a new structure. Context transforms what you see.</p>
+    </div>
+    <div class="im-module">
+      <span class="im-num">IV</span>
+      <div class="im-title">Dawn Over the Highlands</div>
+      <p class="im-desc">05:30. The most extraordinary hour. Mist moves through the valley. First light finds the village slowly. Many guests say they have never heard silence quite like this.</p>
+    </div>
+    <div class="im-module">
+      <span class="im-num">V</span>
+      <div class="im-title">Return with Perspective</div>
+      <p class="im-desc">The descent is different from the climb. Something has shifted. What you notice on the way down — the light, the forest, your own pace — tells you something about what happened up there.</p>
     </div>
   </div>
 </div>
@@ -636,7 +845,7 @@ footer a:hover{text-decoration:underline}
   </div>
 
   <div class="pricing-cta fade-in">
-    <a href="book-waerebo-final.html" class="btn-book" data-i="btn_compare">Reserve This Date →</a>
+    <a href="book.html?product=waerebo" class="btn-book" data-i="btn_compare">Reserve This Date →</a>
     <p style="margin-top:12px;font-size:12.5px;color:var(--stone);font-style:italic;font-family:'Fraunces',serif" data-i="pricing_micro">No payment required today. Confirmed in under 10 minutes.</p>
   </div>
 </div>
@@ -667,7 +876,7 @@ footer a:hover{text-decoration:underline}
       </div>
     </div>
     <div class="cal-cta" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
-      <a href="book-waerebo-final.html" class="btn-hero-main" style="display:inline-flex;background:var(--forest);color:var(--ivory);padding:14px 28px;font-size:15px" data-i="btn_cal_book">Secure This Date →</a>
+      <a href="book.html?product=waerebo" class="btn-hero-main" style="display:inline-flex;background:var(--forest);color:var(--ivory);padding:14px 28px;font-size:15px" data-i="btn_cal_book">Secure This Date →</a>
       <a href="https://wa.me/62811342473?text=Hello%20EastXperience%2C%20I%27d%20like%20to%20check%20availability%20for%20Waerebo.%0A%0ADate%3A%0APax%3A%0ACountry%3A" class="btn-hero-wa" style="display:inline-flex;padding:13px 22px;font-size:14px" target="_blank" rel="noopener" data-i="btn_cal_wa">
         <svg class="wa-ico" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
         <span data-i="btn_cal_wa">Ask on WhatsApp</span>
@@ -706,6 +915,44 @@ footer a:hover{text-decoration:underline}
 </div>
 </section>
 
+<!-- WHO THIS IS FOR -->
+<section class="sec for-sec">
+<div class="wrap">
+  <div class="sec-head center fade-in">
+    <span class="gold-label">Honest Clarity</span>
+    <h2>Is Wae Rebo<br><em>right for you?</em></h2>
+    <p style="max-width:480px;margin:12px auto 0;color:var(--stone);font-size:15.5px;line-height:1.65">This question matters. Qualified guests have better journeys. The village deserves visitors who arrive prepared.</p>
+  </div>
+  <div class="for-grid fade-in">
+    <div class="for-card yes-card">
+      <span class="for-card-label">This journey is designed for</span>
+      <h3>Thoughtful travellers who seek substance</h3>
+      <ul class="for-list">
+        <li>Educated, curious travellers who want genuine cultural context — not a scripted highlight</li>
+        <li>Photographers drawn to architecture, light, and authentic human moments</li>
+        <li>Couples seeking a shared experience that goes deeper than scenery</li>
+        <li>Solo travellers ready to be present in an unfamiliar community</li>
+        <li>Architecture, anthropology, and sustainability enthusiasts</li>
+        <li>Premium slow travellers who measure a journey by what it gives them to think about</li>
+        <li>University groups, leadership retreats, and CSR teams seeking purposeful immersion</li>
+      </ul>
+    </div>
+    <div class="for-card no-card">
+      <span class="for-card-label">This is not the right fit if</span>
+      <h3>A different experience may serve you better</h3>
+      <ul class="for-list">
+        <li>You expect luxury resort amenities — the village provides simple, genuine hospitality, not hotel comfort</li>
+        <li>You are unwilling to walk four hours through highland terrain at moderate elevation</li>
+        <li>You need reliable phone signal or internet access during the stay</li>
+        <li>You are visiting primarily to photograph and leave — the community expects presence, not extraction</li>
+        <li>You are travelling on a tight schedule and cannot allow time to slow down</li>
+      </ul>
+      <p style="margin-top:20px;font-size:13px;color:var(--stone);font-style:italic;font-family:'Fraunces',serif">Not sure? Message us before booking. An honest conversation takes two minutes.</p>
+    </div>
+  </div>
+</div>
+</section>
+
 <!-- TESTIMONIALS -->
 <section class="sec">
 <div class="wrap">
@@ -716,17 +963,17 @@ footer a:hover{text-decoration:underline}
   <div class="testi-grid">
     <div class="testi fade-in">
       <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"The hardest walk I've done and the most rewarding. Arriving at the village felt like stepping into another century."</p>
+      <p class="testi-text">"The trek earns you the arrival. When the village appeared through the mist, I understood immediately why nothing could prepare you for it."</p>
       <div class="testi-author"><div class="testi-av">S</div><div><div class="testi-name">Sophie L.</div><div class="testi-origin">France · April 2024</div></div></div>
     </div>
     <div class="testi fade-in">
       <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"The sunrise from inside the village was the single best moment of our entire Indonesia trip. Everything EastXperience arranged worked perfectly."</p>
+      <p class="testi-text">"Dawn from inside the village was the single hour that changed everything about how we think about travel. Herdi's preparation made every detail work."</p>
       <div class="testi-author"><div class="testi-av">M</div><div><div class="testi-name">Marcus &amp; Yuki</div><div class="testi-origin">Australia / Japan · Jan 2025</div></div></div>
     </div>
     <div class="testi fade-in">
       <div class="testi-stars">★★★★★</div>
-      <p class="testi-text">"Real, human, unforgettable. The kind of place that makes you rethink what travel actually is."</p>
+      <p class="testi-text">"I travel for architecture and culture. Wae Rebo is one of perhaps five places on earth that genuinely stopped me — and made me think carefully about what I was witnessing."</p>
       <div class="testi-author"><div class="testi-av">A</div><div><div class="testi-name">Ahmed K.</div><div class="testi-origin">UAE · Sept 2024</div></div></div>
     </div>
   </div>
@@ -752,6 +999,10 @@ footer a:hover{text-decoration:underline}
     <details class="faq-item"><summary><span data-i="q8">Are meals included? I have dietary restrictions.</span><span class="faq-plus">+</span></summary><p data-i="a8">All meals are included — dinner, breakfast, two lunches, snacks. Vegetarian, vegan, halal, and gluten-free are all handled with advance notice (tell us when booking). Allergies are taken seriously and confirmed directly with the village cook.</p></details>
     <details class="faq-item"><summary><span data-i="q9">When do I pay? Is it secure?</span><span class="faq-plus">+</span></summary><p data-i="a9">Nothing today. After you send the form, your specialist confirms availability within 10 minutes and shares a secure payment link (bank transfer or card). Pay only after confirmation. You're never charged on an unconfirmed date.</p></details>
     <details class="faq-item"><summary><span data-i="q10">Do you accept last-minute bookings?</span><span class="faq-plus">+</span></summary><p data-i="a10">We've confirmed trips for next-morning departure. Message us on WhatsApp — if the village has capacity and a guide is available, we make it happen. Same-week bookings are standard.</p></details>
+    <details class="faq-item"><summary><span>What are the toilet facilities like?</span><span class="faq-plus">+</span></summary><p>The village has basic shared outdoor facilities — functional but rustic. There is no flush toilet inside the Mbaru Niang. This is standard for a remote highland community at 1,200 metres. Guests who arrive with accurate expectations consistently find it entirely manageable. Guests who arrive expecting otherwise occasionally find it surprising. We tell you this now so you arrive prepared, not surprised.</p></details>
+    <details class="faq-item"><summary><span>What is sleeping inside the Mbaru Niang actually like?</span><span class="faq-plus">+</span></summary><p>You sleep on a thin mattress on the wooden floor of the communal ground level, beneath the timber beams and cone structure above you. Blankets are provided. The air at night reaches 14–16°C — cool and clean. It is not luxury. It is extraordinary. The structure, the quiet, and the mountain air create a kind of rest that most guests describe as unlike anything in their travel experience. A warm layer is essential.</p></details>
+    <details class="faq-item"><summary><span>Is there a dress code? How should I behave respectfully?</span><span class="faq-plus">+</span></summary><p>Yes, and we take this seriously. Every guest receives a cultural etiquette briefing before arrival. Key points: cover shoulders and knees when entering the village, ask before photographing individuals (especially elders and children), do not enter restricted ceremonial areas without invitation, follow your guide's lead during any ritual or gathering. The village extends genuine hospitality — it deserves genuine respect in return.</p></details>
+    <details class="faq-item"><summary><span>How does my visit contribute to the village?</span><span class="faq-plus">+</span></summary><p>Your entrance fee is paid directly to the village council and funds Mbaru Niang maintenance, community programmes, and cultural preservation. Your accommodation and meal costs go to the host family. Your guide is a local Flores resident, not an outside operator. When you book direct with EastXperience rather than through a marketplace, no commission is removed from these flows before they reach the community. That matters.</p></details>
   </div>
 </div>
 </section>
@@ -799,18 +1050,18 @@ footer a:hover{text-decoration:underline}
 <!-- FINAL CTA -->
 <section class="cta-fin" id="booking">
 <div class="wrap">
-  <span class="gold-label" style="color:rgba(201,142,91,.55);margin-bottom:20px" data-i="fin_label">Ready to go?</span>
-  <h2 data-i="fin_title">Some places entertain you.<br><em>Waerebo restores you.</em></h2>
-  <p data-i="fin_sub">Book direct with EastXperience. No payment today. Availability confirmed first.</p>
+  <span class="gold-label" style="color:rgba(201,142,91,.55);margin-bottom:20px">An Invitation, Not a Listing</span>
+  <h2>Wae Rebo is not a place<br><em>to consume.</em></h2>
+  <p>It is a place to enter respectfully — with curiosity, patience, and the willingness to be changed by what you encounter. Reserve your place while access remains intimate.</p>
   <div class="cta-row">
-    <a href="book-waerebo-final.html" class="btn-fin-main" data-i="btn_reserve">Reserve — No Payment Today</a>
-    <a href="https://wa.me/62811342473?text=Hello%20EastXperience%2C%20I%27d%20like%20to%20ask%20about%20Waerebo.%0A%0ADate%3A%0APax%3A%0ACountry%3A" class="btn-fin-sec" target="_blank" rel="noopener" data-i="btn_specialist">
+    <a href="book.html?product=waerebo" class="btn-fin-main">Reserve Direct — No Payment Today</a>
+    <a href="https://wa.me/62811342473?text=Hello%20EastXperience%2C%20I%27d%20like%20to%20ask%20about%20the%20Waerebo%20experience.%0A%0ADate%3A%0APax%3A%0ACountry%3A" class="btn-fin-sec" target="_blank" rel="noopener">
       <svg class="wa-ico" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      Talk to Specialist
+      Ask Questions First
     </a>
   </div>
-  <p class="cta-micro" data-i="fin_micro">No payment required today. Availability confirmed first.</p>
-  <p class="cta-cap" data-i="fin_cap">Village capacity is strictly limited. Dates fill weeks in advance.</p>
+  <p class="cta-micro">No payment required today. Your specialist confirms availability within minutes.</p>
+  <p class="cta-cap">Overnight access is strictly limited by the village. Dates close weeks ahead.</p>
 </div>
 </section>
 
@@ -828,7 +1079,7 @@ footer a:hover{text-decoration:underline}
     <div class="sticky-price-num">IDR 1.85M <span style="color:#e8a03a;font-size:12px;margin-left:4px">★ 4.9</span></div>
     <div class="sticky-price-sub" data-i="sticky_per">/ person · all-inclusive</div>
   </div>
-  <a href="book-waerebo-final.html" class="btn-sticky-main" data-i="btn_sticky">Reserve — 2 min</a>
+  <a href="book.html?product=waerebo" class="btn-sticky-main" data-i="btn_sticky">Reserve — 2 min</a>
   <a href="https://wa.me/62811342473?text=Hello%20EastXperience%2C%20I%27m%20interested%20in%20Waerebo." class="btn-sticky-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
     <svg class="wa-ico" style="width:18px;height:18px" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
   </a>
