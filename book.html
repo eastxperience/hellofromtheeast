@@ -56,7 +56,7 @@
   .trust-ribbon span { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
   .trust-ribbon span::before { content: "✓"; color: var(--accent-2); font-weight: 700; }
   @media (max-width: 720px) {
-    .trust-ribbon { font-size: 11px; gap: 12px; padding: 9px 10px; }
+    .trust-ribbon { font-size: 12px; gap: 14px; padding: 10px 12px; line-height: 1.35; }
     .trust-ribbon span.tr-secondary { display: none; }
   }
 
@@ -160,11 +160,25 @@
   .summ-total .l { letter-spacing: -.01em; }
   .summ-trust .t::before { background-color: rgba(201,142,91,.14) !important; }
 
+  /* ─── Mobile header: shorten back link so it stops crowding brand + concierge pill ─── */
+  @media (max-width: 520px) {
+    .hdr-back .hdr-back-long { display: none; }
+    .hdr-back .hdr-back-short { display: inline; }
+  }
+  .hdr-back .hdr-back-short { display: none; }
+
   /* ─── Small-screen breathing ─── */
   @media (max-width: 480px) {
     .book-card { padding: 22px 18px 18px; }
     .book-card h2 { font-size: 20px; }
     .book-hero h1 { font-size: 26px !important; }
+  }
+
+  /* ─── Pax stepper: stack on narrow phones so label + controls never collide ─── */
+  @media (max-width: 420px) {
+    .pax-row { flex-direction: column; align-items: stretch; gap: 14px; padding: 16px 18px; }
+    .pax-ctrl { justify-content: space-between; width: 100%; }
+    .pax-n { flex: 1; text-align: center; }
   }
 </style>
 </head>
@@ -182,7 +196,7 @@
 <!-- HEADER -->
 <header class="site-header">
   <div class="hdr">
-    <a class="hdr-back" href="index.html" data-back-link>← Experience details</a>
+    <a class="hdr-back" href="index.html" data-back-link><span class="hdr-back-long">← Experience details</span><span class="hdr-back-short">← Back</span></a>
     <a class="hdr-brand" href="index.html">
       <img src="assets/logo.svg" alt="EastXperience" onerror="this.onerror=null;this.src='images/logo-eastxperience.svg'">
       <span>EastXperience</span>
