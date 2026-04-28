@@ -1,0 +1,1062 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="theme-color" content="#0B1F17" />
+<title>EastXperience | Private Tours Indonesia — Komodo, Bandung, Flores</title>
+<meta name="description" content="EastXperience designs private, handcrafted journeys across Indonesia — Komodo, Bandung, Flores, Java & Bali. Direct local operator. Fast concierge on WhatsApp." />
+<meta name="keywords" content="Indonesia private tours, Komodo tour, Bandung tour, Flores tour, Waerebo, Labuan Bajo, luxury Indonesia travel, EastXperience" />
+<link rel="canonical" href="https://eastxperience.github.io/hellofromtheeast/" />
+<meta property="og:title" content="EastXperience | Private Tours Indonesia" />
+<meta property="og:description" content="Private journeys crafted beautifully across Komodo, Bandung, Flores & hidden Indonesia." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://images.unsplash.com/photo-1518544801976-3e159e50e5bb?auto=format&fit=crop&w=1600&q=80" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/svg+xml" href="Eastxperience-Logo.svg" />
+<link rel="apple-touch-icon" href="Eastxperience-Logo.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        display: ['Fraunces','serif'],
+        sans: ['Inter','system-ui','sans-serif'],
+      },
+      colors: {
+        ink: '#0B1F17',
+        bone: '#F6F1E7',
+        sand: '#E8DEC9',
+        clay: '#C8754B',
+        moss: '#243B2E',
+        emerald2: '#1E4D3A',
+        gold: '#C9A24B',
+      },
+      boxShadow: {
+        soft: '0 10px 40px -10px rgba(11,31,23,.25)',
+        lux:  '0 30px 80px -30px rgba(11,31,23,.45)',
+      },
+    }
+  }
+}
+</script>
+<style>
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:#F6F1E7;color:#0B1F17;-webkit-font-smoothing:antialiased}
+  .font-display{font-family:'Fraunces',serif;font-optical-sizing:auto;letter-spacing:-.02em}
+
+  /* ─── BUTTONS ─── */
+  .btn{display:inline-flex;align-items:center;gap:.55rem;padding:.95rem 1.4rem;border-radius:9999px;font-weight:600;font-size:.95rem;transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;will-change:transform;min-height:44px}
+  .btn-primary{background:#0B1F17;color:#F6F1E7;box-shadow:0 10px 30px -10px rgba(11,31,23,.55)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px -12px rgba(11,31,23,.6)}
+  .btn-ghost{background:rgba(255,255,255,.1);color:#F6F1E7;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25)}
+  .btn-ghost:hover{background:rgba(255,255,255,.18)}
+  .btn-wa{background:#25D366;color:#0B1F17}
+  .btn-wa:hover{background:#1fb957;transform:translateY(-2px)}
+
+  /* ─── CHIPS ─── */
+  .chip{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .9rem;border-radius:9999px;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#F6F1E7}
+  .chip-dark{background:rgba(11,31,23,.06);border-color:rgba(11,31,23,.12);color:#0B1F17}
+
+  /* ─── CARDS ─── */
+  .card{background:#fff;border-radius:28px;overflow:hidden;border:1px solid rgba(11,31,23,.06);transition:transform .4s ease,box-shadow .4s ease}
+  .card:hover{transform:translateY(-6px);box-shadow:0 30px 60px -30px rgba(11,31,23,.35)}
+  .img-cover{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+  .card:hover .img-cover{transform:scale(1.06)}
+
+  /* ─── LAYOUT HELPERS ─── */
+  .kbd-hairline{position:relative}
+  .kbd-hairline:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(to right,transparent,rgba(11,31,23,.18),transparent)}
+  .grain:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:3px 3px;opacity:.35;pointer-events:none;mix-blend-mode:overlay}
+  .gradient-dark{background:linear-gradient(180deg,rgba(11,31,23,.15) 0%,rgba(11,31,23,.55) 55%,rgba(11,31,23,.88) 100%)}
+
+  /* ─── MARQUEE ─── */
+  .marquee{display:flex;gap:3rem;animation:marq 40s linear infinite}
+  @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ─── REVEAL ─── */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .8s ease, transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ─── NAV ─── */
+  .nav-link{position:relative;font-weight:500}
+  .nav-link:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+  .nav-link:hover:after{transform:scaleX(1)}
+
+  /* ─── HERO ─── */
+  .hero-bg{position:relative;overflow:hidden}
+  .hero-bg .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0}
+  .hero-bg .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,31,23,.2) 0%,rgba(11,31,23,.8) 100%);z-index:1}
+
+  /* ─── URGENCY PULSE ─── */
+  .urgency-pulse{animation:upulse 2s ease-in-out infinite}
+  @keyframes upulse{0%,100%{opacity:1}50%{opacity:.7}}
+
+  /* ─── SCROLL SNAP ─── */
+  .scroll-snap{scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .scroll-snap>*{scroll-snap-align:start}
+
+  /* ─── FAB — Smart show/hide, icon-only on mobile ─── */
+  .fab{
+    position:fixed;right:18px;bottom:18px;z-index:60;
+    display:inline-flex;align-items:center;gap:.55rem;
+    padding:.9rem 1.2rem;border-radius:9999px;
+    background:#25D366;color:#0B1F17;font-weight:700;
+    box-shadow:0 20px 40px -10px rgba(37,211,102,.5);
+    transition:opacity .4s ease, transform .4s ease, background .25s ease;
+    opacity:0;transform:translateY(14px);pointer-events:none;
+  }
+  .fab.fab-visible{opacity:1;transform:translateY(0);pointer-events:auto}
+  .fab:hover{background:#1fb957}
+  .fab .pulse{width:9px;height:9px;background:#0B1F17;border-radius:9999px;position:relative;flex-shrink:0}
+  .fab .pulse:after{content:"";position:absolute;inset:-4px;border-radius:9999px;border:2px solid rgba(11,31,23,.35);animation:p 1.8s ease-out infinite}
+  @keyframes p{0%{transform:scale(.6);opacity:.9}100%{transform:scale(1.8);opacity:0}}
+  /* Mobile: icon-only */
+  @media(max-width:767px){
+    .fab{padding:.9rem;border-radius:9999px}
+    .fab .fab-label{display:none}
+  }
+
+  /* ─── FAQ ─── */
+  details>summary{list-style:none;cursor:pointer}
+  details>summary::-webkit-details-marker{display:none}
+
+  /* ─── PRICE USD BADGE ─── */
+  .price-usd{font-size:.72rem;color:#6B7280;margin-left:.25rem}
+
+  /* ─── GYG SECONDARY LINK (card) ─── */
+  .gyg-link{
+    display:inline-flex;align-items:center;gap:.3rem;
+    font-size:.75rem;font-weight:500;color:rgba(11,31,23,.5);
+    text-decoration:none;padding:.3rem 0;
+    transition:color .2s;border-bottom:1px solid transparent;
+  }
+  .gyg-link:hover{color:rgba(11,31,23,.85);border-bottom-color:rgba(11,31,23,.2)}
+
+  /* ─── MOBILE OVERRIDES ─── */
+  @media(max-width:767px){
+    section{scroll-margin-top:60px}
+    .mob-hide{display:none!important}
+    .hero-bg{min-height:88vh!important}
+    h1{font-size:38px!important;line-height:1.05!important}
+    h2{font-size:28px!important;line-height:1.12!important}
+    .card .p-6,.card .p-7{padding:1.1rem!important}
+    .card p{font-size:14px!important;line-height:1.65!important}
+    .intro-long{display:none}
+    .intro-short{display:block}
+    section.py-20{padding-top:3rem!important;padding-bottom:3rem!important}
+    section.pb-20{padding-bottom:3rem!important}
+    .grid.gap-6{gap:1rem!important}
+    .grid.gap-5{gap:.75rem!important}
+    .p-7{padding:1.25rem!important}
+    p{line-height:1.7!important}
+    .text-\[17px\]{font-size:15px!important}
+    .mb-10{margin-bottom:1.75rem!important}
+    .mt-14{margin-top:2rem!important}
+    .py-5{padding-top:.875rem!important;padding-bottom:.875rem!important}
+    .divide-y>*+*{margin-top:.25rem}
+    /* Card buttons: stack vertically on mobile */
+    .card-actions{flex-direction:column!important;gap:.5rem!important}
+    .card-actions .btn{width:100%!important;justify-content:center}
+    /* FAQ summary: generous touch area */
+    details>summary{padding:.75rem 0}
+    /* Announcement bar: single line on mobile */
+    .ann-mid{display:none!important}
+  }
+  @media(min-width:768px){
+    .intro-short{display:none}
+    .intro-long{display:block}
+  }
+
+  /* ─── TESTIMONIAL DOTS ─── */
+  .dot{width:7px;height:7px;border-radius:9999px;background:rgba(11,31,23,.2);transition:all .3s}
+  .dot.active{background:#0B1F17;width:22px}
+  .no-scrollbar::-webkit-scrollbar{display:none}
+  .no-scrollbar{scrollbar-width:none}
+
+  /* ─── TRUST BADGE ROW ─── */
+  .trust-badge{display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;letter-spacing:.04em;color:rgba(246,241,231,.7);padding:.3rem .65rem;border-radius:9999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- ═══════════════════════════════════════════
+     ANNOUNCEMENT BAR — elegant, not alarming
+════════════════════════════════════════════ -->
+<div class="bg-ink text-bone text-[12px] tracking-widest uppercase">
+  <div class="max-w-7xl mx-auto px-5 py-2.5 flex items-center justify-between gap-4">
+    <span class="opacity-75">Direct Local Operator · No Middleman · No Service Fee</span>
+    <span class="ann-mid hidden sm:inline opacity-75">Peak Season · Jul · Aug · Sept · Select departures still available</span>
+    <a href="https://wa.me/62811342473" class="opacity-80 hover:opacity-100 underline-offset-4 hover:underline whitespace-nowrap">+62 811 3424 73</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     NAV
+════════════════════════════════════════════ -->
+<header id="nav" class="sticky top-0 z-50 transition-all duration-300 bg-bone/70 backdrop-blur-xl border-b border-ink/5">
+  <div class="max-w-7xl mx-auto px-5 h-16 md:h-20 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5">
+      <img src="Eastxperience-Logo.svg" alt="EastXperience" class="h-8 md:h-9 w-auto" style="mix-blend-mode:multiply" />
+      <span class="font-display text-[17px] md:text-[19px] tracking-tight hidden sm:inline">EastXperience</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-[14px] text-ink/80">
+      <a href="#experiences" class="nav-link">Experiences</a>
+      <a href="#destinations" class="nav-link">Destinations</a>
+      <a href="#why" class="nav-link">Why Us</a>
+      <a href="#how" class="nav-link">How It Works</a>
+      <a href="#stories" class="nav-link">Stories</a>
+    </nav>
+    <div class="flex items-center gap-2">
+      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20love%20to%20start%20planning%20my%20trip." class="btn btn-primary !py-2.5 !px-4 text-[13px]">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+        Start Planning
+      </a>
+      <button id="menu-btn" class="md:hidden w-10 h-10 rounded-full border border-ink/10 flex items-center justify-center" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="md:hidden hidden border-t border-ink/5 bg-bone/95 backdrop-blur-xl">
+    <div class="px-5 py-4 flex flex-col gap-3 text-[15px]">
+      <a href="#experiences" class="py-2">Experiences</a>
+      <a href="#destinations" class="py-2">Destinations</a>
+      <a href="#why" class="py-2">Why Us</a>
+      <a href="#how" class="py-2">How It Works</a>
+      <a href="#stories" class="py-2">Stories</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="relative overflow-hidden">
+  <div class="hero-bg relative min-h-[92vh] md:min-h-[88vh] flex items-end">
+    <img class="hero-img" src="https://lh3.googleusercontent.com/d/1N2JEvpJxl39ObNX1EB3FxpKbOOHjW4sj=w2000" alt="EastXperience private Indonesia journey" fetchpriority="high"/>
+    <div class="hero-overlay"></div>
+    <div class="absolute inset-0 grain" style="z-index:2"></div>
+    <div class="relative max-w-7xl mx-auto px-5 pb-14 md:pb-24 pt-28 text-bone w-full" style="z-index:3">
+
+      <!-- Trust chips — BEFORE the headline so proof precedes CTA -->
+      <div class="flex items-center gap-3 mb-5">
+        <span class="chip">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 urgency-pulse"></span>
+          Replying now · 3 min avg
+        </span>
+        <span class="chip mob-hide">
+          <span class="w-1.5 h-1.5 rounded-full bg-sand/60"></span>
+          Peak Season · Jul–Sept · Limited departures
+        </span>
+      </div>
+
+      <h1 class="font-display text-[40px] leading-[1.04] sm:text-6xl md:text-7xl lg:text-[84px] max-w-4xl">
+        Private Indonesia Journeys<br/><em class="not-italic text-gold/95">Crafted by Locals</em>
+      </h1>
+
+      <!-- ↳ REWRITTEN: outcome-first, not feature-list -->
+      <p class="mt-5 max-w-xl text-bone/90 text-lg md:text-xl leading-relaxed">
+        Handcrafted journeys across Indonesia's most extraordinary islands — direct from the people who live there. No platform. No markup. Just yours.
+      </p>
+
+      <div class="mt-7 flex flex-wrap items-center gap-3">
+        <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20start%20planning%20my%20trip." class="btn btn-wa text-[15px] !py-3 !px-5">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+          Start Planning
+        </a>
+        <a href="#experiences" class="btn btn-ghost">Explore Trips ↓</a>
+      </div>
+
+      <!-- Trust microline — AFTER CTA as reassurance -->
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-bone/75 text-[13px]">
+        <div class="flex items-center gap-2">
+          <div class="flex -space-x-2">
+            <img loading="lazy" class="w-8 h-8 rounded-full border-2 border-ink object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=80" alt=""/>
+            <img loading="lazy" class="w-8 h-8 rounded-full border-2 border-ink object-cover" src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=80&q=80" alt=""/>
+            <img loading="lazy" class="w-8 h-8 rounded-full border-2 border-ink object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt=""/>
+          </div>
+          <span><span class="text-gold">★★★★★</span> 5,000+ journeys</span>
+        </div>
+        <span>40+ countries</span>
+        <span>Real reply · avg 4 min</span>
+        <span>Direct operator</span>
+        <span class="mob-hide">🔒 Secure booking</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TRUST BAR
+════════════════════════════════════════════ -->
+<section class="bg-ink text-bone/80">
+  <div class="max-w-7xl mx-auto px-5 py-6 overflow-hidden">
+    <div class="marquee whitespace-nowrap text-[13px] tracking-[.18em] uppercase">
+      <div class="flex gap-12 pr-12 items-center">
+        <span>★ 5,000+ Journeys</span><span>·</span>
+        <span>Direct Local Operator</span><span>·</span>
+        <span>Real Reply · Under 5 Minutes</span><span>·</span>
+        <span>Secure Booking</span><span>·</span>
+        <span>Fully Personalised Itineraries</span><span>·</span>
+        <span>Trusted Across 40+ Countries</span><span>·</span>
+        <span>4.9★ Verified on GetYourGuide</span><span>·</span>
+      </div>
+      <div class="flex gap-12 pr-12 items-center" aria-hidden="true">
+        <span>★ 5,000+ Journeys</span><span>·</span>
+        <span>Direct Local Operator</span><span>·</span>
+        <span>Real Reply · Under 5 Minutes</span><span>·</span>
+        <span>Secure Booking</span><span>·</span>
+        <span>Fully Personalised Itineraries</span><span>·</span>
+        <span>Trusted Across 40+ Countries</span><span>·</span>
+        <span>4.9★ Verified on GetYourGuide</span><span>·</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     WHY BOOK DIRECT
+════════════════════════════════════════════ -->
+<section class="py-16 md:py-24">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+      <span class="text-[12px] tracking-[.25em] uppercase text-ink/60">— Why Book Direct With Us</span>
+      <h2 class="font-display text-3xl md:text-5xl mt-4 leading-[1.05]">Skip the platform. Talk to the people who actually run your trip.</h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- ↳ Added one-line proof under each pillar -->
+      <div class="p-6 rounded-2xl bg-white border border-ink/5 reveal">
+        <div class="text-3xl mb-3">💰</div>
+        <h3 class="font-display text-xl">Better Rates</h3>
+        <p class="mt-2 text-ink/70 text-[14px] leading-relaxed">Same trips as GYG — minus the 20% platform fee. Direct booking means the savings come to you.</p>
+      </div>
+      <div class="p-6 rounded-2xl bg-white border border-ink/5 reveal">
+        <div class="text-3xl mb-3">⚡</div>
+        <h3 class="font-display text-xl">Faster Planning</h3>
+        <p class="mt-2 text-ink/70 text-[14px] leading-relaxed">Most guests receive their full custom itinerary the same day they message us. Average reply: 4 minutes.</p>
+      </div>
+      <div class="p-6 rounded-2xl bg-white border border-ink/5 reveal">
+        <div class="text-3xl mb-3">🧭</div>
+        <h3 class="font-display text-xl">Real Local Specialists</h3>
+        <p class="mt-2 text-ink/70 text-[14px] leading-relaxed">Our team has led 5,000+ trips across Indonesia. We live between Bandung, Labuan Bajo and Flores.</p>
+      </div>
+      <div class="p-6 rounded-2xl bg-white border border-ink/5 reveal">
+        <div class="text-3xl mb-3">🛡️</div>
+        <h3 class="font-display text-xl">Priority Support</h3>
+        <p class="mt-2 text-ink/70 text-[14px] leading-relaxed">Dedicated concierge before, during & after your trip. Real humans on WhatsApp, 7 days a week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FEATURED EXPERIENCES
+════════════════════════════════════════════ -->
+<section id="experiences" class="pb-20 md:pb-28">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex items-end justify-between mb-10 gap-4 flex-wrap">
+      <div>
+        <span class="text-[12px] tracking-[.25em] uppercase text-ink/60">— Featured Experiences</span>
+        <h2 class="font-display text-3xl md:text-5xl mt-3">Signature journeys, thoughtfully curated.</h2>
+      </div>
+      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20a%20custom%20trip." class="hidden md:inline-flex btn btn-primary">Get Custom Itinerary →</a>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- ─── CARD 1 ─── -->
+      <article class="card reveal">
+        <div class="relative aspect-[4/5] overflow-hidden">
+          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/12naTQR5AAnUlSTbIaZEfNf5xnzjZxtYE=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Bandung river rafting adventure"/>
+          <div class="absolute inset-0 gradient-dark"></div>
+          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Bandung</span><span class="chip">Adventure</span></div>
+          <div class="absolute bottom-4 left-4 right-4 text-bone">
+            <div class="text-[12px] tracking-widest uppercase opacity-80">Full Day · Incl. Lunch</div>
+            <h3 class="font-display text-2xl md:text-[28px] mt-1">Pangalengan River Rafting</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Chase whitewater rapids through Bandung's emerald highlands — a rush of cold spray, rainforest, and sun-warmed laughter.</p>
+          <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Whitewater rapids through Bandung's emerald highlands.</p>
+          <div class="mt-5">
+            <!-- ↳ USD price added for international visitors -->
+            <div class="text-[13px] text-ink/60 mb-1">Direct rate from <strong class="text-ink">IDR 850K</strong> <span class="price-usd">~$53 USD</span> / person</div>
+            <div class="text-[11px] text-emerald-700 mb-3 font-medium">Direct rate — save vs. platform booking</div>
+            <!-- ↳ Primary CTA standardised; GYG demoted to text link -->
+            <div class="card-actions flex gap-2">
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Bandung%20Rafting%20trip." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+                Plan This Trip
+              </a>
+            </div>
+            <div class="mt-2">
+              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/bandung-l32327/bandung-pangalengan-river-rafting-adventure-with-lunch-t775512/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Also available on GetYourGuide
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ─── CARD 2 ─── -->
+      <article class="card reveal">
+        <div class="relative aspect-[4/5] overflow-hidden">
+          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1jdS-99j8dgQro7zgS3e745nnWYSBYwVS=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Bandung volcano tea plantation onsen"/>
+          <div class="absolute inset-0 gradient-dark"></div>
+          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Bandung</span><span class="chip">Wellness</span></div>
+          <div class="absolute bottom-4 left-4 right-4 text-bone">
+            <div class="text-[12px] tracking-widest uppercase opacity-80">One Day · Volcano · Onsen · Tea</div>
+            <h3 class="font-display text-2xl md:text-[28px] mt-1">Volcano, Onsen & Tea Fields</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Crater steam at dawn, volcanic hot springs by noon, and a walk through cloud-touched tea terraces by golden hour.</p>
+          <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Volcano crater, hot springs, and cloud-touched tea terraces.</p>
+          <div class="mt-5">
+            <div class="text-[13px] text-ink/60 mb-1">Direct rate from <strong class="text-ink">IDR 950K</strong> <span class="price-usd">~$59 USD</span> / person</div>
+            <div class="text-[11px] text-emerald-700 mb-3 font-medium">Direct rate — save vs. platform booking</div>
+            <div class="card-actions flex gap-2">
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Volcano%20Onsen%20Tea%20trip." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+                Plan This Trip
+              </a>
+            </div>
+            <div class="mt-2">
+              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/bandung-l32327/bandung-volcano-crater-onsen-hot-springs-mud-bath-tea-t1016735/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Also available on GetYourGuide
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ─── CARD 3 ─── -->
+      <article class="card reveal">
+        <div class="relative aspect-[4/5] overflow-hidden">
+          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1h-6fQ7WUblD1ZEFZKWLig0lyotpPZFT8=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Komodo Pink Beach speedboat"/>
+          <div class="absolute inset-0 gradient-dark"></div>
+          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Komodo</span><span class="chip">Bestseller</span></div>
+          <div class="absolute bottom-4 left-4 right-4 text-bone">
+            <div class="text-[12px] tracking-widest uppercase opacity-80">Full Day · Speedboat</div>
+            <h3 class="font-display text-2xl md:text-[28px] mt-1">Komodo by Speedboat</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Padar's sweeping ridges, Pink Beach's blush shoreline, dragons on Komodo Island — one unforgettable day on open water.</p>
+          <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Padar, Pink Beach, Komodo dragons. One epic day.</p>
+          <div class="mt-5">
+            <div class="text-[13px] text-ink/60 mb-1">Direct rate from <strong class="text-ink">IDR 1.5M</strong> <span class="price-usd">~$94 USD</span> / person · <span class="text-clay">Bestseller</span></div>
+            <div class="text-[11px] text-emerald-700 mb-3 font-medium">Direct rate — save vs. platform booking</div>
+            <div class="card-actions flex gap-2">
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Komodo%20Speedboat%20trip." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+                Plan This Trip
+              </a>
+            </div>
+            <div class="mt-2">
+              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/labuan-bajo-l106237/komodo-full-day-speedboat-tour-from-labuan-bajo-t720690/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Also available on GetYourGuide
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ─── CARD 4 ─── -->
+      <article class="card reveal">
+        <div class="relative aspect-[4/5] overflow-hidden">
+          <img loading="lazy" class="img-cover" src="assets/images/todo.jpg" onerror="this.src='https://lh3.googleusercontent.com/d/1w05_X0_yHJ7D2eQqK-5abmVGhCRQfuHb=w1400'" alt="Todo Village Flores culture"/>
+          <div class="absolute inset-0 gradient-dark"></div>
+          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Flores</span><span class="chip">Culture</span></div>
+          <div class="absolute bottom-4 left-4 right-4 text-bone">
+            <div class="text-[12px] tracking-widest uppercase opacity-80">Day Tour · Manggarai</div>
+            <h3 class="font-display text-2xl md:text-[28px] mt-1">Todo Village & Cunca Plias</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Ancient drum ceremonies, woven ikat, and a secret waterfall — an intimate walk into Manggarai's living heritage.</p>
+          <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Drum ceremonies, woven ikat, secret waterfall.</p>
+          <div class="mt-5">
+            <div class="text-[13px] text-ink/60 mb-1">Direct rate from <strong class="text-ink">IDR 1.95M</strong> <span class="price-usd">~$122 USD</span> / person</div>
+            <div class="text-[11px] text-emerald-700 mb-3 font-medium">Direct rate — save vs. platform booking</div>
+            <div class="card-actions flex gap-2">
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Todo%20Village%20trip." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+                Plan This Trip
+              </a>
+            </div>
+            <div class="mt-2">
+              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/manggarai-regency-l217587/todo-village-cunca-plias-cultural-nature-day-tour-t1257123/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Also available on GetYourGuide
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ─── CARD 5 ─── -->
+      <article class="card reveal">
+        <div class="relative aspect-[4/5] overflow-hidden">
+          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1j2_tskL7S4JWI_TP_yC_E8NWY6j-Nh31=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Waerebo village Flores"/>
+          <div class="absolute inset-0 gradient-dark"></div>
+          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Flores</span><span class="chip">Iconic</span></div>
+          <div class="absolute bottom-4 left-4 right-4 text-bone">
+            <div class="text-[12px] tracking-widest uppercase opacity-80">2 Days · 1 Night</div>
+            <h3 class="font-display text-2xl md:text-[28px] mt-1">Waerebo Village Above the Clouds</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Hike into mist, sleep beneath conical thatched roofs, wake to gongs and mountain silence — Indonesia's most sacred welcome.</p>
+          <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Hike into mist, sleep beneath thatched roofs above the clouds.</p>
+          <div class="mt-5">
+            <div class="text-[13px] text-ink/60 mb-1">Direct rate from <strong class="text-ink">IDR 1.85M</strong> <span class="price-usd">~$114 USD</span> / person · <span class="text-clay">Iconic</span></div>
+            <div class="text-[11px] text-emerald-700 mb-3 font-medium">Direct rate — save vs. platform booking</div>
+            <div class="card-actions flex gap-2">
+              <a href="waerebo-final.html" class="btn btn-primary flex-1 !py-2 !px-3 text-[13px] justify-center">
+                View Journey →
+              </a>
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Waerebo%202D1N%20trip." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+                WhatsApp
+              </a>
+            </div>
+            <div class="mt-2">
+              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/labuan-bajo-l106237/2d1n-exotic-waerebo-village-tour-from-labuan-bajo-t519573/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Also available on GetYourGuide
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ─── CARD 6 ─── -->
+      <article class="card reveal">
+        <div class="relative aspect-[4/5] overflow-hidden">
+          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1jSGZxbJ52RGY6lryxDA9cQtO8y6hA-Ks=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Komodo sailing liveaboard"/>
+          <div class="absolute inset-0 gradient-dark"></div>
+          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Komodo</span><span class="chip">Sailing</span></div>
+          <div class="absolute bottom-4 left-4 right-4 text-bone">
+            <div class="text-[12px] tracking-widest uppercase opacity-80">3 Days · 2 Nights · Shared or Private</div>
+            <h3 class="font-display text-2xl md:text-[28px] mt-1">Komodo Sailing Expedition</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Sleep under galaxies, dive into manta channels, and sail between islands that feel like they belong only to you.</p>
+          <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Sleep under galaxies, dive with mantas, sail private islands.</p>
+          <div class="mt-5">
+            <div class="text-[13px] text-ink/60 mb-1">Direct rate from <strong class="text-ink">IDR 5.5M</strong> <span class="price-usd">~$344 USD</span> / person · <span class="text-clay">Premium</span></div>
+            <div class="text-[11px] text-emerald-700 mb-3 font-medium">Direct rate — save vs. platform booking</div>
+            <div class="card-actions flex gap-2">
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Komodo%203D2N%20Sailing." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+                Plan This Trip
+              </a>
+            </div>
+            <div class="mt-2">
+              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/labuan-bajo-l106237/3d2n-komodo-social-community-sailing-experience-t1226320/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Also available on GetYourGuide
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="md:hidden mt-8 flex justify-center">
+      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20build%20my%20trip." class="btn btn-primary">Get Custom Itinerary →</a>
+    </div>
+
+    <!-- ↳ URGENCY BLOCK — elegant scarcity, not alarm -->
+    <div class="mt-10 p-5 md:p-6 rounded-2xl bg-sand/60 border border-sand flex flex-wrap items-center justify-between gap-4 reveal">
+      <div>
+        <div class="flex items-center gap-2 text-ink/80 font-semibold text-[14px]">
+          <span class="w-2 h-2 rounded-full bg-clay"></span>
+          Peak Season · Jul–Sept
+        </div>
+        <p class="text-ink/65 text-[14px] mt-1 max-w-lg">Phinisi departures are limited by nature — only a handful of vessels operate in Komodo waters. Select July–September dates are still available. We'll hold a slot while you plan.</p>
+      </div>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20I%20want%20to%20check%20availability%20for%20peak%20season." class="btn btn-primary !py-2 !px-4 text-[13px] whitespace-nowrap">Check Availability →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     WHO TRAVELS WITH US
+════════════════════════════════════════════ -->
+<section class="py-14 md:py-20 bg-sand/40">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="text-center mb-10 reveal">
+      <span class="text-[12px] tracking-[.25em] uppercase text-ink/60">— Who Travels With Us</span>
+      <h2 class="font-display text-3xl md:text-5xl mt-3">Find your journey style.</h2>
+      <p class="text-ink/60 mt-2 text-[15px]">Tap yours to start planning.</p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
+      <a href="https://wa.me/62811342473?text=Hi%2C%20we%27re%20planning%20our%20honeymoon%20in%20Indonesia." class="p-5 rounded-2xl bg-white border border-ink/5 text-center hover:shadow-soft hover:-translate-y-1 transition reveal" style="min-height:44px">
+        <div class="text-3xl mb-2">💑</div>
+        <div class="font-display text-[16px]">Honeymoon</div>
+        <div class="text-[12px] text-ink/50 mt-1">Romance & luxury</div>
+      </a>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20planning%20a%20corporate%20retreat%20in%20Indonesia." class="p-5 rounded-2xl bg-white border border-ink/5 text-center hover:shadow-soft hover:-translate-y-1 transition reveal" style="min-height:44px">
+        <div class="text-3xl mb-2">🏢</div>
+        <div class="font-display text-[16px]">Corporate</div>
+        <div class="text-[12px] text-ink/50 mt-1">Team retreats</div>
+      </a>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20planning%20a%20family%20trip%20to%20Indonesia." class="p-5 rounded-2xl bg-white border border-ink/5 text-center hover:shadow-soft hover:-translate-y-1 transition reveal" style="min-height:44px">
+        <div class="text-3xl mb-2">👨‍👩‍👧‍👦</div>
+        <div class="font-display text-[16px]">Family</div>
+        <div class="text-[12px] text-ink/50 mt-1">All ages welcome</div>
+      </a>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20looking%20for%20an%20adventure%20group%20trip." class="p-5 rounded-2xl bg-white border border-ink/5 text-center hover:shadow-soft hover:-translate-y-1 transition reveal" style="min-height:44px">
+        <div class="text-3xl mb-2">🧗</div>
+        <div class="font-display text-[16px]">Adventure</div>
+        <div class="text-[12px] text-ink/50 mt-1">Active & wild</div>
+      </a>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20solo%20premium%20traveler%20looking%20for%20Indonesia%20trip." class="p-5 rounded-2xl bg-white border border-ink/5 text-center hover:shadow-soft hover:-translate-y-1 transition col-span-2 md:col-span-1 reveal" style="min-height:44px">
+        <div class="text-3xl mb-2">✨</div>
+        <div class="font-display text-[16px]">Solo Premium</div>
+        <div class="text-[12px] text-ink/50 mt-1">Curated escapes</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     WHY EASTXPERIENCE
+════════════════════════════════════════════ -->
+<section id="why" class="bg-ink text-bone py-20 md:py-28 relative overflow-hidden">
+  <div class="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full bg-emerald2 blur-3xl opacity-40"></div>
+  <div class="absolute -bottom-40 -left-40 w-[500px] h-[500px] rounded-full bg-clay/40 blur-3xl opacity-40"></div>
+  <div class="max-w-7xl mx-auto px-5 relative">
+    <div class="max-w-3xl">
+      <span class="text-[12px] tracking-[.25em] uppercase text-bone/60">— Why EastXperience</span>
+      <h2 class="font-display text-4xl md:text-6xl mt-4 leading-[1.05]">
+        Crafted by locals.<br/>Trusted by travelers.
+      </h2>
+      <p class="mt-5 text-bone/75 text-lg mob-hide">We're not a marketplace. We're the people behind the journey — every message, every sunrise, every detail.</p>
+      <p class="mt-4 text-bone/75 text-[15px] intro-short">Direct from operator. Better price, better service.</p>
+    </div>
+    <div class="mt-14 grid md:grid-cols-3 gap-5">
+      <div class="p-7 rounded-3xl bg-white/[.04] border border-white/10 backdrop-blur reveal">
+        <div class="w-11 h-11 rounded-full bg-gold/20 text-gold flex items-center justify-center mb-5">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        </div>
+        <h3 class="font-display text-2xl">Real Local Expertise</h3>
+        <p class="mt-3 text-bone/75">Our concierge team lives between Bandung, Labuan Bajo and Flores. The insight is lived, not searched.</p>
+      </div>
+      <div class="p-7 rounded-3xl bg-white/[.04] border border-white/10 backdrop-blur reveal">
+        <div class="w-11 h-11 rounded-full bg-gold/20 text-gold flex items-center justify-center mb-5">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <h3 class="font-display text-2xl">Human-Crafted Trips</h3>
+        <p class="mt-3 text-bone/75">No drop-down builders. Every itinerary is hand-designed for how you actually want to travel.</p>
+      </div>
+      <div class="p-7 rounded-3xl bg-white/[.04] border border-white/10 backdrop-blur reveal">
+        <div class="w-11 h-11 rounded-full bg-gold/20 text-gold flex items-center justify-center mb-5">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
+        </div>
+        <h3 class="font-display text-2xl">Fast Concierge Support</h3>
+        <p class="mt-3 text-bone/75">Average WhatsApp reply: 4 minutes during Indonesia hours. Real humans, 7 days a week — not bots.</p>
+      </div>
+      <div class="p-7 rounded-3xl bg-white/[.04] border border-white/10 backdrop-blur reveal">
+        <div class="w-11 h-11 rounded-full bg-gold/20 text-gold flex items-center justify-center mb-5">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 7 9 18l-5-5"/></svg>
+        </div>
+        <h3 class="font-display text-2xl">Hidden Gems Access</h3>
+        <p class="mt-3 text-bone/75">Private villages, off-map reefs, sunrise peaks few guides ever see. That's our quiet luxury.</p>
+      </div>
+      <div class="p-7 rounded-3xl bg-white/[.04] border border-white/10 backdrop-blur reveal">
+        <div class="w-11 h-11 rounded-full bg-gold/20 text-gold flex items-center justify-center mb-5">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.5 9.5 8 10 4.5-.5 8-5 8-10V6l-8-4Z"/></svg>
+        </div>
+        <h3 class="font-display text-2xl">Secure Booking</h3>
+        <p class="mt-3 text-bone/75">Transparent pricing, verified partners, clear cancellation windows. Book with total peace of mind.</p>
+      </div>
+      <div class="p-7 rounded-3xl bg-white/[.04] border border-white/10 backdrop-blur reveal">
+        <div class="w-11 h-11 rounded-full bg-gold/20 text-gold flex items-center justify-center mb-5">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c4-4 8-7.5 8-12a8 8 0 1 0-16 0c0 4.5 4 8 8 12Z"/><path d="M9.5 11c1 1.5 3 2.5 4.5 1.5"/></svg>
+        </div>
+        <h3 class="font-display text-2xl">Authentic Hospitality</h3>
+        <p class="mt-3 text-bone/75">Family-run lodges, chefs who remember your name, guides who feel like friends by day two.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════ -->
+<section id="stories" class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
+      <div>
+        <span class="text-[12px] tracking-[.25em] uppercase text-ink/60">— Guest Stories</span>
+        <h2 class="font-display text-3xl md:text-5xl mt-3">Travelers who became storytellers.</h2>
+      </div>
+      <div class="hidden md:flex items-center gap-2">
+        <button data-slide="-1" class="w-11 h-11 rounded-full border border-ink/15 hover:bg-ink hover:text-bone transition"><span aria-hidden>←</span></button>
+        <button data-slide="1" class="w-11 h-11 rounded-full border border-ink/15 hover:bg-ink hover:text-bone transition"><span aria-hidden>→</span></button>
+      </div>
+    </div>
+    <div id="testi-track" class="flex gap-5 overflow-x-auto scroll-snap no-scrollbar pb-4 -mx-5 px-5">
+      <blockquote class="min-w-[86%] sm:min-w-[48%] lg:min-w-[32%] bg-sand/60 rounded-3xl p-8 border border-ink/5">
+        <div class="text-gold">★★★★★</div>
+        <p class="font-display text-xl md:text-2xl mt-4 leading-snug">"Waerebo felt sacred. EastXperience made us feel invited, not toured. Best days of our year."</p>
+        <footer class="mt-6 flex items-center gap-3">
+          <img loading="lazy" class="w-11 h-11 rounded-full object-cover" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=120&q=80" alt=""/>
+          <div><div class="font-semibold">Sofía M.</div><div class="text-sm text-ink/60">Madrid · 2D1N Waerebo</div></div>
+        </footer>
+      </blockquote>
+      <blockquote class="min-w-[86%] sm:min-w-[48%] lg:min-w-[32%] bg-sand/60 rounded-3xl p-8 border border-ink/5">
+        <div class="text-gold">★★★★★</div>
+        <p class="font-display text-xl md:text-2xl mt-4 leading-snug">"Komodo by speedboat was the single most photogenic day of our honeymoon. Flawless planning."</p>
+        <footer class="mt-6 flex items-center gap-3">
+          <img loading="lazy" class="w-11 h-11 rounded-full object-cover" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt=""/>
+          <div><div class="font-semibold">James & Priya</div><div class="text-sm text-ink/60">London · Komodo Speedboat</div></div>
+        </footer>
+      </blockquote>
+      <blockquote class="min-w-[86%] sm:min-w-[48%] lg:min-w-[32%] bg-sand/60 rounded-3xl p-8 border border-ink/5">
+        <div class="text-gold">★★★★★</div>
+        <p class="font-display text-xl md:text-2xl mt-4 leading-snug">"Bandung's tea hills at sunrise, volcanic onsen at lunch — I didn't know Indonesia could be this cinematic."</p>
+        <footer class="mt-6 flex items-center gap-3">
+          <img loading="lazy" class="w-11 h-11 rounded-full object-cover" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt=""/>
+          <div><div class="font-semibold">Chloé D.</div><div class="text-sm text-ink/60">Paris · Volcano & Onsen</div></div>
+        </footer>
+      </blockquote>
+      <blockquote class="min-w-[86%] sm:min-w-[48%] lg:min-w-[32%] bg-sand/60 rounded-3xl p-8 border border-ink/5">
+        <div class="text-gold">★★★★★</div>
+        <p class="font-display text-xl md:text-2xl mt-4 leading-snug">"They answered in minutes, adjusted our route twice, remembered my daughter's allergy. Incredible team."</p>
+        <footer class="mt-6 flex items-center gap-3">
+          <img loading="lazy" class="w-11 h-11 rounded-full object-cover" src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?auto=format&fit=crop&w=120&q=80" alt=""/>
+          <div><div class="font-semibold">The Hartmann Family</div><div class="text-sm text-ink/60">Munich · Komodo Sailing</div></div>
+        </footer>
+      </blockquote>
+    </div>
+    <div id="testi-dots" class="flex justify-center gap-2 mt-4"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     DESTINATIONS
+════════════════════════════════════════════ -->
+<section id="destinations" class="py-20 md:py-28 bg-sand/50">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="mb-10">
+      <span class="text-[12px] tracking-[.25em] uppercase text-ink/60">— Destinations</span>
+      <h2 class="font-display text-3xl md:text-5xl mt-3">Five corners of Indonesia. Infinite stories.</h2>
+    </div>
+    <div class="grid md:grid-cols-6 gap-4 md:gap-5 auto-rows-[220px] md:auto-rows-[280px]">
+      <a href="https://wa.me/62811342473?text=Hi%2C%20I%27d%20like%20a%20trip%20to%20Bandung" class="relative md:col-span-3 rounded-3xl overflow-hidden group">
+        <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1Oi47N9hKq6l391IG2fJll3HKzLQMSqHu=w1600" onerror="this.src='assets/images/placeholder.svg'" alt="Bandung"/>
+        <div class="absolute inset-0 gradient-dark"></div>
+        <div class="absolute bottom-5 left-5 text-bone">
+          <div class="text-[11px] tracking-[.2em] uppercase opacity-80">Highland · West Java</div>
+          <div class="font-display text-3xl">Bandung</div>
+        </div>
+      </a>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20I%27d%20like%20a%20trip%20to%20Komodo" class="relative md:col-span-3 rounded-3xl overflow-hidden group">
+        <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1RWADLJJcgliXgAIGNZdiNN4uFq-0oCN1=w1600" onerror="this.src='assets/images/placeholder.svg'" alt="Komodo"/>
+        <div class="absolute inset-0 gradient-dark"></div>
+        <div class="absolute bottom-5 left-5 text-bone">
+          <div class="text-[11px] tracking-[.2em] uppercase opacity-80">Archipelago · East Nusa Tenggara</div>
+          <div class="font-display text-3xl">Komodo</div>
+        </div>
+      </a>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20I%27d%20like%20a%20trip%20to%20Flores" class="relative md:col-span-2 rounded-3xl overflow-hidden group">
+        <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1w05_X0_yHJ7D2eQqK-5abmVGhCRQfuHb=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Flores"/>
+        <div class="absolute inset-0 gradient-dark"></div>
+        <div class="absolute bottom-5 left-5 text-bone">
+          <div class="text-[11px] tracking-[.2em] uppercase opacity-80">Culture & Highlands</div>
+          <div class="font-display text-2xl">Flores</div>
+        </div>
+      </a>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20I%27d%20like%20a%20trip%20to%20Java" class="relative md:col-span-2 rounded-3xl overflow-hidden group">
+        <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/136xAbG4GRGiZ5S9BaZZxnQCRQfjBXnTF=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Java"/>
+        <div class="absolute inset-0 gradient-dark"></div>
+        <div class="absolute bottom-5 left-5 text-bone">
+          <div class="text-[11px] tracking-[.2em] uppercase opacity-80">Temples & Volcanoes</div>
+          <div class="font-display text-2xl">Java</div>
+        </div>
+      </a>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20I%27d%20like%20a%20trip%20to%20Bali" class="relative md:col-span-2 rounded-3xl overflow-hidden group">
+        <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1kuNLwdMIOw5vLWfiG-PmTK3bUjjh0XIX=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Bali"/>
+        <div class="absolute inset-0 gradient-dark"></div>
+        <div class="absolute bottom-5 left-5 text-bone">
+          <div class="text-[11px] tracking-[.2em] uppercase opacity-80">Rituals & Reefs</div>
+          <div class="font-display text-2xl">Bali</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     HOW IT WORKS
+════════════════════════════════════════════ -->
+<section id="how" class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="mb-12 max-w-3xl">
+      <span class="text-[12px] tracking-[.25em] uppercase text-ink/60">— How It Works</span>
+      <h2 class="font-display text-3xl md:text-5xl mt-3">From first message to last sunset — effortlessly.</h2>
+    </div>
+    <div class="grid md:grid-cols-4 gap-6">
+      <div class="relative p-7 rounded-3xl bg-white border border-ink/5 reveal">
+        <div class="font-display text-5xl text-clay/70">01</div>
+        <h3 class="font-display text-2xl mt-3">Tell Us Your Dream</h3>
+        <p class="mt-3 text-ink/70">Share dates, pace, people, and a feeling. We listen first, suggest second.</p>
+      </div>
+      <div class="relative p-7 rounded-3xl bg-white border border-ink/5 reveal">
+        <div class="font-display text-5xl text-clay/70">02</div>
+        <h3 class="font-display text-2xl mt-3">We Craft The Journey</h3>
+        <p class="mt-3 text-ink/70">A handwritten itinerary with routes, lodges, flavors — yours to refine, until it's perfect.</p>
+      </div>
+      <div class="relative p-7 rounded-3xl bg-white border border-ink/5 reveal">
+        <div class="font-display text-5xl text-clay/70">03</div>
+        <h3 class="font-display text-2xl mt-3">Confirm Easily</h3>
+        <p class="mt-3 text-ink/70">Secure your trip with clear pricing and a simple deposit. No surprises, ever.</p>
+      </div>
+      <div class="relative p-7 rounded-3xl bg-white border border-ink/5 reveal">
+        <div class="font-display text-5xl text-clay/70">04</div>
+        <h3 class="font-display text-2xl mt-3">Enjoy Indonesia</h3>
+        <p class="mt-3 text-ink/70">Arrive, breathe, wander. We'll be on WhatsApp for every sunrise request along the way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FAQ
+════════════════════════════════════════════ -->
+<section class="pb-20 md:pb-28">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="mb-10 text-center">
+      <span class="text-[12px] tracking-[.25em] uppercase text-ink/60">— Questions</span>
+      <h2 class="font-display text-3xl md:text-5xl mt-3">Before you write us.</h2>
+    </div>
+    <div class="divide-y divide-ink/10 border-y border-ink/10">
+      <details class="py-5 group">
+        <summary class="flex items-center justify-between gap-4 py-1"><span class="font-display text-xl">Is payment safe? How do I pay?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition-transform duration-200">+</span></summary>
+        <p class="mt-3 text-ink/70">Yes. We accept bank transfer and major payment methods. You'll receive a clear invoice with itemized costs before any payment. No hidden fees, no surprises.</p>
+      </details>
+      <details class="py-5 group">
+        <summary class="flex items-center justify-between gap-4 py-1"><span class="font-display text-xl">Are you better than booking on GetYourGuide?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition-transform duration-200">+</span></summary>
+        <p class="mt-3 text-ink/70">We're the same operator behind many GYG listings — but direct booking means no platform commission, so you get better rates, more flexible customisation, and priority support.</p>
+      </details>
+      <details class="py-5 group">
+        <summary class="flex items-center justify-between gap-4 py-1"><span class="font-display text-xl">Do you speak English? Other languages?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition-transform duration-200">+</span></summary>
+        <p class="mt-3 text-ink/70">Fluent English is our standard. Our team also speaks Indonesian and basic Mandarin. All communication is fast, clear, and friendly.</p>
+      </details>
+      <details class="py-5 group">
+        <summary class="flex items-center justify-between gap-4 py-1"><span class="font-display text-xl">What's your refund & cancellation policy?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition-transform duration-200">+</span></summary>
+        <p class="mt-3 text-ink/70">Flexible cancellation windows depending on the trip. We provide clear terms upfront — no fine print, no gotchas. Plans change, we understand.</p>
+      </details>
+      <details class="py-5 group">
+        <summary class="flex items-center justify-between gap-4 py-1"><span class="font-display text-xl">Is hotel pickup included?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition-transform duration-200">+</span></summary>
+        <p class="mt-3 text-ink/70">Yes, most trips include hotel pickup and drop-off within the service area. We confirm all logistics before your trip so you just relax.</p>
+      </details>
+      <details class="py-5 group">
+        <summary class="flex items-center justify-between gap-4 py-1"><span class="font-display text-xl">Are there any hidden fees?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition-transform duration-200">+</span></summary>
+        <p class="mt-3 text-ink/70">Zero. The price we quote is the price you pay. National park entrance fees and specific extras are always listed upfront.</p>
+      </details>
+      <details class="py-5 group">
+        <summary class="flex items-center justify-between gap-4 py-1"><span class="font-display text-xl">How fast can you plan my trip?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition-transform duration-200">+</span></summary>
+        <p class="mt-3 text-ink/70">WhatsApp reply in under 5 minutes. Full custom itinerary proposal within hours. We've had guests book and travel within 48 hours.</p>
+      </details>
+      <details class="py-5 group">
+        <summary class="flex items-center justify-between gap-4 py-1"><span class="font-display text-xl">Can you handle groups and families?</span><span class="text-2xl text-ink/50 group-open:rotate-45 transition-transform duration-200">+</span></summary>
+        <p class="mt-3 text-ink/70">From couples to 30+ person groups, multi-generational families, and private buyouts. Tell us your pace, we design around it.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FINAL CTA
+════════════════════════════════════════════ -->
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0">
+    <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1HmmxCw3Tj-4Sfs4n3qyZR9fpWczrxmrV=w2000" onerror="this.src='assets/images/placeholder.svg'" alt="Indonesian sunset"/>
+    <div class="absolute inset-0 bg-ink/70"></div>
+  </div>
+  <div class="relative max-w-5xl mx-auto px-5 py-24 md:py-36 text-center text-bone">
+    <!-- ↳ Urgency chips: specific scarcity, elegant tone -->
+    <div class="flex items-center justify-center gap-2 mb-6 flex-wrap">
+      <span class="chip"><span class="w-1.5 h-1.5 rounded-full bg-clay"></span> Select Jul–Sept departures still available</span>
+      <span class="chip mob-hide"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 urgency-pulse"></span> Most guests book 2–3 weeks ahead</span>
+    </div>
+    <!-- ↳ REWRITTEN headline: outcome-led, premium tone -->
+    <h2 class="font-display text-4xl md:text-7xl leading-[1.02]">
+      Your next chapter<br/><em class="not-italic text-gold">starts with one message.</em>
+    </h2>
+    <!-- ↳ REWRITTEN subline: lower commitment, clearer process -->
+    <p class="mt-5 text-bone/80 text-lg max-w-xl mx-auto">Tell us your dates, your people, your pace. We'll handle the rest — reply within minutes, itinerary within hours. No commitment required.</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27m%20ready%20to%20start%20planning%20my%20trip." class="btn btn-wa text-[15px] !py-3 !px-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+        Start Planning
+      </a>
+      <!-- ↳ Email CTA: active voice, curated feel -->
+      <a href="mailto:hello@eastxperience.com?subject=Request%20a%20Sample%20Plan&body=Hi%20EastXperience%2C%20I%27d%20love%20to%20receive%20a%20sample%20itinerary%20for%20my%20trip." class="btn btn-ghost">Request a Sample Plan</a>
+    </div>
+    <div class="mt-4 text-bone/45 text-[12px]">Typically replied to within 2 hours by email · Under 5 minutes on WhatsApp</div>
+    <div class="mt-5 flex flex-wrap justify-center gap-4 text-bone/60 text-[13px]">
+      <span>✓ No hidden fees</span>
+      <span>✓ Free cancellation window</span>
+      <span>✓ English-speaking team</span>
+      <span>✓ 4.9★ on GetYourGuide</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="bg-ink text-bone/80">
+  <div class="max-w-7xl mx-auto px-5 py-16 grid md:grid-cols-12 gap-10">
+    <div class="md:col-span-5">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-bone p-1 shadow-soft">
+          <img src="Eastxperience-Logo.svg" alt="EastXperience" class="h-full w-auto" />
+        </span>
+        <span class="font-display text-xl text-bone">EastXperience</span>
+      </div>
+      <p class="mt-5 max-w-sm text-bone/70">Private journeys, curated by locals. Handcrafted across Indonesia since day one.</p>
+      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20start%20planning%20my%20trip." class="btn btn-wa mt-6">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+        Start Planning · +62 811 3424 73
+      </a>
+    </div>
+    <div class="md:col-span-3">
+      <div class="text-[12px] tracking-[.22em] uppercase text-bone/50 mb-4">Explore</div>
+      <ul class="space-y-2">
+        <li><a href="#experiences" class="hover:text-bone">Experiences</a></li>
+        <li><a href="#destinations" class="hover:text-bone">Destinations</a></li>
+        <li><a href="#why" class="hover:text-bone">Why Us</a></li>
+        <li><a href="#how" class="hover:text-bone">How It Works</a></li>
+        <li><a href="#stories" class="hover:text-bone">Guest Stories</a></li>
+      </ul>
+    </div>
+    <div class="md:col-span-4">
+      <div class="text-[12px] tracking-[.22em] uppercase text-bone/50 mb-4">Concierge</div>
+      <p class="text-bone/70">WhatsApp · <a class="hover:text-bone" href="https://wa.me/62811342473">+62 811 3424 73</a></p>
+      <p class="text-bone/70">Email · <a class="hover:text-bone" href="mailto:hello@eastxperience.com">hello@eastxperience.com</a></p>
+      <p class="text-bone/70 mt-3 text-sm">WhatsApp reply · avg 4 min · 7 days a week</p>
+      <p class="text-bone/50 mt-2 text-sm">4.9★ Verified on GetYourGuide</p>
+    </div>
+  </div>
+  <div class="border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-5 py-5 flex flex-wrap items-center justify-between gap-3 text-[13px] text-bone/60">
+      <span>© <span id="yr"></span> EastXperience. Crafted with care in Indonesia.</span>
+      <span>Private Journeys · Komodo · Bandung · Flores · Java · Bali</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════
+     FLOATING WA — Smart show/hide · Icon-only on mobile
+     Appears after scrolling past hero (~500px)
+     Invisible on page load — no competition with hero CTAs
+════════════════════════════════════════════ -->
+<a id="fab" href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20start%20planning%20my%20trip." class="fab" aria-label="Start Planning via WhatsApp">
+  <span class="pulse"></span>
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+  <span class="fab-label text-[13px]">Start Planning</span>
+</a>
+
+<!-- JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"TravelAgency",
+  "name":"EastXperience",
+  "url":"https://eastxperience.github.io/",
+  "image":"https://eastxperience.github.io/Eastxperience-Logo.svg",
+  "telephone":"+62811342473",
+  "areaServed":"Indonesia",
+  "sameAs":["https://wa.me/62811342473"],
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"512"}
+}
+</script>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  menuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  mobileMenu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+  // Nav shadow on scroll
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => {
+    nav.classList.toggle('shadow-soft', window.scrollY > 8);
+  }, { passive: true });
+
+  // Reveal on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ── FAB: smart show/hide ──
+  // Hidden on load. Appears after hero leaves viewport (~500px scroll).
+  // Removed from viewport: hides again (optional — keeps it subtle).
+  const fab = document.getElementById('fab');
+  const FAB_TRIGGER = 480; // px — roughly past hero CTA
+  let fabVisible = false;
+  document.addEventListener('scroll', () => {
+    const shouldShow = window.scrollY > FAB_TRIGGER;
+    if (shouldShow !== fabVisible) {
+      fabVisible = shouldShow;
+      fab.classList.toggle('fab-visible', fabVisible);
+    }
+  }, { passive: true });
+
+  // Testimonial slider
+  const track = document.getElementById('testi-track');
+  const dotsWrap = document.getElementById('testi-dots');
+  if (track && dotsWrap) {
+    const slides = track.children.length;
+    for (let i = 0; i < slides; i++) {
+      const d = document.createElement('button');
+      d.className = 'dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      d.addEventListener('click', () => {
+        const w = track.firstElementChild.getBoundingClientRect().width + 20;
+        track.scrollTo({ left: i * w, behavior: 'smooth' });
+      });
+      dotsWrap.appendChild(d);
+    }
+    track.addEventListener('scroll', () => {
+      const w = track.firstElementChild.getBoundingClientRect().width + 20;
+      const idx = Math.round(track.scrollLeft / w);
+      dotsWrap.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+    }, { passive: true });
+    document.querySelectorAll('[data-slide]').forEach(b => {
+      b.addEventListener('click', () => {
+        const dir = +b.getAttribute('data-slide');
+        const w = track.firstElementChild.getBoundingClientRect().width + 20;
+        track.scrollBy({ left: dir * w, behavior: 'smooth' });
+      });
+    });
+  }
+</script>
+</body>
+</html>

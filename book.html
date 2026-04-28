@@ -180,13 +180,81 @@
     .pax-ctrl { justify-content: space-between; width: 100%; }
     .pax-n { flex: 1; text-align: center; }
   }
+
+  /* ─── Kanha select: dropdown arrow + touch-safe ─── */
+  .kanha-select {
+    width:100%; min-height:48px; padding:14px 40px 14px 16px;
+    border:1.5px solid var(--line); border-radius:8px;
+    font:500 14px/1 'Inter',sans-serif; color:var(--ink);
+    -webkit-appearance:none; appearance:none; cursor:pointer;
+    touch-action:manipulation; -webkit-tap-highlight-color:transparent;
+    transition:border-color .2s;
+    /* inline SVG chevron — no extra request */
+    background-color:var(--bg);
+    background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5l5 5 5-5' stroke='%2364748B' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+  }
+  .kanha-select:focus { outline:none; border-color:var(--accent); }
+
+  /* ═══ MOBILE OPTIMIZATIONS ═══ */
+
+  /* iOS: inputs ≥16px = no auto zoom on focus */
+  @media (max-width: 767px) {
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="date"],
+    textarea,
+    select,
+    .kanha-select { font-size: 16px !important; }
+  }
+
+  /* Touch targets — no double-tap zoom, no tap highlight */
+  @media (max-width: 767px) {
+    button, a, .opt, .chip { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+    .btn { min-height: 50px; }
+    .pax-btn { min-width: 46px !important; min-height: 46px !important; }
+    .chip { min-height: 38px; display: inline-flex; align-items: center; }
+    .opt { padding: 16px 14px; }
+    .opt-price { font-size: 14px; }
+  }
+
+  /* Kanha optional fields: 2-col → 1-col on narrow phones */
+  @media (max-width: 560px) {
+    #kanha-optional-fields .field-row {
+      display: flex !important;
+      flex-direction: column;
+      gap: 0 !important;
+    }
+    #kanha-optional-fields .field { margin-bottom: 16px; }
+    #kanha-optional-fields .field:last-child { margin-bottom: 0; }
+  }
+
+  /* Kanha summary card: breathing room on small screens */
+  @media (max-width: 480px) {
+    .kanha-summary-card { padding: 14px 16px !important; font-size: 13px !important; }
+    .kanha-summary-card div { line-height: 1.7; }
+  }
+
+  /* Chip row: payment method — wrap tightly on 360px screens */
+  @media (max-width: 400px) {
+    .chip-row { gap: 6px; }
+    .chip { font-size: 12px; padding: 8px 10px; }
+  }
+
+  /* Summ trust items: readable on mobile */
+  @media (max-width: 480px) {
+    .summ-trust .t { font-size: 12px; }
+    .book-sticky { padding: 10px 14px; }
+  }
 </style>
 </head>
 
 <body>
 
 <!-- TRUST RIBBON (order matters: 3 strongest signals first) -->
-<div class="trust-ribbon" role="region" aria-label="Booking guarantees">
+<div class="trust-ribbon" role="region" aria-label="Booking guarantees" id="trustRibbon">
   <span>No payment today</span>
   <span>Confirmed in under 10 minutes</span>
   <span>Direct operator · 0% OTA fee</span>
@@ -241,7 +309,7 @@
       <div class="field" style="margin-bottom:0">
         <div class="lbl">Travelers</div>
         <div class="pax-row" data-pax data-min="1" data-max="10" id="paxGroup">
-          <div class="pax-lbl"><span class="t">Number of guests</span><span class="s" data-bind="paxHint">adults & children</span></div>
+          <div class="pax-lbl"><span class="t">Number of guests</span><span class="s" data-bind="paxHint">adults &amp; children</span></div>
           <div class="pax-ctrl">
             <button type="button" class="pax-btn" data-act="-" aria-label="Decrease guests">−</button>
             <span class="pax-n" aria-live="polite">2</span>
@@ -333,9 +401,9 @@
     <div class="book-submit reveal">
 
       <!-- What happens next (trust accelerator) -->
-      <div class="next-steps">
+      <div class="next-steps" id="nextStepsBlock">
         <div class="next-steps-title">What happens after you press reserve</div>
-        <ol>
+        <ol id="nextStepsOl">
           <li><span class="n">1</span><div><strong>No payment today.</strong> <span>Your card is not charged.</span></div></li>
           <li><span class="n">2</span><div><strong>A real human replies on WhatsApp</strong> <span>in under 10 minutes (not a bot, not a ticketing system).</span></div></li>
           <li><span class="n">3</span><div><strong>We send a secure link for the deposit</strong> <span data-bind="depositNote">(typically 30–50%). Balance on arrival.</span></div></li>
@@ -359,7 +427,7 @@
     <span class="summ-eyebrow">Your journey</span>
     <h3 class="summ-title" data-bind="name">Loading…</h3>
 
-    <div class="summ-line"><span>Option</span><span class="v" data-out="type" aria-live="polite">—</span></div>
+    <div class="summ-line" id="summOptionRow"><span>Option</span><span class="v" data-out="type" aria-live="polite">—</span></div>
     <div class="summ-line"><span>Price</span><span class="v" data-out="unit">—</span></div>
     <div class="summ-line"><span>Travelers</span><span class="v" data-out="pax">2 travelers</span></div>
     <div class="summ-line"><span>Duration</span><span class="v" data-bind="duration">—</span></div>
@@ -394,7 +462,7 @@
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-11" stroke="currentColor" style="color:var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <h3 id="tyTitle">Request <em style="color:var(--accent);font-style:italic">sent</em></h3>
-    <p>We've opened WhatsApp with your full journey details. Press send — a real person replies in under 10 minutes. No payment today.</p>
+    <p id="tyBody">We've opened WhatsApp with your full journey details. Press send — a real person replies in under 10 minutes. No payment today.</p>
     <button type="button" class="btn btn-outline" data-close-ty>Close</button>
   </div>
 </div>
@@ -419,7 +487,6 @@
   'use strict';
 
   // ═════════════ PRODUCT REGISTRY ═════════════
-  // Single source of truth. Add a new product here and the page just works.
   const PRODUCTS = {
     'waerebo': {
       name: 'Waerebo Village · 2D1N',
@@ -482,34 +549,41 @@
     },
 
     'komodo-sailing-3d2n': {
-      name: 'Komodo 3D2N Social Sailing',
-      shortName: 'Komodo 3D2N Sailing',
+      name: 'Komodo Sailing 3D2N · Kanha Fleet',
+      shortName: 'Komodo Sailing 3D2N',
       headline: 'Three days. <em>Two nights at sea.</em>',
-      subhead: 'A curated social sailing across Komodo. 12 like-minded travelers · private boat · deck sunsets · bioluminescent nights.',
+      subhead: 'Complete your guest details so our team can confirm your selected Kanha cabin and send the correct invoice or payment instruction.',
       heroImg: 'https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?auto=format&fit=crop&w=1800&q=82',
-      detailsUrl: 'komodo-sailing-3d2n-final.html',
+      detailsUrl: 'kanha-liveaboard-booking.html?product=sailing-3d2n',
       duration: '3 days · 2 nights',
       nights: 2,
-      rating: '★ 4.98 · 236 sailings completed',
-      reschedule: 'Free reschedule up to 14 days',
-      depositNote: '(30% deposit to confirm · balance 7 days before sailing)',
-      pickupLabel: 'Hotel / Pickup in Labuan Bajo',
-      pickupPlaceholder: 'Hotel name or area',
-      notesPlaceholder: 'Seasickness tendency, birthday onboard, scuba certified, photography requests, etc.',
-      dateHint: 'Departures 3× per week · dry season Apr → Nov. If full, we\'ll suggest the nearest.',
-      paxHint: '12 max · curated group',
-      optionsSub: 'Same boat, same crew, same sunsets. You choose the privacy of your cabin.',
-      prefsSub: 'All meals cooked fresh onboard — tell us about any restriction.',
-      submitLabel: 'Reserve My Cabin  →',
-      legal: 'No payment today. We confirm cabin availability via WhatsApp within 10 minutes, then send a secure payment link (30% deposit). Free reschedule up to 14 days before sailing.',
-      testimonial: 'Day three we swam through bioluminescence. The whole trip felt like a movie. Cabin mates became lifelong friends.',
-      testimonialWho: 'Daniel K. · Berlin · September 2025',
+      rating: '★ 4.98 · 236 sailings completed · Kanha Fleet',
+      reschedule: 'Free reschedule subject to availability',
+      depositNote: 'Deposit or payment instruction will be sent only after final cabin confirmation.',
+      pickupLabel: 'Hotel / Airport pickup in Labuan Bajo',
+      pickupPlaceholder: 'Hotel name, airport arrival detail, or "not booked yet"',
+      notesPlaceholder: 'Seasickness tendency, allergies, special occasion, photography requests, scuba certification, anything we should prep for.',
+      dateHint: 'This date is taken from the live Kanha sailing calendar. Final cabin confirmation will be checked by our team.',
+      paxHint: 'Number of guests for the selected cabin',
+      optionsSub: 'Your boat, cabin, and departure date were selected from the live Kanha calendar.',
+      prefsSub: 'Meals are prepared onboard. Tell us about dietary needs, allergies, seasickness, or special occasions.',
+      submitLabel: 'Send Availability Request via WhatsApp →',
+      legal: 'No payment today. Our team will confirm final cabin availability via WhatsApp, then send invoice or secure payment instruction.',
+      testimonial: '',
+      testimonialWho: '',
       options: [
-        { val: 'twin',   label: 'Twin Share Cabin',    price: 6800000, mode: 'per-person', desc: 'Share a cabin with a vetted same-gender traveler. Most social option.', priceText: 'IDR 6,800,000 / person' },
-        { val: 'double', label: 'Shared Double Cabin', price: 8200000, mode: 'per-person', desc: 'Private double en-suite for two. Couples & friends.',                  priceText: 'IDR 8,200,000 / person' },
-        { val: 'solo',   label: 'Private Solo Cabin',  price: 9500000, mode: 'per-person', desc: 'En-suite cabin for one. No roommate. Maximum privacy.',                 priceText: 'IDR 9,500,000 / person' }
+        { val: 'natha-share',    label: 'Kanha Natha · Share Cabin',  price: 4800000,  mode: 'per-person', desc: 'Most affordable option. Bunk-style social cabin.',     priceText: 'IDR 4,800,000 / person' },
+        { val: 'loka-share',     label: 'Kanha Loka · Share Cabin',   price: 5500000,  mode: 'per-person', desc: 'Bunk-style social cabin on the largest boat.',          priceText: 'IDR 5,500,000 / person' },
+        { val: 'citta-share',    label: 'Kanha Citta · Share Room',   price: 5800000,  mode: 'per-person', desc: 'Bunk beds, top deck, social atmosphere.',               priceText: 'IDR 5,800,000 / person' }
       ],
-      maxPax: 12
+      maxPax: 22,
+      isKanhaSailing: true,
+      trustItems: [
+        'No payment today',
+        'Final availability confirmed by team',
+        'Direct operator · EastXperience',
+        'Secure invoice after confirmation'
+      ]
     },
 
     'todo-village': {
@@ -545,7 +619,7 @@
     'bandung-rafting': {
       name: 'Bandung Rafting · Palayangan River',
       shortName: 'Bandung Rafting',
-      headline: '12 km of <em>rapids & rainforest.</em>',
+      headline: '12 km of <em>rapids &amp; rainforest.</em>',
       subhead: 'Grade 2–3 whitewater on the Palayangan · jungle corridors · waterfall swim · Sundanese lunch.',
       heroImg: 'https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=1800&q=82',
       detailsUrl: 'bandung-rafting-final.html',
@@ -604,7 +678,6 @@
   };
 
   // ═════════════ ANALYTICS HOOK ═════════════
-  // Ready for GA4 / GTM / Segment / Plausible / Mixpanel. No-op if none loaded.
   function track(event, payload) {
     payload = payload || {};
     (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: event }, payload));
@@ -652,9 +725,12 @@
   const back = document.querySelector('[data-back-link]');
   if (back && cfg.detailsUrl) back.href = cfg.detailsUrl;
 
-  // Concierge WA
+  // Concierge WA — Kanha uses AU number
   const waHeader = document.querySelector('[data-wa-header]');
-  if (waHeader) waHeader.href = 'https://wa.me/62811342473?text=' + encodeURIComponent('Hi EastXperience, I\'d like help booking ' + cfg.name + '.');
+  if (waHeader) {
+    const waNum = (slug === 'komodo-sailing-3d2n') ? '61415097538' : '62811342473';
+    waHeader.href = 'https://wa.me/' + waNum + '?text=' + encodeURIComponent('Hi EastXperience, I\'d like help booking ' + cfg.name + '.');
+  }
 
   // Pax max
   const paxGroup = document.getElementById('paxGroup');
@@ -675,6 +751,243 @@
   // Min date = today
   const dateIn = document.getElementById('date');
   if (dateIn) dateIn.min = new Date().toISOString().split('T')[0];
+
+  // ═════════════ KANHA SAILING — URL CONTEXT INGEST ═════════════
+  const kanhaCtx = (function(){
+    if (slug !== 'komodo-sailing-3d2n') return null;
+    const p = new URLSearchParams(location.search);
+    const ctx = {
+      boat_id:             p.get('boat_id')             || '',
+      boat_name:           p.get('boat_name')           || '',
+      departure_date:      p.get('departure_date')      || '',
+      end_date:            p.get('end_date')            || '',
+      trip_dates:          p.get('trip_dates')          || '',
+      duration:            p.get('duration')            || '3D2N',
+      cabin_id:            p.get('cabin_id')            || '',
+      cabin_name:          p.get('cabin_name')          || '',
+      cabin_price:         parseInt(p.get('cabin_price') || '0', 10) || 0,
+      cabin_status:        p.get('cabin_status')        || '',
+      availability_status: p.get('availability_status') || ''
+    };
+    // Fallback price table
+    const PRICE_FALLBACK = {
+      'kanha-loka':  { 'share-cabin':5500000, 'superior-cabin':6900000, 'family-cabin':6900000, 'deluxe-ocean-view':8500000, 'master-ocean-view':9500000 },
+      'kanha-citta': { 'share-room':5800000, 'deluxe-ocean-view':8700000, 'shakti-sedana':9500000, 'gayatri-master-suite':12500000 },
+      'kanha-natha': { 'share-cabin':4800000, 'private-ocean-view':7800000 }
+    };
+    if (!ctx.cabin_price && ctx.boat_id && ctx.cabin_id && PRICE_FALLBACK[ctx.boat_id]) {
+      ctx.cabin_price = PRICE_FALLBACK[ctx.boat_id][ctx.cabin_id] || 0;
+    }
+    ctx.hasTrip = !!(ctx.boat_id && ctx.cabin_id && ctx.departure_date);
+    return ctx;
+  })();
+
+  // Override trust ribbon for komodo-sailing-3d2n
+  if (slug === 'komodo-sailing-3d2n') {
+    const tr = document.getElementById('trustRibbon');
+    if (tr && cfg.trustItems && cfg.trustItems.length) {
+      tr.innerHTML = cfg.trustItems.map((t, i) => '<span' + (i >= 3 ? ' class="tr-secondary"' : '') + '>' + t + '</span>').join('');
+    }
+  }
+
+  // ─── Cabin type detection — shared vs private (for min pax rule) ───
+  function isPrivateCabinId(cabinId, cabinName) {
+    const SHARED_IDS = ['share-cabin', 'share-room'];
+    if (SHARED_IDS.indexOf(cabinId) >= 0) return false;
+    const PRIVATE_IDS = ['superior-cabin','family-cabin','deluxe-ocean-view','master-ocean-view','shakti-sedana','gayatri-master-suite','private-ocean-view'];
+    if (PRIVATE_IDS.indexOf(cabinId) >= 0) return true;
+    const lc = (cabinName || '').toLowerCase();
+    if (/share|shared|bunk/.test(lc)) return false;
+    if (/superior|deluxe|master|family|shakti|sedana|gayatri|private/.test(lc)) return true;
+    return true; // default to private if unknown
+  }
+
+  // Apply Kanha context to the form (replace generic options with locked selection)
+  if (kanhaCtx && kanhaCtx.hasTrip) {
+    const optWrap2 = document.querySelector('[data-bind-options]');
+    if (optWrap2) {
+      const priceText = kanhaCtx.cabin_price
+        ? 'IDR ' + kanhaCtx.cabin_price.toLocaleString('en-US') + ' / person'
+        : 'Price to be confirmed';
+      const cabinIsPrivate = isPrivateCabinId(kanhaCtx.cabin_id, kanhaCtx.cabin_name);
+      const privateCabinNote = cabinIsPrivate
+        ? `<div style="font-size:11px;color:#B45309;font-weight:600;margin-top:8px;display:inline-flex;align-items:center;gap:5px">
+             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+             Private cabin · minimum charge 2 pax
+           </div>`
+        : '';
+      optWrap2.innerHTML = `
+        <label class="opt is-checked" style="cursor:default;pointer-events:none">
+          <input type="radio" name="type" value="${kanhaCtx.cabin_id}" data-price="${kanhaCtx.cabin_price || 0}" data-mode="per-person" data-label="${kanhaCtx.cabin_name} · ${kanhaCtx.boat_name}" checked>
+          <div class="opt-title">Selected Cabin · ${kanhaCtx.cabin_name}</div>
+          <div class="opt-sub">${kanhaCtx.boat_name} · 3D2N · selected from the live Kanha calendar</div>
+          <div class="opt-price">${priceText}</div>
+          ${privateCabinNote}
+        </label>
+      `;
+    }
+    // Prefill + lock the date input
+    if (dateIn && kanhaCtx.departure_date) {
+      dateIn.value = kanhaCtx.departure_date;
+      dateIn.readOnly = true;
+      dateIn.setAttribute('aria-readonly', 'true');
+      dateIn.style.background = 'rgba(0,0,0,.04)';
+      dateIn.style.cursor = 'not-allowed';
+      const hint = dateIn.parentElement && dateIn.parentElement.querySelector('.hint');
+      if (hint) hint.textContent = 'This date comes from the live Kanha departure calendar. Tap the back link if you need to change it.';
+    }
+    // Prefill back link with boat
+    const backEl = document.querySelector('[data-back-link]');
+    if (backEl) backEl.href = 'kanha-liveaboard-booking.html?product=sailing-3d2n&boat=' + encodeURIComponent(kanhaCtx.boat_id);
+
+    // Update sidebar title
+    const sumName = document.querySelector('[data-bind="name"]');
+    if (sumName) sumName.innerHTML = kanhaCtx.boat_name + ' · ' + kanhaCtx.cabin_name;
+
+    // Inject Kanha-specific sidebar rows (departure, trip dates, chargeable pax, status)
+    const summAside = document.querySelector('.book-summary');
+    if (summAside) {
+      const statusLabelMap2 = {
+        available:'Available', limited:'Limited', on_hold:'On hold',
+        booked:'Booked', private_charter:'Private charter', maintenance:'Maintenance',
+        not_operating:'Not operating', unknown:'Confirm with team'
+      };
+      const cabinStatusDisplay = statusLabelMap2[kanhaCtx.cabin_status] || 'Confirm with team';
+      const isPrivateInit = isPrivateCabinId(kanhaCtx.cabin_id, kanhaCtx.cabin_name);
+      const kanhaRows = document.createElement('div');
+      kanhaRows.id = 'kanha-summ-rows';
+      kanhaRows.innerHTML =
+        '<div class="summ-line"><span>Boat</span><span class="v">' + kanhaCtx.boat_name + '</span></div>' +
+        '<div class="summ-line"><span>Cabin</span><span class="v">' + kanhaCtx.cabin_name + '</span></div>' +
+        '<div class="summ-line"><span>Departure</span><span class="v">' + kanhaCtx.departure_date + '</span></div>' +
+        (kanhaCtx.trip_dates ? '<div class="summ-line"><span>Trip dates</span><span class="v">' + kanhaCtx.trip_dates + '</span></div>' : '') +
+        '<div class="summ-line" id="summMinPaxRow" style="' + (isPrivateInit ? '' : 'display:none') + '">' +
+          '<span>Chargeable pax</span><span class="v" id="summChargeablePax">2 pax</span>' +
+        '</div>' +
+        (isPrivateInit ? '<div class="summ-line" style="font-size:11px"><span style="font-size:11px;color:#B45309;font-weight:600">Min pax rule</span><span class="v" style="font-size:11px;color:#B45309">Private · min 2 pax</span></div>' : '') +
+        '<div class="summ-line"><span>Status</span><span class="v" style="font-size:11.5px;color:var(--muted)">' + cabinStatusDisplay + ' · not confirmed</span></div>';
+      // Insert before summ-total
+      const summTotal = summAside.querySelector('.summ-total');
+      if (summTotal) summAside.insertBefore(kanhaRows, summTotal);
+      else summAside.appendChild(kanhaRows);
+      // Hide the generic "Option" row — Boat+Cabin rows replace it
+      const optionRow = document.getElementById('summOptionRow');
+      if (optionRow) optionRow.style.display = 'none';
+    }
+
+    // Inject "Selected Sailing" summary card above options
+    const sailingSummary = document.createElement('div');
+    sailingSummary.className = 'kanha-summary-card';
+    sailingSummary.style.cssText = 'background:rgba(255,122,60,.06);border:1px solid rgba(255,122,60,.32);border-radius:14px;padding:18px 22px;margin:0 0 20px;font-size:13.5px;color:var(--ink);line-height:1.6';
+    const statusLabelMap = { available:'Available', limited:'Limited', on_hold:'On hold', booked:'Booked', private_charter:'Private charter', maintenance:'Maintenance', not_operating:'Not operating', unknown:'Confirm with team' };
+    const cabinStatusTxt = statusLabelMap[kanhaCtx.cabin_status] || 'Confirm with team';
+    const priceLineHtml  = kanhaCtx.cabin_price
+      ? '<div><strong>Estimated price:</strong> IDR ' + kanhaCtx.cabin_price.toLocaleString('en-US') + ' per person</div>'
+      : '<div><strong>Estimated price:</strong> To be confirmed</div>';
+    sailingSummary.innerHTML =
+      '<div style="font:700 11px/1 \'Inter\',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:10px">★ Selected Sailing</div>' +
+      '<div><strong>Boat:</strong> ' + kanhaCtx.boat_name + '</div>' +
+      '<div><strong>Cabin:</strong> ' + kanhaCtx.cabin_name + '</div>' +
+      '<div><strong>Departure:</strong> ' + kanhaCtx.departure_date + '</div>' +
+      (kanhaCtx.trip_dates ? '<div><strong>Trip dates:</strong> ' + kanhaCtx.trip_dates + '</div>' : '') +
+      '<div><strong>Duration:</strong> 3D2N</div>' +
+      '<div><strong>Cabin status:</strong> ' + cabinStatusTxt + '</div>' +
+      priceLineHtml +
+      '<div style="margin-top:10px;font-size:12px;color:var(--muted)">No payment today. Final cabin availability is checked by our team.</div>';
+    const headEl = document.querySelector('[data-bind="headline"]');
+    if (headEl && headEl.parentElement) {
+      headEl.parentElement.insertAdjacentElement('afterend', sailingSummary);
+    }
+
+    track('view_booking_form', { product_id: slug, boat_id: kanhaCtx.boat_id, cabin_id: kanhaCtx.cabin_id, departure_date: kanhaCtx.departure_date });
+
+  } else if (slug === 'komodo-sailing-3d2n') {
+    // Visited without calendar selection — encourage live calendar
+    const banner = document.createElement('div');
+    banner.style.cssText = 'background:rgba(37,99,235,.06);border:1px solid rgba(37,99,235,.28);border-radius:12px;padding:14px 18px;margin:0 0 18px;font-size:13px;color:var(--ink);line-height:1.55';
+    banner.innerHTML = '<strong>Recommended:</strong> for accurate cabin availability, please select your boat and date from the <a href="kanha-liveaboard-booking.html?product=sailing-3d2n" style="color:var(--accent);font-weight:600">live Kanha calendar</a> first. You can still complete this form manually.';
+    const headEl = document.querySelector('[data-bind="headline"]');
+    if (headEl && headEl.parentElement) {
+      headEl.parentElement.insertAdjacentElement('afterend', banner);
+    }
+  }
+
+  // ═════════════ KANHA OPTIONAL FIELDS — injected for komodo-sailing-3d2n ═════════════
+  if (slug === 'komodo-sailing-3d2n') {
+    // NOTE: `form` is not yet declared at this point — use getElementById directly
+    const detailsCard = document.getElementById('bookForm').querySelectorAll('.book-card')[1]; // Card 02 — Your details
+    if (detailsCard) {
+      const optionalBlock = document.createElement('div');
+      optionalBlock.id = 'kanha-optional-fields';
+      optionalBlock.innerHTML = `
+        <div style="height:1px;background:var(--line);margin:20px 0 18px"></div>
+        <div style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px">Optional · travel details</div>
+        <div class="field-row">
+          <div class="field">
+            <label for="passport_name">Passport name <span style="font-weight:400;color:var(--muted);font-size:12px">(if different from above)</span></label>
+            <input type="text" id="passport_name" name="passport_name" placeholder="Name exactly as on passport">
+          </div>
+          <div class="field">
+            <label for="arrival_info">Arrival flight / arrival time <span style="font-weight:400;color:var(--muted);font-size:12px">(optional)</span></label>
+            <input type="text" id="arrival_info" name="arrival_info" placeholder="e.g. Garuda GA475, arriving 10:30">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="special_occasion">Special occasion <span style="font-weight:400;color:var(--muted);font-size:12px">(optional)</span></label>
+            <input type="text" id="special_occasion" name="special_occasion" placeholder="Honeymoon, birthday, anniversary…">
+          </div>
+          <div class="field">
+            <label for="seasickness">Seasickness tendency <span style="font-weight:400;color:var(--muted);font-size:12px">(optional)</span></label>
+            <select id="seasickness" name="seasickness" class="kanha-select">
+              <option value="">Not sure / not relevant</option>
+              <option value="None — I sail regularly">None — I sail regularly</option>
+              <option value="Mild — sometimes get queasy">Mild — sometimes get queasy</option>
+              <option value="Moderate — I take medication">Moderate — I take medication</option>
+              <option value="Severe — rough seas are difficult">Severe — rough seas are difficult</option>
+            </select>
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:0">
+          <div class="lbl">Preferred payment method <span style="font-weight:400;color:var(--muted);font-size:12px;text-transform:none;letter-spacing:0">(optional)</span></div>
+          <div class="chip-row">
+            <label class="chip"><input type="radio" name="payment_method" value="Wise">Wise</label>
+            <label class="chip"><input type="radio" name="payment_method" value="Payment Link">Payment Link</label>
+            <label class="chip"><input type="radio" name="payment_method" value="Bank Transfer">Bank Transfer</label>
+            <label class="chip is-checked"><input type="radio" name="payment_method" value="To be confirmed" checked>To be confirmed</label>
+          </div>
+        </div>
+      `;
+      const hp = detailsCard.querySelector('.hp-field');
+      if (hp) detailsCard.insertBefore(optionalBlock, hp);
+      else detailsCard.appendChild(optionalBlock);
+    }
+
+    // Update Card 02 subhead for Kanha
+    const _bookForm = document.getElementById('bookForm');
+    const _card2 = _bookForm && _bookForm.querySelectorAll('.book-card')[1];
+    const card2Sub = _card2 && _card2.querySelector('.sub');
+    if (card2Sub) card2Sub.textContent = 'Complete your guest details so our team can confirm availability and send invoice or payment instruction.';
+
+    // Update next-steps for Kanha sailing (no 10-minute guarantee — manual cabin check needed)
+    const nextStepsOl = document.getElementById('nextStepsOl');
+    if (nextStepsOl) {
+      nextStepsOl.innerHTML =
+        '<li><span class="n">1</span><div><strong>No payment today.</strong> <span>This is an availability request, not a confirmed reservation.</span></div></li>' +
+        '<li><span class="n">2</span><div><strong>Our team checks final cabin availability</strong> <span>and replies on WhatsApp with confirmation or the nearest alternative.</span></div></li>' +
+        '<li><span class="n">3</span><div><strong>Invoice or payment instruction sent</strong> <span>only after final cabin availability is confirmed by our team.</span></div></li>';
+    }
+    const nextStepsTitle = document.querySelector('.next-steps-title');
+    if (nextStepsTitle) nextStepsTitle.textContent = 'What happens after you send this request';
+
+    // Update thank-you overlay text for Kanha
+    const tyBody = document.getElementById('tyBody');
+    if (tyBody) tyBody.textContent = 'We\'ve opened WhatsApp with your full availability request. Press send — our team will check cabin availability and reply with confirmation or alternatives. No payment today.';
+
+    // Hide mini testimonial if empty (Kanha has no testimonial set)
+    const testi = document.getElementById('miniTesti');
+    if (testi && !cfg.testimonial) testi.style.display = 'none';
+  }
 
   // Fire view
   track('view_booking', { product_id: slug, product_name: cfg.name });
@@ -699,14 +1012,34 @@
 
     const unit = parseInt(type.dataset.price, 10);
     const mode = type.dataset.mode;
-    const total = mode === 'flat' ? unit : unit * paxVal;
+
+    // ── Private cabin minimum pax rule (Kanha Sailing) ──
+    // Private cabins must be charged for minimum 2 pax even if 1 traveler is selected.
+    let chargeablePax = paxVal;
+    let isPrivate = false;
+    if (slug === 'komodo-sailing-3d2n' && kanhaCtx && kanhaCtx.hasTrip) {
+      isPrivate = isPrivateCabinId(kanhaCtx.cabin_id, kanhaCtx.cabin_name);
+      chargeablePax = Math.max(paxVal, isPrivate ? 2 : 1);
+    }
+
+    const total = mode === 'flat' ? unit : unit * chargeablePax;
 
     const setAll = (sel, val) => document.querySelectorAll(sel).forEach(e => e.textContent = val);
     setAll('[data-out="unit"]', fmt(unit) + (mode === 'flat' ? ' · whole group' : ' / person'));
     setAll('[data-out="pax"]',  paxVal + (paxVal === 1 ? ' traveler' : ' travelers'));
     setAll('[data-out="type"]', type.dataset.label);
     setAll('[data-out="total"]', fmt(total));
-    setAll('[data-out="sub"]',   mode === 'flat' ? 'whole group price' : paxVal + ' × ' + fmt(unit));
+    setAll('[data-out="sub"]',   mode === 'flat' ? 'whole group price' : chargeablePax + ' × ' + fmt(unit));
+
+    // Kanha sidebar: chargeable pax row + min pax note visibility
+    const chargeableEl = document.getElementById('summChargeablePax');
+    if (chargeableEl) chargeableEl.textContent = chargeablePax + ' pax';
+    const minPaxRow = document.getElementById('summMinPaxRow');
+    if (minPaxRow) minPaxRow.style.display = isPrivate ? '' : 'none';
+
+    // Store for WhatsApp payload
+    form._kanhaChargeablePax = chargeablePax;
+    form._kanhaIsPrivate     = isPrivate;
   }
 
   form.addEventListener('change', e => {
@@ -736,21 +1069,100 @@
   }
 
   // ═════════════ SUBMIT / GATEWAY HANDOFF ═════════════
-  // SWAPPABLE: to integrate Stripe / Midtrans / Xendit, replace `processBooking`.
-  //   - Keep payload shape intact.
-  //   - Return { ok, via, checkoutUrl? }.
-  //   - For popup-blocker safety, you may need to return a pre-opened window handle.
+  function getWhatsAppNumberFor(productSlug) {
+    if (productSlug === 'komodo-sailing-3d2n') return '61415097538';
+    return '62811342473';
+  }
+
   function processBookingViaWhatsApp(payload, preOpenedWin) {
-    const url = 'https://wa.me/62811342473?text=' + encodeURIComponent(payload.summaryText);
+    const num = getWhatsAppNumberFor(payload.product_id);
+    const url = 'https://wa.me/' + num + '?text=' + encodeURIComponent(payload.summaryText);
     if (preOpenedWin && !preOpenedWin.closed) {
       preOpenedWin.location.href = url;
     } else {
       window.open(url, '_blank', 'noopener');
     }
+    track('open_whatsapp', { product_id: payload.product_id, wa_number: num });
     return { ok: true, via: 'whatsapp' };
   }
 
+  function buildAttributionLine() {
+    try {
+      const cur = new URLSearchParams(location.search);
+      const stored = JSON.parse(sessionStorage.getItem('_ads_utm') || '{}');
+      const merged = Object.assign({}, stored);
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid'].forEach(k => {
+        const v = cur.get(k);
+        if (v) merged[k] = v;
+      });
+      const has = merged.gclid || merged.utm_source;
+      if (!has) return '';
+      const parts = [];
+      ['utm_source','utm_medium','utm_campaign','gclid'].forEach(k => {
+        if (merged[k]) parts.push(k + '=' + merged[k]);
+      });
+      return parts.length ? '*Attribution:* ' + parts.join(' · ') : '';
+    } catch(e){ return ''; }
+  }
+
   function buildSummary(p) {
+    // ─── Specialised Kanha Sailing summary ───
+    if (p.product_id === 'komodo-sailing-3d2n' && p.kanha) {
+      const k = p.kanha;
+      const statusLabelMap = {
+        available:'Available', limited:'Limited', on_hold:'On hold', booked:'Booked',
+        private_charter:'Private charter', maintenance:'Maintenance',
+        not_operating:'Not operating', unknown:'Confirm with team'
+      };
+      const cabinStatusTxt = statusLabelMap[k.cabin_status] || 'Confirm with team';
+
+      // Private cabin minimum pax rule
+      const chargeablePax = p.chargeablePax || p.pax;
+      const isPrivate     = p.kanhaIsPrivate || false;
+      const totalLine = (k.cabin_price && chargeablePax)
+        ? '*Total estimate:* IDR ' + (k.cabin_price * chargeablePax).toLocaleString('en-US')
+        : '*Total estimate:* To be confirmed';
+
+      const attrLine = buildAttributionLine();
+
+      const lines = [
+        '*EastXperience · Kanha Sailing Availability Request*',
+        '—',
+        '*Journey:* Komodo Sailing 3D2N · Kanha Fleet',
+        '*Operator:* EastXperience',
+        '*Boat:* ' + (k.boat_name || '—'),
+        '*Cabin:* ' + (k.cabin_name || '—'),
+        '*Cabin status:* ' + cabinStatusTxt,
+        '*Departure date:* ' + (k.departure_date || p.date || '—'),
+        k.trip_dates ? '*Trip dates:* ' + k.trip_dates : '',
+        '*Duration:* 3D2N',
+        '*Travelers:* ' + p.pax,
+        isPrivate ? '*Chargeable pax:* ' + chargeablePax : '',
+        isPrivate ? '*Private cabin minimum:* 2 pax' : '',
+        totalLine,
+        '—',
+        '*Name:* ' + (p.name || '—'),
+        '*Nationality:* ' + (p.nationality || '—'),
+        '*WhatsApp:* ' + (p.whatsapp || '—'),
+        '*Email:* ' + (p.email || '—'),
+        '*Pickup:* ' + (p.pickup || '—'),
+        p.dietary ? '*Dietary:* ' + p.dietary : '',
+        p.passport_name ? '*Passport name:* ' + p.passport_name : '',
+        p.arrival_info ? '*Arrival info:* ' + p.arrival_info : '',
+        p.special_occasion ? '*Special occasion:* ' + p.special_occasion : '',
+        p.seasickness ? '*Seasickness:* ' + p.seasickness : '',
+        (p.payment_method && p.payment_method !== 'To be confirmed') ? '*Payment method:* ' + p.payment_method : '',
+        p.notes ? '*Notes:* ' + p.notes : '',
+        '—',
+        '*Page source:* ' + location.href,
+        attrLine,
+        '—',
+        'Please confirm final cabin availability and send invoice or payment instruction. Thank you.'
+      ];
+      return lines.filter(Boolean).join('\n');
+    }
+
+    // ─── Default summary for other products ───
     return [
       '*EastXperience · Booking Request*',
       '—',
@@ -809,7 +1221,6 @@
     }
 
     // CRITICAL: open the WhatsApp tab synchronously inside the user gesture to avoid popup blockers.
-    // We navigate it to the real URL immediately after building the payload.
     const preOpened = window.open('about:blank', '_blank', 'noopener');
 
     const btn = document.getElementById('submitBtn');
@@ -821,7 +1232,8 @@
     const unit = parseInt(type.dataset.price, 10);
     const mode = type.dataset.mode;
     const paxVal = parseInt(data.get('pax') || '1', 10);
-    const total = mode === 'flat' ? unit : unit * paxVal;
+    const chargeablePax = form._kanhaChargeablePax !== undefined ? form._kanhaChargeablePax : paxVal;
+    const total = mode === 'flat' ? unit : unit * chargeablePax;
     const dietary = [...form.querySelectorAll('input[name="dietary"]:checked')].map(c => c.value).join(', ');
 
     const payload = {
@@ -836,16 +1248,26 @@
       nights: cfg.nights,
       date: data.get('date'),
       pax: paxVal,
+      chargeablePax: chargeablePax,
+      kanhaIsPrivate: form._kanhaIsPrivate !== undefined ? form._kanhaIsPrivate : false,
       name: data.get('name'),
       whatsapp: data.get('whatsapp'),
       email: data.get('email'),
       nationality: data.get('nationality'),
       pickup: data.get('pickup'),
       dietary: dietary,
-      notes: data.get('notes')
+      notes: data.get('notes'),
+      // Kanha optional fields
+      passport_name: data.get('passport_name') || '',
+      arrival_info: data.get('arrival_info') || '',
+      special_occasion: data.get('special_occasion') || '',
+      seasickness: data.get('seasickness') || '',
+      payment_method: data.get('payment_method') || '',
+      kanha: (typeof kanhaCtx !== 'undefined' && kanhaCtx && kanhaCtx.hasTrip) ? kanhaCtx : null
     };
     payload.summaryText = buildSummary(payload);
 
+    track('submit_availability_request', { product_id: slug, value: total, currency: 'IDR', option_id: type.value, pax: paxVal });
     track('begin_checkout', { product_id: slug, value: total, currency: 'IDR', option_id: type.value, pax: paxVal });
 
     try {
@@ -869,16 +1291,16 @@
   const ty = document.getElementById('thankyou');
   function closeTY() { ty.classList.remove('on'); }
   document.querySelectorAll('[data-close-ty]').forEach(b => b.addEventListener('click', closeTY));
-  // Backdrop click
   ty.addEventListener('click', e => { if (e.target === ty) closeTY(); });
-  // Escape
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && ty.classList.contains('on')) closeTY(); });
 })();
 </script>
 
 <noscript>
   <div style="padding:20px;background:#0B1F17;color:#fff;text-align:center;font-family:sans-serif">
-    JavaScript is disabled. Please <a href="https://wa.me/62811342473" style="color:#C98E5B">message us on WhatsApp</a> to reserve.
+    JavaScript is disabled. Please message us on WhatsApp to reserve:
+    <a href="https://wa.me/62811342473" style="color:#C98E5B">+62 811 342 473</a> ·
+    <a href="https://wa.me/61415097538" style="color:#C98E5B">+61 415 097 538 (Kanha Sailing)</a>.
   </div>
 </noscript>
 
