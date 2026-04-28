@@ -48,16 +48,16 @@
 <!-- ═══ THEME: Komodo 3D2N Sailing — Midnight Navy · Sunset Orange · Sea Blue · Ivory ═══ -->
 <style data-theme="sailing">
   :root {
-    --bg:        #F8F3EA;                 /* ivory */
-    --surface:   #FFFFFF;
+    --bg:        #0B0F0C;                 /* deep ash */
+    --surface:   #131613;                 /* ash surface */
     --ink:       #0A1736;                 /* midnight navy */
     --ink-deep:  #040B22;
-    --muted:     #56647D;
+    --muted:     rgba(200,196,186,.52);
     --accent:    #B9FF2D;                 /* neon green */
     --accent-2:  rgba(185,255,45,.65);
     --sea:       #3B82BD;                 /* sea blue */
     --sea-deep:  #1E5A8A;
-    --line:      rgba(10,23,54,.09);
+    --line:      rgba(255,255,255,.07);
     --overlay-hero:
       linear-gradient(110deg,
         rgba(4,11,34,.78) 0%,
@@ -450,6 +450,119 @@
     .vibe-grid { grid-template-columns: 1fr; }
     .diff-grid  { grid-template-columns: 1fr; }
   }
+
+  /* ═══════════════════════════════════════════════════════════
+     ASH DARK SYSTEM — Full page dark theme overrides
+     Komodo product page only. Does not bleed to other pages.
+  ═══════════════════════════════════════════════════════════ */
+
+  /* Body + global text */
+  body { background: #0B0F0C; color: #E0DDD6; }
+  h1, h2, h3 { color: #F0EDE6; }
+  .sec-head p { color: rgba(200,196,186,.62) !important; }
+  p { color: rgba(200,196,186,.68); }
+
+  /* Header — deep ash glass */
+  .site-header { background: rgba(8,10,8,.96) !important; border-bottom: 1px solid rgba(255,255,255,.06) !important; }
+  .hdr-back { color: rgba(220,216,206,.42) !important; }
+  .hdr-brand span { color: #E8E4DC !important; }
+
+  /* Stat bar — deep ash, neon numbers */
+  .stat-bar { background: #080A08 !important; border-top: 1px solid rgba(255,255,255,.05); }
+  .stat { border-right-color: rgba(255,255,255,.05) !important; }
+  .stat-n { color: #B9FF2D !important; }
+  .stat-l { color: rgba(200,196,186,.38) !important; }
+
+  /* Section backgrounds */
+  .sec { background: #0B0F0C; }
+  .pricing-sec { background: #0D110D !important; }
+  .booking-sec { background: #0B0F0C !important; }
+  .sec-dark { background: #080A08 !important; }
+  .trust-strip { background: #080A08 !important; border-top: 1px solid rgba(255,255,255,.05); }
+
+  /* Diff / vibe comparison cards */
+  .diff { background: rgba(255,255,255,.04) !important; border: 1.5px solid rgba(255,255,255,.07) !important; }
+  .diff h3 { color: #F0EDE6 !important; }
+  .diff p { color: rgba(200,196,186,.58) !important; }
+  .diff-n { color: rgba(185,255,45,.72) !important; }
+  .diff:hover { border-color: rgba(185,255,45,.35) !important; box-shadow: 0 12px 40px rgba(185,255,45,.06) !important; }
+
+  /* Vibe cards */
+  .vibe { background: rgba(255,255,255,.042) !important; border: 1px solid rgba(185,255,45,.14) !important; }
+  .vibe h3 { color: #F0EDE6 !important; }
+  .vibe p { color: rgba(200,196,186,.58) !important; }
+  .vibe .num { color: rgba(185,255,45,.72) !important; }
+
+  /* Boat card */
+  .boat-card { background: rgba(255,255,255,.04) !important; border: 1.5px solid rgba(255,255,255,.07) !important; }
+  .boat-visual::after { background: linear-gradient(to right, transparent 55%, rgba(8,10,8,.92) 100%) !important; }
+  .boat-details h3 { color: #F0EDE6 !important; }
+  .boat-details .tag { color: rgba(185,255,45,.78) !important; }
+  .boat-details p { color: rgba(200,196,186,.58) !important; }
+  .boat-spec { background: rgba(255,255,255,.04) !important; }
+  .boat-spec-n { color: #F0EDE6 !important; }
+  .boat-spec-l { color: rgba(200,196,186,.4) !important; }
+
+  /* Day tabs */
+  .day-tab { background: rgba(255,255,255,.05) !important; border: 1.5px solid rgba(255,255,255,.08) !important; color: rgba(220,216,206,.48) !important; }
+  .day-tab.active { background: rgba(185,255,45,.1) !important; color: #B9FF2D !important; border-color: rgba(185,255,45,.32) !important; }
+  .day-tab:hover { border-color: rgba(185,255,45,.28) !important; color: rgba(185,255,45,.82) !important; background: rgba(185,255,45,.06) !important; }
+
+  /* Itinerary card */
+  .itin-card { background: rgba(255,255,255,.04) !important; border: 1.5px solid rgba(255,255,255,.07) !important; }
+  .itin-eyebrow { color: rgba(200,196,186,.4) !important; }
+  .itin-title { color: #F0EDE6 !important; }
+  .ev-title { color: #E0DDD6 !important; }
+  .ev-desc { color: rgba(200,196,186,.58) !important; }
+
+  /* Fact ribbon */
+  .fact-ribbon { background: rgba(185,255,45,.04) !important; border: 1px solid rgba(185,255,45,.14) !important; }
+  .fact .n { color: #B9FF2D !important; }
+  .fact .l { color: rgba(200,196,186,.44) !important; }
+
+  /* Value note */
+  .value-note { background: rgba(255,255,255,.04) !important; border: 1px solid rgba(255,255,255,.08) !important; color: rgba(200,196,186,.62) !important; }
+  .value-note strong { color: #E8E4DC !important; }
+
+  /* Price cards */
+  .price-card { background: rgba(255,255,255,.04) !important; border: 1.5px solid rgba(255,255,255,.08) !important; }
+  .price-card.featured { background: rgba(185,255,45,.04) !important; border-color: rgba(185,255,45,.28) !important; }
+  .price-card h3 { color: #F0EDE6 !important; }
+  .price-card .main { color: #E8E4DC !important; }
+  .price-card .desc, .price-card .sub { color: rgba(200,196,186,.52) !important; }
+  .price-card li { color: rgba(200,196,186,.58) !important; }
+  .price-card:hover { border-color: rgba(185,255,45,.38) !important; box-shadow: 0 16px 50px rgba(185,255,45,.06) !important; }
+  .price-card .btn-primary { background: #B9FF2D !important; color: #040B22 !important; }
+  .price-card .btn-primary:hover { background: #cbff5e !important; }
+
+  /* Comparison table */
+  .comp-wrap table { background: #131613 !important; }
+  .comp-wrap thead tr { background: #080A08 !important; }
+  .comp-wrap tbody tr { border-bottom-color: rgba(255,255,255,.07) !important; }
+  .comp-wrap tbody tr:hover { background: rgba(255,255,255,.03); }
+  .comp-wrap td { color: rgba(200,196,186,.65) !important; }
+  .comp-wrap td:first-child { color: rgba(200,196,186,.48) !important; }
+  .comp-wrap td.yes { color: #B9FF2D !important; font-weight: 600; }
+  .comp-wrap td.no { color: rgba(200,196,186,.28) !important; }
+
+  /* Testimonials */
+  .testi { background: rgba(255,255,255,.042) !important; border: 1.5px solid rgba(255,255,255,.07) !important; }
+  .testi:hover { border-color: rgba(185,255,45,.3) !important; box-shadow: 0 12px 44px rgba(185,255,45,.06) !important; }
+  .testi-text { color: #E8E4DC !important; }
+  .testi-name { color: #F0EDE6 !important; }
+  .testi-origin { color: rgba(200,196,186,.44) !important; }
+  .testi-author { border-top-color: rgba(255,255,255,.07) !important; }
+  .testi-av { background: linear-gradient(135deg, #1E5A8A 0%, rgba(185,255,45,.6) 100%) !important; }
+
+  /* FAQ */
+  .faq { background: rgba(255,255,255,.04) !important; border: 1.5px solid rgba(255,255,255,.07) !important; }
+  .faq summary { color: #E0DDD6 !important; }
+  .faq-body { color: rgba(200,196,186,.6) !important; border-top-color: rgba(255,255,255,.06) !important; background: transparent !important; }
+
+  /* Trust strip items */
+  .trust-item { border-right-color: rgba(255,255,255,.06) !important; }
+  .trust-item-text { color: rgba(200,196,186,.62) !important; }
+
 </style>
 </head>
 
@@ -766,18 +879,18 @@
       <p>Departure dates are managed by our team. Contact us via WhatsApp to check last-minute availability and confirm your cabin — we respond in under 8 minutes.</p>
     </div>
     <div class="cal-wrap reveal" style="max-width:580px">
-      <div style="background:#fff;border:1.5px solid var(--line);border-radius:var(--r-lg);padding:36px 32px;text-align:center">
+      <div style="background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.09);border-radius:var(--r-lg);padding:36px 32px;text-align:center">
         <div style="width:58px;height:58px;background:var(--ink);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M8 6l4-4 4 4M12 2v13M3 17l1.5 4h15L21 17"/></svg>
         </div>
-        <h3 style="font-family:'Fraunces',serif;font-size:24px;font-weight:300;margin-bottom:10px;color:var(--ink)">Plan your Komodo sailing</h3>
-        <p style="color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:26px;max-width:40ch;margin-left:auto;margin-right:auto">Select your boat, departure date, and cabin. Our team confirms live availability and prepares your booking — no payment today.</p>
-        <a id="bookWaLink" href="kanha-liveaboard-booking.html?product=sailing-3d2n" data-bind-cta data-ctx="avail" style="display:flex;align-items:center;justify-content:center;gap:9px;padding:15px 28px;background:var(--ink);color:#fff;border-radius:8px;font:600 13px/1 Inter,sans-serif;letter-spacing:.04em;text-decoration:none;margin-bottom:14px;transition:background .2s" onmouseover="this.style.background='var(--sea-deep)'" onmouseout="this.style.background='var(--ink)'">
+        <h3 style="font-family:'Fraunces',serif;font-size:24px;font-weight:300;margin-bottom:10px;color:#F0EDE6">Plan your Komodo sailing</h3>
+        <p style="color:rgba(200,196,186,.62);font-size:14px;line-height:1.65;margin-bottom:26px;max-width:40ch;margin-left:auto;margin-right:auto">Select your boat, departure date, and cabin. Our team confirms live availability and prepares your booking — no payment today.</p>
+        <a id="bookWaLink" href="kanha-liveaboard-booking.html?product=sailing-3d2n" data-bind-cta data-ctx="avail" style="display:flex;align-items:center;justify-content:center;gap:9px;padding:15px 28px;background:#080A08;color:#B9FF2D;border:1px solid rgba(185,255,45,.35);border-radius:8px;font:600 13px/1 Inter,sans-serif;letter-spacing:.04em;text-decoration:none;margin-bottom:14px;transition:all .2s" onmouseover="this.style.background='#B9FF2D';this.style.color='#040B22'" onmouseout="this.style.background='#080A08';this.style.color='#B9FF2D'">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
           Plan This Trip →
         </a>
-        <a href="https://wa.me/61415097538?text=Hi%20EastXperience%20team%2C%0A%0AI%20want%20to%20request%20last%20minute%20availability%20for%20Sailing%203D2N%20Komodo%2C%20operated%20by%20EastXperience%20on%20the%20Kanha%20fleet.%0A%0ABoat%20preference%3A%20Any%0APreferred%20dates%20or%20month%3A%20Flexible%0AGuests%3A%20%E2%80%93%0ACabin%20preference%3A%20%E2%80%93%0ANotes%3A%20(none)" target="_blank" rel="noopener" id="bookScheduleLink" style="display:block;font-size:13px;color:var(--muted);text-decoration:none;padding:10px 0;border-top:1px solid var(--line)">💬 Or message concierge directly</a>
-        <p style="margin-top:12px;font-size:11.5px;color:rgba(86,100,125,.55)">Operated by EastXperience on the Kanha fleet · Selected departures throughout 2026</p>
+        <a href="https://wa.me/61415097538?text=Hi%20EastXperience%20team%2C%0A%0AI%20want%20to%20request%20last%20minute%20availability%20for%20Sailing%203D2N%20Komodo%2C%20operated%20by%20EastXperience%20on%20the%20Kanha%20fleet.%0A%0ABoat%20preference%3A%20Any%0APreferred%20dates%20or%20month%3A%20Flexible%0AGuests%3A%20%E2%80%93%0ACabin%20preference%3A%20%E2%80%93%0ANotes%3A%20(none)" target="_blank" rel="noopener" id="bookScheduleLink" style="display:block;font-size:13px;color:rgba(200,196,186,.5);text-decoration:none;padding:10px 0;border-top:1px solid rgba(255,255,255,.07)">💬 Or message concierge directly</a>
+        <p style="margin-top:12px;font-size:11.5px;color:rgba(200,196,186,.35)">Operated by EastXperience on the Kanha fleet · Selected departures throughout 2026</p>
       </div>
     </div>
   </div>
@@ -850,7 +963,7 @@
 
 <section class="cta-fin">
   <div class="wrap">
-    <span class="eyebrow" style="color:var(--accent-2);display:block;margin-bottom:8px">Your Komodo voyage</span>
+    <span class="eyebrow" style="color:rgba(185,255,45,.8);display:block;margin-bottom:8px">Your Komodo voyage</span>
     <h2>The trip <em>that becomes your group chat.</em></h2>
     <p>Operated by EastXperience on the Kanha fleet. Capacity varies by boat and cabin configuration. Selected departures throughout the 2026 season — peak (Jul–Sep) books 6+ weeks out.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
