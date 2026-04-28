@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0A1736">
-<title>Komodo 3D2N Social Sailing · Kanha Fleet | EastXperience</title>
-<meta name="description" content="Three days and two nights sailing across Komodo. Operated by EastXperience on the Kanha fleet — Kanha Loka · Kanha Citta · Kanha Natha. Padar sunrise, Pink Beach, Manta Point, Kelor, Kalong bats, deck sunsets. From IDR 4,800,000 per guest · 3D2N.">
+<title>Komodo Sailing 3D2N Liveaboard | Kanha Fleet by EastXperience</title>
+<meta name="description" content="Komodo Sailing 3D2N liveaboard from Labuan Bajo on the Kanha Fleet. Padar sunrise, Pink Beach, Manta Point, Taka Makassar, island sunsets, and curated cabin availability. Operated by EastXperience.">
 <link rel="canonical" href="https://eastxperience.github.io/hellofromtheeast/komodo-sailing-3d2n-final.html">
 
 <!-- ═══ GOOGLE ADS CONVERSION TRACKING ═══
@@ -238,8 +238,8 @@
 
   /* Boat specs card */
   .boat-card { display: grid; grid-template-columns: 1.1fr 1fr; gap: 24px; background: #fff; border: 1.5px solid var(--line); border-radius: var(--r-lg); overflow: hidden; }
-  /* boat-visual = actual Kanha Fleet photo (portrait 900×1200 — top portion shows boat) */
-  .boat-visual { background: url("komodo%20images/boat-kanha-fleet.jpg") center top / cover; min-height: 340px; position: relative; }
+  /* boat-visual = actual Kanha Fleet photo (portrait 900×1200) — 35% shows deck + hull area */
+  .boat-visual { background: url("komodo%20images/boat-kanha-fleet.jpg") center 35% / cover; min-height: 340px; position: relative; }
   .boat-visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, transparent 60%, rgba(255,255,255,.9) 100%); }
   .boat-details { padding: 34px 32px; }
   .boat-details h3 { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 300; margin-bottom: 8px; }
@@ -314,6 +314,138 @@
     .cabin-row { grid-template-columns: 1fr; }
     .lead-grid { grid-template-columns: 1fr; }
   }
+
+  /* ═══════════════════════════════════════════════
+     MOBILE UX — COMPREHENSIVE OVERRIDES (≤ 767px)
+     Scoped to mobile only — desktop untouched.
+  ═══════════════════════════════════════════════ */
+
+  /* Mobile-only hero subline — hidden on desktop */
+  .hero-mob-sub {
+    display: none;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 15px;
+    color: rgba(245,240,230,.76);
+    line-height: 1.58;
+    max-width: 36ch;
+  }
+
+  @media (max-width: 767px) {
+
+    /* ── HERO: STRONGER BOTTOM GRADIENT FOR TEXT READABILITY ── */
+    .hero-apex .hero-veil {
+      background:
+        linear-gradient(to top, rgba(4,11,34,.96) 0%, rgba(4,11,34,.80) 38%, rgba(4,11,34,.28) 68%, rgba(4,11,34,.06) 100%);
+    }
+
+    /* ── HERO: GRID PADDING — text in lower 45%, safe area aware ── */
+    .hero-apex .hero-grid {
+      padding: 72px 20px calc(env(safe-area-inset-bottom, 0px) + 90px) 20px;
+      gap: 12px;
+    }
+
+    /* ── HERO H1: tighter size on mobile, still cinematic ── */
+    .hero-apex h1 {
+      font-size: clamp(28px, 9vw, 38px);
+      line-height: 1.08;
+      max-width: 100%;
+      letter-spacing: -.02em;
+    }
+
+    /* ── HERO: Hide long desktop subline ── */
+    .hero-apex .hero-subline { display: none !important; }
+
+    /* ── HERO: Show mobile-only short subline ── */
+    .hero-mob-sub { display: block; }
+
+    /* ── HERO ANCHOR: single column, hide strikethrough clutter ── */
+    .hero-apex .hero-anchor {
+      padding: 10px 0;
+      gap: 6px;
+      flex-direction: column;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+    }
+    .hero-apex .strike { display: none; }
+    .hero-apex .keep { display: none; }
+    .hero-apex .price-anchor { font-size: 24px; }
+
+    /* ── HERO CTAs: stack vertically, full-width primary ── */
+    .hero-apex .hero-ctas {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .hero-apex .cta-gold {
+      justify-content: center;
+      padding: 16px 20px;
+      text-align: center;
+    }
+    .hero-apex .cta-ghost { display: none; }
+
+    /* ── HERO: Hide "8 minutes" micro copy ── */
+    .hero-apex .micro { display: none !important; }
+
+    /* ── STICKY BAR: compact on mobile, safe area inset ── */
+    .sticky-apex {
+      bottom: calc(env(safe-area-inset-bottom, 0px) + 14px);
+      padding: 10px 10px 10px 18px;
+    }
+
+    /* ── BOAT SECTION: full-width stacked, centred text ── */
+    .boat-card {
+      grid-template-columns: 1fr;
+      border-radius: var(--r-lg);
+    }
+    .boat-visual {
+      min-height: 260px;
+      border-radius: var(--r-lg) var(--r-lg) 0 0;
+      background-position: center 30%;
+    }
+    /* Remove the fade-to-white that hides image on mobile */
+    .boat-visual::after {
+      background: linear-gradient(to top, rgba(255,255,255,.12) 0%, transparent 40%);
+    }
+    .boat-details {
+      text-align: center;
+      padding: 24px 20px 28px;
+    }
+    .boat-details h3 { font-size: 22px; }
+    .boat-specs {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .boat-spec { text-align: center; }
+  }
+
+  /* ── PHOTO STORY: single-column vertical stack on narrow mobile ── */
+  @media (max-width: 540px) {
+    .pg {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      border-radius: var(--r-lg);
+      overflow: visible;
+    }
+    .pg-item {
+      height: 220px;
+      border-radius: 14px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    /* Reset desktop grid-row/column overrides */
+    .pg-1 { grid-row: unset; grid-column: unset; height: 220px; }
+    .pg-4 { grid-column: unset; height: 220px; }
+  }
+
+  /* ── WHY GRID & VIBE: single column on small mobile ── */
+  @media (max-width: 480px) {
+    .vibe-grid { grid-template-columns: 1fr; }
+    .diff-grid  { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 
@@ -357,25 +489,29 @@
   <div class="hero-grid">
     <div class="eye-line">
       <span class="dot" aria-hidden="true"></span>
-      <span class="eyebrow-apex" id="hero-departure">Operated by EastXperience on the Kanha fleet</span>
+      <span class="eyebrow-apex" id="hero-departure">Komodo Sailing 3D2N · Kanha Fleet by EastXperience</span>
     </div>
 
-    <h1>You don't remember<br>the trips. <em>You remember<br>who was on them.</em></h1>
+    <h1>Three days across Komodo. <em>On the Kanha Fleet.</em></h1>
 
-    <p class="hero-subline">Three days. Two nights. Operated by EastXperience on the Kanha fleet — Kanha Loka · Kanha Citta · Kanha Natha. Capacity varies by boat and cabin configuration.</p>
+    <!-- Desktop subline — hidden on mobile via CSS -->
+    <p class="hero-subline">Padar sunrise, Pink Beach, manta channels, Taka Makassar, deck sunsets, and two nights at sea. Operated by EastXperience on the Kanha Fleet — Kanha Loka · Kanha Citta · Kanha Natha.</p>
+
+    <!-- Mobile-only subline — concise, shown only on ≤767px -->
+    <p class="hero-mob-sub">Padar sunrise, Pink Beach, manta channels, island sunsets, and two nights at sea. Operated by EastXperience on the Kanha Fleet.</p>
 
     <div class="hero-anchor">
       <span class="strike">OTA platforms IDR 6,500,000+</span>
       <span class="price-anchor">From IDR 4,800,000<span class="per">/guest · 3D2N · share cabin</span></span>
-      <span class="keep">Book direct with EastXperience · no OTA commission</span>
+      <span class="keep">Direct booking · <b>Selected 2026 departures</b></span>
     </div>
 
     <div class="hero-ctas">
       <a class="cta-gold" href="kanha-liveaboard-booking.html?product=sailing-3d2n" data-bind-cta data-ctx="hero"><span>Plan This Trip →</span></a>
-      <a class="cta-ghost" href="https://wa.me/61415097538?text=Hi%20EastXperience%20team%2C%0A%0AI%20want%20to%20request%20last%20minute%20availability%20for%20Sailing%203D2N%20Komodo%2C%20operated%20by%20EastXperience%20on%20the%20Kanha%20fleet.%0A%0ABoat%20preference%3A%20Any%0APreferred%20dates%20or%20month%3A%20Flexible%0AGuests%3A%20%E2%80%93%0ACabin%20preference%3A%20%E2%80%93%0ANotes%3A%20(none)" target="_blank" rel="noopener" data-ctx="hero">Speak with concierge</a>
+      <a class="cta-ghost" href="#itinerary" data-ctx="hero">View Route ↓</a>
     </div>
 
-    <p class="micro">Concierge replies in under 8 minutes · EN · ID · FR · DE</p>
+    <p class="micro">Direct booking · Concierge replies in under 8 min · EN · ID · FR · DE</p>
   </div>
   <div class="scroll-mark" aria-hidden="true">Scroll</div>
 </section>
@@ -478,7 +614,7 @@
   </div>
 </section>
 
-<section class="sec">
+<section class="sec" id="itinerary">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Full itinerary</span>
@@ -765,14 +901,29 @@
     v.addEventListener('canplay', () => v.classList.add('ready'), { once: true });
   });
 
-  /* ═══ STICKY APEX — scroll-reactive state machine ═══ */
+  /* ═══ STICKY APEX — scroll-reactive + hero-aware state machine ═══ */
   const apex = document.querySelector('.sticky-apex');
+  const heroSection = document.querySelector('.hero-apex');
   if (apex) {
-    let last = '';
+    let last = '', heroInView = true;
+
+    /* Use IntersectionObserver to track whether the hero is still visible */
+    if (heroSection && 'IntersectionObserver' in window) {
+      new IntersectionObserver(
+        ([e]) => { heroInView = e.isIntersecting; updateState(); },
+        { threshold: 0.06 }
+      ).observe(heroSection);
+    }
+
     const updateState = () => {
+      /* Keep dormant while hero is still in viewport — prevents covering hero text */
+      if (heroInView) {
+        if (last !== 'dormant') { apex.dataset.state = 'dormant'; last = 'dormant'; }
+        return;
+      }
       const h = document.documentElement.scrollHeight - innerHeight;
       const p = h > 0 ? scrollY / h : 0;
-      const next = p < 0.15 ? 'dormant' : p < 0.7 ? 'visible' : 'urgent';
+      const next = p < 0.82 ? 'visible' : 'urgent';
       if (next !== last) { apex.dataset.state = next; last = next; }
     };
     addEventListener('scroll', updateState, { passive: true });

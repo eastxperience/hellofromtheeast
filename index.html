@@ -182,6 +182,33 @@ tailwind.config = {
 
   /* ─── TRUST BADGE ROW ─── */
   .trust-badge{display:inline-flex;align-items:center;gap:.35rem;font-size:.72rem;letter-spacing:.04em;color:rgba(246,241,231,.7);padding:.3rem .65rem;border-radius:9999px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
+
+  /* ═══ DARK ASH SECTION — Featured Experiences Premium Redesign ═══ */
+  .sec-dark-ash { background: #0B0F0C; }
+
+  /* Dark glass card */
+  .dark-card { background: rgba(14,17,15,.96) !important; border-color: rgba(255,255,255,.09) !important; color: #F0EDE6; }
+  .dark-card:hover { border-color: rgba(255,255,255,.17) !important; box-shadow: 0 22px 60px rgba(0,0,0,.55) !important; }
+
+  /* Komodo featured neon glow */
+  .card-komodo { box-shadow: 0 0 0 1px rgba(185,255,45,.26), 0 22px 64px rgba(185,255,45,.07); }
+  .card-komodo:hover { box-shadow: 0 0 0 1.5px rgba(185,255,45,.44), 0 30px 80px rgba(185,255,45,.13) !important; transform: translateY(-5px) !important; }
+
+  /* Light button (white) for dark section */
+  .btn-light { background: #FFFFFF; color: #080C09; box-shadow: 0 8px 24px rgba(255,255,255,.12); }
+  .btn-light:hover { transform: translateY(-2px); box-shadow: 0 16px 36px rgba(255,255,255,.18); }
+
+  /* Neon CTA button */
+  .btn-neon { background: rgba(185,255,45,.13); border: 1px solid rgba(185,255,45,.38); color: #B9FF2D; }
+  .btn-neon:hover { background: rgba(185,255,45,.22); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(185,255,45,.18); }
+
+  /* GYG dark variant */
+  .gyg-link-dark { display:inline-flex; align-items:center; gap:.3rem; font-size:.73rem; font-weight:500; color:rgba(255,255,255,.3); text-decoration:none; padding:.3rem 0; transition:color .2s; }
+  .gyg-link-dark:hover { color: #B9FF2D; }
+
+  /* Urgency block dark */
+  .urgency-dark { background: rgba(185,255,45,.05); border: 1px solid rgba(185,255,45,.16); border-radius: 18px; }
+  .urgency-dot-neon { width:8px; height:8px; border-radius:9999px; background:#B9FF2D; flex-shrink:0; }
 </style>
 </head>
 <body class="antialiased">
@@ -376,46 +403,52 @@ tailwind.config = {
 </section>
 
 <!-- ═══════════════════════════════════════════
-     FEATURED EXPERIENCES
+     FEATURED EXPERIENCES — Dark Ash Premium
 ════════════════════════════════════════════ -->
-<section id="experiences" class="pb-20 md:pb-28">
+<section id="experiences" class="sec-dark-ash pt-20 md:pt-28 pb-20 md:pb-28">
   <div class="max-w-7xl mx-auto px-5">
     <div class="flex items-end justify-between mb-10 gap-4 flex-wrap">
       <div>
-        <span class="text-[12px] tracking-[.25em] uppercase text-ink/60">— Featured Experiences</span>
-        <h2 class="font-display text-3xl md:text-5xl mt-3">Signature journeys, thoughtfully curated.</h2>
+        <span class="text-[12px] tracking-[.25em] uppercase" style="color:rgba(255,255,255,.4)">— Featured Experiences</span>
+        <h2 class="font-display text-3xl md:text-5xl mt-3 text-white">Start with Komodo. <em style="color:#B9FF2D;font-style:normal">Go deeper into Indonesia.</em></h2>
+        <p class="text-[15px] mt-3 max-w-2xl mob-hide" style="color:rgba(255,255,255,.5)">Our most requested journeys right now, led by Komodo Sailing 3D2N on the Kanha Fleet and the living heritage of Waerebo.</p>
       </div>
-      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20a%20custom%20trip." class="hidden md:inline-flex btn btn-primary">Get Custom Itinerary →</a>
+      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20a%20custom%20trip." class="hidden md:inline-flex btn btn-neon">Get Custom Itinerary →</a>
     </div>
+
+    <!-- ════ SINGLE CLEAN GRID — 3 cols desktop, 2 tablet, 1 mobile ════ -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      <!-- ─── CARD 1 ─── -->
-      <article class="card reveal">
-        <div class="relative aspect-[4/5] overflow-hidden">
-          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/12naTQR5AAnUlSTbIaZEfNf5xnzjZxtYE=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Bandung river rafting adventure"/>
+      <!-- ─── CARD 1: KOMODO SAILING EXPEDITION (Featured — neon glow) ─── -->
+      <article class="card dark-card card-komodo reveal">
+        <div class="relative overflow-hidden" style="height:320px">
+          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1jSGZxbJ52RGY6lryxDA9cQtO8y6hA-Ks=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Komodo sailing liveaboard Kanha Fleet EastXperience" style="height:320px"/>
           <div class="absolute inset-0 gradient-dark"></div>
-          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Bandung</span><span class="chip">Adventure</span></div>
+          <div class="absolute top-4 left-4 flex gap-2">
+            <span class="chip">Komodo</span>
+            <span class="chip" style="background:rgba(185,255,45,.15);color:#B9FF2D;border-color:rgba(185,255,45,.4)">★ Featured Sailing</span>
+          </div>
           <div class="absolute bottom-4 left-4 right-4 text-bone">
-            <div class="text-[12px] tracking-widest uppercase opacity-80">Full Day · Incl. Lunch</div>
-            <h3 class="font-display text-2xl md:text-[28px] mt-1">Pangalengan River Rafting</h3>
+            <div class="text-[12px] tracking-widest uppercase opacity-80">3 Days · 2 Nights · Kanha Fleet</div>
+            <h3 class="font-display text-2xl md:text-[28px] mt-1">Komodo Sailing Expedition</h3>
           </div>
         </div>
         <div class="p-6">
-          <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Chase whitewater rapids through Bandung's emerald highlands — a rush of cold spray, rainforest, and sun-warmed laughter.</p>
-          <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Whitewater rapids through Bandung's emerald highlands.</p>
+          <p class="text-[15px] leading-relaxed mob-hide" style="color:rgba(255,255,255,.62)">Three days and two nights across Komodo with the Kanha Fleet. Padar sunrise, Pink Beach, manta channels, deck sunsets, and curated cabin availability.</p>
+          <p class="text-[14px] leading-relaxed intro-short" style="color:rgba(255,255,255,.62)">Padar sunrise, Pink Beach, manta channels, deck sunsets.</p>
           <div class="mt-5">
-            <!-- ↳ USD price added for international visitors -->
-            <div class="text-[13px] text-ink/60 mb-1">Direct rate from <strong class="text-ink">IDR 850K</strong> <span class="price-usd">~$53 USD</span> / person</div>
-            <div class="text-[11px] text-emerald-700 mb-3 font-medium">Direct rate — save vs. platform booking</div>
-            <!-- ↳ Primary CTA standardised; GYG demoted to text link -->
+            <div class="text-[13px] mb-1" style="color:rgba(255,255,255,.45)">Direct rate from <strong class="text-white">IDR 4.8M</strong> <span class="price-usd">~$296 USD</span> / guest · <span style="color:#B9FF2D">Premium</span></div>
+            <div class="text-[11px] mb-3 font-medium" style="color:rgba(185,255,45,.7)">Operated by EastXperience on the Kanha Fleet · direct rate</div>
             <div class="card-actions flex gap-2">
-              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Bandung%20Rafting%20trip." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+              <a href="komodo-sailing-3d2n-final.html" class="btn btn-light flex-1 !py-2 !px-3 text-[13px] justify-center">
+                View Journey →
+              </a>
+              <a href="kanha-liveaboard-booking.html?product=sailing-3d2n" class="btn btn-neon flex-1 !py-2 !px-3 text-[13px] justify-center">
                 Plan This Trip
               </a>
             </div>
             <div class="mt-2">
-              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/bandung-l32327/bandung-pangalengan-river-rafting-adventure-with-lunch-t775512/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link">
+              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/labuan-bajo-l106237/3d2n-komodo-social-community-sailing-experience-t1226320/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link-dark">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
                 Also available on GetYourGuide
               </a>
@@ -424,109 +457,10 @@ tailwind.config = {
         </div>
       </article>
 
-      <!-- ─── CARD 2 ─── -->
-      <article class="card reveal">
-        <div class="relative aspect-[4/5] overflow-hidden">
-          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1jdS-99j8dgQro7zgS3e745nnWYSBYwVS=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Bandung volcano tea plantation onsen"/>
-          <div class="absolute inset-0 gradient-dark"></div>
-          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Bandung</span><span class="chip">Wellness</span></div>
-          <div class="absolute bottom-4 left-4 right-4 text-bone">
-            <div class="text-[12px] tracking-widest uppercase opacity-80">One Day · Volcano · Onsen · Tea</div>
-            <h3 class="font-display text-2xl md:text-[28px] mt-1">Volcano, Onsen & Tea Fields</h3>
-          </div>
-        </div>
-        <div class="p-6">
-          <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Crater steam at dawn, volcanic hot springs by noon, and a walk through cloud-touched tea terraces by golden hour.</p>
-          <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Volcano crater, hot springs, and cloud-touched tea terraces.</p>
-          <div class="mt-5">
-            <div class="text-[13px] text-ink/60 mb-1">Direct rate from <strong class="text-ink">IDR 950K</strong> <span class="price-usd">~$59 USD</span> / person</div>
-            <div class="text-[11px] text-emerald-700 mb-3 font-medium">Direct rate — save vs. platform booking</div>
-            <div class="card-actions flex gap-2">
-              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Volcano%20Onsen%20Tea%20trip." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
-                Plan This Trip
-              </a>
-            </div>
-            <div class="mt-2">
-              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/bandung-l32327/bandung-volcano-crater-onsen-hot-springs-mud-bath-tea-t1016735/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-                Also available on GetYourGuide
-              </a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- ─── CARD 3 ─── -->
-      <article class="card reveal">
-        <div class="relative aspect-[4/5] overflow-hidden">
-          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1h-6fQ7WUblD1ZEFZKWLig0lyotpPZFT8=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Komodo Pink Beach speedboat"/>
-          <div class="absolute inset-0 gradient-dark"></div>
-          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Komodo</span><span class="chip">Bestseller</span></div>
-          <div class="absolute bottom-4 left-4 right-4 text-bone">
-            <div class="text-[12px] tracking-widest uppercase opacity-80">Full Day · Speedboat</div>
-            <h3 class="font-display text-2xl md:text-[28px] mt-1">Komodo by Speedboat</h3>
-          </div>
-        </div>
-        <div class="p-6">
-          <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Padar's sweeping ridges, Pink Beach's blush shoreline, dragons on Komodo Island — one unforgettable day on open water.</p>
-          <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Padar, Pink Beach, Komodo dragons. One epic day.</p>
-          <div class="mt-5">
-            <div class="text-[13px] text-ink/60 mb-1">Direct rate from <strong class="text-ink">IDR 1.5M</strong> <span class="price-usd">~$94 USD</span> / person · <span class="text-clay">Bestseller</span></div>
-            <div class="text-[11px] text-emerald-700 mb-3 font-medium">Direct rate — save vs. platform booking</div>
-            <div class="card-actions flex gap-2">
-              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Komodo%20Speedboat%20trip." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
-                Plan This Trip
-              </a>
-            </div>
-            <div class="mt-2">
-              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/labuan-bajo-l106237/komodo-full-day-speedboat-tour-from-labuan-bajo-t720690/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-                Also available on GetYourGuide
-              </a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- ─── CARD 4 ─── -->
-      <article class="card reveal">
-        <div class="relative aspect-[4/5] overflow-hidden">
-          <img loading="lazy" class="img-cover" src="assets/images/todo.jpg" onerror="this.src='https://lh3.googleusercontent.com/d/1w05_X0_yHJ7D2eQqK-5abmVGhCRQfuHb=w1400'" alt="Todo Village Flores culture"/>
-          <div class="absolute inset-0 gradient-dark"></div>
-          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Flores</span><span class="chip">Culture</span></div>
-          <div class="absolute bottom-4 left-4 right-4 text-bone">
-            <div class="text-[12px] tracking-widest uppercase opacity-80">Day Tour · Manggarai</div>
-            <h3 class="font-display text-2xl md:text-[28px] mt-1">Todo Village & Cunca Plias</h3>
-          </div>
-        </div>
-        <div class="p-6">
-          <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Ancient drum ceremonies, woven ikat, and a secret waterfall — an intimate walk into Manggarai's living heritage.</p>
-          <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Drum ceremonies, woven ikat, secret waterfall.</p>
-          <div class="mt-5">
-            <div class="text-[13px] text-ink/60 mb-1">Direct rate from <strong class="text-ink">IDR 1.95M</strong> <span class="price-usd">~$122 USD</span> / person</div>
-            <div class="text-[11px] text-emerald-700 mb-3 font-medium">Direct rate — save vs. platform booking</div>
-            <div class="card-actions flex gap-2">
-              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Todo%20Village%20trip." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
-                Plan This Trip
-              </a>
-            </div>
-            <div class="mt-2">
-              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/manggarai-regency-l217587/todo-village-cunca-plias-cultural-nature-day-tour-t1257123/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-                Also available on GetYourGuide
-              </a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- ─── CARD 5 ─── -->
-      <article class="card reveal">
-        <div class="relative aspect-[4/5] overflow-hidden">
-          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1j2_tskL7S4JWI_TP_yC_E8NWY6j-Nh31=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Waerebo village Flores"/>
+      <!-- ─── CARD 2: WAEREBO VILLAGE ─── -->
+      <article class="card dark-card reveal">
+        <div class="relative overflow-hidden" style="height:320px">
+          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1j2_tskL7S4JWI_TP_yC_E8NWY6j-Nh31=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Waerebo village Flores" style="height:320px"/>
           <div class="absolute inset-0 gradient-dark"></div>
           <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Flores</span><span class="chip">Iconic</span></div>
           <div class="absolute bottom-4 left-4 right-4 text-bone">
@@ -535,58 +469,18 @@ tailwind.config = {
           </div>
         </div>
         <div class="p-6">
-          <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Hike into mist, sleep beneath conical thatched roofs, wake to gongs and mountain silence — Indonesia's most sacred welcome.</p>
-          <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Hike into mist, sleep beneath thatched roofs above the clouds.</p>
+          <p class="text-[15px] leading-relaxed mob-hide" style="color:rgba(255,255,255,.62)">Hike into mist, sleep beneath conical thatched roofs, wake to gongs and mountain silence — Indonesia's most sacred welcome.</p>
+          <p class="text-[14px] leading-relaxed intro-short" style="color:rgba(255,255,255,.62)">Hike into mist, sleep beneath thatched roofs above the clouds.</p>
           <div class="mt-5">
-            <div class="text-[13px] text-ink/60 mb-1">Direct rate from <strong class="text-ink">IDR 1.85M</strong> <span class="price-usd">~$114 USD</span> / person · <span class="text-clay">Iconic</span></div>
-            <div class="text-[11px] text-emerald-700 mb-3 font-medium">Direct rate — save vs. platform booking</div>
+            <div class="text-[13px] mb-1" style="color:rgba(255,255,255,.45)">Direct rate from <strong class="text-white">IDR 1.85M</strong> <span class="price-usd">~$114 USD</span> / person · <span style="color:rgba(255,255,255,.55)">Iconic</span></div>
+            <div class="text-[11px] mb-3 font-medium" style="color:rgba(255,255,255,.35)">Direct rate — save vs. platform booking</div>
             <div class="card-actions flex gap-2">
-              <a href="waerebo-final.html" class="btn btn-primary flex-1 !py-2 !px-3 text-[13px] justify-center">
-                View Journey →
-              </a>
-              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Waerebo%202D1N%20trip." class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
-                WhatsApp
-              </a>
-            </div>
-            <div class="mt-2">
-              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/labuan-bajo-l106237/2d1n-exotic-waerebo-village-tour-from-labuan-bajo-t519573/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-                Also available on GetYourGuide
-              </a>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- ─── CARD 6 ─── -->
-      <article class="card reveal">
-        <div class="relative aspect-[4/5] overflow-hidden">
-          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1jSGZxbJ52RGY6lryxDA9cQtO8y6hA-Ks=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Komodo sailing liveaboard"/>
-          <div class="absolute inset-0 gradient-dark"></div>
-          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Komodo</span><span class="chip">Sailing</span></div>
-          <div class="absolute bottom-4 left-4 right-4 text-bone">
-            <div class="text-[12px] tracking-widest uppercase opacity-80">3 Days · 2 Nights · Shared or Private</div>
-            <h3 class="font-display text-2xl md:text-[28px] mt-1">Komodo Sailing Expedition</h3>
-          </div>
-        </div>
-        <div class="p-6">
-          <p class="text-ink/70 text-[15px] leading-relaxed mob-hide">Sleep under galaxies, dive into manta channels, and sail between islands that feel like they belong only to you.</p>
-          <p class="text-ink/70 text-[14px] leading-relaxed intro-short">Sleep under galaxies, dive with mantas, sail private islands.</p>
-          <div class="mt-5">
-            <div class="text-[13px] text-ink/60 mb-1">Direct rate from <strong class="text-ink">IDR 5.5M</strong> <span class="price-usd">~$344 USD</span> / person · <span class="text-clay">Premium</span></div>
-            <div class="text-[11px] text-emerald-700 mb-3 font-medium">Direct rate — save vs. platform booking</div>
-            <div class="card-actions flex gap-2">
-              <a href="komodo-sailing-3d2n-final.html" class="btn btn-primary flex-1 !py-2 !px-3 text-[13px] justify-center">
-                View Journey →
-              </a>
-              <a href="kanha-liveaboard-booking.html?product=sailing-3d2n" class="btn btn-wa flex-1 !py-2 !px-3 text-[13px] justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+              <a href="waerebo-final.html" class="btn btn-neon flex-1 !py-2 !px-3 text-[13px] justify-center">
                 Plan This Trip
               </a>
             </div>
             <div class="mt-2">
-              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/labuan-bajo-l106237/3d2n-komodo-social-community-sailing-experience-t1226320/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link">
+              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/labuan-bajo-l106237/2d1n-exotic-waerebo-village-tour-from-labuan-bajo-t519573/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link-dark">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
                 Also available on GetYourGuide
               </a>
@@ -595,22 +489,150 @@ tailwind.config = {
         </div>
       </article>
 
-    </div>
+      <!-- ─── CARD 3: KOMODO SPEEDBOAT ─── -->
+      <article class="card dark-card reveal">
+        <div class="relative overflow-hidden" style="height:320px">
+          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1h-6fQ7WUblD1ZEFZKWLig0lyotpPZFT8=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Komodo Pink Beach speedboat" style="height:320px"/>
+          <div class="absolute inset-0 gradient-dark"></div>
+          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Komodo</span><span class="chip">Bestseller</span></div>
+          <div class="absolute bottom-4 left-4 right-4 text-bone">
+            <div class="text-[12px] tracking-widest uppercase opacity-80">Full Day · Speedboat</div>
+            <h3 class="font-display text-2xl md:text-[28px] mt-1">Komodo by Speedboat</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-[15px] leading-relaxed mob-hide" style="color:rgba(255,255,255,.62)">Padar's sweeping ridges, Pink Beach's blush shoreline, dragons on Komodo Island — one unforgettable day on open water.</p>
+          <p class="text-[14px] leading-relaxed intro-short" style="color:rgba(255,255,255,.62)">Padar, Pink Beach, Komodo dragons. One epic day.</p>
+          <div class="mt-5">
+            <div class="text-[13px] mb-1" style="color:rgba(255,255,255,.45)">Direct rate from <strong class="text-white">IDR 1.5M</strong> <span class="price-usd">~$94 USD</span> / person · <span style="color:rgba(255,255,255,.55)">Bestseller</span></div>
+            <div class="text-[11px] mb-3 font-medium" style="color:rgba(255,255,255,.35)">Direct rate — save vs. platform booking</div>
+            <div class="card-actions flex gap-2">
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Komodo%20Speedboat%20trip." class="btn btn-neon flex-1 !py-2 !px-3 text-[13px] justify-center">
+                Plan This Trip
+              </a>
+            </div>
+            <div class="mt-2">
+              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/labuan-bajo-l106237/komodo-full-day-speedboat-tour-from-labuan-bajo-t720690/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link-dark">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Also available on GetYourGuide
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ─── CARD 4: TODO VILLAGE ─── -->
+      <article class="card dark-card reveal">
+        <div class="relative overflow-hidden" style="height:320px">
+          <img loading="lazy" class="img-cover" src="assets/images/todo.jpg" onerror="this.src='https://lh3.googleusercontent.com/d/1w05_X0_yHJ7D2eQqK-5abmVGhCRQfuHb=w1400'" alt="Todo Village Flores culture" style="height:320px"/>
+          <div class="absolute inset-0 gradient-dark"></div>
+          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Flores</span><span class="chip">Culture</span></div>
+          <div class="absolute bottom-4 left-4 right-4 text-bone">
+            <div class="text-[12px] tracking-widest uppercase opacity-80">Day Tour · Manggarai</div>
+            <h3 class="font-display text-2xl md:text-[28px] mt-1">Todo Village & Cunca Plias</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-[15px] leading-relaxed mob-hide" style="color:rgba(255,255,255,.62)">Ancient drum ceremonies, woven ikat, and a secret waterfall — an intimate walk into Manggarai's living heritage.</p>
+          <p class="text-[14px] leading-relaxed intro-short" style="color:rgba(255,255,255,.62)">Drum ceremonies, woven ikat, secret waterfall.</p>
+          <div class="mt-5">
+            <div class="text-[13px] mb-1" style="color:rgba(255,255,255,.45)">Direct rate from <strong class="text-white">IDR 1.95M</strong> <span class="price-usd">~$122 USD</span> / person</div>
+            <div class="text-[11px] mb-3 font-medium" style="color:rgba(255,255,255,.35)">Direct rate — save vs. platform booking</div>
+            <div class="card-actions flex gap-2">
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Todo%20Village%20trip." class="btn btn-neon flex-1 !py-2 !px-3 text-[13px] justify-center">
+                Plan This Trip
+              </a>
+            </div>
+            <div class="mt-2">
+              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/manggarai-regency-l217587/todo-village-cunca-plias-cultural-nature-day-tour-t1257123/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link-dark">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Also available on GetYourGuide
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ─── CARD 5: VOLCANO, ONSEN & TEA ─── -->
+      <article class="card dark-card reveal">
+        <div class="relative overflow-hidden" style="height:320px">
+          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/1jdS-99j8dgQro7zgS3e745nnWYSBYwVS=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Bandung volcano tea plantation onsen" style="height:320px"/>
+          <div class="absolute inset-0 gradient-dark"></div>
+          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Bandung</span><span class="chip">Wellness</span></div>
+          <div class="absolute bottom-4 left-4 right-4 text-bone">
+            <div class="text-[12px] tracking-widest uppercase opacity-80">One Day · Volcano · Onsen · Tea</div>
+            <h3 class="font-display text-2xl md:text-[28px] mt-1">Volcano, Onsen & Tea Fields</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-[15px] leading-relaxed mob-hide" style="color:rgba(255,255,255,.62)">Crater steam at dawn, volcanic hot springs by noon, and a walk through cloud-touched tea terraces by golden hour.</p>
+          <p class="text-[14px] leading-relaxed intro-short" style="color:rgba(255,255,255,.62)">Volcano crater, hot springs, and cloud-touched tea terraces.</p>
+          <div class="mt-5">
+            <div class="text-[13px] mb-1" style="color:rgba(255,255,255,.45)">Direct rate from <strong class="text-white">IDR 950K</strong> <span class="price-usd">~$59 USD</span> / person</div>
+            <div class="text-[11px] mb-3 font-medium" style="color:rgba(255,255,255,.35)">Direct rate — save vs. platform booking</div>
+            <div class="card-actions flex gap-2">
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Volcano%20Onsen%20Tea%20trip." class="btn btn-neon flex-1 !py-2 !px-3 text-[13px] justify-center">
+                Plan This Trip
+              </a>
+            </div>
+            <div class="mt-2">
+              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/bandung-l32327/bandung-volcano-crater-onsen-hot-springs-mud-bath-tea-t1016735/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link-dark">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Also available on GetYourGuide
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ─── CARD 6: PANGALENGAN RIVER RAFTING ─── -->
+      <article class="card dark-card reveal">
+        <div class="relative overflow-hidden" style="height:320px">
+          <img loading="lazy" class="img-cover" src="https://lh3.googleusercontent.com/d/12naTQR5AAnUlSTbIaZEfNf5xnzjZxtYE=w1400" onerror="this.src='assets/images/placeholder.svg'" alt="Bandung river rafting adventure" style="height:320px"/>
+          <div class="absolute inset-0 gradient-dark"></div>
+          <div class="absolute top-4 left-4 flex gap-2"><span class="chip">Bandung</span><span class="chip">Adventure</span></div>
+          <div class="absolute bottom-4 left-4 right-4 text-bone">
+            <div class="text-[12px] tracking-widest uppercase opacity-80">Full Day · Incl. Lunch</div>
+            <h3 class="font-display text-2xl md:text-[28px] mt-1">Pangalengan River Rafting</h3>
+          </div>
+        </div>
+        <div class="p-6">
+          <p class="text-[15px] leading-relaxed mob-hide" style="color:rgba(255,255,255,.62)">Chase whitewater rapids through Bandung's emerald highlands — a rush of cold spray, rainforest, and sun-warmed laughter.</p>
+          <p class="text-[14px] leading-relaxed intro-short" style="color:rgba(255,255,255,.62)">Whitewater rapids through Bandung's emerald highlands.</p>
+          <div class="mt-5">
+            <div class="text-[13px] mb-1" style="color:rgba(255,255,255,.45)">Direct rate from <strong class="text-white">IDR 850K</strong> <span class="price-usd">~$53 USD</span> / person</div>
+            <div class="text-[11px] mb-3 font-medium" style="color:rgba(255,255,255,.35)">Direct rate — save vs. platform booking</div>
+            <div class="card-actions flex gap-2">
+              <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20plan%20the%20Bandung%20Rafting%20trip." class="btn btn-neon flex-1 !py-2 !px-3 text-[13px] justify-center">
+                Plan This Trip
+              </a>
+            </div>
+            <div class="mt-2">
+              <a target="_blank" rel="noopener" href="https://www.getyourguide.com/bandung-l32327/bandung-pangalengan-river-rafting-adventure-with-lunch-t775512/?partner_id=2FNL47R&currency=USD&travel_agent=1&cmp=share_to_earn" class="gyg-link-dark">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                Also available on GetYourGuide
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div><!-- /experiences-grid -->
 
     <div class="md:hidden mt-8 flex justify-center">
-      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20build%20my%20trip." class="btn btn-primary">Get Custom Itinerary →</a>
+      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I%27d%20like%20to%20build%20my%20trip." class="btn btn-neon">Get Custom Itinerary →</a>
     </div>
 
-    <!-- ↳ URGENCY BLOCK — elegant scarcity, not alarm -->
-    <div class="mt-10 p-5 md:p-6 rounded-2xl bg-sand/60 border border-sand flex flex-wrap items-center justify-between gap-4 reveal">
+    <!-- ↳ URGENCY BLOCK — dark neon variant -->
+    <div class="urgency-dark mt-10 p-5 md:p-6 flex flex-wrap items-center justify-between gap-4 reveal">
       <div>
-        <div class="flex items-center gap-2 text-ink/80 font-semibold text-[14px]">
-          <span class="w-2 h-2 rounded-full bg-clay"></span>
+        <div class="flex items-center gap-2 font-semibold text-[14px] text-white">
+          <span class="urgency-dot-neon urgency-pulse"></span>
           Peak Season · Jul–Sept
         </div>
-        <p class="text-ink/65 text-[14px] mt-1 max-w-lg">Phinisi departures are limited by nature — only a handful of vessels operate in Komodo waters. Select July–September dates are still available. We'll hold a slot while you plan.</p>
+        <p class="text-[14px] mt-1 max-w-lg" style="color:rgba(255,255,255,.5)">Phinisi departures are limited by nature — only a handful of vessels operate in Komodo waters. Select July–September dates are still available. We'll hold a slot while you plan.</p>
       </div>
-      <a href="https://wa.me/62811342473?text=Hi%2C%20I%20want%20to%20check%20availability%20for%20peak%20season." class="btn btn-primary !py-2 !px-4 text-[13px] whitespace-nowrap">Check Availability →</a>
+      <a href="https://wa.me/62811342473?text=Hi%2C%20I%20want%20to%20check%20availability%20for%20peak%20season." class="btn btn-light !py-2 !px-4 text-[13px] whitespace-nowrap">Check Availability →</a>
     </div>
 
   </div>
