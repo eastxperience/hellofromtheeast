@@ -424,16 +424,15 @@ button,a,.cabin-opt,.boat-card,.boat-photo-link{
 <div class="hero">
   <div class="hero-eyebrow">EastXperience · Komodo 3D2N · Kanha Fleet</div>
   <h1>Choose your boat. <em>Pick your departure.</em></h1>
-  <p class="hero-sub">Browse the 2026 Komodo Sailing 3D2N schedule operated by EastXperience on the Kanha Fleet, then select your cabin and request your trip.</p>
-  <div class="cal-helper">
-    <strong>How the calendar works.</strong> Only departure dates are shown. Each highlighted date represents a 3 days 2 nights trip. The two consecutive days after each departure are travel days, not selectable departure dates.
-  </div>
+  <p class="hero-sub">Select your boat, date, and cabin. Our team confirms availability before payment.</p>
   <div class="step-strip">
-    <div class="step active" id="s1"><span class="step-n">1</span>Choose Boat</div>
+    <div class="step active" id="s1"><span class="step-n">1</span>Boat</div>
     <div class="step-div"></div>
-    <div class="step" id="s2"><span class="step-n">2</span>Pick Departure</div>
+    <div class="step" id="s2"><span class="step-n">2</span>Date</div>
     <div class="step-div"></div>
-    <div class="step" id="s3"><span class="step-n">3</span>Select Cabin</div>
+    <div class="step" id="s3"><span class="step-n">3</span>Cabin</div>
+    <div class="step-div"></div>
+    <div class="step" id="s4"><span class="step-n">4</span>Details</div>
   </div>
 </div>
 
@@ -441,9 +440,9 @@ button,a,.cabin-opt,.boat-card,.boat-photo-link{
 <section class="sec" id="step-boats" data-anchor="choose-boat">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Step 1 — Choose your boat</span>
-      <h2>Three boats. <em>One Komodo.</em></h2>
-      <p>Each boat has a different capacity and cabin configuration. All run the same 3D2N Komodo route.</p>
+      <span class="eyebrow">Step 1 · Boat</span>
+      <h2>Choose your boat.</h2>
+      <p>Pick Loka, Citta, or Natha.</p>
     </div>
     <div class="boats-grid reveal">
 
@@ -554,24 +553,21 @@ button,a,.cabin-opt,.boat-card,.boat-photo-link{
 <section class="sec" id="step-calendar">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Step 2 — Pick a departure date</span>
-      <h2 id="calHeading">Browse 2026 departure schedule</h2>
-      <p>Selected departures throughout the 2026 season. Dots show the start of a 3D2N trip on each boat. Day 2 &amp; Day 3 of each trip are travel days, not selectable.</p>
-    </div>
-    <div class="cal-helper-top" style="max-width:840px;margin:0 auto 14px;font-size:13px;color:var(--muted);text-align:center">
-      Only departure dates are shown. Each selected date represents a 3 days 2 nights trip.
+      <span class="eyebrow">Step 2 · Date</span>
+      <h2 id="calHeading">Choose your departure.</h2>
+      <p>Tap an available start date.</p>
     </div>
     <div class="cal-sec locked" id="calSec">
       <div class="cal-header">
         <div class="cal-title" id="calMonthTitle">Pick a boat to load live departures</div>
         <div class="cal-legend">
-          <div class="cl-item"><div class="cl-dot" style="background:rgba(34,197,94,.6)"></div>Available departure</div>
-          <div class="cl-item"><div class="cl-dot" style="background:rgba(57,57,57,.18);border:1px solid #ddd"></div>Not a departure date</div>
+          <div class="cl-item"><div class="cl-dot" style="background:rgba(34,197,94,.6)"></div>Available</div>
+          <div class="cl-item"><div class="cl-dot" style="background:rgba(57,57,57,.18);border:1px solid #ddd"></div>Unavailable</div>
         </div>
       </div>
       <div class="cal-rule">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
-        <span><strong>3D2N rule:</strong> Only the first day of each trip is selectable. Example — a 15&ndash;17 May trip is picked by clicking <strong>15 May</strong>. 16 &amp; 17 May are travel days, automatically blocked in the picker.</span>
+        <span>Only the first day of each 3D2N trip is selectable.</span>
       </div>
       <div class="fp-wrap">
         <div class="fp-input-row">
@@ -579,7 +575,7 @@ button,a,.cabin-opt,.boat-card,.boat-photo-link{
           <span class="fp-loading" id="fpLoading" style="display:none">Loading availability…</span>
         </div>
         <div class="fp-helper" id="fpHelper">
-          <strong>Tip:</strong> Select a boat above. Highlighted dates are confirmed departures from the live Kanha schedule.
+Tap a highlighted date to pick your departure.
         </div>
         <div class="fp-status-bar">
           <span id="fpLastUpdated">Live data — waiting for boat selection</span>
@@ -593,7 +589,9 @@ button,a,.cabin-opt,.boat-card,.boat-photo-link{
       </div>
     </div>
 
-    <!-- STEP 3: BOOKING PANEL -->
+    <!-- STEP 3: CABIN -->
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07)" id="step-cabins">
+    <div style="margin-bottom:16px"><span style="font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Step 3 · Cabin</span></div>
     <div class="bk-sec">
       <div class="bk-panel" id="bkPanel">
         <div class="bk-top">
@@ -621,25 +619,11 @@ button,a,.cabin-opt,.boat-card,.boat-photo-link{
           <p class="bk-wa-sub" id="bkCtaSub">Tap a cabin above to enable the booking form.</p>
         </div>
       </div>
-    </div>
+    </div></div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="sec" style="background:var(--surface)">
-  <div class="wrap">
-    <div class="sec-head center reveal">
-      <span class="eyebrow">How it works</span>
-      <h2>Four steps, <em>ten minutes.</em></h2>
-    </div>
-    <div class="hw-grid reveal">
-      <div class="hw-item"><div class="hw-n">1</div><h4>Choose your boat</h4><p>Pick Loka, Citta, or Natha. Capacity varies by boat and cabin configuration.</p></div>
-      <div class="hw-item"><div class="hw-n">2</div><h4>Pick a departure date</h4><p>Each highlighted date is the first day of a 3D2N trip. Travel dates auto-fill once you select.</p></div>
-      <div class="hw-item"><div class="hw-n">3</div><h4>Select cabin preference</h4><p>From IDR 4,800,000 (Natha Share) up to IDR 12,500,000 (Citta Gayatri Master Suite).</p></div>
-      <div class="hw-item"><div class="hw-n">4</div><h4>Complete guest details</h4><p>Fill your personal details on the booking form. Our team confirms availability and sends invoice.</p></div>
-    </div>
-  </div>
-</section>
+<!-- How It Works removed — steps are self-evident -->
 
 <!-- 3D2N ITINERARY -->
 <section class="sec">
@@ -724,8 +708,8 @@ button,a,.cabin-opt,.boat-card,.boat-photo-link{
 
 <!-- STICKY BAR -->
 <div class="sticky-bk" id="stickyBk">
-  <span class="sticky-bk-txt" id="stickyTxt"><strong>EastXperience · Sailing 3D2N</strong> · From IDR 4,800,000/pax</span>
-  <button class="sticky-bk-btn" onclick="document.getElementById('step-calendar').scrollIntoView({behavior:'smooth'})">Pick a date →</button>
+  <span class="sticky-bk-txt" id="stickyTxt">Kanha Fleet · 3D2N</span>
+  <button class="sticky-bk-btn" id="stickyBtn" onclick="stickyAction()">Choose boat</button>
 </div>
 
 <!-- ═══ MAIN SCRIPT ═══ -->
@@ -921,12 +905,24 @@ let selCabin = null;
    STEP INDICATOR
 ───────────────────────────────────────────────── */
 function updateSteps(){
-  const steps = [document.getElementById('s1'), document.getElementById('s2'), document.getElementById('s3')];
-  const done1 = !!selBoat, done2 = !!selDate, done3 = !!selCabin;
-  steps[0].className = 'step ' + (done1 ? 'done' : 'active');
-  steps[1].className = 'step ' + (done2 ? 'done' : done1 ? 'active' : '');
-  steps[2].className = 'step ' + (done3 ? 'done' : done2 ? 'active' : '');
+  const s1=document.getElementById('s1'),s2=document.getElementById('s2'),s3=document.getElementById('s3'),s4=document.getElementById('s4');
+  const done1=!!selBoat,done2=!!selDate,done3=!!selCabin;
+  if(s1) s1.className='step '+(done1?'done':'active');
+  if(s2) s2.className='step '+(done2?'done':done1?'active':'');
+  if(s3) s3.className='step '+(done3?'done':done2?'active':'');
+  if(s4) s4.className='step '+(done3?'active':'');
+  // Smart sticky CTA
+  const sBtn=document.getElementById('stickyBtn');
+  const sTxt=document.getElementById('stickyTxt');
+  if(sBtn){
+    if(!selBoat){sBtn.textContent='Choose boat';sBtn.onclick=()=>document.getElementById('step-boats').scrollIntoView({behavior:'smooth'});}
+    else if(!selDate){sBtn.textContent='Pick date';sBtn.onclick=()=>document.getElementById('step-calendar').scrollIntoView({behavior:'smooth'});}
+    else if(!selCabin){sBtn.textContent='Choose cabin';sBtn.onclick=()=>document.getElementById('step-cabins')?.scrollIntoView({behavior:'smooth'});}
+    else{sBtn.textContent='Continue';sBtn.onclick=()=>document.getElementById('bkWaBtn')?.scrollIntoView({behavior:'smooth'});}
+  }
+  if(sTxt&&selBoat){const boat=BOATS[selBoat];const minP=Math.min(...boat.cabins.map(c=>c.price));sTxt.innerHTML='<strong>'+boat.name+'</strong> · from '+fmtIDR(minP);}
 }
+function stickyAction(){ updateSteps(); }
 
 /* ─────────────────────────────────────────────
    BOAT SELECTION
@@ -949,7 +945,7 @@ async function selectBoat(boatIdInput){
   document.getElementById('calMonthTitle').textContent = `${boat.name} — Live 2026 Departures`;
 
   const minPrice = Math.min(...boat.cabins.map(c=>c.price));
-  document.getElementById('stickyTxt').innerHTML = `<strong>${boat.name}</strong> · From ${fmtIDR(minPrice)}/pax`;
+  // stickyTxt updated by updateSteps()
 
   const lastEl = document.getElementById('fpLastUpdated');
   const loadEl = document.getElementById('fpLoading');
