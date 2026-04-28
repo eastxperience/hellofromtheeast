@@ -209,6 +209,42 @@ tailwind.config = {
   /* Urgency block dark */
   .urgency-dark { background: rgba(185,255,45,.05); border: 1px solid rgba(185,255,45,.16); border-radius: 18px; }
   .urgency-dot-neon { width:8px; height:8px; border-radius:9999px; background:#B9FF2D; flex-shrink:0; }
+
+  /* ─── EXPERIENCE CARD CTA STRUCTURAL ALIGNMENT ─── */
+  /* Cards stretch to equal height inside the grid row */
+  #experiences .grid { align-items: stretch; }
+  #experiences .dark-card { display: flex; flex-direction: column; height: 100%; }
+  /* Inner body div grows to fill remaining height */
+  #experiences .dark-card > div.p-6 { flex: 1; display: flex; flex-direction: column; }
+  /* CTA zone is always pinned to the bottom */
+  #experiences .dark-card > div.p-6 > div.mt-5 { margin-top: auto; }
+
+  /* ─── HERO SCOPED CTAs (neon — does NOT touch global .btn-wa) ─── */
+  .hero-cta-primary {
+    background: #B9FF2D; color: #050705;
+    box-shadow: 0 8px 28px rgba(185,255,45,.35);
+  }
+  .hero-cta-primary:hover { background: #cbff5e; transform: translateY(-2px); box-shadow: 0 16px 42px rgba(185,255,45,.48); }
+  .hero-cta-secondary {
+    background: rgba(255,255,255,.1); color: #F6F1E7;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(185,255,45,.38);
+  }
+  .hero-cta-secondary:hover { background: rgba(255,255,255,.18); border-color: rgba(185,255,45,.6); }
+
+  /* ─── WHY BOOK DIRECT — Dark Ash ─── */
+  .wbd-card {
+    padding: 1.5rem; border-radius: 28px;
+    background: rgba(255,255,255,.055);
+    border: 1px solid rgba(255,255,255,.10);
+    color: #F0EDE6;
+  }
+  .wbd-icon {
+    width: 44px; height: 44px; border-radius: 9999px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(185,255,45,.10); border: 1px solid rgba(185,255,45,.22);
+    color: #B9FF2D; margin-bottom: 1rem;
+  }
 </style>
 </head>
 <body class="antialiased">
@@ -295,11 +331,10 @@ tailwind.config = {
       </p>
 
       <div class="mt-7 flex flex-wrap items-center gap-3">
-        <a href="plan.html" class="btn btn-wa text-[15px] !py-3 !px-5">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+        <a href="plan.html" class="btn hero-cta-primary text-[15px] !py-3 !px-5">
           Start Planning
         </a>
-        <a href="#experiences" class="btn btn-ghost">Explore Trips ↓</a>
+        <a href="#experiences" class="btn hero-cta-secondary">Explore Trips ↓</a>
       </div>
 
       <!-- V2 TRUST STACK — real-brand credibility + clickable review links -->
@@ -368,35 +403,42 @@ tailwind.config = {
 </section>
 
 <!-- ═══════════════════════════════════════════
-     WHY BOOK DIRECT
+     WHY BOOK DIRECT — Dark Ash
 ════════════════════════════════════════════ -->
-<section class="py-16 md:py-24">
+<section class="sec-dark-ash py-16 md:py-24">
   <div class="max-w-7xl mx-auto px-5">
     <div class="text-center max-w-3xl mx-auto mb-12 reveal">
-      <span class="text-[12px] tracking-[.25em] uppercase text-ink/60">— Why Book Direct With Us</span>
-      <h2 class="font-display text-3xl md:text-5xl mt-4 leading-[1.05]">Skip the platform. Talk to the people who actually run your trip.</h2>
+      <span class="text-[12px] tracking-[.25em] uppercase" style="color:rgba(255,255,255,.4)">— Why Book Direct With Us</span>
+      <h2 class="font-display text-3xl md:text-5xl mt-4 leading-[1.05] text-white">Skip the platform. Talk to the people who actually run your trip.</h2>
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-      <!-- ↳ Added one-line proof under each pillar -->
-      <div class="p-6 rounded-2xl bg-white border border-ink/5 reveal">
-        <div class="text-3xl mb-3">💰</div>
-        <h3 class="font-display text-xl">Better Rates</h3>
-        <p class="mt-2 text-ink/70 text-[14px] leading-relaxed">Same trips as GYG — minus the 20% platform fee. Direct booking means the savings come to you.</p>
+      <div class="wbd-card reveal">
+        <div class="wbd-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-white">Better Rates</h3>
+        <p class="mt-2 text-[14px] leading-relaxed" style="color:rgba(255,255,255,.55)">Same trips as GYG — minus the 20% platform fee. Direct booking means the savings come to you.</p>
       </div>
-      <div class="p-6 rounded-2xl bg-white border border-ink/5 reveal">
-        <div class="text-3xl mb-3">⚡</div>
-        <h3 class="font-display text-xl">Faster Planning</h3>
-        <p class="mt-2 text-ink/70 text-[14px] leading-relaxed">Most guests receive their full custom itinerary the same day they message us. Average reply: 4 minutes.</p>
+      <div class="wbd-card reveal">
+        <div class="wbd-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m13 2-3 6h5l-3 6"/><path d="M12 20v-6"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-white">Faster Planning</h3>
+        <p class="mt-2 text-[14px] leading-relaxed" style="color:rgba(255,255,255,.55)">Most guests receive their full custom itinerary the same day they message us. Average reply: 4 minutes.</p>
       </div>
-      <div class="p-6 rounded-2xl bg-white border border-ink/5 reveal">
-        <div class="text-3xl mb-3">🧭</div>
-        <h3 class="font-display text-xl">Real Local Specialists</h3>
-        <p class="mt-2 text-ink/70 text-[14px] leading-relaxed">Our team has led 5,000+ trips across Indonesia. We live between Bandung, Labuan Bajo and Flores.</p>
+      <div class="wbd-card reveal">
+        <div class="wbd-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-white">Real Local Specialists</h3>
+        <p class="mt-2 text-[14px] leading-relaxed" style="color:rgba(255,255,255,.55)">Our team has led 5,000+ trips across Indonesia. We live between Bandung, Labuan Bajo and Flores.</p>
       </div>
-      <div class="p-6 rounded-2xl bg-white border border-ink/5 reveal">
-        <div class="text-3xl mb-3">🛡️</div>
-        <h3 class="font-display text-xl">Priority Support</h3>
-        <p class="mt-2 text-ink/70 text-[14px] leading-relaxed">Dedicated concierge before, during & after your trip. Real humans on WhatsApp, 7 days a week.</p>
+      <div class="wbd-card reveal">
+        <div class="wbd-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="font-display text-xl text-white">Priority Support</h3>
+        <p class="mt-2 text-[14px] leading-relaxed" style="color:rgba(255,255,255,.55)">Dedicated concierge before, during & after your trip. Real humans on WhatsApp, 7 days a week.</p>
       </div>
     </div>
   </div>
@@ -434,7 +476,7 @@ tailwind.config = {
           </div>
         </div>
         <div class="p-6">
-          <p class="text-[15px] leading-relaxed mob-hide" style="color:rgba(255,255,255,.62)">Three days and two nights across Komodo with the Kanha Fleet. Padar sunrise, Pink Beach, manta channels, deck sunsets, and curated cabin availability.</p>
+          <p class="text-[15px] leading-relaxed mob-hide" style="color:rgba(255,255,255,.62)">Three days across Komodo on the Kanha Fleet. Padar sunrise, Pink Beach, manta channels, and two nights at sea.</p>
           <p class="text-[14px] leading-relaxed intro-short" style="color:rgba(255,255,255,.62)">Padar sunrise, Pink Beach, manta channels, deck sunsets.</p>
           <div class="mt-5">
             <div class="text-[13px] mb-1" style="color:rgba(255,255,255,.45)">Direct rate from <strong class="text-white">IDR 4.8M</strong> <span class="price-usd">~$296 USD</span> / guest · <span style="color:#B9FF2D">Premium</span></div>
@@ -1051,19 +1093,29 @@ tailwind.config = {
   }, { threshold: .12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // ── FAB: smart show/hide ──
-  // Hidden on load. Appears after hero leaves viewport (~500px scroll).
-  // Removed from viewport: hides again (optional — keeps it subtle).
+  // ── FAB: smart show/hide + hide while #experiences is in viewport ──
   const fab = document.getElementById('fab');
   const FAB_TRIGGER = 480; // px — roughly past hero CTA
-  let fabVisible = false;
+  let fabScrolled = false;
+  let fabExperiencesVisible = false;
+
   document.addEventListener('scroll', () => {
-    const shouldShow = window.scrollY > FAB_TRIGGER;
-    if (shouldShow !== fabVisible) {
-      fabVisible = shouldShow;
-      fab.classList.toggle('fab-visible', fabVisible);
+    const shouldScroll = window.scrollY > FAB_TRIGGER;
+    if (shouldScroll !== fabScrolled) {
+      fabScrolled = shouldScroll;
+      fab.classList.toggle('fab-visible', fabScrolled && !fabExperiencesVisible);
     }
   }, { passive: true });
+
+  // Hide FAB while Featured Experiences section is in viewport
+  const expSection = document.getElementById('experiences');
+  if (expSection) {
+    const expObserver = new IntersectionObserver(entries => {
+      fabExperiencesVisible = entries[0].isIntersecting;
+      fab.classList.toggle('fab-visible', fabScrolled && !fabExperiencesVisible);
+    }, { threshold: 0.05 });
+    expObserver.observe(expSection);
+  }
 
   // Testimonial slider
   const track = document.getElementById('testi-track');
