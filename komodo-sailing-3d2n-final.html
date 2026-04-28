@@ -834,7 +834,7 @@
           <li>All meals · snorkel gear · transfers</li>
           <li>English-speaking guide + crew</li>
         </ul>
-        <a class="btn btn-primary" href="kanha-liveaboard-booking.html?product=sailing-3d2n&amp;cabin=share" style="width:100%;justify-content:center">Check availability →</a>
+        <a class="btn btn-primary" href="kanha-liveaboard-booking.html?product=sailing-3d2n" style="width:100%;justify-content:center">Plan This Trip →</a>
       </article>
       <article class="price-card featured">
         <span class="price-badge">★ Most popular</span>
@@ -849,7 +849,7 @@
           <li>Kanha Citta Deluxe Ocean View: IDR 8,700,000</li>
           <li>Private en-suite cabin · ideal for couples</li>
         </ul>
-        <a class="btn btn-primary" href="kanha-liveaboard-booking.html?product=sailing-3d2n&amp;cabin=superior" style="width:100%;justify-content:center">Check availability →</a>
+        <a class="btn btn-primary" href="kanha-liveaboard-booking.html?product=sailing-3d2n" style="width:100%;justify-content:center">Plan This Trip →</a>
       </article>
       <article class="price-card">
         <h3>Ocean View Master</h3>
@@ -863,7 +863,7 @@
           <li>Best cabin on board · private balcony tier</li>
           <li>Curated for the highest-spec experience</li>
         </ul>
-        <a class="btn btn-primary" href="kanha-liveaboard-booking.html?product=sailing-3d2n&amp;cabin=master" style="width:100%;justify-content:center">Check availability →</a>
+        <a class="btn btn-primary" href="kanha-liveaboard-booking.html?product=sailing-3d2n" style="width:100%;justify-content:center">Plan This Trip →</a>
       </article>
     </div>
     <div class="value-note"><strong>Operated by EastXperience on the Kanha fleet.</strong> Direct booking — no OTA markup, no middlemen. Three boats, one route. Message us on WhatsApp to confirm your cabin within minutes.</div>
@@ -1082,7 +1082,7 @@
     const waURL = getWALink();
     document.querySelectorAll('[data-bind-cta]').forEach(el => { el.href = bookingURL; });
     const bookWa = document.getElementById('bookWaLink');
-    if(bookWa) bookWa.href = waURL;
+    if(bookWa) bookWa.href = bookingURL;  // primary CTA → booking page, not WA
     const bookSched = document.getElementById('bookScheduleLink');
     if(bookSched) bookSched.href = bookingURL;
     const ctaFinal = document.getElementById('ctaFinalBook');

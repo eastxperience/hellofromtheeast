@@ -9,6 +9,17 @@
 <link rel="canonical" href="https://eastxperience.github.io/hellofromtheeast/kanha-liveaboard-booking.html">
 <script>
   // UTM capture for attribution chain
+
+  /* ═══ SCROLL RESET — always land at top when coming from product page ═══ */
+  window.history.scrollRestoration = 'manual';
+  window.addEventListener('DOMContentLoaded', function() {
+    if (!window.location.hash) { window.scrollTo(0, 0); }
+  });
+  window.addEventListener('load', function() {
+    if (!window.location.hash) {
+      setTimeout(function() { window.scrollTo(0, 0); }, 80);
+    }
+  });
   try {
     const _u = Object.fromEntries(new URLSearchParams(location.search));
     const _utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid'];
@@ -403,8 +414,7 @@ button,a,.cabin-opt,.boat-card,.boat-photo-link{
         <div class="hdr-brand-tag">Komodo 3D2N · Kanha Fleet</div>
       </div>
     </a>
-    <a class="hdr-book" href="https://wa.me/61415097538?text=Hi%20EastXperience%20team%2C%0A%0AI%20want%20to%20request%20availability%20for%20Sailing%203D2N%20Komodo%2C%20operated%20by%20EastXperience%20on%20the%20Kanha%20fleet.%0A%0AProduct%3A%20Komodo%20Sailing%203D2N%0AOperator%3A%20EastXperience%0AFleet%3A%20Kanha%20fleet%0ABoat%20preference%3A%20Any%0ADeparture%20date%3A%20Flexible%0ACabin%20preference%3A%20%E2%80%93%0AGuests%3A%20%E2%80%93%0ANotes%3A%20(none)" target="_blank" rel="noopener">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.88 11.88 0 0 0 12.07 0C5.52 0 .17 5.35.17 11.9c0 2.1.55 4.14 1.6 5.95L0 24l6.32-1.66a11.88 11.88 0 0 0 5.75 1.46h.01c6.55 0 11.9-5.35 11.9-11.9 0-3.18-1.24-6.17-3.46-8.42z"/></svg>
+    <a class="hdr-book" href="#step-boats" onclick="event.preventDefault();document.getElementById('step-boats').scrollIntoView({behavior:'smooth',block:'start'})">
       Plan This Trip
     </a>
   </div>
@@ -428,7 +438,7 @@ button,a,.cabin-opt,.boat-card,.boat-photo-link{
 </div>
 
 <!-- STEP 1: BOAT SELECTION -->
-<section class="sec" id="step-boats">
+<section class="sec" id="step-boats" data-anchor="choose-boat">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow">Step 1 — Choose your boat</span>
@@ -1298,9 +1308,7 @@ function initFromURL(){
       const found = BOATS[boatId].cabins.find(c => c.id === cabin || c.id.indexOf(cabin) >= 0);
       if(found) selCabin = found.id;
     }
-    if(p.get('product') === 'sailing-3d2n'){
-      setTimeout(() => document.getElementById('step-calendar')?.scrollIntoView({behavior:'smooth', block:'start'}), 400);
-    }
+    // product=sailing-3d2n: no auto-scroll — user reads intro first
   } catch(_){}
 }
 
