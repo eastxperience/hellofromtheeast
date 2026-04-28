@@ -216,8 +216,8 @@ tailwind.config = {
   #experiences .dark-card { display: flex; flex-direction: column; height: 100%; }
   /* Inner body div grows to fill remaining height */
   #experiences .dark-card > div.p-6 { flex: 1; display: flex; flex-direction: column; }
-  /* CTA zone is always pinned to the bottom */
-  #experiences .dark-card > div.p-6 > div.mt-5 { margin-top: auto; }
+  /* CTA zone is always pinned to the bottom — never drifts regardless of copy length */
+  #experiences .dark-card > div.p-6 > div.mt-5 { margin-top: auto; display: flex; flex-direction: column; gap: 0; }
 
   /* ─── HERO SCOPED CTAs (neon — does NOT touch global .btn-wa) ─── */
   .hero-cta-primary {
