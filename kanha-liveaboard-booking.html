@@ -1,0 +1,1610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0A1628">
+<title>EastXperience · Komodo Sailing 3D2N | Kanha Fleet</title>
+<meta name="description" content="Request availability for Sailing 3D2N Komodo. Operated by EastXperience on the Kanha fleet — Kanha Loka · Kanha Citta · Kanha Natha. From IDR 4,800,000 per guest.">
+<link rel="canonical" href="https://eastxperience.github.io/hellofromtheeast/kanha-liveaboard-booking.html">
+<script>
+  // UTM capture for attribution chain
+
+  /* ═══ SCROLL RESET — always land at top when coming from product page ═══ */
+  window.history.scrollRestoration = 'manual';
+  window.addEventListener('DOMContentLoaded', function() {
+    if (!window.location.hash) { window.scrollTo(0, 0); }
+  });
+  window.addEventListener('load', function() {
+    if (!window.location.hash) {
+      setTimeout(function() { window.scrollTo(0, 0); }, 80);
+    }
+  });
+  try {
+    const _u = Object.fromEntries(new URLSearchParams(location.search));
+    const _utmKeys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid'];
+    const _attrs = {};
+    _utmKeys.forEach(k => { if(_u[k]) _attrs[k] = _u[k]; });
+    if(Object.keys(_attrs).length) sessionStorage.setItem('_ads_utm', JSON.stringify(_attrs));
+  } catch(_){}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Flatpickr (live availability calendar) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<style>
+/* ═══ RESET ═══ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',sans-serif;font-size:14px;color:#0A1628;background:#EFF3F8;min-height:100vh;line-height:1.5}
+img{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer}
+a{color:inherit;text-decoration:none}
+input{font-family:inherit}
+
+/* ═══ TOKENS ═══ */
+:root{
+  --navy:  #0A1628;
+  --navy2: #0F2040;
+  --muted: #64748B;
+  --line:  rgba(10,22,40,.1);
+  --surface: #fff;
+  --bg: #EFF3F8;
+  --r: 14px;
+  --r-sm: 8px;
+  --r-pill: 99px;
+  --t: .22s ease;
+  --shadow: 0 4px 24px rgba(10,22,40,.1);
+  --shadow-lux: 0 16px 48px rgba(10,22,40,.18);
+
+  --loka:  #2563EB;  --loka-l: rgba(37,99,235,.1);  --loka-b: rgba(37,99,235,.28);
+  --citta: #0891B2;  --citta-l: rgba(8,145,178,.1);  --citta-b: rgba(8,145,178,.28);
+  --natha: #D97706;  --natha-l: rgba(217,119,6,.1);  --natha-b: rgba(217,119,6,.28);
+}
+
+.wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+
+/* ANN BAR */
+.ann{background:var(--navy2);color:rgba(255,255,255,.78);font-size:11.5px;letter-spacing:.07em;text-transform:uppercase}
+.ann-in{max-width:1140px;margin:0 auto;padding:9px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.ann-wa{display:inline-flex;align-items:center;gap:6px;color:#4ADE80;font-weight:600}
+.ann-wa svg{flex-shrink:0}
+
+/* HEADER */
+.hdr{background:var(--navy);position:sticky;top:0;z-index:60;border-bottom:1px solid rgba(255,255,255,.07)}
+.hdr-in{max-width:1140px;margin:0 auto;padding:0 22px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.hdr-back{font-size:12px;color:rgba(255,255,255,.6);transition:color var(--t)}
+.hdr-back:hover{color:#fff}
+.hdr-brand{display:flex;align-items:center;gap:10px;color:#fff}
+.hdr-brand-name{font-family:'Fraunces',serif;font-size:18px;font-weight:300;letter-spacing:-.01em}
+.hdr-brand-tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:1px}
+@media(max-width:640px){.hdr-brand-tag{display:none!important}.hdr-book{display:none!important}}
+.hdr-book{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;background:#25D366;color:#fff;border:none;border-radius:var(--r-pill);font:600 12px/1 'Inter',sans-serif;letter-spacing:.04em;transition:background var(--t)}
+.hdr-book:hover{background:#1dbd59}
+
+/* HERO */
+.hero{padding:52px 22px 36px;max-width:1140px;margin:0 auto;text-align:center}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.hero-eyebrow::before,.hero-eyebrow::after{content:"";flex:1;height:1px;width:28px;background:var(--line)}
+.hero h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(32px,4.8vw,58px);line-height:1.06;letter-spacing:-.02em;color:var(--navy);margin-bottom:12px}
+.hero h1 em{font-style:italic;color:#2563EB}
+.hero-sub{font-size:15px;color:var(--muted);max-width:60ch;margin:0 auto;line-height:1.65}
+.cal-helper{max-width:680px;margin:18px auto 0;padding:14px 18px;background:rgba(37,99,235,.06);border:1px solid rgba(37,99,235,.22);border-radius:var(--r-sm);font-size:13px;color:var(--navy);line-height:1.55}
+.cal-helper strong{color:var(--navy);font-weight:600}
+.step-strip{display:flex;align-items:center;justify-content:center;gap:0;margin:28px auto 0;max-width:480px}
+.step{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500;color:var(--muted);flex:1;justify-content:center}
+.step.done{color:var(--navy)}
+.step.active{color:var(--loka);font-weight:600}
+.step-n{width:22px;height:22px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;transition:all var(--t)}
+.step.done .step-n{background:#22C55E;color:#fff}
+.step.active .step-n{background:var(--loka);color:#fff}
+.step-div{flex:0 0 24px;height:1px;background:var(--line)}
+
+/* SECTION */
+.sec{padding:36px 0}
+.sec-head{margin-bottom:28px}
+.sec-head.center{text-align:center}
+.eyebrow{display:block;font:700 10.5px/1 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.sec-head h2{font-family:'Fraunces',serif;font-size:clamp(26px,3.2vw,36px);font-weight:300;line-height:1.12;letter-spacing:-.02em}
+.sec-head h2 em{font-style:italic;color:#2563EB}
+.sec-head p{color:var(--muted);font-size:14px;line-height:1.65;margin-top:8px}
+
+/* BOAT CARDS */
+.boats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.boat-card{background:var(--surface);border:2px solid var(--line);border-radius:var(--r);padding:24px;cursor:pointer;transition:all var(--t);position:relative;overflow:hidden}
+.boat-card::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity var(--t)}
+.boat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.boat-card.loka-card:hover,.boat-card.loka-card.selected{border-color:var(--loka);box-shadow:0 0 0 3px var(--loka-l),var(--shadow)}
+.boat-card.loka-card::before{background:var(--loka-l)}
+.boat-card.citta-card:hover,.boat-card.citta-card.selected{border-color:var(--citta);box-shadow:0 0 0 3px var(--citta-l),var(--shadow)}
+.boat-card.citta-card::before{background:var(--citta-l)}
+.boat-card.natha-card:hover,.boat-card.natha-card.selected{border-color:var(--natha);box-shadow:0 0 0 3px var(--natha-l),var(--shadow)}
+.boat-card.natha-card::before{background:var(--natha-l)}
+.boat-card.selected::before{opacity:1}
+.boat-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:var(--r-pill);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;position:relative;z-index:1}
+.loka-card .boat-badge{background:var(--loka-l);color:var(--loka);border:1px solid var(--loka-b)}
+.citta-card .boat-badge{background:var(--citta-l);color:var(--citta);border:1px solid var(--citta-b)}
+.natha-card .boat-badge{background:var(--natha-l);color:var(--natha);border:1px solid var(--natha-b)}
+.boat-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.loka-card .boat-dot{background:var(--loka)}
+.citta-card .boat-dot{background:var(--citta)}
+.natha-card .boat-dot{background:var(--natha)}
+.boat-card h3{font-family:'Fraunces',serif;font-size:21px;font-weight:400;margin-bottom:4px;position:relative;z-index:1}
+.boat-card .bc-cap{font-size:12px;color:var(--muted);margin-bottom:14px;position:relative;z-index:1}
+.boat-divider{height:1px;background:var(--line);margin:14px 0;position:relative;z-index:1}
+.bc-cabins{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;position:relative;z-index:1}
+.bc-cabin-row{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;gap:6px}
+.bc-cabin-name{color:var(--navy);font-weight:500}
+.bc-cabin-price{color:var(--muted);font-size:11.5px;white-space:nowrap}
+.bc-from{display:flex;align-items:baseline;gap:4px;margin-bottom:14px;position:relative;z-index:1}
+.bc-from-lbl{font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.bc-from-price{font-family:'Fraunces',serif;font-size:22px;font-weight:400;line-height:1}
+.loka-card .bc-from-price{color:var(--loka)}
+.citta-card .bc-from-price{color:var(--citta)}
+.natha-card .bc-from-price{color:var(--natha)}
+.bc-from-sub{font-size:10.5px;color:var(--muted)}
+.btn-select{width:100%;padding:11px;border-radius:var(--r-sm);font:600 12px/1 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;border:2px solid;transition:all var(--t);position:relative;z-index:1}
+.loka-card .btn-select{border-color:var(--loka);color:var(--loka);background:transparent}
+.loka-card .btn-select:hover,.loka-card.selected .btn-select{background:var(--loka);color:#fff}
+.citta-card .btn-select{border-color:var(--citta);color:var(--citta);background:transparent}
+.citta-card .btn-select:hover,.citta-card.selected .btn-select{background:var(--citta);color:#fff}
+.natha-card .btn-select{border-color:var(--natha);color:var(--natha);background:transparent}
+.natha-card .btn-select:hover,.natha-card.selected .btn-select{background:var(--natha);color:#fff}
+.boat-check{position:absolute;top:14px;right:14px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity var(--t);z-index:2}
+.loka-card .boat-check{background:var(--loka)}
+.citta-card .boat-check{background:var(--citta)}
+.natha-card .boat-check{background:var(--natha)}
+.boat-card.selected .boat-check{opacity:1}
+@media(max-width:860px){.boats-grid{grid-template-columns:1fr}}
+
+/* CALENDAR */
+.cal-sec{background:var(--surface);border:2px solid var(--line);border-radius:var(--r);overflow:hidden;transition:all var(--t)}
+.cal-sec.locked{opacity:.46;pointer-events:none;filter:grayscale(.4)}
+.cal-header{padding:18px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.cal-title{font-family:'Fraunces',serif;font-size:18px;font-weight:400}
+.cal-nav{display:flex;align-items:center;gap:8px}
+.cal-nav-btn{background:none;border:1.5px solid var(--line);border-radius:8px;padding:7px 13px;font:500 12px/1 'Inter',sans-serif;color:var(--muted);transition:all var(--t)}
+.cal-nav-btn:hover:not(:disabled){border-color:var(--navy);color:var(--navy)}
+.cal-nav-btn:disabled{opacity:.4;cursor:not-allowed}
+.cal-nav-month{font-size:13px;font-weight:600;min-width:160px;text-align:center;color:var(--navy)}
+.cal-legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.cl-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
+.cl-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.cal-rule{padding:12px 22px;background:rgba(37,99,235,.05);border-bottom:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.5;display:flex;gap:8px;align-items:flex-start}
+.cal-rule svg{flex-shrink:0;color:var(--loka);margin-top:2px}
+.cal-rule strong{color:var(--navy);font-weight:600}
+.cal-body{padding:22px}
+.cal-months-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cal-month{background:var(--bg);border-radius:var(--r-sm);padding:16px}
+.cal-month-title{font-size:13px;font-weight:700;text-align:center;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.cal-dh{text-align:center;font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;padding:4px 2px;margin-bottom:2px}
+.cal-d{min-height:50px;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;transition:all .18s;position:relative}
+.cal-d.has-dep{cursor:pointer}
+.cal-d.has-dep:hover{background:rgba(10,22,40,.05);transform:scale(1.05)}
+.cal-d.selected-date{background:var(--navy) !important;transform:scale(1.08);box-shadow:var(--shadow)}
+.cal-d.past{opacity:.25;pointer-events:none}
+.cal-d.travel-day{background:repeating-linear-gradient(135deg,transparent 0 6px,rgba(148,163,184,.18) 6px 7px);cursor:not-allowed}
+.cal-d.travel-day .day-num{color:var(--muted);font-weight:400}
+.cal-d .day-num{font-size:12px;font-weight:600;color:var(--navy);line-height:1}
+.cal-d.selected-date .day-num{color:#fff}
+.cal-d.has-dep .day-num{font-weight:700}
+.cal-d.past .day-num{font-weight:400}
+.dep-dots{display:flex;gap:2px;flex-wrap:wrap;justify-content:center;max-width:30px}
+.dep-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;border:1px solid transparent}
+.dep-dot.s-available      { background:#22C55E }
+.dep-dot.s-limited        { background:#65A30D }
+.dep-dot.s-on_hold        { background:#D97706 }
+.dep-dot.s-booked         { background:#94A3B8 }
+.dep-dot.s-private_charter{ background:#7C3AED }
+.dep-dot.s-maintenance    { background:#475569 }
+.dep-dot.s-not_operating  { background:#1F2937 }
+.dep-dot.s-unknown        { background:#9CA3AF;border-style:dashed;border-color:#6B7280 }
+.cal-d.selected-date .dep-dot{border:1.5px solid rgba(255,255,255,.5)}
+.cal-d.has-dep.no-book{cursor:not-allowed;opacity:.7}
+.cal-d.has-dep.no-book:hover{transform:none;background:transparent}
+.bk-badge{display:inline-block;padding:3px 9px;border-radius:99px;font:600 10.5px/1.4 'Inter',sans-serif;letter-spacing:.06em;text-transform:uppercase;margin-top:4px}
+.bk-badge.s-available      { background:rgba(34,197,94,.12); color:#15803D }
+.bk-badge.s-limited        { background:rgba(101,163,13,.14);color:#3F6212 }
+.bk-badge.s-on_hold        { background:rgba(217,119,6,.14); color:#92400E }
+.bk-badge.s-booked         { background:rgba(148,163,184,.18);color:#475569 }
+.bk-badge.s-private_charter{ background:rgba(124,58,237,.14); color:#5B21B6 }
+.bk-badge.s-maintenance    { background:rgba(71,85,105,.14); color:#334155 }
+.bk-badge.s-not_operating  { background:rgba(31,41,55,.18); color:#1F2937 }
+.bk-badge.s-unknown        { background:rgba(156,163,175,.18);color:#4B5563 }
+@media(max-width:680px){.cal-months-wrap{grid-template-columns:1fr}}
+
+/* BOOKING PANEL */
+.bk-sec{margin-top:16px}
+.bk-panel{display:none;background:var(--surface);border:2px solid var(--line);border-radius:var(--r);overflow:hidden;animation:fadeUp .3s ease both}
+.bk-panel.open{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.bk-top{padding:16px 22px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.bk-top-info .bk-boat-name{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.bk-top-info .bk-date-name{font-family:'Fraunces',serif;font-size:18px;font-weight:300}
+.bk-top-info .bk-trip-range{font-size:12.5px;color:var(--muted);margin-top:4px}
+.bk-top-info .bk-trip-range strong{color:var(--navy);font-weight:600}
+.bk-top-info .bk-spots{font-size:12px;color:var(--muted);margin-top:3px}
+.bk-close{background:none;border:1.5px solid var(--line);border-radius:8px;padding:7px 12px;font:500 12px/1 'Inter',sans-serif;color:var(--muted)}
+.bk-close:hover{border-color:var(--navy);color:var(--navy)}
+
+/* Cabin options */
+.cabin-section{padding:16px 22px;border-bottom:1px solid var(--line)}
+.cabin-section-title{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.cabin-type-header{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:12px 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.cabin-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.cabin-opt{border:1.5px solid var(--line);border-radius:var(--r-sm);padding:14px;cursor:pointer;transition:all .2s;background:#fff}
+.cabin-opt:hover,.cabin-opt.sel{border-color:var(--boat-color, #2563EB)}
+.cabin-opt.sel{background:rgba(37,99,235,.04)}
+.cabin-opt .co-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:5px}
+.cabin-opt .co-name{font-size:13px;font-weight:600;color:var(--navy);line-height:1.3}
+.cabin-opt .co-price{font-family:'Fraunces',serif;font-size:16px;font-weight:400;color:var(--boat-color, #2563EB);white-space:nowrap;flex-shrink:0}
+.cabin-opt .co-sub{font-size:11px;color:var(--muted);line-height:1.45}
+.cabin-opt .co-avail{margin-top:6px;font-size:10.5px;font-weight:600;letter-spacing:.04em}
+.co-avail.av{color:#16A34A}
+.co-avail.lim{color:#D97706}
+.co-avail.full{color:#94A3B8;text-decoration:line-through}
+.cabin-opt.c-full{opacity:.45;cursor:not-allowed}
+@media(max-width:580px){.cabin-grid{grid-template-columns:1fr}}
+
+/* Policy notice + WA CTA */
+.bk-policy{padding:12px 22px;background:rgba(255,195,0,.08);border-bottom:1px solid var(--line);display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:var(--muted);line-height:1.55}
+.bk-policy svg{flex-shrink:0;margin-top:1px;color:#B45309}
+.bk-policy strong{color:var(--navy)}
+.bk-wa-wrap{padding:16px 22px}
+.bk-wa-btn{display:flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:15px;background:var(--navy);color:#fff;border-radius:var(--r-sm);font:600 13px/1 'Inter',sans-serif;letter-spacing:.04em;text-decoration:none;transition:background .2s,opacity .2s;margin-bottom:8px}
+.bk-wa-btn:hover{background:var(--navy2)}
+.bk-wa-btn[data-mode="whatsapp"]{background:#25D366}
+.bk-wa-btn[data-mode="whatsapp"]:hover{background:#1dbd59}
+.bk-wa-btn.is-disabled{background:#CBD5E1;color:#64748B;cursor:not-allowed;pointer-events:none}
+.bk-wa-btn.is-disabled:hover{background:#CBD5E1}
+.bk-wa-sub{font-size:11px;color:var(--muted);text-align:center}
+
+/* TRIP INFO */
+.trip-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.trip-card{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r);padding:22px}
+.trip-card h3{font-family:'Fraunces',serif;font-size:17px;font-weight:400;margin-bottom:14px}
+.trip-list{display:flex;flex-direction:column;gap:7px}
+.trip-list li{display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--muted);line-height:1.5;list-style:none}
+.trip-list li::before{content:"";flex-shrink:0;margin-top:3px;width:15px;height:15px;border-radius:50%;background-repeat:no-repeat;background-position:center}
+.trip-list.inc li::before{background-color:rgba(22,163,74,.12);background-image:url("data:image/svg+xml,%3Csvg width='8' height='6' viewBox='0 0 8 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 3L3 5L7 1' stroke='%2316A34A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E")}
+.trip-list.exc li::before{background-color:rgba(239,68,68,.1);background-image:url("data:image/svg+xml,%3Csvg width='8' height='8' viewBox='0 0 8 8' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.5 1.5L6.5 6.5M6.5 1.5L1.5 6.5' stroke='%23EF4444' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E")}
+@media(max-width:680px){.trip-grid{grid-template-columns:1fr}}
+
+/* ITINERARY */
+.itin-wrap{display:flex;flex-direction:column;gap:0}
+.itin-day{display:grid;grid-template-columns:56px 1fr;gap:0;position:relative}
+.itin-day::before{content:"";position:absolute;left:27px;top:28px;bottom:-8px;width:2px;background:var(--line)}
+.itin-day:last-child::before{display:none}
+.itin-dot{width:14px;height:14px;border-radius:50%;background:var(--navy);border:3px solid var(--bg);flex-shrink:0;margin-top:6px;position:relative;z-index:1}
+.itin-day-col{display:flex;align-items:flex-start;justify-content:center;padding-top:4px}
+.itin-content{padding:0 0 24px 0}
+.itin-d-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+.itin-d-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.itin-d-desc{font-size:13px;color:var(--muted);line-height:1.55}
+
+/* HOW IT WORKS */
+.hw-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.hw-item{background:var(--surface);border-radius:var(--r);padding:22px 18px;text-align:center}
+.hw-n{width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Fraunces',serif;font-size:17px;font-weight:400;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.hw-item h4{font-size:14px;font-weight:600;margin-bottom:6px}
+.hw-item p{font-size:12.5px;color:var(--muted);line-height:1.55}
+@media(max-width:760px){.hw-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.hw-grid{grid-template-columns:1fr}}
+
+/* FOOTER */
+.footer{background:var(--navy);color:rgba(255,255,255,.6);padding:28px 22px;text-align:center;font-size:12.5px;margin-top:40px}
+.footer strong{color:#fff}
+.footer a{color:#4ADE80}
+
+
+/* Sticky CTA — ready state (all selections complete) */
+.sticky-bk-btn.sticky-bk-ready{background:#B9FF2D!important;color:#0B0F0C!important;font-weight:700;box-shadow:0 0 0 2px rgba(185,255,45,.25);}
+.sticky-bk-btn.sticky-bk-ready:hover{background:#cbff5e!important;}
+
+/* STICKY BOOK */
+.sticky-bk{position:fixed;bottom:16px;left:50%;transform:translateX(-50%) translateY(120%);display:flex;align-items:center;gap:8px;padding:8px 10px 8px 18px;background:var(--navy);border:1px solid rgba(255,255,255,.15);border-radius:var(--r-pill);box-shadow:var(--shadow-lux);transition:transform .4s cubic-bezier(.2,.8,.2,1);z-index:50;max-width:calc(100vw - 20px);box-sizing:border-box}
+.sticky-bk[data-show]{transform:translateX(-50%) translateY(0)}
+@media(max-width:767px){.sticky-bk{bottom:calc(16px + env(safe-area-inset-bottom,0px))}}
+.sticky-bk-txt{font-size:11.5px;color:rgba(255,255,255,.72);font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1}
+.sticky-bk-txt strong{color:#fff}
+.sticky-bk-btn{padding:10px 18px;background:#25D366;color:#fff;border:none;border-radius:var(--r-pill);font:600 12px/1 'Inter',sans-serif;letter-spacing:.04em;white-space:nowrap;cursor:pointer;transition:background .2s}
+.sticky-bk-btn:hover{background:#1dbd59}
+
+/* UTILITIES */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.reveal.in{opacity:1;transform:none}
+
+/* Boat photo gallery hyperlink (under Select buttons) */
+.boat-photo-link{
+  display:inline-flex;align-items:center;gap:5px;margin-top:12px;
+  font-size:12px;color:var(--muted);position:relative;z-index:2;
+  text-decoration:none;transition:color .2s ease;
+  width:100%;justify-content:center;
+}
+.boat-photo-link:hover{color:var(--navy);text-decoration:underline}
+.loka-card  .boat-photo-link:hover{color:var(--loka)}
+.citta-card .boat-photo-link:hover{color:var(--citta)}
+.natha-card .boat-photo-link:hover{color:var(--natha)}
+
+/* ═══ FLATPICKR — themed for EastXperience ═══ */
+.fp-wrap{padding:22px;background:var(--bg);border-bottom:1px solid var(--line)}
+.fp-input-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.fp-input{flex:1;min-width:240px;padding:14px 16px;background:#fff;border:1.5px solid var(--line);border-radius:var(--r-sm);font:500 14px/1 'Inter',sans-serif;color:var(--navy);cursor:pointer;transition:border-color var(--t)}
+.fp-input:focus{outline:none;border-color:var(--loka)}
+.fp-input:disabled{opacity:.5;cursor:not-allowed}
+.fp-loading{font-size:12px;color:var(--muted);font-style:italic;padding:0 4px}
+.fp-helper{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+.fp-helper strong{color:var(--navy);font-weight:600}
+.flatpickr-calendar{box-shadow:0 14px 38px rgba(10,22,40,.18);border:1px solid var(--line);border-radius:12px;font-family:'Inter',sans-serif}
+.flatpickr-calendar.inline{box-shadow:none;width:100%;max-width:100%}
+.flatpickr-day.flatpickr-disabled,.flatpickr-day.flatpickr-disabled:hover{color:rgba(57,57,57,.18)}
+.flatpickr-day:not(.flatpickr-disabled):not(.prevMonthDay):not(.nextMonthDay){background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.32);color:#15803D;font-weight:600}
+.flatpickr-day.selected,.flatpickr-day.selected:hover{background:var(--navy);border-color:var(--navy);color:#fff}
+.flatpickr-day.today{border-color:var(--loka)}
+.fp-status-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);padding:6px 0 0}
+.fp-refresh-btn{background:none;border:1px solid var(--line);border-radius:6px;padding:5px 10px;font:500 11px 'Inter',sans-serif;color:var(--muted);cursor:pointer}
+.fp-refresh-btn:hover:not(:disabled){border-color:var(--navy);color:var(--navy)}
+.fp-refresh-btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* ═══ MOBILE — touch, tap targets, iOS zoom prevention ═══ */
+
+/* No double-tap zoom, no tap flash on all interactive elements */
+button,a,.cabin-opt,.boat-card,.boat-photo-link{
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* iOS: inputs ≥16px prevent automatic zoom-in on focus */
+@media(max-width:767px){
+  input,textarea,select{font-size:16px!important}
+  .fp-input{font-size:16px!important;min-height:50px}
+
+  /* Tap targets — WCAG 2.5.5: minimum 44×44px */
+  .btn-select{min-height:48px;padding:13px}
+  .cabin-opt{min-height:68px;padding:14px 12px}
+  .bk-wa-btn{min-height:54px;font-size:14px;padding:17px 18px}
+  .bk-close{min-height:44px;padding:10px 16px}
+  .hdr-book{display:none!important}
+  .hdr-brand-tag{display:none!important}
+  .cal-nav-btn{min-height:42px;padding:9px 14px}
+  .fp-refresh-btn{min-height:40px;padding:8px 14px}
+  .sticky-bk-btn{min-height:44px;padding:10px 16px;max-width:140px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ann-wa{min-height:36px;padding:4px 0}
+
+  /* Photo gallery link — extra vertical tap area */
+  .boat-photo-link{
+    min-height:42px;padding:8px 4px;
+    margin-top:16px;font-size:13px;
+  }
+
+  /* Boat card tighter on small screens */
+  .boat-card{padding:18px 16px}
+
+  /* Calendar day cell bigger for touch */
+  .cal-d{min-height:48px}
+
+  /* Booking panel paddings tighter */
+  .bk-wa-wrap{padding:14px 16px}
+  .cabin-section{padding:14px 16px}
+  .bk-top{padding:14px 16px}
+  .cal-body{padding:16px}
+
+  /* HOW IT WORKS grid — readable on 360px */
+  .hw-grid{grid-template-columns:1fr 1fr}
+}
+
+/* Very small screens — 360px and below */
+@media(max-width:400px){
+  .hdr-in{padding:0 14px}
+  .fp-input-row{flex-direction:column}
+  .fp-input{min-width:unset;width:100%}
+  .boats-grid{gap:10px}
+  .cabin-grid{gap:6px}
+  .hero{padding:36px 16px 28px}
+  .hero h1{font-size:28px}
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-in">
+    <a class="hdr-back" href="komodo-sailing-3d2n-final.html">← Back to Komodo Sailing</a>
+    <a class="hdr-brand" href="index.html">
+      <div>
+        <div class="hdr-brand-name">EastXperience</div>
+        <div class="hdr-brand-tag">Komodo 3D2N · Kanha Fleet</div>
+      </div>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">EastXperience · Komodo 3D2N · Kanha Fleet</div>
+  <h1>Choose your boat. <em>Pick your departure.</em></h1>
+  <p class="hero-sub">Select your boat, date, and cabin. Our team confirms availability before payment.</p>
+  <div class="step-strip">
+    <div class="step active" id="s1"><span class="step-n">1</span>Boat</div>
+    <div class="step-div"></div>
+    <div class="step" id="s2"><span class="step-n">2</span>Date</div>
+    <div class="step-div"></div>
+    <div class="step" id="s3"><span class="step-n">3</span>Cabin</div>
+    <div class="step-div"></div>
+    <div class="step" id="s4"><span class="step-n">4</span>Details</div>
+  </div>
+</div>
+
+<!-- STEP 1: BOAT SELECTION -->
+<section class="sec" id="step-boats" data-anchor="choose-boat">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Step 1 · Boat</span>
+      <h2>Choose your boat.</h2>
+      <p>Pick Loka, Citta, or Natha.</p>
+    </div>
+    <div class="boats-grid reveal">
+
+      <!-- KANHA LOKA -->
+      <div class="boat-card loka-card" id="boat-loka" data-boat="loka" onclick="selectBoat('loka')">
+        <div class="boat-check"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="boat-badge"><span class="boat-dot"></span>Kanha Loka</div>
+        <h3>Kanha Loka</h3>
+        <p class="bc-cap">22 pax · 34m Phinisi · 5 cabin types</p>
+        <div class="boat-divider"></div>
+        <div class="bc-cabins">
+          <div class="bc-cabin-row"><span class="bc-cabin-name">Share Cabin</span><span class="bc-cabin-price">IDR 5,500,000/pax</span></div>
+          <div class="bc-cabin-row"><span class="bc-cabin-name">Superior Cabin</span><span class="bc-cabin-price">IDR 6,900,000/pax</span></div>
+          <div class="bc-cabin-row"><span class="bc-cabin-name">Family Cabin</span><span class="bc-cabin-price">IDR 6,900,000/pax</span></div>
+          <div class="bc-cabin-row"><span class="bc-cabin-name">Deluxe Ocean View</span><span class="bc-cabin-price">IDR 8,500,000/pax</span></div>
+          <div class="bc-cabin-row"><span class="bc-cabin-name">Master Ocean View</span><span class="bc-cabin-price">IDR 9,500,000/pax</span></div>
+        </div>
+        <div class="boat-divider"></div>
+        <div class="bc-from">
+          <div>
+            <div class="bc-from-lbl">From</div>
+            <div class="bc-from-price">IDR 5,500,000</div>
+            <div class="bc-from-sub">per person · 3D2N · share cabin</div>
+          </div>
+        </div>
+        <button class="btn-select">Select Loka →</button>
+        <a class="boat-photo-link"
+           href="https://drive.google.com/drive/folders/11NEnA41-hevgTN_vQ6ZzwXPwBrKnh8SE"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-gallery="kanha-loka"
+           onclick="event.stopPropagation(); if(window.trackPhotoGallery)window.trackPhotoGallery('kanha-loka');">
+          ↗ See Kanha Loka cabin and deck photos
+        </a>
+      </div>
+
+      <!-- KANHA CITTA -->
+      <div class="boat-card citta-card" id="boat-citta" data-boat="citta" onclick="selectBoat('citta')">
+        <div class="boat-check"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="boat-badge"><span class="boat-dot"></span>Kanha Citta</div>
+        <h3>Kanha Citta</h3>
+        <p class="bc-cap">20 pax · 34m Phinisi · 4 cabin types</p>
+        <div class="boat-divider"></div>
+        <div class="bc-cabins">
+          <div class="bc-cabin-row"><span class="bc-cabin-name">Share Room</span><span class="bc-cabin-price">IDR 5,800,000/pax</span></div>
+          <div class="bc-cabin-row"><span class="bc-cabin-name">Deluxe Ocean View</span><span class="bc-cabin-price">IDR 8,700,000/pax</span></div>
+          <div class="bc-cabin-row"><span class="bc-cabin-name">Shakti / Sedana</span><span class="bc-cabin-price">IDR 9,500,000/pax</span></div>
+          <div class="bc-cabin-row"><span class="bc-cabin-name">Gayatri Master Suite</span><span class="bc-cabin-price">IDR 12,500,000/pax</span></div>
+          <div class="bc-cabin-row" style="opacity:.3"><span class="bc-cabin-name">&nbsp;</span><span class="bc-cabin-price">&nbsp;</span></div>
+        </div>
+        <div class="boat-divider"></div>
+        <div class="bc-from">
+          <div>
+            <div class="bc-from-lbl">From</div>
+            <div class="bc-from-price">IDR 5,800,000</div>
+            <div class="bc-from-sub">per person · 3D2N · share room</div>
+          </div>
+        </div>
+        <button class="btn-select">Select Citta →</button>
+        <a class="boat-photo-link"
+           href="https://drive.google.com/drive/folders/1Nr6hr1CmJunaVJm04pIDWeLjH1KKmT_q"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-gallery="kanha-citta"
+           onclick="event.stopPropagation(); if(window.trackPhotoGallery)window.trackPhotoGallery('kanha-citta');">
+          ↗ See Kanha Citta cabin and deck photos
+        </a>
+      </div>
+
+      <!-- KANHA NATHA -->
+      <div class="boat-card natha-card" id="boat-natha" data-boat="natha" onclick="selectBoat('natha')">
+        <div class="boat-check"><svg width="11" height="8" viewBox="0 0 11 8" fill="none"><path d="M1 4L4 7L10 1" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="boat-badge"><span class="boat-dot"></span>Kanha Natha</div>
+        <h3>Kanha Natha</h3>
+        <p class="bc-cap">12 pax · Traditional Phinisi · 2 cabin types</p>
+        <div class="boat-divider"></div>
+        <div class="bc-cabins">
+          <div class="bc-cabin-row"><span class="bc-cabin-name">Share Cabin</span><span class="bc-cabin-price">IDR 4,800,000/pax</span></div>
+          <div class="bc-cabin-row"><span class="bc-cabin-name">Private Ocean View</span><span class="bc-cabin-price">IDR 7,800,000/pax</span></div>
+          <div class="bc-cabin-row" style="opacity:.3"><span class="bc-cabin-name">&nbsp;</span><span class="bc-cabin-price">&nbsp;</span></div>
+          <div class="bc-cabin-row" style="opacity:.3"><span class="bc-cabin-name">&nbsp;</span><span class="bc-cabin-price">&nbsp;</span></div>
+          <div class="bc-cabin-row" style="opacity:.3"><span class="bc-cabin-name">&nbsp;</span><span class="bc-cabin-price">&nbsp;</span></div>
+        </div>
+        <div class="boat-divider"></div>
+        <div class="bc-from">
+          <div>
+            <div class="bc-from-lbl">From</div>
+            <div class="bc-from-price">IDR 4,800,000</div>
+            <div class="bc-from-sub">per person · 3D2N · share cabin</div>
+          </div>
+        </div>
+        <button class="btn-select">Select Natha →</button>
+        <a class="boat-photo-link"
+           href="https://drive.google.com/drive/folders/1D68n14Cqh2RDlj-ZTlO_1A-I97_mGoXA"
+           target="_blank"
+           rel="noopener noreferrer"
+           data-gallery="kanha-natha"
+           onclick="event.stopPropagation(); if(window.trackPhotoGallery)window.trackPhotoGallery('kanha-natha');">
+          ↗ See Kanha Natha cabin and deck photos
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STEP 2: CALENDAR -->
+<section class="sec" id="step-calendar">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Step 2 · Date</span>
+      <h2 id="calHeading">Choose your departure.</h2>
+      <p>Tap an available start date.</p>
+    </div>
+    <div class="cal-sec locked" id="calSec">
+      <div class="cal-header">
+        <div class="cal-title" id="calMonthTitle">Pick a boat to load live departures</div>
+        <div class="cal-legend">
+          <div class="cl-item"><div class="cl-dot" style="background:rgba(34,197,94,.6)"></div>Available</div>
+          <div class="cl-item"><div class="cl-dot" style="background:rgba(57,57,57,.18);border:1px solid #ddd"></div>Unavailable</div>
+        </div>
+      </div>
+      <div class="cal-rule">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+        <span>Only the first day of each 3D2N trip is selectable.</span>
+      </div>
+      <div class="fp-wrap">
+        <div class="fp-input-row">
+          <input type="text" id="fpDate" class="fp-input" placeholder="Select a boat first…" readonly disabled inputmode="none" autocomplete="off">
+          <span class="fp-loading" id="fpLoading" style="display:none">Loading availability…</span>
+        </div>
+        <div class="fp-helper" id="fpHelper">
+Tap a highlighted date to pick your departure.
+        </div>
+        <div class="fp-status-bar">
+          <span id="fpLastUpdated">Live data — waiting for boat selection</span>
+          <button type="button" id="fpRefresh" class="fp-refresh-btn">↻ Refresh</button>
+        </div>
+        <div id="fpErrorMsg" style="display:none;margin-top:14px;padding:18px;text-align:center;color:var(--muted);font-size:13px;line-height:1.6;background:#fff;border:1px dashed var(--line);border-radius:var(--r-sm)">
+          We are checking live availability. Please contact us on
+          <a href="https://wa.me/61415097538" target="_blank" rel="noopener" style="color:#16A34A;font-weight:600">WhatsApp</a>
+          for the latest schedule.
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: CABIN -->
+    <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07)" id="step-cabins">
+    <div style="margin-bottom:16px"><span style="font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)">Step 3 · Cabin</span></div>
+    <div class="bk-sec">
+      <div class="bk-panel" id="bkPanel">
+        <div class="bk-top">
+          <div class="bk-top-info">
+            <div class="bk-boat-name" id="bkBoatName">—</div>
+            <div class="bk-date-name" id="bkDateName">—</div>
+            <div class="bk-trip-range" id="bkTripRange">—</div>
+            <div class="bk-spots" id="bkSpotsInfo">—</div>
+          </div>
+          <button class="bk-close" id="bkClose">✕ Close</button>
+        </div>
+        <div class="cabin-section">
+          <div class="cabin-section-title">Cabin options &amp; pricing — tap to pre-select for your inquiry</div>
+          <div id="cabinList"></div>
+        </div>
+        <div class="bk-policy">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r=".5" fill="currentColor"/></svg>
+          <span>Final cabin availability is confirmed by our team — <strong>no payment today.</strong> Continue to the booking form to complete your guest details.</span>
+        </div>
+        <div class="bk-wa-wrap">
+          <a class="bk-wa-btn is-disabled" id="bkWaBtn" href="#" target="_self" aria-disabled="true" data-mode="idle">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            Select a cabin to continue
+          </a>
+          <p class="bk-wa-sub" id="bkCtaSub">Tap a cabin above to enable the booking form.</p>
+        </div>
+      </div>
+    </div></div>
+  </div>
+</section>
+
+<!-- How It Works removed — steps are self-evident -->
+
+<!-- 3D2N ITINERARY -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">3D2N Standard Route</span>
+      <h2>Three days, <em>eight iconic stops.</em></h2>
+    </div>
+    <div class="itin-wrap reveal">
+      <div class="itin-day">
+        <div class="itin-day-col"><div class="itin-dot"></div></div>
+        <div class="itin-content">
+          <div class="itin-d-label">Day 1 · Departure day</div>
+          <div class="itin-d-title">Labuan Bajo → Kelor → Rinca → Kalong (overnight)</div>
+          <div class="itin-d-desc">Board at the dock, cold welcome drinks. Sail to Kelor for the first hike and snorkel. Rinca Island ranger-guided dragon trek. At sunset, anchor off Kalong as 100,000 flying foxes fill the sky. Dinner at anchor — bioluminescence in the water.</div>
+        </div>
+      </div>
+      <div class="itin-day">
+        <div class="itin-day-col"><div class="itin-dot"></div></div>
+        <div class="itin-content">
+          <div class="itin-d-label">Day 2 · Travel day onboard</div>
+          <div class="itin-d-title">Padar Sunrise → Pink Beach → Taka Makassar → Manta Point (overnight)</div>
+          <div class="itin-d-desc">5 AM hike up Padar before every other boat. Breakfast underway. Pink Beach for swimming and paddleboards. Sandbar sunset at Taka Makassar. Golden-hour snorkel with mantas at Manta Point. Long deck dinner under the Milky Way.</div>
+        </div>
+      </div>
+      <div class="itin-day">
+        <div class="itin-day-col"><div class="itin-dot" style="background:var(--muted)"></div></div>
+        <div class="itin-content">
+          <div class="itin-d-label">Day 3 · Travel day onboard</div>
+          <div class="itin-d-title">Sebayur → Kanawa → Labuan Bajo</div>
+          <div class="itin-d-desc">Morning snorkel at Sebayur healthy reef. Final swim at Kanawa. Lunch while sailing home. Dock at Labuan Bajo by 15:00, transfer back to hotel or airport.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDES / EXCLUDES -->
+<section class="sec" style="background:var(--surface)">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">What's in the price</span>
+      <h2>All-in means <em>all-in.</em></h2>
+    </div>
+    <div class="trip-grid reveal">
+      <div class="trip-card">
+        <h3>✓ Included</h3>
+        <ul class="trip-list inc">
+          <li>Living on board · all 3D2N</li>
+          <li>2-way transfer hotel / airport Labuan Bajo</li>
+          <li>Full board · 3 meals/day + 1 evening snack</li>
+          <li>Mineral water, coffee &amp; tea</li>
+          <li>Local guide + English-speaking host</li>
+          <li>Snorkeling gear · life jacket · dry bag</li>
+          <li>Trip documentation (photos &amp; video)</li>
+        </ul>
+      </div>
+      <div class="trip-card">
+        <h3>✕ Not included</h3>
+        <ul class="trip-list exc">
+          <li>Komodo National Park entrance fee</li>
+          <li>Travel insurance</li>
+          <li>Alcohol &amp; premium drinks</li>
+          <li>Tipping for crew and guide</li>
+          <li>Personal expenses</li>
+          <li>Hotel in Labuan Bajo</li>
+          <li>Flights to Labuan Bajo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <strong>EastXperience</strong> · Komodo 3D2N Sailing · Operated on the Kanha Fleet<br>
+    Operated by EastXperience · <a href="https://wa.me/61415097538">WhatsApp: +61 415 097 538</a><br>
+    <span style="margin-top:6px;display:block;font-size:11px">© 2026 EastXperience · Selected departures throughout the 2026 season</span>
+  </div>
+</footer>
+
+<!-- STICKY BAR -->
+<div class="sticky-bk" id="stickyBk">
+  <span class="sticky-bk-txt" id="stickyTxt">Kanha Fleet · 3D2N</span>
+  <button class="sticky-bk-btn" id="stickyBtn" onclick="stickyAction()">Choose boat</button>
+</div>
+
+<!-- ═══ MAIN SCRIPT ═══ -->
+<script>
+/* ═════════════════════════════════════════════════════════════════
+   LIVE AVAILABILITY API
+   Same Apps Script Web App that powers kanhaliveaboard.com.au
+   ═════════════════════════════════════════════════════════════════ */
+const AVAILABILITY_API_URL = "https://script.google.com/macros/s/AKfycbytQ78CRupPddbbElhoT-mG1L1SOq3paGm81I8TWZy74XzYI9Q_Z-sgkCTqV92lLTwu/exec";
+const API_TIMEOUT_MS = 14000;
+
+const API_BOAT_SLUG = { 'kanha-loka':'Loka', 'kanha-citta':'Citta', 'kanha-natha':'Natha' };
+
+const API_CABIN_KEYS = {
+  'kanha-loka': {
+    'share-cabin':       'shared1Pax',
+    'superior-cabin':    'deluxeCabin',
+    'family-cabin':      'upperDeluxeCabin',
+    'deluxe-ocean-view': 'upperDeluxeCabin',
+    'master-ocean-view': 'masterGayatriCabin'
+  },
+  'kanha-citta': {
+    'share-room':              'shared1Pax',
+    'deluxe-ocean-view':       'upperDeluxeCabin',
+    'shakti-sedana':           'deluxeCabin',
+    'gayatri-master-suite':    'masterGayatriCabin'
+  },
+  'kanha-natha': {
+    'share-cabin':        'shared1Pax',
+    'private-ocean-view': 'masterGayatriCabin'
+  }
+};
+
+/* ─────────────────────────────────────────────
+   STATIC BOAT METADATA — public rack rates 2026
+───────────────────────────────────────────────── */
+const BOATS = {
+  'kanha-loka': {
+    id:'kanha-loka', shortId:'loka', name:'Kanha Loka', color:'#2563EB', capacity:22,
+    cabins:[
+      { id:'share-cabin',         name:'Share Cabin',          sub:'Bunk-style · social atmosphere · solo-friendly', price:5500000, type:'shared'  },
+      { id:'superior-cabin',      name:'Superior Cabin',       sub:'Lower deck · en-suite · min 2 pax',              price:6900000, type:'private' },
+      { id:'family-cabin',        name:'Family Cabin',         sub:'4 pax room · shared double · min 2 pax',         price:6900000, type:'private' },
+      { id:'deluxe-ocean-view',   name:'Deluxe Ocean View',    sub:'Ocean view · en-suite · min 2 pax',              price:8500000, type:'private' },
+      { id:'master-ocean-view',   name:'Master Ocean View',    sub:'Best cabin on board · en-suite · min 2 pax',     price:9500000, type:'private' }
+    ]
+  },
+  'kanha-citta': {
+    id:'kanha-citta', shortId:'citta', name:'Kanha Citta', color:'#0891B2', capacity:20,
+    cabins:[
+      { id:'share-room',          name:'Share Room',           sub:'Bunk beds · top deck · social',                  price:5800000,  type:'shared'  },
+      { id:'deluxe-ocean-view',   name:'Deluxe Ocean View',    sub:'Main deck · en-suite · min 2 pax',               price:8700000,  type:'private' },
+      { id:'shakti-sedana',       name:'Shakti / Sedana',      sub:'Side ocean view · upper deck · min 2 pax',       price:9500000,  type:'private' },
+      { id:'gayatri-master-suite',name:'Gayatri Master Suite', sub:'Full ocean view + private balcony · min 2 pax',  price:12500000, type:'private' }
+    ]
+  },
+  'kanha-natha': {
+    id:'kanha-natha', shortId:'natha', name:'Kanha Natha', color:'#D97706', capacity:12,
+    cabins:[
+      { id:'share-cabin',         name:'Share Cabin',          sub:'Bunk-style · 8 guests · 2 sharing rooms',        price:4800000,  type:'shared'  },
+      { id:'private-ocean-view',  name:'Private Ocean View',   sub:'En-suite · ocean view · min 2 pax',              price:7800000,  type:'private' }
+    ]
+  }
+};
+const SHORT_TO_BOAT = { loka:'kanha-loka', citta:'kanha-citta', natha:'kanha-natha' };
+function resolveBoatId(id){ return BOATS[id] ? id : (SHORT_TO_BOAT[id] || null); }
+
+/* ─────────────────────────────────────────────
+   LIVE AVAILABILITY STATE
+───────────────────────────────────────────────── */
+let API_DATA = null;
+let API_BOAT_LOADED = null;
+let API_OK = false;
+let LAST_UPDATED = null;
+let FP_INSTANCE = null;
+
+/* ─────────────────────────────────────────────
+   HELPERS
+───────────────────────────────────────────────── */
+const MNAMES = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MSHORT = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+function fmtKey(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+function fmtDisplay(k){ const d=new Date(k+'T00:00:00'); return d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'}); }
+function fmtRange(start,end){
+  const s=new Date(start+'T00:00:00'), e=new Date(end+'T00:00:00');
+  const sameMonth = s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear();
+  if(sameMonth) return `${s.getDate()}–${e.getDate()} ${MSHORT[s.getMonth()]} ${s.getFullYear()}`;
+  return `${s.getDate()} ${MSHORT[s.getMonth()]} – ${e.getDate()} ${MSHORT[e.getMonth()]} ${e.getFullYear()}`;
+}
+function fmtIDR(n){ return 'IDR ' + n.toLocaleString('id-ID'); }
+function addDays(iso, n){
+  const d = new Date(iso + 'T00:00:00');
+  d.setDate(d.getDate() + n);
+  return fmtKey(d);
+}
+function todayIso(){
+  const d = new Date(); d.setHours(0,0,0,0);
+  return fmtKey(d);
+}
+function fmtLastUpdated(){
+  return new Date().toLocaleString('en-GB', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+}
+
+function statusLabel(s){
+  return ({ available:'Available', limited:'Limited', on_hold:'On Hold', booked:'Booked' })[s] || 'Confirm with team';
+}
+
+/* ─────────────────────────────────────────────
+   LIVE FETCH — Google Apps Script Web App
+───────────────────────────────────────────────── */
+async function fetchAvailability(boatId, force){
+  const slug = API_BOAT_SLUG[boatId];
+  if (!slug) { API_OK = false; return false; }
+  const url = AVAILABILITY_API_URL + '?boat=' + encodeURIComponent(slug) + (force ? '&refresh=1' : '') + '&t=' + Date.now();
+  const ctrl = new AbortController();
+  const tid  = setTimeout(() => ctrl.abort(), API_TIMEOUT_MS);
+  try {
+    const res = await fetch(url, { cache: 'no-store', signal: ctrl.signal });
+    clearTimeout(tid);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const json = await res.json();
+    if (!json || typeof json !== 'object') throw new Error('Bad JSON');
+    API_DATA = json;
+    API_BOAT_LOADED = boatId;
+    API_OK = true;
+    LAST_UPDATED = fmtLastUpdated();
+    return true;
+  } catch (err) {
+    clearTimeout(tid);
+    console.warn('[availability] fetch failed:', err);
+    API_OK = false;
+    API_DATA = null;
+    API_BOAT_LOADED = null;
+    return false;
+  }
+}
+
+function getDepartureDates(){
+  if (!API_DATA) return [];
+  const set = new Set();
+  for (let n = 1; n <= 8; n++) {
+    const arr = API_DATA['shared' + n + 'Pax'];
+    if (Array.isArray(arr)) arr.forEach(d => set.add(d));
+  }
+  ['deluxeCabin','upperDeluxeCabin','masterGayatriCabin'].forEach(k => {
+    if (Array.isArray(API_DATA[k])) API_DATA[k].forEach(d => set.add(d));
+  });
+  return Array.from(set);
+}
+
+function getCabinStatusForDate(boatId, cabinId, dateIso){
+  if (!API_DATA) return 'unknown';
+  const map = API_CABIN_KEYS[boatId];
+  if (!map || !map[cabinId]) return 'unknown';
+  const apiKey = map[cabinId];
+  if (apiKey === 'shared1Pax') {
+    let maxN = 0;
+    for (let n = 8; n >= 1; n--) {
+      const arr = API_DATA['shared' + n + 'Pax'];
+      if (Array.isArray(arr) && arr.indexOf(dateIso) >= 0) { maxN = n; break; }
+    }
+    if (maxN === 0)  return 'booked';
+    if (maxN <= 2)   return 'limited';
+    return 'available';
+  }
+  const arr = API_DATA[apiKey];
+  if (Array.isArray(arr) && arr.indexOf(dateIso) >= 0) return 'available';
+  return 'booked';
+}
+
+function getDepartureStatus(boatId, dateIso){
+  const boat = BOATS[boatId];
+  if (!boat) return 'unknown';
+  const statuses = boat.cabins.map(c => getCabinStatusForDate(boatId, c.id, dateIso));
+  const counts = { available:0, limited:0, booked:0, unknown:0 };
+  statuses.forEach(s => counts[s] = (counts[s]||0) + 1);
+  if (counts.available === statuses.length) return 'available';
+  if (counts.booked === statuses.length)    return 'booked';
+  if (counts.available + counts.limited > 0) return 'limited';
+  if (counts.limited > 0) return 'limited';
+  return 'unknown';
+}
+
+/* ─────────────────────────────────────────────
+   STATE
+───────────────────────────────────────────────── */
+const TODAY = new Date(); TODAY.setHours(0,0,0,0);
+let selBoat  = null;
+let selDate  = null;
+let selCabin = null;
+
+/* ─────────────────────────────────────────────
+   TASK 1 — DRAFT PERSISTENCE (step-1 state)
+   Shared localStorage key with book.html so the
+   full booking journey persists end-to-end.
+───────────────────────────────────────────────── */
+const BOOKING_DRAFT_KEY = 'ex_kanha_booking_draft';
+
+function _genRef(boatId, departureDate, cabinId) {
+  const bCode = String(boatId  || '').replace('kanha-','').toUpperCase().split('-')[0].substring(0,5) || 'FLEET';
+  const dCode = String(departureDate || '').replace(/-/g,'').substring(0,8) || 'FLEX';
+  const cCode = String(cabinId || '').split('-')[0].toUpperCase().substring(0,5) || 'CAB';
+  return 'KANHA-' + dCode + '-' + bCode + '-' + cCode;
+}
+
+function loadStep1Draft() {
+  try { const r = localStorage.getItem(BOOKING_DRAFT_KEY); return r ? JSON.parse(r) : null; }
+  catch(e) { return null; }
+}
+
+function clearStep1Draft() {
+  try { localStorage.removeItem(BOOKING_DRAFT_KEY); } catch(e) {}
+}
+
+function saveDraftStep1(update) {
+  try {
+    const existing = loadStep1Draft() || {};
+    // merge update into existing
+    const merged = Object.assign({}, existing, update);
+    // Ensure ref is present
+    if (!merged.ref) {
+      merged.ref = _genRef(merged.boatId || '', merged.departureDate || '', merged.cabinId || '');
+    }
+    merged.updatedAt = new Date().toISOString();
+    merged.source = 'Kanha Booking Page';
+    merged.product = 'sailing-3d2n';
+    localStorage.setItem(BOOKING_DRAFT_KEY, JSON.stringify(merged));
+  } catch(e) {}
+}
+
+/* ─────────────────────────────────────────────
+   TASK 3 — RESUME BANNER
+───────────────────────────────────────────────── */
+function checkResumeDraft() {
+  const d = loadStep1Draft();
+  if (!d || !d.boatId || !d.departureDate || !d.cabinId) return;
+  // Only show if draft is < 7 days old
+  if (d.updatedAt) {
+    const age = Date.now() - new Date(d.updatedAt).getTime();
+    if (age > 7 * 24 * 60 * 60 * 1000) return;
+  }
+  // Don't show if URL already carries full boat/date params (user came from calendar directly)
+  const urlP = new URLSearchParams(location.search);
+  if (urlP.get('boat') || urlP.get('boat_id')) return;
+
+  const priceEst = d.cabinPrice ? fmtIDR(d.cabinPrice * 2) + ' est. (2 pax)' : '';
+  const banner = document.createElement('div');
+  banner.id = 'resumeBanner';
+  banner.style.cssText = [
+    'max-width:680px;margin:0 auto 28px;padding:20px 24px',
+    'background:#fff;border:2px solid rgba(37,99,235,.38)',
+    'border-radius:14px;font-size:13.5px;color:var(--navy);line-height:1.65'
+  ].join(';');
+  banner.innerHTML = `
+    <div style="font:700 10.5px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#2563EB;margin-bottom:10px">↩ Resume your Komodo sailing request?</div>
+    <div><strong>Boat:</strong> ${d.boatName || d.boatId}</div>
+    <div><strong>Date:</strong> ${d.departureDate}</div>
+    <div><strong>Cabin:</strong> ${d.cabinName || d.cabinId}</div>
+    ${priceEst ? '<div><strong>Estimated total:</strong> ' + priceEst + '</div>' : ''}
+    ${d.ref ? '<div style="margin-bottom:2px"><strong>Ref:</strong> <span style="font-family:monospace;color:var(--muted)">' + d.ref + '</span></div>' : ''}
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+      <button id="resumeDraftBtn" style="padding:11px 20px;background:#2563EB;color:#fff;border:none;border-radius:8px;font:600 13px 'Inter',sans-serif;cursor:pointer;touch-action:manipulation">Resume Request →</button>
+      <button id="startOverBtn" style="padding:11px 18px;background:none;border:1.5px solid rgba(10,22,40,.18);border-radius:8px;font:500 13px 'Inter',sans-serif;color:var(--muted);cursor:pointer;touch-action:manipulation">Start Over</button>
+    </div>
+  `;
+  const heroEl = document.querySelector('.hero');
+  if (heroEl) heroEl.insertAdjacentElement('afterend', banner);
+
+  document.getElementById('resumeDraftBtn').addEventListener('click', function() {
+    banner.remove();
+    resumeFromDraft(d);
+  });
+  document.getElementById('startOverBtn').addEventListener('click', function() {
+    clearStep1Draft();
+    banner.remove();
+  });
+}
+
+function resumeFromDraft(d) {
+  if (!d.boatId) return;
+
+  // ── TASK 3: Immediately render draft summary before API responds ──
+  var draftCard = document.getElementById('draftRestoreCard');
+  if (!draftCard) {
+    draftCard = document.createElement('div');
+    draftCard.id = 'draftRestoreCard';
+    draftCard.style.cssText = [
+      'max-width:680px;margin:0 auto 20px;padding:18px 22px',
+      'background:#fff;border:2px solid rgba(37,99,235,.28)',
+      'border-radius:14px;font-size:13.5px;color:var(--navy);line-height:1.65'
+    ].join(';');
+    var heroEl = document.querySelector('.hero');
+    if (heroEl) heroEl.insertAdjacentElement('afterend', draftCard);
+  }
+  var priceEst = d.cabinPrice ? fmtIDR(d.cabinPrice * 2) + ' est. (2 pax)' : '';
+  draftCard.innerHTML =
+    '<div style="font:700 10.5px/1 \'Inter\',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#2563EB;margin-bottom:10px">↩ Restoring your request…</div>' +
+    '<div><strong>Boat:</strong> ' + (d.boatName || d.boatId) + '</div>' +
+    '<div><strong>Date:</strong> ' + d.departureDate + '</div>' +
+    '<div><strong>Cabin:</strong> ' + (d.cabinName || d.cabinId) + '</div>' +
+    (priceEst ? '<div><strong>Estimated total:</strong> ' + priceEst + '</div>' : '') +
+    (d.ref ? '<div><strong>Ref:</strong> <span style="font-family:monospace;color:var(--muted)">' + d.ref + '</span></div>' : '') +
+    '<div id="draftRestoreStatus" style="margin-top:10px;font-size:12.5px;color:var(--muted)">Checking live availability…</div>';
+
+  // ── Select boat (triggers API fetch) ──
+  selectBoat(d.boatId).then(function() {
+    if (!d.departureDate) return;
+
+    // Allow API fetch to complete (1800 ms)
+    setTimeout(function() {
+      var statusEl = document.getElementById('draftRestoreStatus');
+
+      if (API_OK && getDepartureDates().indexOf(d.departureDate) >= 0) {
+        // ── API good: set departure date ──
+        if (FP_INSTANCE) FP_INSTANCE.setDate(d.departureDate, true);
+        else pickDate(d.departureDate);
+
+        // ── TASK 4: Auto-select cabin after bkPanel opens ──
+        setTimeout(function() {
+          if (!d.cabinId) return;
+          var boatData = BOATS[selBoat];
+          var found = boatData && boatData.cabins.find(function(c) { return c.id === d.cabinId; });
+          if (found) {
+            selCabin = found.id;
+            document.querySelectorAll('.cabin-opt').forEach(function(el) {
+              el.classList.toggle('sel', el.dataset.cabin === found.id);
+            });
+            if (statusEl) statusEl.textContent = '';
+            updateSteps();
+            updateWALink();
+          } else {
+            // Cabin no longer available for this date — soft warning
+            if (statusEl) statusEl.innerHTML =
+              '<span style="color:#B45309">⚠ Your previously selected cabin is no longer available for this date. Please choose a cabin below.</span>';
+            updateSteps();
+            updateWALink();
+          }
+        }, 400);
+
+      } else if (!API_OK) {
+        // ── TASK 5: API failed — restore state from draft, allow Continue ──
+        selBoat  = d.boatId;
+        selDate  = d.departureDate;
+        selCabin = d.cabinId;
+        if (statusEl) statusEl.innerHTML =
+          '<span style="color:#B45309">Live availability could not be refreshed. ' +
+          'You may continue — our team will reconfirm cabin availability manually.</span>';
+        updateSteps();
+        updateWALink();
+
+      } else {
+        // API_OK but departure date not in current schedule
+        if (statusEl) statusEl.innerHTML =
+          '<span style="color:#B45309">This departure date may no longer be available. ' +
+          'Please select a new date from the calendar below.</span>';
+        var calEl = document.getElementById('step-calendar');
+        if (calEl) calEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 1800);
+  });
+}
+
+/* ─────────────────────────────────────────────
+   STEP INDICATOR
+───────────────────────────────────────────────── */
+/* ── goToBookingForm: single source of truth for final CTA action ── */
+function goToBookingForm(){
+  if(!selBoat||!selDate||!selCabin) return;
+  const url = buildBookingFormUrl();
+  if(url) { window.location.href = url; }
+}
+
+function updateSteps(){
+  const s1=document.getElementById('s1'),s2=document.getElementById('s2'),s3=document.getElementById('s3'),s4=document.getElementById('s4');
+  const done1=!!selBoat,done2=!!selDate,done3=!!selCabin;
+  if(s1) s1.className='step '+(done1?'done':'active');
+  if(s2) s2.className='step '+(done2?'done':done1?'active':'');
+  if(s3) s3.className='step '+(done3?'done':done2?'active':'');
+  if(s4) s4.className='step '+(done3?'active':'');
+  // Smart sticky CTA
+  const sBtn=document.getElementById('stickyBtn');
+  const sTxt=document.getElementById('stickyTxt');
+  if(sBtn){
+    if(!selBoat){
+      sBtn.textContent='Choose boat';
+      sBtn.className='sticky-bk-btn';
+      sBtn.onclick=()=>document.getElementById('step-boats').scrollIntoView({behavior:'smooth'});
+    } else if(!selDate){
+      sBtn.textContent='Pick date';
+      sBtn.className='sticky-bk-btn';
+      sBtn.onclick=()=>document.getElementById('step-calendar').scrollIntoView({behavior:'smooth'});
+    } else if(!selCabin){
+      sBtn.textContent='Choose cabin';
+      sBtn.className='sticky-bk-btn';
+      sBtn.onclick=()=>document.getElementById('step-cabins')?.scrollIntoView({behavior:'smooth'});
+    } else {
+      // All selected — neon green, same action as main CTA
+      sBtn.textContent='Continue';
+      sBtn.className='sticky-bk-btn sticky-bk-ready';
+      sBtn.onclick=()=>goToBookingForm();
+    }
+  }
+  // Update sticky text with summary once cabin selected
+  if(sTxt){
+    if(selBoat&&selDate&&selCabin){
+      const boat=BOATS[selBoat];
+      const cabin=boat.cabins.find(c=>c.id===selCabin);
+      const price=cabin?cabin.price:Math.min(...boat.cabins.map(c=>c.price));
+      sTxt.innerHTML='<strong>'+boat.name+'</strong> · '+fmtIDR(price)+'/pax';
+    } else if(selBoat){
+      const boat=BOATS[selBoat];
+      const minP=Math.min(...boat.cabins.map(c=>c.price));
+      sTxt.innerHTML='<strong>'+boat.name+'</strong> · from '+fmtIDR(minP);
+    }
+  }
+}
+function stickyAction(){ updateSteps(); }
+
+/* ─────────────────────────────────────────────
+   BOAT SELECTION
+───────────────────────────────────────────────── */
+async function selectBoat(boatIdInput){
+  const boatId = resolveBoatId(boatIdInput);
+  if (!boatId) return;
+  selBoat  = boatId;
+  selDate  = null;
+  selCabin = null;
+  // TASK 1: persist boat selection immediately
+  const _boat = BOATS[boatId];
+  saveDraftStep1({ boatId: boatId, boatName: _boat ? _boat.name : boatId, departureDate: '', endDate: '', tripDates: '', cabinId: '', cabinName: '', cabinPrice: 0, cabinStatus: '', ref: '' });
+  document.querySelectorAll('.boat-card').forEach(c => {
+    const id = c.dataset.boat;
+    c.classList.toggle('selected', resolveBoatId(id) === boatId);
+  });
+  document.getElementById('calSec').classList.remove('locked');
+  const boat = BOATS[boatId];
+  document.getElementById('calHeading').innerHTML = `Pick a 2026 departure for <em>${boat.name}</em>`;
+  document.documentElement.style.setProperty('--boat-color', boat.color);
+  document.getElementById('bkPanel').classList.remove('open');
+  document.getElementById('calMonthTitle').textContent = `${boat.name} — Live 2026 Departures`;
+
+  const minPrice = Math.min(...boat.cabins.map(c=>c.price));
+  // stickyTxt updated by updateSteps()
+
+  const lastEl = document.getElementById('fpLastUpdated');
+  const loadEl = document.getElementById('fpLoading');
+  const errEl  = document.getElementById('fpErrorMsg');
+  const inputEl = document.getElementById('fpDate');
+  const refreshBtn = document.getElementById('fpRefresh');
+
+  if (loadEl) loadEl.style.display = 'inline-block';
+  if (errEl)  errEl.style.display  = 'none';
+  if (lastEl) lastEl.textContent   = 'Live data — fetching ' + boat.name + '…';
+  if (inputEl){ inputEl.disabled = true; inputEl.value = ''; inputEl.placeholder = 'Loading availability…'; }
+
+  // Analytics
+  try {
+    (window.dataLayer = window.dataLayer || []).push({ event:'select_boat', boat_id:boatId, boat_name:boat.name });
+    if(typeof window.gtag==='function') window.gtag('event','select_boat',{boat_id:boatId,boat_name:boat.name});
+  } catch(_){}
+
+  await fetchAvailability(boatId, false);
+
+  if (loadEl) loadEl.style.display = 'none';
+  if (!API_OK) {
+    if (errEl)  errEl.style.display = 'block';
+    if (lastEl) lastEl.textContent  = 'Live data — connection failed. Tap refresh or message us on WhatsApp.';
+    if (inputEl){ inputEl.disabled = true; inputEl.placeholder = 'Live data unavailable'; }
+    if (FP_INSTANCE) FP_INSTANCE.destroy();
+    FP_INSTANCE = null;
+    updateSteps();
+    return;
+  }
+
+  if (lastEl) lastEl.textContent = 'Live data · ' + boat.name + ' · last updated ' + LAST_UPDATED;
+  if (inputEl){ inputEl.disabled = false; inputEl.placeholder = 'Choose a departure date…'; }
+
+  initFlatpickr();
+  updateSteps();
+  setTimeout(() => document.getElementById('step-calendar').scrollIntoView({behavior:'smooth', block:'start'}), 80);
+}
+
+/* ─────────────────────────────────────────────
+   FLATPICKR — only departure dates are enabled
+───────────────────────────────────────────────── */
+function initFlatpickr(){
+  const inputEl = document.getElementById('fpDate');
+  if (!inputEl || !window.flatpickr) return;
+  const minIso = todayIso();
+  const dates  = getDepartureDates();
+  const dateSet = new Set(dates);
+
+  if (FP_INSTANCE) { FP_INSTANCE.destroy(); FP_INSTANCE = null; }
+
+  FP_INSTANCE = flatpickr(inputEl, {
+    dateFormat: 'Y-m-d',
+    altInput:  true,
+    altFormat: 'l, j F Y',
+    minDate:   minIso,
+    maxDate:   '2026-12-31',
+    enable: [
+      function(date){
+        const iso = `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+        return iso >= minIso && dateSet.has(iso);
+      }
+    ],
+    onChange: function(_dates, dateStr){
+      if (!dateStr) return;
+      pickDate(dateStr);
+    }
+  });
+}
+
+function renderCal(){}
+
+/* ─────────────────────────────────────────────
+   ATTRIBUTION & WHATSAPP
+───────────────────────────────────────────────── */
+function getAttribution(){
+  try {
+    const stored = JSON.parse(sessionStorage.getItem('_ads_utm') || '{}');
+    const urlP = Object.fromEntries(new URLSearchParams(location.search));
+    return { ...stored, ...urlP };
+  } catch(_){ return {}; }
+}
+
+function buildWAMessage({ boatPref='Any', departure='Flexible', tripRange='', cabin='–', guests='–', status='', notes='' } = {}){
+  const rangeStr  = tripRange ? `\nTrip dates: ${tripRange}` : '';
+  const statusStr = status    ? `\nAvailability status: ${status}` : '';
+  // Build clean reference code
+  const dateCode  = departure && departure !== 'Flexible'
+    ? departure.replace(/[^\d]/g,'').substring(0,8)
+    : 'FLEX';
+  const boatCode  = boatPref.toUpperCase().replace('KANHA ','').split(' ')[0].substring(0,5) || 'FLEET';
+  const refCode   = 'KANHA-' + dateCode + '-' + boatCode;
+  return `Hi EastXperience team,\n\nI want to request availability for Sailing 3D2N Komodo, operated by EastXperience on the Kanha fleet.\n\nProduct: Komodo Sailing 3D2N\nOperator: EastXperience\nFleet: Kanha Fleet\nBoat: ${boatPref}\nDeparture date: ${departure}${rangeStr}\nDuration: 3D2N\nCabin preference: ${cabin}\nNumber of guests: ${guests}${statusStr}\nNotes: ${notes||'(none)'}\nSource: Kanha Booking Page\nRef: ${refCode}`;
+}
+
+/* ─────────────────────────────────────────────
+   Build a deep link to book.html with full sailing context
+───────────────────────────────────────────────── */
+function copyAttributionParams(params){
+  try {
+    const current = new URLSearchParams(location.search);
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid'].forEach(k => {
+      const v = current.get(k);
+      if (v) params.set(k, v);
+    });
+    const stored = JSON.parse(sessionStorage.getItem('_ads_utm') || '{}');
+    Object.keys(stored).forEach(k => {
+      if (stored[k] && !params.has(k)) params.set(k, stored[k]);
+    });
+  } catch(e){}
+}
+
+function buildBookingFormUrl(){
+  if (!selBoat || !selDate || !selCabin) return null;
+  const boat  = BOATS[selBoat];
+  const cabin = boat && boat.cabins.find(c => c.id === selCabin);
+  if (!boat || !cabin) return null;
+  const endDate = addDays(selDate, 2);
+  // TASK 5 — if API was unavailable, flag for manual reconfirmation
+  const cabinStatus = API_OK ? getCabinStatusForDate(selBoat, cabin.id, selDate) : 'pending_reconfirmation';
+  const availabilityStatus = API_OK ? getDepartureStatus(selBoat, selDate) : 'pending_reconfirmation';
+  const params = new URLSearchParams();
+  params.set('product',             'komodo-sailing-3d2n');
+  params.set('boat_id',             boat.id);
+  params.set('boat_name',           boat.name);
+  params.set('departure_date',      selDate);
+  params.set('end_date',            endDate);
+  params.set('trip_dates',          fmtRange(selDate, endDate));
+  params.set('duration',            '3D2N');
+  params.set('cabin_id',            cabin.id);
+  params.set('cabin_name',          cabin.name);
+  params.set('cabin_price',         String(cabin.price));
+  params.set('cabin_status',        cabinStatus);
+  params.set('availability_status', availabilityStatus);
+  copyAttributionParams(params);
+  return 'book.html?' + params.toString();
+}
+
+/* WhatsApp fallback (when status is not bookable) */
+function buildWAFallbackUrl(){
+  const boat   = selBoat  ? BOATS[selBoat]  : null;
+  const cabin  = selCabin && boat ? boat.cabins.find(c=>c.id===selCabin) : null;
+  const range  = selDate ? fmtRange(selDate, addDays(selDate, 2)) : '';
+  const status = (selBoat && selDate) ? statusLabel(getDepartureStatus(selBoat, selDate)) : '';
+  const msg = buildWAMessage({
+    boatPref:  boat ? boat.name : 'Any',
+    departure: selDate ? fmtDisplay(selDate) : 'Flexible',
+    tripRange: range,
+    cabin:     cabin ? `${cabin.name} — ${fmtIDR(cabin.price)}/pax` : '–',
+    status:    status
+  });
+  return `https://wa.me/61415097538?text=${encodeURIComponent(msg)}`;
+}
+
+/* Update the main CTA (Continue to booking form / Ask via WhatsApp) */
+function updateWALink(){
+  const btn = document.getElementById('bkWaBtn');
+  const sub = document.getElementById('bkCtaSub');
+  if(!btn) return;
+  const hasBoat = !!selBoat, hasDate = !!selDate, hasCabin = !!selCabin;
+
+  if (!hasBoat || !hasDate) {
+    btn.removeAttribute('href');
+    btn.setAttribute('aria-disabled','true');
+    btn.classList.add('is-disabled');
+    btn.target = '_self';
+    btn.dataset.mode = 'idle';
+    btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg> Select a boat &amp; date to continue`;
+    if (sub) sub.textContent = 'Pick your boat, then choose a departure date.';
+    return;
+  }
+  if (!hasCabin) {
+    btn.removeAttribute('href');
+    btn.setAttribute('aria-disabled','true');
+    btn.classList.add('is-disabled');
+    btn.target = '_self';
+    btn.dataset.mode = 'idle';
+    btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg> Select a cabin to continue`;
+    if (sub) sub.textContent = 'Tap a cabin above to enable the booking form.';
+    return;
+  }
+
+  const cabinStatus = getCabinStatusForDate(selBoat, selCabin, selDate);
+  const depStatus   = getDepartureStatus(selBoat, selDate);
+  const unbookable  = ['booked','private_charter','maintenance','not_operating','unknown'];
+  const blocked     = unbookable.indexOf(cabinStatus) >= 0 || unbookable.indexOf(depStatus) >= 0;
+
+  btn.classList.remove('is-disabled');
+  btn.removeAttribute('aria-disabled');
+
+  if (blocked) {
+    btn.href   = buildWAFallbackUrl();
+    btn.target = '_blank';
+    btn.rel    = 'noopener';
+    btn.dataset.mode = 'whatsapp';
+    btn.innerHTML = `<svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.52 3.48A11.88 11.88 0 0 0 12.07 0C5.52 0 .17 5.35.17 11.9c0 2.1.55 4.14 1.6 5.95L0 24l6.32-1.66a11.88 11.88 0 0 0 5.75 1.46h.01c6.55 0 11.9-5.35 11.9-11.9 0-3.18-1.24-6.17-3.46-8.42z"/></svg> Plan This Trip`;
+    if (sub) sub.textContent = 'This date is not bookable online. Our concierge will confirm the nearest available departure.';
+  } else {
+    btn.href   = buildBookingFormUrl();
+    btn.target = '_self';
+    btn.removeAttribute('rel');
+    btn.dataset.mode = 'form';
+    btn.innerHTML = `Continue to Booking Form <span aria-hidden="true">→</span>`;
+    if (sub) sub.textContent = 'Complete your guest details first. We will prepare a clean WhatsApp request for final availability confirmation.';
+  }
+}
+
+/* Click tracking for CTA + photo gallery */
+window.trackPhotoGallery = function(boatId){
+  try {
+    const boat = BOATS[boatId];
+    const url  = ({
+      'kanha-loka':'https://drive.google.com/drive/folders/11NEnA41-hevgTN_vQ6ZzwXPwBrKnh8SE',
+      'kanha-citta':'https://drive.google.com/drive/folders/1Nr6hr1CmJunaVJm04pIDWeLjH1KKmT_q',
+      'kanha-natha':'https://drive.google.com/drive/folders/1D68n14Cqh2RDlj-ZTlO_1A-I97_mGoXA'
+    })[boatId] || '';
+    (window.dataLayer = window.dataLayer || []).push({
+      event: 'open_boat_photo_gallery',
+      boat_id: boatId,
+      boat_name: boat ? boat.name : '',
+      gallery_url: url
+    });
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'open_boat_photo_gallery', { boat_id: boatId, boat_name: boat ? boat.name : '', gallery_url: url });
+    }
+  } catch(e){}
+};
+
+document.addEventListener('click', function(e){
+  const el = e.target.closest('#bkWaBtn');
+  if (!el) return;
+  if (el.classList.contains('is-disabled')) { e.preventDefault(); return; }
+  const mode = el.dataset.mode;
+  try {
+    (window.dataLayer = window.dataLayer || []).push({
+      event: mode === 'form' ? 'continue_to_booking_form' : 'open_whatsapp',
+      boat_id: selBoat,
+      cabin_id: selCabin,
+      departure_date: selDate
+    });
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', mode === 'form' ? 'continue_to_booking_form' : 'open_whatsapp', {
+        boat_id: selBoat, cabin_id: selCabin, departure_date: selDate
+      });
+    }
+  } catch(e){}
+});
+
+/* ─────────────────────────────────────────────
+   DATE SELECTION & BOOKING PANEL
+───────────────────────────────────────────────── */
+function pickDate(key){
+  if (!selBoat || !BOATS[selBoat]) return;
+  selDate  = key;
+  selCabin = null;
+  // TASK 1: persist date selection
+  const _endIso2 = addDays(key, 2);
+  saveDraftStep1({ departureDate: key, endDate: _endIso2, tripDates: fmtRange(key, _endIso2), cabinId: '', cabinName: '', cabinPrice: 0, cabinStatus: '' });
+  const boat   = BOATS[selBoat];
+  const endIso = addDays(key, 2);
+  const status = getDepartureStatus(selBoat, key);
+  const range  = fmtRange(key, endIso);
+  const dep = { boatId: selBoat, date: key, endDate: endIso, status };
+
+  const panel = document.getElementById('bkPanel');
+  document.getElementById('bkBoatName').textContent = boat.name;
+  document.getElementById('bkBoatName').style.color = boat.color;
+  document.getElementById('bkDateName').textContent = `Departure date · ${fmtDisplay(key)}`;
+  document.getElementById('bkTripRange').innerHTML = `<strong>Trip dates:</strong> ${range} · <strong>Duration:</strong> 3D2N`;
+  document.getElementById('bkSpotsInfo').innerHTML = `Cabin availability — please confirm final availability before payment. <span class="bk-badge s-${status}">${statusLabel(status)}</span>`;
+
+  renderCabinList(dep, boat);
+  updateWALink();
+  panel.classList.add('open');
+  updateSteps();
+
+  // Analytics
+  try {
+    (window.dataLayer = window.dataLayer || []).push({ event:'select_departure', boat_id:selBoat, departure_date:key });
+    if(typeof window.gtag==='function') window.gtag('event','select_departure',{boat_id:selBoat,departure_date:key});
+  } catch(_){}
+
+  setTimeout(() => panel.scrollIntoView({behavior:'smooth', block:'nearest'}), 60);
+}
+
+function renderCabinList(dep, boat){
+  const container = document.getElementById('cabinList');
+  if(!boat){
+    container.innerHTML = '<p style="color:var(--muted);font-size:13px;padding:4px 0">Please choose a boat first (scroll up).</p>';
+    return;
+  }
+  const sharedCabins  = boat.cabins.filter(c => c.type === 'shared');
+  const privateCabins = boat.cabins.filter(c => c.type === 'private');
+
+  let html = '';
+  if(sharedCabins.length){
+    html += `<div class="cabin-type-header">Shared Cabin</div><div class="cabin-grid">`;
+    html += sharedCabins.map(c => buildCabinOpt(c, dep)).join('');
+    html += `</div>`;
+  }
+  if(privateCabins.length){
+    html += `<div class="cabin-type-header">Private Cabins</div><div class="cabin-grid">`;
+    html += privateCabins.map(c => buildCabinOpt(c, dep)).join('');
+    html += `</div>`;
+  }
+
+  container.innerHTML = html;
+  container.querySelectorAll('.cabin-opt').forEach(el => {
+    el.addEventListener('click', () => {
+      if(el.classList.contains('c-full')) return;
+      container.querySelectorAll('.cabin-opt').forEach(e => e.classList.remove('sel'));
+      el.classList.add('sel');
+      selCabin = el.dataset.cabin;
+      // TASK 1: persist cabin selection
+      const _b = BOATS[selBoat];
+      const _c = _b && _b.cabins.find(c => c.id === selCabin);
+      saveDraftStep1({
+        cabinId:    selCabin,
+        cabinName:  _c ? _c.name  : selCabin,
+        cabinPrice: _c ? _c.price : 0,
+        cabinStatus: el.dataset.status || '',
+        ref: _genRef(selBoat, selDate, selCabin)
+      });
+      updateSteps();
+      updateWALink();
+      // Analytics
+      try {
+        (window.dataLayer = window.dataLayer || []).push({ event:'select_cabin', boat_id:selBoat, cabin_id:selCabin, departure_date:selDate });
+        if(typeof window.gtag==='function') window.gtag('event','select_cabin',{boat_id:selBoat,cabin_id:selCabin,departure_date:selDate});
+      } catch(_){}
+    });
+  });
+}
+
+/* ── buildCabinOpt: shows private cabin minimum charge note ── */
+function buildCabinOpt(staticCabin, dep){
+  const status = getCabinStatusForDate(dep.boatId, staticCabin.id, dep.date);
+  const isFull = status === 'booked' || status === 'unknown';
+  const cls    = (status === 'available') ? 'av' : (status === 'limited' || status === 'on_hold') ? 'lim' : 'full';
+  const note   = statusLabel(status);
+  // Private cabin minimum 2 pax note
+  const privateNote = staticCabin.type === 'private'
+    ? `<div style="font-size:10.5px;color:#B45309;font-weight:600;margin-top:6px;display:flex;align-items:center;gap:4px">
+         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+         Private cabin · minimum charge 2 pax
+       </div>`
+    : '';
+  return `<div class="cabin-opt${isFull?' c-full':''}" data-cabin="${staticCabin.id}" data-status="${status}" data-cabin-type="${staticCabin.type||'private'}">
+    <div class="co-top">
+      <div class="co-name">${staticCabin.name}</div>
+      <div class="co-price">${fmtIDR(staticCabin.price)}</div>
+    </div>
+    <div class="co-sub">${staticCabin.sub}</div>
+    <div class="co-avail ${cls}">${note}</div>
+    ${privateNote}
+  </div>`;
+}
+
+/* ─────────────────────────────────────────────
+   URL PARAMETER INIT
+───────────────────────────────────────────────── */
+function initFromURL(){
+  try {
+    const p = new URLSearchParams(location.search);
+    const boatRaw = p.get('boat');
+    const boatId  = resolveBoatId(boatRaw);
+    if(boatId) selectBoat(boatId);
+    const cabin = p.get('cabin');
+    if(cabin && boatId && BOATS[boatId]){
+      const found = BOATS[boatId].cabins.find(c => c.id === cabin || c.id.indexOf(cabin) >= 0);
+      if(found) selCabin = found.id;
+    }
+    // product=sailing-3d2n: no auto-scroll — user reads intro first
+  } catch(_){}
+}
+
+/* CLOSE PANEL */
+document.getElementById('bkClose')?.addEventListener('click', () => {
+  document.getElementById('bkPanel').classList.remove('open');
+  selDate  = null;
+  selCabin = null;
+  if (FP_INSTANCE) FP_INSTANCE.clear();
+  updateSteps();
+});
+
+/* STICKY BAR */
+const stickyBk = document.getElementById('stickyBk');
+const heroEl   = document.querySelector('.hero');
+window.addEventListener('scroll', () => {
+  const past = heroEl ? scrollY > heroEl.offsetTop + heroEl.offsetHeight : scrollY > 300;
+  past ? stickyBk.setAttribute('data-show','') : stickyBk.removeAttribute('data-show');
+}, {passive:true});
+
+/* REVEAL */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+}, {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* REFRESH BUTTON — re-fetch current boat */
+document.getElementById('fpRefresh')?.addEventListener('click', async () => {
+  const btn = document.getElementById('fpRefresh');
+  if (!selBoat) {
+    if (btn){ btn.textContent = '↻ Pick a boat first'; setTimeout(()=>{ btn.textContent='↻ Refresh'; }, 1500); }
+    return;
+  }
+  if(btn){ btn.disabled = true; btn.textContent = '↻ Refreshing…'; }
+  await fetchAvailability(selBoat, true);
+  const lastEl = document.getElementById('fpLastUpdated');
+  if (API_OK) {
+    if (lastEl) lastEl.textContent = 'Live data · ' + BOATS[selBoat].name + ' · last updated ' + LAST_UPDATED;
+    initFlatpickr();
+  } else {
+    if (lastEl) lastEl.textContent = 'Live data — connection failed.';
+    document.getElementById('fpErrorMsg').style.display = 'block';
+  }
+  if(btn){ btn.disabled = false; btn.textContent = '↻ Refresh'; }
+});
+
+/* ─────────────────────────────────────────────
+   TASK 13 — PAGE PERSISTENCE LISTENERS
+───────────────────────────────────────────────── */
+document.addEventListener('visibilitychange', function() {
+  if (document.hidden && selBoat) {
+    saveDraftStep1({}); // no-op merge, just re-saves with timestamp
+  }
+});
+window.addEventListener('beforeunload', function() {
+  if (selBoat) saveDraftStep1({});
+});
+window.addEventListener('pageshow', function(ev) {
+  // Restore UI if user navigates back — state vars survive bfcache
+  if (ev.persisted) { updateSteps(); updateWALink(); }
+});
+
+/* ─────────────────────────────────────────────
+   INIT
+───────────────────────────────────────────────── */
+(function init(){
+  updateSteps();
+  updateWALink();
+  initFromURL();
+  // TASK 3: show resume banner only when no boat auto-selected from URL
+  var hasUrlBoat = !!new URLSearchParams(location.search).get('boat');
+  if (!hasUrlBoat) checkResumeDraft();
+})();
+</script>
+
+</body>
+</html>
