@@ -553,7 +553,7 @@
       shortName: 'Komodo Sailing 3D2N',
       headline: 'Three days. <em>Two nights at sea.</em>',
       subhead: 'Complete your guest details so our team can confirm your selected Kanha cabin and send the correct invoice or payment instruction.',
-      heroImg: 'https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?auto=format&fit=crop&w=1800&q=82',
+      heroImg: 'komodo%20images/hero-phinisi-sunset.jpg',
       detailsUrl: 'kanha-liveaboard-booking.html?product=sailing-3d2n',
       duration: '3 days · 2 nights',
       nights: 2,
@@ -1154,8 +1154,13 @@
         (p.payment_method && p.payment_method !== 'To be confirmed') ? '*Payment method:* ' + p.payment_method : '',
         p.notes ? '*Notes:* ' + p.notes : '',
         '—',
-        '*Page source:* ' + location.href,
-        attrLine,
+        '*Source:* Kanha Booking Page',
+        '*Ref:* ' + (function(k){
+          var d = (k.departure_date || '').replace(/-/g,'').substring(0,8) || 'FLEX';
+          var boat = (k.boat_name || '').toUpperCase().replace('KANHA ','').split(' ')[0].substring(0,5) || 'FLEET';
+          var cabin = (k.cabin_name || '').toUpperCase().replace(/[^A-Z0-9]/g,'-').replace(/-+/g,'-').replace(/-+$/,'').substring(0,14) || 'CABIN';
+          return 'KANHA-' + d + '-' + boat + '-' + cabin;
+        })(k),
         '—',
         'Please confirm final cabin availability and send invoice or payment instruction. Thank you.'
       ];

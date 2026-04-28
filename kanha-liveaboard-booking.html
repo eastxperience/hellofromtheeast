@@ -1034,15 +1034,15 @@ function getAttribution(){
 }
 
 function buildWAMessage({ boatPref='Any', departure='Flexible', tripRange='', cabin='–', guests='–', status='', notes='' } = {}){
-  const attr = getAttribution();
-  const hasAttr = attr.gclid || attr.utm_source;
-  const attrStr = hasAttr
-    ? `\nAds attribution: gclid=${attr.gclid||'–'}, utm_source=${attr.utm_source||'–'}, utm_campaign=${attr.utm_campaign||'–'}`
-    : '';
   const rangeStr  = tripRange ? `\nTrip dates: ${tripRange}` : '';
   const statusStr = status    ? `\nAvailability status: ${status}` : '';
-  const pageURL = (typeof location !== 'undefined') ? location.href : '';
-  return `Hi EastXperience team,\n\nI want to request availability for Sailing 3D2N Komodo, operated by EastXperience on the Kanha fleet.\n\nProduct: Komodo Sailing 3D2N\nOperator: EastXperience\nFleet: Kanha Fleet\nBoat: ${boatPref}\nDeparture date: ${departure}${rangeStr}\nDuration: 3D2N\nCabin preference: ${cabin}\nNumber of guests: ${guests}${statusStr}\nNotes: ${notes||'(none)'}\nPage URL: ${pageURL}${attrStr}`;
+  // Build clean reference code
+  const dateCode  = departure && departure !== 'Flexible'
+    ? departure.replace(/[^\d]/g,'').substring(0,8)
+    : 'FLEX';
+  const boatCode  = boatPref.toUpperCase().replace('KANHA ','').split(' ')[0].substring(0,5) || 'FLEET';
+  const refCode   = 'KANHA-' + dateCode + '-' + boatCode;
+  return `Hi EastXperience team,\n\nI want to request availability for Sailing 3D2N Komodo, operated by EastXperience on the Kanha fleet.\n\nProduct: Komodo Sailing 3D2N\nOperator: EastXperience\nFleet: Kanha Fleet\nBoat: ${boatPref}\nDeparture date: ${departure}${rangeStr}\nDuration: 3D2N\nCabin preference: ${cabin}\nNumber of guests: ${guests}${statusStr}\nNotes: ${notes||'(none)'}\nSource: Kanha Booking Page\nRef: ${refCode}`;
 }
 
 /* ─────────────────────────────────────────────
