@@ -907,6 +907,121 @@ let selDate  = null;
 let selCabin = null;
 
 /* ─────────────────────────────────────────────
+   TASK 1 — DRAFT PERSISTENCE (step-1 state)
+   Shared localStorage key with book.html so the
+   full booking journey persists end-to-end.
+───────────────────────────────────────────────── */
+const BOOKING_DRAFT_KEY = 'ex_kanha_booking_draft';
+
+function _genRef(boatId, departureDate, cabinId) {
+  const bCode = String(boatId  || '').replace('kanha-','').toUpperCase().split('-')[0].substring(0,5) || 'FLEET';
+  const dCode = String(departureDate || '').replace(/-/g,'').substring(0,8) || 'FLEX';
+  const cCode = String(cabinId || '').split('-')[0].toUpperCase().substring(0,5) || 'CAB';
+  return 'KANHA-' + dCode + '-' + bCode + '-' + cCode;
+}
+
+function loadStep1Draft() {
+  try { const r = localStorage.getItem(BOOKING_DRAFT_KEY); return r ? JSON.parse(r) : null; }
+  catch(e) { return null; }
+}
+
+function clearStep1Draft() {
+  try { localStorage.removeItem(BOOKING_DRAFT_KEY); } catch(e) {}
+}
+
+function saveDraftStep1(update) {
+  try {
+    const existing = loadStep1Draft() || {};
+    // merge update into existing
+    const merged = Object.assign({}, existing, update);
+    // Ensure ref is present
+    if (!merged.ref) {
+      merged.ref = _genRef(merged.boatId || '', merged.departureDate || '', merged.cabinId || '');
+    }
+    merged.updatedAt = new Date().toISOString();
+    merged.source = 'Kanha Booking Page';
+    merged.product = 'sailing-3d2n';
+    localStorage.setItem(BOOKING_DRAFT_KEY, JSON.stringify(merged));
+  } catch(e) {}
+}
+
+/* ─────────────────────────────────────────────
+   TASK 3 — RESUME BANNER
+───────────────────────────────────────────────── */
+function checkResumeDraft() {
+  const d = loadStep1Draft();
+  if (!d || !d.boatId || !d.departureDate || !d.cabinId) return;
+  // Only show if draft is < 7 days old
+  if (d.updatedAt) {
+    const age = Date.now() - new Date(d.updatedAt).getTime();
+    if (age > 7 * 24 * 60 * 60 * 1000) return;
+  }
+  // Don't show if URL already carries full boat/date params (user came from calendar directly)
+  const urlP = new URLSearchParams(location.search);
+  if (urlP.get('boat') || urlP.get('boat_id')) return;
+
+  const priceEst = d.cabinPrice ? fmtIDR(d.cabinPrice * 2) + ' est. (2 pax)' : '';
+  const banner = document.createElement('div');
+  banner.id = 'resumeBanner';
+  banner.style.cssText = [
+    'max-width:680px;margin:0 auto 28px;padding:20px 24px',
+    'background:#fff;border:2px solid rgba(37,99,235,.38)',
+    'border-radius:14px;font-size:13.5px;color:var(--navy);line-height:1.65'
+  ].join(';');
+  banner.innerHTML = `
+    <div style="font:700 10.5px/1 'Inter',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#2563EB;margin-bottom:10px">↩ Resume your Komodo sailing request?</div>
+    <div><strong>Boat:</strong> ${d.boatName || d.boatId}</div>
+    <div><strong>Date:</strong> ${d.departureDate}</div>
+    <div><strong>Cabin:</strong> ${d.cabinName || d.cabinId}</div>
+    ${priceEst ? '<div><strong>Estimated total:</strong> ' + priceEst + '</div>' : ''}
+    ${d.ref ? '<div style="margin-bottom:2px"><strong>Ref:</strong> <span style="font-family:monospace;color:var(--muted)">' + d.ref + '</span></div>' : ''}
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px">
+      <button id="resumeDraftBtn" style="padding:11px 20px;background:#2563EB;color:#fff;border:none;border-radius:8px;font:600 13px 'Inter',sans-serif;cursor:pointer;touch-action:manipulation">Resume Request →</button>
+      <button id="startOverBtn" style="padding:11px 18px;background:none;border:1.5px solid rgba(10,22,40,.18);border-radius:8px;font:500 13px 'Inter',sans-serif;color:var(--muted);cursor:pointer;touch-action:manipulation">Start Over</button>
+    </div>
+  `;
+  const heroEl = document.querySelector('.hero');
+  if (heroEl) heroEl.insertAdjacentElement('afterend', banner);
+
+  document.getElementById('resumeDraftBtn').addEventListener('click', function() {
+    banner.remove();
+    resumeFromDraft(d);
+  });
+  document.getElementById('startOverBtn').addEventListener('click', function() {
+    clearStep1Draft();
+    banner.remove();
+  });
+}
+
+function resumeFromDraft(d) {
+  if (!d.boatId) return;
+  selectBoat(d.boatId).then(function() {
+    if (!d.departureDate) return;
+    // Wait for availability API to load, then restore date + cabin
+    setTimeout(function() {
+      if (API_OK && getDepartureDates().indexOf(d.departureDate) >= 0) {
+        // Flatpickr must exist — set its date and fire pickDate
+        if (FP_INSTANCE) FP_INSTANCE.setDate(d.departureDate, true);
+        else pickDate(d.departureDate);
+        // Restore cabin after booking panel opens
+        setTimeout(function() {
+          if (!d.cabinId) return;
+          selCabin = d.cabinId;
+          document.querySelectorAll('.cabin-opt').forEach(function(el) {
+            el.classList.toggle('sel', el.dataset.cabin === d.cabinId);
+          });
+          updateSteps();
+          updateWALink();
+        }, 400);
+      } else {
+        // API unavailable — just show the date picker with pre-selected boat
+        document.getElementById('step-calendar').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 1800); // allow API fetch to complete
+  });
+}
+
+/* ─────────────────────────────────────────────
    STEP INDICATOR
 ───────────────────────────────────────────────── */
 /* ── goToBookingForm: single source of truth for final CTA action ── */
@@ -971,6 +1086,9 @@ async function selectBoat(boatIdInput){
   selBoat  = boatId;
   selDate  = null;
   selCabin = null;
+  // TASK 1: persist boat selection immediately
+  const _boat = BOATS[boatId];
+  saveDraftStep1({ boatId: boatId, boatName: _boat ? _boat.name : boatId, departureDate: '', endDate: '', tripDates: '', cabinId: '', cabinName: '', cabinPrice: 0, cabinStatus: '', ref: '' });
   document.querySelectorAll('.boat-card').forEach(c => {
     const id = c.dataset.boat;
     c.classList.toggle('selected', resolveBoatId(id) === boatId);
@@ -1238,6 +1356,9 @@ function pickDate(key){
   if (!selBoat || !BOATS[selBoat]) return;
   selDate  = key;
   selCabin = null;
+  // TASK 1: persist date selection
+  const _endIso2 = addDays(key, 2);
+  saveDraftStep1({ departureDate: key, endDate: _endIso2, tripDates: fmtRange(key, _endIso2), cabinId: '', cabinName: '', cabinPrice: 0, cabinStatus: '' });
   const boat   = BOATS[selBoat];
   const endIso = addDays(key, 2);
   const status = getDepartureStatus(selBoat, key);
@@ -1293,6 +1414,16 @@ function renderCabinList(dep, boat){
       container.querySelectorAll('.cabin-opt').forEach(e => e.classList.remove('sel'));
       el.classList.add('sel');
       selCabin = el.dataset.cabin;
+      // TASK 1: persist cabin selection
+      const _b = BOATS[selBoat];
+      const _c = _b && _b.cabins.find(c => c.id === selCabin);
+      saveDraftStep1({
+        cabinId:    selCabin,
+        cabinName:  _c ? _c.name  : selCabin,
+        cabinPrice: _c ? _c.price : 0,
+        cabinStatus: el.dataset.status || '',
+        ref: _genRef(selBoat, selDate, selCabin)
+      });
       updateSteps();
       updateWALink();
       // Analytics
@@ -1390,12 +1521,31 @@ document.getElementById('fpRefresh')?.addEventListener('click', async () => {
 });
 
 /* ─────────────────────────────────────────────
+   TASK 13 — PAGE PERSISTENCE LISTENERS
+───────────────────────────────────────────────── */
+document.addEventListener('visibilitychange', function() {
+  if (document.hidden && selBoat) {
+    saveDraftStep1({}); // no-op merge, just re-saves with timestamp
+  }
+});
+window.addEventListener('beforeunload', function() {
+  if (selBoat) saveDraftStep1({});
+});
+window.addEventListener('pageshow', function(ev) {
+  // Restore UI if user navigates back — state vars survive bfcache
+  if (ev.persisted) { updateSteps(); updateWALink(); }
+});
+
+/* ─────────────────────────────────────────────
    INIT
 ───────────────────────────────────────────────── */
 (function init(){
   updateSteps();
   updateWALink();
   initFromURL();
+  // TASK 3: show resume banner only when no boat auto-selected from URL
+  var hasUrlBoat = !!new URLSearchParams(location.search).get('boat');
+  if (!hasUrlBoat) checkResumeDraft();
 })();
 </script>
 

@@ -248,6 +248,50 @@
     .summ-trust .t { font-size: 12px; }
     .book-sticky { padding: 10px 14px; }
   }
+
+  /* ─── Request-prepared overlay ─── */
+  .book-reqprep {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.6);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100; padding: 20px;
+    opacity: 0; pointer-events: none;
+    transition: opacity .25s ease;
+  }
+  .book-reqprep.on { opacity: 1; pointer-events: auto; }
+  .book-reqprep-card {
+    background: var(--bg); border-radius: 20px;
+    padding: 30px 26px; max-width: 420px; width: 100%;
+    text-align: center;
+    box-shadow: 0 24px 64px rgba(0,0,0,.28);
+  }
+  .book-reqprep-card .rp-icon {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: rgba(34,197,94,.12);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 14px;
+  }
+  .book-reqprep-card h3 {
+    font-family: 'Fraunces', serif; font-size: 22px;
+    font-weight: 300; margin-bottom: 6px;
+  }
+  .book-reqprep-card .rp-ref {
+    font-size: 11.5px; font-weight: 700; letter-spacing: .1em;
+    color: var(--accent); margin: 0 0 10px;
+  }
+  .book-reqprep-card p {
+    font-size: 13.5px; color: var(--muted);
+    line-height: 1.55; margin-bottom: 5px;
+  }
+  .rp-btn-stack {
+    display: flex; flex-direction: column; gap: 9px; margin-top: 18px;
+  }
+  .rp-btn-ghost {
+    background: none; border: none;
+    font-size: 12.5px; color: var(--muted);
+    cursor: pointer; padding: 4px 0;
+    text-decoration: underline; text-underline-offset: 3px;
+  }
 </style>
 </head>
 
@@ -452,7 +496,7 @@
     <div class="p-label">Total · <span data-out="pax">2 travelers</span></div>
     <div class="p-num" data-out="total">—</div>
   </div>
-  <button type="button" class="btn btn-primary" onclick="document.getElementById('bookForm').requestSubmit()">Reserve →</button>
+  <button type="button" class="btn btn-primary" id="stickySubmitBtn" onclick="document.getElementById('bookForm').requestSubmit()">Reserve →</button>
 </div>
 
 <!-- ═══ THANK-YOU OVERLAY ═══ -->
@@ -464,6 +508,27 @@
     <h3 id="tyTitle">Request <em style="color:var(--accent);font-style:italic">sent</em></h3>
     <p id="tyBody">We've opened WhatsApp with your full journey details. Press send — a real person replies in under 10 minutes. No payment today.</p>
     <button type="button" class="btn btn-outline" data-close-ty>Close</button>
+  </div>
+</div>
+
+<!-- ═══ REQUEST PREPARED STATE ═══ -->
+<div class="book-reqprep" id="reqPrepared" role="status" aria-live="assertive">
+  <div class="book-reqprep-card">
+    <div class="rp-icon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5 9-11" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <h3>Availability request <em style="color:var(--accent);font-style:italic">prepared</em></h3>
+    <p class="rp-ref" id="rpRef"></p>
+    <p id="rpBody">If WhatsApp opened, please send the prepared message there. Our team will confirm cabin availability and reply with invoice or payment instruction.</p>
+    <p style="font-size:12px">No payment today. Final confirmation will come from our team.</p>
+    <div class="rp-btn-stack">
+      <button type="button" class="btn btn-primary" id="rpOpenWA">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M20.52 3.48A11.88 11.88 0 0 0 12.07 0C5.52 0 .17 5.35.17 11.9c0 2.1.55 4.14 1.6 5.95L0 24l6.32-1.66a11.88 11.88 0 0 0 5.75 1.46h.01c6.55 0 11.9-5.35 11.9-11.9 0-3.18-1.24-6.17-3.46-8.42z"/></svg>
+        Open WhatsApp Again
+      </button>
+      <button type="button" class="btn btn-outline" id="rpCopyMsg">Copy Request Message</button>
+      <button type="button" class="rp-btn-ghost" id="rpStartNew">Start New Request</button>
+    </div>
   </div>
 </div>
 
@@ -485,6 +550,194 @@
 <script>
 (function () {
   'use strict';
+
+  // ═══════════════════════════════════════════════════════════════
+  //  BOOKING DRAFT PERSISTENCE — Tasks 1-6, 13
+  // ═══════════════════════════════════════════════════════════════
+
+  const BOOKING_DRAFT_KEY = 'ex_kanha_booking_draft';
+
+  // ── TASK 6: Backup capture endpoint placeholder ──────────────
+  // Set this to activate lead capture (any of the options below):
+  //   • Google Apps Script Web App → paste your /exec URL
+  //   • Formspree                  → https://formspree.io/f/XXXXX
+  //   • Make (Integromat) webhook  → https://hook.make.com/XXXXX
+  //   • Zapier webhook             → https://hooks.zapier.com/XXXXX
+  //   • Supabase Edge Function     → https://XXXXX.supabase.co/functions/v1/booking
+  const BOOKING_CAPTURE_ENDPOINT = ''; // ← ADD YOUR ENDPOINT URL HERE
+
+  function generateRefCode(boatId, departureDate, cabinId) {
+    var bCode = String(boatId  || '').replace('kanha-','').toUpperCase().split('-')[0].substring(0,5) || 'FLEET';
+    var dCode = String(departureDate || '').replace(/-/g,'').substring(0,8) || 'FLEX';
+    var cCode = String(cabinId || '').split('-')[0].toUpperCase().substring(0,5) || 'CAB';
+    return 'KANHA-' + dCode + '-' + bCode + '-' + cCode;
+  }
+
+  function loadDraft() {
+    try { var r = localStorage.getItem(BOOKING_DRAFT_KEY); return r ? JSON.parse(r) : null; }
+    catch(e) { return null; }
+  }
+
+  function saveDraft(extra) {
+    try {
+      var existing  = loadDraft() || {};
+      var f         = document.getElementById('bookForm');
+      var fData     = f ? new FormData(f) : null;
+      var g         = existing.guest || {};
+      var merged    = {
+        product:       'sailing-3d2n',
+        journey:       'Komodo Sailing 3D2N',
+        operator:      'EastXperience',
+        boatId:        existing.boatId        || '',
+        boatName:      existing.boatName       || '',
+        departureDate: existing.departureDate  || '',
+        endDate:       existing.endDate        || '',
+        tripDates:     existing.tripDates      || '',
+        duration:      '3D2N',
+        cabinId:       existing.cabinId        || '',
+        cabinName:     existing.cabinName      || '',
+        cabinPrice:    existing.cabinPrice     || 0,
+        cabinStatus:   existing.cabinStatus    || '',
+        travelers:     fData ? parseInt(fData.get('pax') || '2', 10) : (existing.travelers  || 2),
+        chargeablePax: existing.chargeablePax  || 2,
+        totalEstimate: existing.totalEstimate  || 0,
+        guest: {
+          name:        (fData && fData.get('name'))        || g.name        || '',
+          nationality: (fData && fData.get('nationality')) || g.nationality || '',
+          whatsapp:    (fData && fData.get('whatsapp'))    || g.whatsapp    || '',
+          email:       (fData && fData.get('email'))       || g.email       || '',
+          pickup:      (fData && fData.get('pickup'))      || g.pickup      || '',
+          notes:       (fData && fData.get('notes'))       || g.notes       || ''
+        },
+        source:    'Kanha Booking Page',
+        ref:       existing.ref || '',
+        status:    existing.status || 'draft',
+        updatedAt: new Date().toISOString()
+      };
+      // Overlay with kanhaCtx when available
+      if (typeof kanhaCtx !== 'undefined' && kanhaCtx && kanhaCtx.hasTrip) {
+        merged.boatId        = kanhaCtx.boat_id        || merged.boatId;
+        merged.boatName      = kanhaCtx.boat_name      || merged.boatName;
+        merged.departureDate = kanhaCtx.departure_date || merged.departureDate;
+        merged.endDate       = kanhaCtx.end_date       || merged.endDate;
+        merged.tripDates     = kanhaCtx.trip_dates     || merged.tripDates;
+        merged.cabinId       = kanhaCtx.cabin_id       || merged.cabinId;
+        merged.cabinName     = kanhaCtx.cabin_name     || merged.cabinName;
+        merged.cabinPrice    = kanhaCtx.cabin_price    || merged.cabinPrice;
+        merged.cabinStatus   = kanhaCtx.cabin_status   || merged.cabinStatus;
+      }
+      if (!merged.ref) {
+        merged.ref = generateRefCode(merged.boatId, merged.departureDate, merged.cabinId);
+      }
+      // Apply any overrides passed by caller
+      if (extra) {
+        for (var k in extra) {
+          if (Object.prototype.hasOwnProperty.call(extra, k)) {
+            if (k === 'guest' && extra.guest && typeof extra.guest === 'object') {
+              merged.guest = Object.assign({}, merged.guest, extra.guest);
+            } else {
+              merged[k] = extra[k];
+            }
+          }
+        }
+      }
+      localStorage.setItem(BOOKING_DRAFT_KEY, JSON.stringify(merged));
+    } catch(e) {}
+  }
+
+  function clearDraft() {
+    try { localStorage.removeItem(BOOKING_DRAFT_KEY); } catch(e) {}
+  }
+
+  // ── TASK 6: Backup capture (fire-and-forget, never blocks WA) ─
+  function captureBookingLead(payload) {
+    if (!BOOKING_CAPTURE_ENDPOINT) {
+      console.warn('[EastXperience] Booking capture endpoint not configured. ' +
+        'Draft saved locally. WhatsApp will still open. ' +
+        'Set BOOKING_CAPTURE_ENDPOINT in book.html to enable lead capture.');
+      return Promise.resolve({ ok: false, reason: 'no_endpoint' });
+    }
+    return fetch(BOOKING_CAPTURE_ENDPOINT, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify(payload)
+    }).then(function(r){ return { ok: r.ok, status: r.status }; })
+      .catch(function(err){
+        console.warn('[EastXperience] Capture endpoint failed:', err);
+        return { ok: false, reason: String(err) };
+      });
+  }
+
+  // ─── request-prepared state ───────────────────────────────────
+  function showRequestPrepared(payload) {
+    var el = document.getElementById('reqPrepared');
+    if (!el) return;
+    var ref = (payload && payload.ref) ? payload.ref : '';
+    var rpRef  = document.getElementById('rpRef');
+    var rpBody = document.getElementById('rpBody');
+    if (rpRef)  rpRef.textContent  = ref ? ('Ref: ' + ref) : '';
+    if (rpBody) rpBody.textContent =
+      'If WhatsApp opened, please send the prepared message there. ' +
+      'Our team will confirm cabin availability and reply with invoice or payment instruction.';
+    el.classList.add('on');
+    // Wire up "Open WhatsApp Again"
+    var rpOpenBtn = document.getElementById('rpOpenWA');
+    if (rpOpenBtn) {
+      rpOpenBtn.onclick = function() {
+        if (payload && payload.summaryText) {
+          openWhatsApp(payload.summaryText);
+        }
+      };
+    }
+    // Wire up "Copy Request Message"
+    var rpCopyBtn = document.getElementById('rpCopyMsg');
+    if (rpCopyBtn) {
+      rpCopyBtn.onclick = function() {
+        var msg = (payload && payload.summaryText) ? payload.summaryText : '';
+        if (navigator.clipboard && msg) {
+          navigator.clipboard.writeText(msg).then(function(){
+            rpCopyBtn.textContent = 'Copied ✓';
+            setTimeout(function(){ rpCopyBtn.textContent = 'Copy Request Message'; }, 2200);
+          }).catch(function(){
+            fallbackCopy(msg, rpCopyBtn);
+          });
+        } else {
+          fallbackCopy(msg, rpCopyBtn);
+        }
+      };
+    }
+    // Wire up "Start New Request"
+    var rpNewBtn = document.getElementById('rpStartNew');
+    if (rpNewBtn) {
+      rpNewBtn.onclick = function() {
+        clearDraft();
+        el.classList.remove('on');
+        window.location.href = 'kanha-liveaboard-booking.html?product=sailing-3d2n';
+      };
+    }
+  }
+
+  function fallbackCopy(text, btn) {
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      if (btn) { btn.textContent = 'Copied ✓'; setTimeout(function(){ btn.textContent = 'Copy Request Message'; }, 2200); }
+    } catch(e) {}
+  }
+
+  // ── TASK 9: Reliable WhatsApp opener ─────────────────────────
+  function openWhatsApp(message) {
+    var url = 'https://wa.me/61415097538?text=' + encodeURIComponent(message);
+    // Create and click a real anchor — most reliable cross-platform approach
+    var a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a);
+    try { a.click(); } catch(e) { window.location.href = url; }
+    setTimeout(function(){ document.body.removeChild(a); }, 300);
+  }
 
   // ═════════════ PRODUCT REGISTRY ═════════════
   const PRODUCTS = {
@@ -1155,12 +1408,11 @@
         p.notes ? '*Notes:* ' + p.notes : '',
         '—',
         '*Source:* Kanha Booking Page',
-        '*Ref:* ' + (function(k){
-          var d = (k.departure_date || '').replace(/-/g,'').substring(0,8) || 'FLEX';
-          var boat = (k.boat_name || '').toUpperCase().replace('KANHA ','').split(' ')[0].substring(0,5) || 'FLEET';
-          var cabin = (k.cabin_name || '').toUpperCase().replace(/[^A-Z0-9]/g,'-').replace(/-+/g,'-').replace(/-+$/,'').substring(0,14) || 'CABIN';
-          return 'KANHA-' + d + '-' + boat + '-' + cabin;
-        })(k),
+        '*Ref:* ' + (p.ref || generateRefCode(
+          (p.kanha && p.kanha.boat_id)        ? p.kanha.boat_id        : '',
+          (p.kanha && p.kanha.departure_date) ? p.kanha.departure_date : '',
+          (p.kanha && p.kanha.cabin_id)       ? p.kanha.cabin_id       : ''
+        )),
         '—',
         'Please confirm final cabin availability and send invoice or payment instruction. Thank you.'
       ];
@@ -1209,95 +1461,239 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
 
-    // Honeypot — silently drop bots
+    // ── Honeypot — silently drop bots ───────────────────────────
     if (form.elements['website'] && form.elements['website'].value) {
       track('booking_honeypot_rejected', { product_id: slug });
       return;
     }
 
-    const bad = firstInvalid();
+    // ── TASK 5: Validate required fields ───────────────────────
+    var bad = firstInvalid();
     if (bad) {
       bad.field.classList.add('invalid');
       bad.field.focus({ preventScroll: true });
-      try { bad.field.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch {}
-      toast(bad.msg);
+      try { bad.field.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (_) {}
+      toast('Please complete your guest details first. ' + bad.msg);
       track('booking_validation_error', { product_id: slug, field: bad.name });
       return;
     }
 
-    // CRITICAL: open the WhatsApp tab synchronously inside the user gesture to avoid popup blockers.
-    const preOpened = window.open('about:blank', '_blank', 'noopener');
-
-    const btn = document.getElementById('submitBtn');
+    // ── TASK 11: Prevent double submit ─────────────────────────
+    var btn = document.getElementById('submitBtn');
+    var stickyBtn = document.getElementById('stickySubmitBtn');
+    if (btn._submitting) return;
+    btn._submitting = true;
     btn.classList.add('btn-loading');
     btn.disabled = true;
+    var origLabel = btn.textContent;
+    btn.textContent = 'Preparing request…';
+    if (stickyBtn) stickyBtn.disabled = true;
 
-    const data = new FormData(form);
-    const type = form.querySelector('input[name="type"]:checked');
-    const unit = parseInt(type.dataset.price, 10);
-    const mode = type.dataset.mode;
-    const paxVal = parseInt(data.get('pax') || '1', 10);
-    const chargeablePax = form._kanhaChargeablePax !== undefined ? form._kanhaChargeablePax : paxVal;
-    const total = mode === 'flat' ? unit : unit * chargeablePax;
-    const dietary = [...form.querySelectorAll('input[name="dietary"]:checked')].map(c => c.value).join(', ');
+    var data = new FormData(form);
+    var type = form.querySelector('input[name="type"]:checked');
+    var unit = parseInt(type.dataset.price, 10);
+    var mode = type.dataset.mode;
+    var paxVal = parseInt(data.get('pax') || '1', 10);
+    var chargeablePax = form._kanhaChargeablePax !== undefined ? form._kanhaChargeablePax : paxVal;
+    var total = mode === 'flat' ? unit : unit * chargeablePax;
+    var dietary = Array.prototype.slice.call(form.querySelectorAll('input[name="dietary"]:checked'))
+                    .map(function(c){ return c.value; }).join(', ');
 
-    const payload = {
-      product_id: slug,
+    // ── TASK 2: Get / generate ref code ────────────────────────
+    var existingDraft = loadDraft() || {};
+    var kCtx = (typeof kanhaCtx !== 'undefined' && kanhaCtx && kanhaCtx.hasTrip) ? kanhaCtx : null;
+    var refCode = existingDraft.ref ||
+      generateRefCode(
+        kCtx ? kCtx.boat_id        : '',
+        kCtx ? kCtx.departure_date : '',
+        kCtx ? kCtx.cabin_id       : ''
+      );
+
+    var guestData = {
+      name:        data.get('name')        || '',
+      nationality: data.get('nationality') || '',
+      whatsapp:    data.get('whatsapp')    || '',
+      email:       data.get('email')       || '',
+      pickup:      data.get('pickup')      || '',
+      notes:       data.get('notes')       || ''
+    };
+
+    var payload = {
+      product_id:   slug,
       product_name: cfg.name,
-      option_id: type.value,
+      option_id:    type.value,
       option_label: type.dataset.label,
-      option_mode: mode,
-      unit_price: unit,
-      total: total,
-      currency: 'IDR',
-      nights: cfg.nights,
-      date: data.get('date'),
-      pax: paxVal,
+      option_mode:  mode,
+      unit_price:   unit,
+      total:        total,
+      currency:     'IDR',
+      nights:       cfg.nights,
+      date:         data.get('date'),
+      pax:          paxVal,
       chargeablePax: chargeablePax,
       kanhaIsPrivate: form._kanhaIsPrivate !== undefined ? form._kanhaIsPrivate : false,
-      name: data.get('name'),
-      whatsapp: data.get('whatsapp'),
-      email: data.get('email'),
-      nationality: data.get('nationality'),
-      pickup: data.get('pickup'),
-      dietary: dietary,
-      notes: data.get('notes'),
-      // Kanha optional fields
-      passport_name: data.get('passport_name') || '',
-      arrival_info: data.get('arrival_info') || '',
+      name:        guestData.name,
+      whatsapp:    guestData.whatsapp,
+      email:       guestData.email,
+      nationality: guestData.nationality,
+      pickup:      guestData.pickup,
+      dietary:     dietary,
+      notes:       guestData.notes,
+      passport_name:    data.get('passport_name')    || '',
+      arrival_info:     data.get('arrival_info')     || '',
       special_occasion: data.get('special_occasion') || '',
-      seasickness: data.get('seasickness') || '',
-      payment_method: data.get('payment_method') || '',
-      kanha: (typeof kanhaCtx !== 'undefined' && kanhaCtx && kanhaCtx.hasTrip) ? kanhaCtx : null
+      seasickness:      data.get('seasickness')      || '',
+      payment_method:   data.get('payment_method')   || '',
+      kanha: kCtx,
+      ref:   refCode
     };
     payload.summaryText = buildSummary(payload);
 
-    track('submit_availability_request', { product_id: slug, value: total, currency: 'IDR', option_id: type.value, pax: paxVal });
+    // ── TASK 1+4: Save draft (NOT cleared after WA opens) ──────
+    saveDraft({
+      travelers:     paxVal,
+      chargeablePax: chargeablePax,
+      totalEstimate: total,
+      ref:           refCode,
+      status:        'submitted',
+      guest:         guestData,
+      submittedAt:   new Date().toISOString()
+    });
+
+    track('submit_availability_request', { product_id: slug, value: total, currency: 'IDR', option_id: type.value, pax: paxVal, ref: refCode });
     track('begin_checkout', { product_id: slug, value: total, currency: 'IDR', option_id: type.value, pax: paxVal });
 
+    // ── TASK 6: Backup capture — fire-and-forget, never blocks WA
+    captureBookingLead({
+      ref:              refCode,
+      createdAt:        new Date().toISOString(),
+      product:          'sailing-3d2n',
+      journey:          'Komodo Sailing 3D2N',
+      boatName:         kCtx ? kCtx.boat_name       : '',
+      departureDate:    kCtx ? kCtx.departure_date  : (data.get('date') || ''),
+      tripDates:        kCtx ? kCtx.trip_dates       : '',
+      duration:         '3D2N',
+      cabinName:        kCtx ? kCtx.cabin_name       : payload.option_label,
+      cabinPrice:       kCtx ? kCtx.cabin_price      : unit,
+      travelers:        paxVal,
+      chargeablePax:    chargeablePax,
+      totalEstimate:    total,
+      guestName:        guestData.name,
+      guestNationality: guestData.nationality,
+      guestWhatsapp:    guestData.whatsapp,
+      guestEmail:       guestData.email,
+      pickup:           guestData.pickup,
+      notes:            guestData.notes,
+      source:           'Kanha Booking Page',
+      userAgent:        navigator.userAgent,
+      pageUrl:          location.origin + location.pathname
+    }).catch(function(){});
+
+    // ── TASK 9: Open WhatsApp reliably ─────────────────────────
     try {
-      const result = processBookingViaWhatsApp(payload, preOpened);
-      track('booking_submitted', { product_id: slug, via: result.via, value: total, currency: 'IDR', option_id: type.value, pax: paxVal });
-      document.getElementById('thankyou').classList.add('on');
+      openWhatsApp(payload.summaryText);
+      track('booking_submitted', { product_id: slug, via: 'whatsapp', value: total, currency: 'IDR', option_id: type.value, pax: paxVal, ref: refCode });
     } catch (err) {
       track('booking_error', { product_id: slug, message: String(err) });
-      toast('Something went wrong. Please try again or message us on WhatsApp.');
-      if (preOpened && !preOpened.closed) preOpened.close();
-    } finally {
+      toast('WhatsApp could not be opened automatically. Use "Open WhatsApp Again" below.');
+    }
+
+    // ── TASK 7: Show request-prepared state ────────────────────
+    showRequestPrepared(payload);
+
+    // Restore button after 2 s so page is still usable if WA is blocked
+    setTimeout(function() {
+      btn._submitting = false;
       btn.classList.remove('btn-loading');
       btn.disabled = false;
-    }
+      btn.textContent = origLabel;
+      if (stickyBtn) stickyBtn.disabled = false;
+    }, 2000);
   });
 
   // Clear invalid state as the user fixes it
-  form.addEventListener('input', e => e.target.classList?.remove('invalid'));
+  form.addEventListener('input', function(e) {
+    e.target.classList && e.target.classList.remove('invalid');
+  });
+
+  // ── TASK 1: Autosave draft on every form change ─────────────
+  if (slug === 'komodo-sailing-3d2n') {
+    form.addEventListener('input',  function(){ saveDraft(); });
+    form.addEventListener('change', function(){ saveDraft(); });
+  }
+
+  // ── TASK 3: Hydrate form fields from draft on load ──────────
+  if (slug === 'komodo-sailing-3d2n') {
+    (function hydrateFromDraft() {
+      var d = loadDraft();
+      if (!d) return;
+      var g = d.guest || {};
+      function setVal(id, val) {
+        var el = document.getElementById(id);
+        if (el && val && !el.value) el.value = val;
+      }
+      setVal('name',        g.name);
+      setVal('nationality', g.nationality);
+      setVal('whatsapp',    g.whatsapp);
+      setVal('email',       g.email);
+      setVal('pickup',      g.pickup);
+      setVal('notes',       g.notes);
+    })();
+  }
+
+  // ── TASK 15: Update submit label and sticky for Kanha ───────
+  if (slug === 'komodo-sailing-3d2n') {
+    var sBtn = document.getElementById('stickySubmitBtn');
+    if (sBtn) sBtn.textContent = 'Send Request →';
+    // Initial draft save (captures URL context)
+    saveDraft();
+  }
+
+  // ── TASK 13: Persist draft on page hide / unload ────────────
+  if (slug === 'komodo-sailing-3d2n') {
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) saveDraft();
+    });
+    window.addEventListener('beforeunload', function() {
+      saveDraft();
+    });
+    window.addEventListener('pageshow', function(ev) {
+      // Restore form fields if user returns via browser back
+      if (ev.persisted) {
+        (function hydrateFromDraft() {
+          var d = loadDraft();
+          if (!d) return;
+          var g = d.guest || {};
+          function setVal(id, val) {
+            var el = document.getElementById(id);
+            if (el && val && !el.value) el.value = val;
+          }
+          setVal('name',        g.name);
+          setVal('nationality', g.nationality);
+          setVal('whatsapp',    g.whatsapp);
+          setVal('email',       g.email);
+          setVal('pickup',      g.pickup);
+          setVal('notes',       g.notes);
+        })();
+      }
+    });
+  }
 
   // ═════════════ THANK-YOU OVERLAY UX ═════════════
-  const ty = document.getElementById('thankyou');
+  var ty = document.getElementById('thankyou');
   function closeTY() { ty.classList.remove('on'); }
-  document.querySelectorAll('[data-close-ty]').forEach(b => b.addEventListener('click', closeTY));
-  ty.addEventListener('click', e => { if (e.target === ty) closeTY(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && ty.classList.contains('on')) closeTY(); });
+  document.querySelectorAll('[data-close-ty]').forEach(function(b){ b.addEventListener('click', closeTY); });
+  ty.addEventListener('click', function(e){ if (e.target === ty) closeTY(); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && ty.classList.contains('on')) closeTY(); });
+
+  // Close request-prepared overlay on backdrop click or Escape
+  var rpEl = document.getElementById('reqPrepared');
+  if (rpEl) {
+    rpEl.addEventListener('click', function(e){ if (e.target === rpEl) rpEl.classList.remove('on'); });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && rpEl.classList.contains('on')) rpEl.classList.remove('on');
+    });
+  }
 })();
 </script>
 
