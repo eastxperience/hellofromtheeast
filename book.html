@@ -557,14 +557,11 @@
 
   const BOOKING_DRAFT_KEY = 'ex_kanha_booking_draft';
 
-  // ── TASK 6: Backup capture endpoint placeholder ──────────────
-  // Set this to activate lead capture (any of the options below):
-  //   • Google Apps Script Web App → paste your /exec URL
-  //   • Formspree                  → https://formspree.io/f/XXXXX
-  //   • Make (Integromat) webhook  → https://hook.make.com/XXXXX
-  //   • Zapier webhook             → https://hooks.zapier.com/XXXXX
-  //   • Supabase Edge Function     → https://XXXXX.supabase.co/functions/v1/booking
-  const BOOKING_CAPTURE_ENDPOINT = ''; // ← ADD YOUR ENDPOINT URL HERE
+  // Optional backup lead capture endpoint.
+  // Paste Google Apps Script /exec URL, Formspree endpoint, Make webhook, or Zapier webhook here.
+  // Leave empty to use WhatsApp-only capture.
+  // Example: const BOOKING_CAPTURE_ENDPOINT = "https://script.google.com/macros/s/XXXXX/exec";
+  const BOOKING_CAPTURE_ENDPOINT = '';
 
   function generateRefCode(boatId, departureDate, cabinId) {
     var bCode = String(boatId  || '').replace('kanha-','').toUpperCase().split('-')[0].substring(0,5) || 'FLEET';
@@ -676,9 +673,9 @@
     var rpRef  = document.getElementById('rpRef');
     var rpBody = document.getElementById('rpBody');
     if (rpRef)  rpRef.textContent  = ref ? ('Ref: ' + ref) : '';
-    if (rpBody) rpBody.textContent =
-      'If WhatsApp opened, please send the prepared message there. ' +
-      'Our team will confirm cabin availability and reply with invoice or payment instruction.';
+    if (rpBody) rpBody.textContent = BOOKING_CAPTURE_ENDPOINT
+      ? 'If WhatsApp opened, please send the prepared message there. Our team will confirm cabin availability and reply with invoice or payment instruction.'
+      : 'Your request is prepared for WhatsApp. Please make sure to send the message after WhatsApp opens. Our team will confirm cabin availability and reply within minutes.';
     el.classList.add('on');
     // Wire up "Open WhatsApp Again"
     var rpOpenBtn = document.getElementById('rpOpenWA');
