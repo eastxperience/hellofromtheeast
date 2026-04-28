@@ -90,7 +90,7 @@ tailwind.config = {
   /* ─── HERO ─── */
   .hero-bg{position:relative;overflow:hidden}
   .hero-bg .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0}
-  .hero-bg .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,31,23,.2) 0%,rgba(11,31,23,.8) 100%);z-index:1}
+  .hero-bg .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,31,23,.18) 0%,rgba(11,31,23,.55) 45%,rgba(11,31,23,.84) 100%);z-index:1}
 
   /* ─── URGENCY PULSE ─── */
   .urgency-pulse{animation:upulse 2s ease-in-out infinite}
@@ -144,6 +144,7 @@ tailwind.config = {
     /* Trim hero trust stack on mobile — keep Google · TripAdvisor · Reply time */
     .trust-mob-hide{display:none!important}
     .hero-bg{min-height:88vh!important}
+    .hero-bg > div.relative{padding-top:5rem!important;padding-bottom:3.5rem!important}
     h1{font-size:38px!important;line-height:1.05!important}
     h2{font-size:28px!important;line-height:1.12!important}
     .card .p-6,.card .p-7{padding:1.1rem!important}
@@ -303,14 +304,14 @@ tailwind.config = {
      HERO
 ════════════════════════════════════════════ -->
 <section class="relative overflow-hidden">
-  <div class="hero-bg relative min-h-[92vh] md:min-h-[88vh] flex items-end">
+  <div class="hero-bg relative min-h-[92vh] md:min-h-[88vh] flex items-center">
     <img class="hero-img" src="https://lh3.googleusercontent.com/d/1N2JEvpJxl39ObNX1EB3FxpKbOOHjW4sj=w2000" alt="EastXperience private Indonesia journey" fetchpriority="high"/>
     <div class="hero-overlay"></div>
     <div class="absolute inset-0 grain" style="z-index:2"></div>
-    <div class="relative max-w-7xl mx-auto px-5 pb-14 md:pb-24 pt-28 text-bone w-full" style="z-index:3">
+    <div class="relative max-w-7xl mx-auto px-5 pb-12 md:pb-20 pt-24 md:pt-32 text-bone w-full" style="z-index:3">
 
       <!-- Trust chips — BEFORE the headline so proof precedes CTA -->
-      <div class="flex items-center gap-3 mb-5">
+      <div class="flex items-center gap-3 mb-4">
         <span class="chip">
           <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 urgency-pulse"></span>
           Private Concierge · Active
@@ -326,7 +327,7 @@ tailwind.config = {
       </h1>
 
       <!-- ↳ REWRITTEN: outcome-first, not feature-list -->
-      <p class="mt-5 max-w-xl text-bone/90 text-lg md:text-xl leading-relaxed">
+      <p class="mt-8 md:mt-9 max-w-xl text-bone/90 text-lg md:text-xl leading-relaxed">
         Handcrafted journeys across Indonesia's most extraordinary islands — direct from the people who live there. No platform. No markup. Just yours.
       </p>
 
