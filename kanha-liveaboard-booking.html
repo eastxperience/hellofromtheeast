@@ -298,6 +298,11 @@ input{font-family:inherit}
 .footer strong{color:#fff}
 .footer a{color:#4ADE80}
 
+
+/* Sticky CTA — ready state (all selections complete) */
+.sticky-bk-btn.sticky-bk-ready{background:#B9FF2D!important;color:#0B0F0C!important;font-weight:700;box-shadow:0 0 0 2px rgba(185,255,45,.25);}
+.sticky-bk-btn.sticky-bk-ready:hover{background:#cbff5e!important;}
+
 /* STICKY BOOK */
 .sticky-bk{position:fixed;bottom:16px;left:50%;transform:translateX(-50%) translateY(120%);display:flex;align-items:center;gap:10px;padding:10px 14px 10px 20px;background:var(--navy);border:1px solid rgba(255,255,255,.15);border-radius:var(--r-pill);box-shadow:var(--shadow-lux);transition:transform .4s cubic-bezier(.2,.8,.2,1);z-index:50;max-width:calc(100vw - 24px)}
 .sticky-bk[data-show]{transform:translateX(-50%) translateY(0)}
@@ -904,6 +909,13 @@ let selCabin = null;
 /* ─────────────────────────────────────────────
    STEP INDICATOR
 ───────────────────────────────────────────────── */
+/* ── goToBookingForm: single source of truth for final CTA action ── */
+function goToBookingForm(){
+  if(!selBoat||!selDate||!selCabin) return;
+  const url = buildBookingFormUrl();
+  if(url) { window.location.href = url; }
+}
+
 function updateSteps(){
   const s1=document.getElementById('s1'),s2=document.getElementById('s2'),s3=document.getElementById('s3'),s4=document.getElementById('s4');
   const done1=!!selBoat,done2=!!selDate,done3=!!selCabin;
@@ -915,12 +927,38 @@ function updateSteps(){
   const sBtn=document.getElementById('stickyBtn');
   const sTxt=document.getElementById('stickyTxt');
   if(sBtn){
-    if(!selBoat){sBtn.textContent='Choose boat';sBtn.onclick=()=>document.getElementById('step-boats').scrollIntoView({behavior:'smooth'});}
-    else if(!selDate){sBtn.textContent='Pick date';sBtn.onclick=()=>document.getElementById('step-calendar').scrollIntoView({behavior:'smooth'});}
-    else if(!selCabin){sBtn.textContent='Choose cabin';sBtn.onclick=()=>document.getElementById('step-cabins')?.scrollIntoView({behavior:'smooth'});}
-    else{sBtn.textContent='Continue';sBtn.onclick=()=>document.getElementById('bkWaBtn')?.scrollIntoView({behavior:'smooth'});}
+    if(!selBoat){
+      sBtn.textContent='Choose boat';
+      sBtn.className='sticky-bk-btn';
+      sBtn.onclick=()=>document.getElementById('step-boats').scrollIntoView({behavior:'smooth'});
+    } else if(!selDate){
+      sBtn.textContent='Pick date';
+      sBtn.className='sticky-bk-btn';
+      sBtn.onclick=()=>document.getElementById('step-calendar').scrollIntoView({behavior:'smooth'});
+    } else if(!selCabin){
+      sBtn.textContent='Choose cabin';
+      sBtn.className='sticky-bk-btn';
+      sBtn.onclick=()=>document.getElementById('step-cabins')?.scrollIntoView({behavior:'smooth'});
+    } else {
+      // All selected — neon green, same action as main CTA
+      sBtn.textContent='Continue to Booking Form →';
+      sBtn.className='sticky-bk-btn sticky-bk-ready';
+      sBtn.onclick=()=>goToBookingForm();
+    }
   }
-  if(sTxt&&selBoat){const boat=BOATS[selBoat];const minP=Math.min(...boat.cabins.map(c=>c.price));sTxt.innerHTML='<strong>'+boat.name+'</strong> · from '+fmtIDR(minP);}
+  // Update sticky text with summary once cabin selected
+  if(sTxt){
+    if(selBoat&&selDate&&selCabin){
+      const boat=BOATS[selBoat];
+      const cabin=boat.cabins.find(c=>c.id===selCabin);
+      const price=cabin?cabin.price:Math.min(...boat.cabins.map(c=>c.price));
+      sTxt.innerHTML='<strong>'+boat.name+'</strong> · '+fmtIDR(price)+'/pax';
+    } else if(selBoat){
+      const boat=BOATS[selBoat];
+      const minP=Math.min(...boat.cabins.map(c=>c.price));
+      sTxt.innerHTML='<strong>'+boat.name+'</strong> · from '+fmtIDR(minP);
+    }
+  }
 }
 function stickyAction(){ updateSteps(); }
 
@@ -1147,7 +1185,7 @@ function updateWALink(){
     btn.target = '_self';
     btn.removeAttribute('rel');
     btn.dataset.mode = 'form';
-    btn.innerHTML = `Continue to booking form <span aria-hidden="true">→</span>`;
+    btn.innerHTML = `Continue to Booking Form <span aria-hidden="true">→</span>`;
     if (sub) sub.textContent = 'Complete your guest details first. We will prepare a clean WhatsApp request for final availability confirmation.';
   }
 }
