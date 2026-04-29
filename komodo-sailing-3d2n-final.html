@@ -624,7 +624,7 @@
 
     <div class="hero-anchor">
       <span class="strike">OTA platforms IDR 6,500,000+</span>
-      <span class="price-anchor">From IDR 4,800,000<span class="per">/guest · 3D2N · share cabin</span></span>
+      <span class="price-anchor">From IDR 4,800,000<span class="per">/guest · 3D2N · share cabin</span><span style="display:block;font-size:12px;color:rgba(245,240,230,.55);margin-top:3px">≈ USD 291 / guest</span></span>
       <span class="keep">Direct booking · <b>Selected 2026 departures</b></span>
     </div>
 
@@ -855,7 +855,7 @@
         <h3>Share Cabin</h3>
         <p class="desc">Bunk-style shared cabin. Most social option — great for solo travelers joining the group. Available on all three Kanha boats.</p>
         <div class="main">From IDR 4,800,000</div>
-        <div class="sub">per person · 3D2N · Kanha Natha share</div>
+        <div class="sub" style="line-height:1.6">per person · 3D2N · Kanha Natha share<br><span style="color:#9CA3AF;font-size:11.5px">≈ USD 291 / person</span></div>
         <ul>
           <li>Kanha Natha: IDR 4,800,000 · share cabin</li>
           <li>Kanha Loka: IDR 5,500,000 · share cabin</li>
@@ -870,7 +870,7 @@
         <h3>Private En-Suite</h3>
         <p class="desc">Your own cabin with en-suite bathroom. Social on deck, quiet at night. Min 2 pax.</p>
         <div class="main">From IDR 6,900,000</div>
-        <div class="sub">per person · 3D2N · Kanha Loka Superior</div>
+        <div class="sub" style="line-height:1.6">per person · 3D2N · Kanha Loka Superior<br><span style="color:#9CA3AF;font-size:11.5px">≈ USD 418 / person</span></div>
         <ul>
           <li>Kanha Loka Superior / Family: IDR 6,900,000</li>
           <li>Kanha Natha Private Ocean View: IDR 7,800,000</li>
@@ -884,7 +884,7 @@
         <h3>Ocean View Master</h3>
         <p class="desc">Top cabin tier across the fleet — full ocean view, balcony or premium positioning. Min 2 pax.</p>
         <div class="main">From IDR 9,500,000</div>
-        <div class="sub">per person · 3D2N · Kanha Loka Master</div>
+        <div class="sub" style="line-height:1.6">per person · 3D2N · Kanha Loka Master<br><span style="color:#9CA3AF;font-size:11.5px">≈ USD 576 / person</span></div>
         <ul>
           <li>Kanha Loka Master Ocean View: IDR 9,500,000</li>
           <li>Kanha Citta Shakti / Sedana: IDR 9,500,000</li>
@@ -1180,6 +1180,11 @@
   }, { once: true, capture: true });
 
   /* ═══ Inline booking calendar removed — CTAs route to kanha-liveaboard-booking.html ═══ */
+
+
+  // ─── USD helpers ──────────────────────────────────────────────────────────
+  const USD_IDR_RATE = 16500;
+  function fmtUSD(idr){ return '≈ USD ' + Math.round(idr / USD_IDR_RATE).toLocaleString('en-US'); }
 
   /* ═══ Hero subline kept static — fake deterministic scarcity removed.
         Real availability lives in kanha-liveaboard-booking.html DEPARTURES_2026 ═══ */
