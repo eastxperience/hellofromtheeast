@@ -195,51 +195,37 @@
   }
 
   /* ─── Private cabin pax UI ─── */
-  .pax-locked    { justify-content: flex-start; gap: 0; }
-  .pax-fixed     { font-size: 18px; font-weight: 700; color: var(--ink); padding: 0 12px; min-width: 56px; text-align: center; }
-  .pax-count-row { display: flex; align-items: center; gap: 10px; padding: 10px 0 6px; }
-  .pax-count-num { font-size: 22px; font-weight: 800; color: var(--ink); min-width: 28px; }
-  .pax-count-lbl { font-size: 13px; color: var(--muted); }
-  .pax-note      { font-size: 11px; color: var(--muted); margin: 4px 0 0; }
-  .pax-warn      { font-size: 12px; color: #B45309; font-weight: 500; margin-top: 6px; padding: 4px 8px; background: rgba(180,83,9,.08); border-radius: 4px; }
+  .pax-locked { justify-content: flex-start; gap: 0; }
+  .pax-fixed  { font-size: 18px; font-weight: 700; color: var(--ink); padding: 0 12px; min-width: 56px; text-align: center; }
+  .pax-note   { font-size: 11px; color: var(--muted); margin: 6px 0 0; }
+  .pax-warn   { font-size: 12px; color: #B45309; font-weight: 500; margin-top: 6px; padding: 4px 8px; background: rgba(180,83,9,.08); border-radius: 4px; }
 
-  /* ─── 3rd guest add-on row ─── */
+  /* ─── Compact 3rd guest add-on row ─── */
   .tp-addon-row {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    margin-top: 10px; padding: 12px 14px; border-radius: 10px;
-    border: 1.5px solid var(--line); background: var(--bg);
-    cursor: pointer; user-select: none; transition: border-color .2s, background .18s;
-    -webkit-tap-highlight-color: transparent; min-height: 56px;
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 10px; padding: 12px 14px; border-radius: 14px;
+    border: 1.5px solid #CBD5E1; background: #FAFAFA;
+    cursor: pointer; user-select: none;
+    transition: border-color .18s, background .18s;
+    -webkit-tap-highlight-color: transparent;
   }
-  .tp-addon-row:active   { opacity: .85; }
-  .tp-addon-row.tp-on    { border-color: #22C55E; background: rgba(34,197,94,.05); }
-  .tp-addon-left  { flex: 1; min-width: 0; }
-  .tp-addon-name  { font-size: 13.5px; font-weight: 600; color: var(--ink); display: block; }
-  .tp-addon-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; display: block; }
-  .tp-addon-sub .tp-usd { font-weight: 400; }
+  .tp-addon-row:active { opacity: .78; }
+  .tp-addon-row.tp-on  { border-color: #16A34A; background: rgba(22,163,74,.05); }
 
-  /* ─── Custom toggle pill ─── */
-  .tp-toggle {
-    flex-shrink: 0; width: 44px; height: 26px; border-radius: 13px;
-    background: #CBD5E1; position: relative; transition: background .22s;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,.12);
+  /* Custom 22×22 checkbox */
+  .tp-chkbox {
+    flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px;
+    border: 2px solid #94A3B8; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color .18s, background .18s;
+    font-size: 13px; line-height: 1; color: #fff; font-weight: 700;
   }
-  .tp-toggle::after {
-    content: ''; position: absolute; top: 3px; left: 3px;
-    width: 20px; height: 20px; border-radius: 50%; background: #fff;
-    box-shadow: 0 1px 4px rgba(0,0,0,.22); transition: transform .22s;
-  }
-  .tp-addon-row.tp-on .tp-toggle         { background: #22C55E; }
-  .tp-addon-row.tp-on .tp-toggle::after  { transform: translateX(18px); }
+  .tp-addon-row.tp-on .tp-chkbox { border-color: #16A34A; background: #16A34A; }
 
-  /* ─── Guest state badge ─── */
-  .pax-state-badge {
-    display: inline-block; margin-top: 8px; padding: 3px 10px;
-    border-radius: 20px; font-size: 11.5px; font-weight: 600;
-    background: rgba(34,197,94,.12); color: #166534;
-    transition: opacity .2s;
-  }
-  .pax-state-badge.pax-badge-off { background: rgba(100,116,139,.1); color: var(--muted); }
+  /* Text block */
+  .tp-addon-text { flex: 1; min-width: 0; }
+  .tp-addon-name { font-size: 14px; font-weight: 600; color: var(--ink); display: block; }
+  .tp-addon-sub  { font-size: 12.5px; color: var(--muted); margin-top: 2px; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
   /* ─── Kanha select: dropdown arrow + touch-safe ─── */
   .kanha-select {
@@ -1487,61 +1473,51 @@
       paxGroup.dispatchEvent(new CustomEvent('pax:change', { bubbles: true, detail: { value: 2 } }));
 
     } else if (mode === 'private_2_plus_optional_3rd') {
-      // ── 2 + OPTIONAL 3RD GUEST (toggle switch) ───────────────────────────
+      // ── 2 + OPTIONAL 3RD GUEST (compact checkbox add-on row) ──────────────
       paxGroup.removeAttribute('data-pax');
       var pre3 = (initPax === 3);
       paxGroup.innerHTML =
         '<div class="pax-lbl">' +
           '<span class="t">Number of guests</span>' +
-          '<span class="s">2 guests included in this private cabin</span>' +
+          '<span class="s" id="paxSubLbl">' + (pre3 ? '3 guests selected' : '2 guests included in this private cabin') + '</span>' +
         '</div>' +
-        // Guest count badge
-        '<div class="pax-count-row">' +
-          '<span class="pax-count-num" id="paxDisplay" aria-live="polite">' + (pre3 ? '3' : '2') + '</span>' +
-          '<span class="pax-count-lbl" id="paxCountLbl">' + (pre3 ? 'guests selected' : 'guests included') + '</span>' +
-          '<input type="hidden" name="pax" value="' + (pre3 ? '3' : '2') + '">' +
-          '<input type="hidden" name="thirdPerson" id="thirdPersonHidden" value="' + (pre3 ? '1' : '0') + '">' +
-        '</div>' +
-        // Toggle row (no real checkbox — custom div toggle)
-        '<div class="tp-addon-row' + (pre3 ? ' tp-on' : '') + '" id="thirdPersonRow" role="switch" aria-checked="' + (pre3 ? 'true' : 'false') + '" tabindex="0">' +
-          '<div class="tp-addon-left">' +
-            '<span class="tp-addon-name" id="tpAddonName">' + (pre3 ? '3rd guest added ✓' : 'Add 3rd guest') + '</span>' +
-            '<span class="tp-addon-sub">Optional extra guest &nbsp;· &nbsp;<strong>+ IDR ' + tpIDR + '</strong> &nbsp;<span class="tp-usd">&#8776; USD ' + tpUSD + '</span></span>' +
+        '<input type="hidden" name="pax" id="paxHiddenInp" value="' + (pre3 ? '3' : '2') + '">' +
+        '<input type="hidden" name="thirdPerson" id="thirdPersonHidden" value="' + (pre3 ? '1' : '0') + '">' +
+        '<div class="tp-addon-row' + (pre3 ? ' tp-on' : '') + '" id="thirdPersonRow" role="checkbox" aria-checked="' + (pre3 ? 'true' : 'false') + '" tabindex="0">' +
+          '<div class="tp-chkbox" id="tpChkbox" aria-hidden="true">' + (pre3 ? '&#10003;' : '') + '</div>' +
+          '<div class="tp-addon-text">' +
+            '<span class="tp-addon-name" id="tpAddonName">' + (pre3 ? '3rd guest added' : 'Add 3rd guest') + '</span>' +
+            '<span class="tp-addon-sub">+ IDR ' + tpIDR + ' &nbsp;&middot;&nbsp; &#8776;&nbsp;USD ' + tpUSD + '</span>' +
           '</div>' +
-          '<div class="tp-toggle" aria-hidden="true"></div>' +
         '</div>' +
-        '<span class="pax-state-badge' + (pre3 ? '' : ' pax-badge-off') + '" id="paxStateBadge">' + (pre3 ? '3 guests selected' : 'Maximum 3 guests in this cabin') + '</span>' +
+        '<p class="pax-note">Maximum 3 guests in this cabin.</p>' +
         (warnMsg ? '<p class="pax-warn">' + warnMsg + '</p>' : '');
 
-      // Wire toggle (click + keyboard)
-      var tpRow  = document.getElementById('thirdPersonRow');
-      var tpInp  = paxGroup.querySelector('input[name="pax"]');
-      var tpHid  = document.getElementById('thirdPersonHidden');
-      var tpDisp = document.getElementById('paxDisplay');
-      var tpLbl  = document.getElementById('paxCountLbl');
-      var tpName = document.getElementById('tpAddonName');
-      var tpBadge= document.getElementById('paxStateBadge');
+      // Wire row
+      var tpRow    = document.getElementById('thirdPersonRow');
+      var tpInp    = document.getElementById('paxHiddenInp');
+      var tpHid    = document.getElementById('thirdPersonHidden');
+      var tpSubLbl = document.getElementById('paxSubLbl');
+      var tpChkbox = document.getElementById('tpChkbox');
+      var tpName   = document.getElementById('tpAddonName');
       var tpActive = pre3;
 
       function setThirdPerson(active) {
         tpActive = active;
         var v = active ? 3 : 2;
-        tpInp.value  = String(v);
-        tpHid.value  = active ? '1' : '0';
-        tpDisp.textContent = String(v);
-        tpLbl.textContent  = active ? 'guests selected' : 'guests included';
-        tpName.textContent = active ? '3rd guest added ✓' : 'Add 3rd guest';
+        tpInp.value = String(v);
+        tpHid.value = active ? '1' : '0';
+        tpSubLbl.textContent = active ? '3 guests selected' : '2 guests included in this private cabin';
+        tpChkbox.innerHTML   = active ? '&#10003;' : '';
+        tpName.textContent   = active ? '3rd guest added' : 'Add 3rd guest';
         tpRow.classList.toggle('tp-on', active);
         tpRow.setAttribute('aria-checked', String(active));
-        tpBadge.textContent  = active ? '3 guests selected' : 'Maximum 3 guests in this cabin';
-        tpBadge.classList.toggle('pax-badge-off', !active);
         paxGroup.dispatchEvent(new CustomEvent('pax:change', { bubbles: true, detail: { value: v } }));
       }
       tpRow.addEventListener('click', function() { setThirdPerson(!tpActive); });
       tpRow.addEventListener('keydown', function(e) {
         if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); setThirdPerson(!tpActive); }
       });
-      // Expose for submit handler
       paxGroup._getThirdPerson = function() { return tpActive; };
       paxGroup.dispatchEvent(new CustomEvent('pax:change', { bubbles: true, detail: { value: pre3 ? 3 : 2 } }));
 
