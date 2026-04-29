@@ -584,32 +584,35 @@
   // ─── Physical inventory model (source of truth for URL validation) ─────
   const KANHA_INVENTORY = {
     'kanha-loka': {
+      thirdPersonFee: 4250000,
       validCabins: ['share-cabin','superior-cabin-1','superior-cabin-2',
                     'deluxe-ocean-view-1','deluxe-ocean-view-2','family-cabin','master-ocean-view'],
       cabinGroups: {
-        'share-cabin': { name:'Share Cabin', totalUnits:1, minPax:2, maxPax:8, price:5500000, type:'shared' },
-        'superior-cabin': { name:'Superior Cabin', totalUnits:2, minPax:2, maxPax:2, price:6900000, type:'private' },
-        'family-cabin': { name:'Family / Share Cabin', totalUnits:1, minPax:2, maxPax:4, price:6900000, type:'private' },
-        'deluxe-ocean-view': { name:'Deluxe Ocean View', totalUnits:2, minPax:2, maxPax:3, price:8500000, type:'private' },
-        'master-ocean-view': { name:'Master Ocean View', totalUnits:1, minPax:2, maxPax:3, price:9500000, type:'private' }
+        'share-cabin':      { name:'Share Cabin',           totalUnits:1, minPax:2, maxPax:8, price:5500000, type:'shared', hasThirdPerson:false },
+        'superior-cabin':   { name:'Superior Cabin',        totalUnits:2, minPax:2, maxPax:2, price:6900000, type:'private', hasThirdPerson:false },
+        'family-cabin':     { name:'Family / Share Cabin',  totalUnits:1, minPax:2, maxPax:4, price:6900000, type:'private', hasThirdPerson:false },
+        'deluxe-ocean-view':{ name:'Deluxe Ocean View',     totalUnits:2, minPax:2, maxPax:3, price:8500000, type:'private', hasThirdPerson:true },
+        'master-ocean-view':{ name:'Master Ocean View',     totalUnits:1, minPax:2, maxPax:3, price:9500000, type:'private', hasThirdPerson:true }
       }
     },
     'kanha-citta': {
+      thirdPersonFee: 4500000,
       validCabins: ['share-room','deluxe-ocean-view-1','deluxe-ocean-view-2','deluxe-ocean-view-3',
                     'shakti-room','sedana-room','gayatri-room'],
       cabinGroups: {
-        'share-room': { name:'Share Room', totalUnits:1, minPax:2, maxPax:8, price:5800000, type:'shared' },
-        'deluxe-ocean-view': { name:'Deluxe Ocean View', totalUnits:3, minPax:2, maxPax:2, price:8700000, type:'private' },
-        'shakti-room': { name:'Shakti Room', totalUnits:1, minPax:2, maxPax:3, price:9500000, type:'private' },
-        'sedana-room': { name:'Sedana Room', totalUnits:1, minPax:2, maxPax:3, price:9500000, type:'private' },
-        'gayatri-room': { name:'Gayatri Room', totalUnits:1, minPax:2, maxPax:3, price:12500000, type:'private' }
+        'share-room':        { name:'Share Room',        totalUnits:1, minPax:2, maxPax:8, price:5800000, type:'shared', hasThirdPerson:false },
+        'deluxe-ocean-view': { name:'Deluxe Ocean View', totalUnits:3, minPax:2, maxPax:2, price:8700000, type:'private', hasThirdPerson:false },
+        'shakti-room':       { name:'Shakti Room',       totalUnits:1, minPax:2, maxPax:3, price:9500000, type:'private', hasThirdPerson:true },
+        'sedana-room':       { name:'Sedana Room',       totalUnits:1, minPax:2, maxPax:3, price:9500000, type:'private', hasThirdPerson:true },
+        'gayatri-room':      { name:'Gayatri Room',      totalUnits:1, minPax:2, maxPax:3, price:12500000, type:'private', hasThirdPerson:true }
       }
     },
     'kanha-natha': {
+      thirdPersonFee: 3750000,
       validCabins: ['share-cabin-1','share-cabin-2','private-ocean-view-1','private-ocean-view-2'],
       cabinGroups: {
-        'share-cabin': { name:'Share Cabin', totalUnits:2, minPax:2, maxPax:4, price:4800000, type:'shared' },
-        'private-ocean-view': { name:'Private Ocean View', totalUnits:2, minPax:2, maxPax:2, price:7800000, type:'private' }
+        'share-cabin':       { name:'Share Cabin',        totalUnits:2, minPax:2, maxPax:4, price:4800000, type:'shared', hasThirdPerson:false },
+        'private-ocean-view':{ name:'Private Ocean View', totalUnits:2, minPax:2, maxPax:3, price:7800000, type:'private', hasThirdPerson:true }
       }
     }
   };
@@ -1172,6 +1175,34 @@
         </label>
       `;
     }
+    // ── Enforce physical capacity on pax counter ──────────────────────────
+    const paxCtrl = document.getElementById('paxGroup');
+    if (paxCtrl) {
+      const invBoat  = KANHA_INVENTORY[kanhaCtx.boat_id] || {};
+      // Derive group key from unit-level cabin id
+      const cabinIdStr = kanhaCtx.cabin_id || '';
+      const groupKey   = cabinIdStr.replace(/-[0-9]+$/, '');
+      const cabinDef   = (invBoat.cabinGroups || {})[groupKey]
+                      || (invBoat.cabinGroups || {})[cabinIdStr];
+      if (cabinDef && cabinDef.maxPax) {
+        const maxAllowed = cabinDef.maxPax;
+        paxCtrl.setAttribute('data-max', String(maxAllowed));
+        // Clamp current value
+        const paxInput  = paxCtrl.querySelector('input[name="pax"]');
+        const paxDisplay= paxCtrl.querySelector('.pax-n');
+        if (paxInput && parseInt(paxInput.value,10) > maxAllowed) {
+          paxInput.value = maxAllowed;
+          if (paxDisplay) paxDisplay.textContent = maxAllowed;
+        }
+        // Show capacity note
+        const paxHint = document.querySelector('[data-bind="paxHint"]');
+        if (paxHint) {
+          paxHint.textContent = 'max ' + maxAllowed + ' guests for this cabin';
+          paxHint.style.color = '#B45309';
+        }
+      }
+    }
+
     // Prefill + lock the date input
     if (dateIn && kanhaCtx.departure_date) {
       dateIn.value = kanhaCtx.departure_date;
@@ -1371,15 +1402,34 @@
       chargeablePax = Math.max(paxVal, isPrivate ? 2 : 1);
     }
 
-    const total = mode === 'flat' ? unit : unit * chargeablePax;
+    // ── Third-person add-on pricing for Kanha private cabins ──────────────
+    let total;
+    if (mode === 'flat') {
+      total = unit;
+    } else if (slug === 'komodo-sailing-3d2n' && kanhaCtx && kanhaCtx.hasTrip && isPrivate && chargeablePax === 3) {
+      // Check if this cabin supports third-person add-on pricing
+      const invBoat3   = KANHA_INVENTORY[kanhaCtx.boat_id] || {};
+      const cIdStr3    = (kanhaCtx.cabin_id || '').replace(/-[0-9]+$/, '');
+      const cabinDef3  = (invBoat3.cabinGroups || {})[cIdStr3]
+                      || (invBoat3.cabinGroups || {})[kanhaCtx.cabin_id];
+      const tp3Fee     = invBoat3.thirdPersonFee || 0;
+      if (cabinDef3 && cabinDef3.hasThirdPerson && tp3Fee) {
+        total = unit * 2 + tp3Fee;  // 2 pax base + 3rd person fee
+      } else {
+        total = unit * chargeablePax;
+      }
+    } else {
+      total = unit * chargeablePax;
+    }
 
-    const setAll = (sel, val) => document.querySelectorAll(sel).forEach(e => e.textContent = val);
+    const setAll    = (sel, val) => document.querySelectorAll(sel).forEach(e => e.textContent = val);
+    const setAllHTML = (sel, val) => document.querySelectorAll(sel).forEach(e => e.innerHTML   = val);
     setAll('[data-out="unit"]', fmt(unit) + (mode === 'flat' ? ' · whole group' : ' / person'));
     setAll('[data-out="pax"]',  paxVal + (paxVal === 1 ? ' traveler' : ' travelers'));
     setAll('[data-out="type"]', type.dataset.label);
     const usdTotal = Math.round(total / USD_IDR_RATE);
-    const usdLine  = '<span style="display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px">≈ USD ' + usdTotal.toLocaleString('en-US') + '</span>';
-    setAll('[data-out="total"]', fmt(total) + usdLine);
+    const usdLine  = '<span style="display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px">&#8776; USD ' + usdTotal.toLocaleString('en-US') + '</span>';
+    setAllHTML('[data-out="total"]', fmt(total) + usdLine);
     setAll('[data-out="sub"]',   mode === 'flat' ? 'whole group price' : chargeablePax + ' × ' + fmt(unit));
 
     // Kanha sidebar: chargeable pax row + min pax note visibility
@@ -1470,8 +1520,23 @@
       // Private cabin minimum pax rule
       const chargeablePax = p.chargeablePax || p.pax;
       const isPrivate     = p.kanhaIsPrivate || false;
-      const totalLine = (k.cabin_price && chargeablePax)
-        ? '*Total estimate:* IDR ' + (k.cabin_price * chargeablePax).toLocaleString('en-US')
+      // Compute total respecting third-person pricing
+      let waTotal = 0;
+      if (k.cabin_price && chargeablePax) {
+        const waInvBoat = KANHA_INVENTORY[k.boat_id || k.boat_name] || KANHA_INVENTORY[p.kanha_boat_id] || {};
+        const waCabinKey= (k.cabin_id || '').replace(/-[0-9]+$/,'');
+        const waCabDef  = (waInvBoat.cabinGroups||{})[waCabinKey] || (waInvBoat.cabinGroups||{})[k.cabin_id];
+        const waTp3Fee  = waInvBoat.thirdPersonFee || 0;
+        if (p.kanhaIsPrivate && chargeablePax === 3 && waCabDef && waCabDef.hasThirdPerson && waTp3Fee) {
+          waTotal = k.cabin_price * 2 + waTp3Fee;
+        } else {
+          waTotal = k.cabin_price * chargeablePax;
+        }
+      }
+      const waTotalIDR = waTotal ? waTotal.toLocaleString('en-US') : null;
+      const waTotalUSD = waTotal ? Math.round(waTotal / USD_IDR_RATE).toLocaleString('en-US') : null;
+      const totalLine  = waTotalIDR
+        ? '*Total estimate:* IDR ' + waTotalIDR + ' (approx. USD ' + waTotalUSD + ')'
         : '*Total estimate:* To be confirmed';
 
       const attrLine = buildAttributionLine();
@@ -1490,7 +1555,9 @@
         '*Travelers:* ' + p.pax,
         isPrivate ? '*Chargeable pax:* ' + chargeablePax : '',
         isPrivate ? '*Private cabin minimum:* 2 pax' : '',
+        k.cabin_price ? '*Cabin price:* IDR ' + k.cabin_price.toLocaleString('en-US') + ' / guest (approx. USD ' + Math.round(k.cabin_price / USD_IDR_RATE).toLocaleString('en-US') + ' / guest)' : '',
         totalLine,
+        '*Currency note:* Final invoice issued in IDR. USD shown for reference only.',
         '—',
         '*Name:* ' + (p.name || '—'),
         '*Nationality:* ' + (p.nationality || '—'),
