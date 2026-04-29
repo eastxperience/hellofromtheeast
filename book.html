@@ -576,6 +576,63 @@
   // Example: const BOOKING_CAPTURE_ENDPOINT = "https://script.google.com/macros/s/XXXXX/exec";
   const BOOKING_CAPTURE_ENDPOINT = '';
 
+  // ─── USD / IDR currency helpers ────────────────────────────────────────
+  const USD_IDR_RATE = 16500;
+  function formatIDR(n){ return 'IDR ' + Math.round(n).toLocaleString('en-US'); }
+  function formatUSD(n){ return '≈ USD ' + Math.round(n / USD_IDR_RATE).toLocaleString('en-US'); }
+
+  // ─── Physical inventory model (source of truth for URL validation) ─────
+  const KANHA_INVENTORY = {
+    'kanha-loka': {
+      validCabins: ['share-cabin','superior-cabin-1','superior-cabin-2',
+                    'deluxe-ocean-view-1','deluxe-ocean-view-2','family-cabin','master-ocean-view'],
+      cabinGroups: {
+        'share-cabin': { name:'Share Cabin', totalUnits:1, minPax:2, maxPax:8, price:5500000, type:'shared' },
+        'superior-cabin': { name:'Superior Cabin', totalUnits:2, minPax:2, maxPax:2, price:6900000, type:'private' },
+        'family-cabin': { name:'Family / Share Cabin', totalUnits:1, minPax:2, maxPax:4, price:6900000, type:'private' },
+        'deluxe-ocean-view': { name:'Deluxe Ocean View', totalUnits:2, minPax:2, maxPax:3, price:8500000, type:'private' },
+        'master-ocean-view': { name:'Master Ocean View', totalUnits:1, minPax:2, maxPax:3, price:9500000, type:'private' }
+      }
+    },
+    'kanha-citta': {
+      validCabins: ['share-room','deluxe-ocean-view-1','deluxe-ocean-view-2','deluxe-ocean-view-3',
+                    'shakti-room','sedana-room','gayatri-room'],
+      cabinGroups: {
+        'share-room': { name:'Share Room', totalUnits:1, minPax:2, maxPax:8, price:5800000, type:'shared' },
+        'deluxe-ocean-view': { name:'Deluxe Ocean View', totalUnits:3, minPax:2, maxPax:2, price:8700000, type:'private' },
+        'shakti-room': { name:'Shakti Room', totalUnits:1, minPax:2, maxPax:3, price:9500000, type:'private' },
+        'sedana-room': { name:'Sedana Room', totalUnits:1, minPax:2, maxPax:3, price:9500000, type:'private' },
+        'gayatri-room': { name:'Gayatri Room', totalUnits:1, minPax:2, maxPax:3, price:12500000, type:'private' }
+      }
+    },
+    'kanha-natha': {
+      validCabins: ['share-cabin-1','share-cabin-2','private-ocean-view-1','private-ocean-view-2'],
+      cabinGroups: {
+        'share-cabin': { name:'Share Cabin', totalUnits:2, minPax:2, maxPax:4, price:4800000, type:'shared' },
+        'private-ocean-view': { name:'Private Ocean View', totalUnits:2, minPax:2, maxPax:2, price:7800000, type:'private' }
+      }
+    }
+  };
+
+  // Validate a cabin against the inventory model for a given boat
+  function validateKanhaInventory(boatId, cabinId, cabinName) {
+    const inv = KANHA_INVENTORY[boatId];
+    if (!inv) return { valid: false, msg: 'Boat not recognized in inventory.' };
+    // Accept exact unit IDs (new model) or legacy group IDs for backward compat
+    if (inv.validCabins.indexOf(cabinId) >= 0) return { valid: true };
+    // Check if it matches a group key (legacy URL)
+    const grpKey = cabinId.replace(/-[0-9]+$/, '');
+    if (inv.cabinGroups[grpKey]) return { valid: true, legacyGroup: grpKey };
+    // Check if cabin belongs to a DIFFERENT boat (wrong boat/cabin combo)
+    const allBoats = Object.keys(KANHA_INVENTORY);
+    for (const bid of allBoats) {
+      if (bid !== boatId && KANHA_INVENTORY[bid].validCabins.indexOf(cabinId) >= 0) {
+        return { valid: false, msg: cabinName + ' does not belong to ' + boatId.replace('kanha-','Kanha ') + '. Please return to the booking page and select a cabin.' };
+      }
+    }
+    return { valid: false, msg: 'Selected cabin is not in the inventory for this boat. Please return to the booking page.' };
+  }
+
   function generateRefCode(boatId, departureDate, cabinId) {
     var bCode = String(boatId  || '').replace('kanha-','').toUpperCase().split('-')[0].substring(0,5) || 'FLEET';
     var dCode = String(departureDate || '').replace(/-/g,'').substring(0,8) || 'FLEX';
@@ -1034,14 +1091,40 @@
     };
     // Fallback price table
     const PRICE_FALLBACK = {
-      'kanha-loka':  { 'share-cabin':5500000, 'superior-cabin':6900000, 'family-cabin':6900000, 'deluxe-ocean-view':8500000, 'master-ocean-view':9500000 },
-      'kanha-citta': { 'share-room':5800000, 'deluxe-ocean-view':8700000, 'shakti-sedana':9500000, 'gayatri-master-suite':12500000 },
-      'kanha-natha': { 'share-cabin':4800000, 'private-ocean-view':7800000 }
+      'kanha-loka': {
+        'share-cabin':5500000,
+        'superior-cabin':6900000,'superior-cabin-1':6900000,'superior-cabin-2':6900000,
+        'family-cabin':6900000,
+        'deluxe-ocean-view':8500000,'deluxe-ocean-view-1':8500000,'deluxe-ocean-view-2':8500000,
+        'master-ocean-view':9500000
+      },
+      'kanha-citta': {
+        'share-room':5800000,
+        'deluxe-ocean-view':8700000,'deluxe-ocean-view-1':8700000,'deluxe-ocean-view-2':8700000,'deluxe-ocean-view-3':8700000,
+        'shakti-room':9500000,'sedana-room':9500000,'shakti-sedana':9500000,
+        'gayatri-room':12500000,'gayatri-master-suite':12500000
+      },
+      'kanha-natha': {
+        'share-cabin':4800000,'share-cabin-1':4800000,'share-cabin-2':4800000,
+        'private-ocean-view':7800000,'private-ocean-view-1':7800000,'private-ocean-view-2':7800000
+      }
     };
     if (!ctx.cabin_price && ctx.boat_id && ctx.cabin_id && PRICE_FALLBACK[ctx.boat_id]) {
       ctx.cabin_price = PRICE_FALLBACK[ctx.boat_id][ctx.cabin_id] || 0;
     }
     ctx.hasTrip = !!(ctx.boat_id && ctx.cabin_id && ctx.departure_date);
+
+    // ── Inventory validation: block manipulated URL params ──────────────
+    if (ctx.hasTrip) {
+      const inv = validateKanhaInventory(ctx.boat_id, ctx.cabin_id, ctx.cabin_name || ctx.cabin_id);
+      if (!inv.valid) {
+        ctx.hasTrip = false;
+        ctx.inventoryError = inv.msg;
+      } else if (inv.legacyGroup) {
+        // Normalize legacy group IDs to unit-level IDs
+        ctx.cabin_id = ctx.cabin_id; // keep as-is, PRICE_FALLBACK handles it
+      }
+    }
     return ctx;
   })();
 
@@ -1070,7 +1153,7 @@
     const optWrap2 = document.querySelector('[data-bind-options]');
     if (optWrap2) {
       const priceText = kanhaCtx.cabin_price
-        ? 'IDR ' + kanhaCtx.cabin_price.toLocaleString('en-US') + ' / person'
+        ? 'IDR ' + kanhaCtx.cabin_price.toLocaleString('en-US') + ' / person<div style="font-size:11px;color:#6B7280;margin-top:2px">≈ USD ' + Math.round(kanhaCtx.cabin_price / USD_IDR_RATE).toLocaleString('en-US') + ' / person</div>'
         : 'Price to be confirmed';
       const cabinIsPrivate = isPrivateCabinId(kanhaCtx.cabin_id, kanhaCtx.cabin_name);
       const privateCabinNote = cabinIsPrivate
@@ -1122,6 +1205,8 @@
       kanhaRows.innerHTML =
         '<div class="summ-line"><span>Boat</span><span class="v">' + kanhaCtx.boat_name + '</span></div>' +
         '<div class="summ-line"><span>Cabin</span><span class="v">' + kanhaCtx.cabin_name + '</span></div>' +
+        '<div class="summ-line"><span>Cabin price</span><span class="v">' + (kanhaCtx.cabin_price ? formatIDR(kanhaCtx.cabin_price) + ' / guest' : '—') + '</span></div>' +
+        (kanhaCtx.cabin_price ? '<div class="summ-line" style="font-size:11px"><span style="color:var(--muted)">USD equiv.</span><span class="v" style="color:var(--muted)">' + formatUSD(kanhaCtx.cabin_price) + ' / guest</span></div>' : '') +
         '<div class="summ-line"><span>Departure</span><span class="v">' + kanhaCtx.departure_date + '</span></div>' +
         (kanhaCtx.trip_dates ? '<div class="summ-line"><span>Trip dates</span><span class="v">' + kanhaCtx.trip_dates + '</span></div>' : '') +
         '<div class="summ-line" id="summMinPaxRow" style="' + (isPrivateInit ? '' : 'display:none') + '">' +
@@ -1145,7 +1230,8 @@
     const statusLabelMap = { available:'Available', limited:'Limited', on_hold:'On hold', booked:'Booked', private_charter:'Private charter', maintenance:'Maintenance', not_operating:'Not operating', unknown:'Confirm with team' };
     const cabinStatusTxt = statusLabelMap[kanhaCtx.cabin_status] || 'Confirm with team';
     const priceLineHtml  = kanhaCtx.cabin_price
-      ? '<div><strong>Estimated price:</strong> IDR ' + kanhaCtx.cabin_price.toLocaleString('en-US') + ' per person</div>'
+      ? '<div><strong>Estimated price:</strong> IDR ' + kanhaCtx.cabin_price.toLocaleString('en-US') + ' per person' +
+        '<div style="font-size:11px;color:#6B7280;margin-top:2px">≈ USD ' + Math.round(kanhaCtx.cabin_price / USD_IDR_RATE).toLocaleString('en-US') + ' / person</div></div>'
       : '<div><strong>Estimated price:</strong> To be confirmed</div>';
     sailingSummary.innerHTML =
       '<div style="font:700 11px/1 \'Inter\',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:10px">★ Selected Sailing</div>' +
@@ -1257,7 +1343,7 @@
 
   // ═════════════ PRICE + SELECTION STATE ═════════════
   const form = document.getElementById('bookForm');
-  const fmt = n => 'IDR ' + n.toLocaleString('en-US');
+  const fmt = n => formatIDR(n);
 
   function syncOptCheckedClass() {
     form.querySelectorAll('.opt').forEach(o => {
@@ -1291,7 +1377,9 @@
     setAll('[data-out="unit"]', fmt(unit) + (mode === 'flat' ? ' · whole group' : ' / person'));
     setAll('[data-out="pax"]',  paxVal + (paxVal === 1 ? ' traveler' : ' travelers'));
     setAll('[data-out="type"]', type.dataset.label);
-    setAll('[data-out="total"]', fmt(total));
+    const usdTotal = Math.round(total / USD_IDR_RATE);
+    const usdLine  = '<span style="display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px">≈ USD ' + usdTotal.toLocaleString('en-US') + '</span>';
+    setAll('[data-out="total"]', fmt(total) + usdLine);
     setAll('[data-out="sub"]',   mode === 'flat' ? 'whole group price' : chargeablePax + ' × ' + fmt(unit));
 
     // Kanha sidebar: chargeable pax row + min pax note visibility
@@ -1716,4 +1804,12 @@
 </noscript>
 
 </body>
-</html>
+</html>    // Show inventory error if URL was manipulated
+    if (kanhaCtx.inventoryError) {
+      const errDiv = document.createElement('div');
+      errDiv.style.cssText = 'max-width:680px;margin:0 auto 20px;padding:16px 20px;background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:12px;font-size:13.5px;color:#991B1B;line-height:1.6';
+      errDiv.innerHTML = '<strong>⚠ Cabin Selection Error</strong><br>' + kanhaCtx.inventoryError + '<br><a href="kanha-liveaboard-booking.html" style="color:#B91C1C;font-weight:600;text-decoration:underline">← Return to booking page</a>';
+      const target = document.querySelector('.book-summary') || document.querySelector('main') || document.body;
+      if (target && target.parentNode) target.parentNode.insertBefore(errDiv, target);
+    }
+    
