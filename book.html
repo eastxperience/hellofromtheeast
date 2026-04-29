@@ -194,6 +194,20 @@
     .pax-n { flex: 1; text-align: center; }
   }
 
+  /* ─── Private cabin locked pax UI ─── */
+  .pax-locked { justify-content: flex-start; gap: 0; }
+  .pax-fixed  { font-size: 18px; font-weight: 700; color: var(--ink); padding: 0 12px; min-width: 56px; text-align: center; }
+  .pax-note   { font-size: 11px; color: var(--muted); margin: 4px 0 0; }
+  .third-person-row {
+    display: flex; align-items: flex-start; gap: 10px; margin-top: 10px; cursor: pointer;
+    padding: 10px 12px; border-radius: 8px; border: 1.5px solid var(--line);
+    background: rgba(0,0,0,.02); transition: border-color .2s, background .2s;
+  }
+  .third-person-row:hover  { border-color: var(--accent); background: rgba(0,113,255,.03); }
+  .third-person-row input[type="checkbox"] { margin-top: 2px; width: 16px; height: 16px; flex-shrink: 0; accent-color: var(--accent); cursor: pointer; }
+  .third-person-row.is-checked { border-color: var(--accent); background: rgba(0,113,255,.05); }
+  .pax-warn { font-size: 12px; color: #B45309; font-weight: 500; margin-top: 6px; padding: 4px 8px; background: rgba(180,83,9,.08); border-radius: 4px; }
+
   /* ─── Kanha select: dropdown arrow + touch-safe ─── */
   .kanha-select {
     width:100%; min-height:48px; padding:14px 40px 14px 16px;
@@ -588,11 +602,11 @@
       validCabins: ['share-cabin','superior-cabin-1','superior-cabin-2',
                     'deluxe-ocean-view-1','deluxe-ocean-view-2','family-cabin','master-ocean-view'],
       cabinGroups: {
-        'share-cabin':      { name:'Share Cabin',           totalUnits:1, minPax:2, maxPax:8, price:5500000, type:'shared', hasThirdPerson:false },
-        'superior-cabin':   { name:'Superior Cabin',        totalUnits:2, minPax:2, maxPax:2, price:6900000, type:'private', hasThirdPerson:false },
-        'family-cabin':     { name:'Family / Share Cabin',  totalUnits:1, minPax:2, maxPax:4, price:6900000, type:'private', hasThirdPerson:false },
-        'deluxe-ocean-view':{ name:'Deluxe Ocean View',     totalUnits:2, minPax:2, maxPax:3, price:8500000, type:'private', hasThirdPerson:true },
-        'master-ocean-view':{ name:'Master Ocean View',     totalUnits:1, minPax:2, maxPax:3, price:9500000, type:'private', hasThirdPerson:true }
+        'share-cabin':      { name:'Share Cabin',           totalUnits:1, minPax:2, maxPax:8,  price:5500000,  type:'shared',  hasThirdPerson:false, capacityMode:'shared_counter' },
+        'superior-cabin':   { name:'Superior Cabin',        totalUnits:2, minPax:2, maxPax:2,  price:6900000,  type:'private', hasThirdPerson:false, capacityMode:'fixed_private_2' },
+        'family-cabin':     { name:'Family / Share Cabin',  totalUnits:1, minPax:2, maxPax:4,  price:6900000,  type:'private', hasThirdPerson:false, capacityMode:'shared_counter' },
+        'deluxe-ocean-view':{ name:'Deluxe Ocean View',     totalUnits:2, minPax:2, maxPax:3,  price:8500000,  type:'private', hasThirdPerson:true,  capacityMode:'private_2_plus_optional_3rd' },
+        'master-ocean-view':{ name:'Master Ocean View',     totalUnits:1, minPax:2, maxPax:3,  price:9500000,  type:'private', hasThirdPerson:true,  capacityMode:'private_2_plus_optional_3rd' }
       }
     },
     'kanha-citta': {
@@ -600,19 +614,19 @@
       validCabins: ['share-room','deluxe-ocean-view-1','deluxe-ocean-view-2','deluxe-ocean-view-3',
                     'shakti-room','sedana-room','gayatri-room'],
       cabinGroups: {
-        'share-room':        { name:'Share Room',        totalUnits:1, minPax:2, maxPax:8, price:5800000, type:'shared', hasThirdPerson:false },
-        'deluxe-ocean-view': { name:'Deluxe Ocean View', totalUnits:3, minPax:2, maxPax:2, price:8700000, type:'private', hasThirdPerson:false },
-        'shakti-room':       { name:'Shakti Room',       totalUnits:1, minPax:2, maxPax:3, price:9500000, type:'private', hasThirdPerson:true },
-        'sedana-room':       { name:'Sedana Room',       totalUnits:1, minPax:2, maxPax:3, price:9500000, type:'private', hasThirdPerson:true },
-        'gayatri-room':      { name:'Gayatri Room',      totalUnits:1, minPax:2, maxPax:3, price:12500000, type:'private', hasThirdPerson:true }
+        'share-room':        { name:'Share Room',        totalUnits:1, minPax:2, maxPax:8,  price:5800000,  type:'shared',  hasThirdPerson:false, capacityMode:'shared_counter' },
+        'deluxe-ocean-view': { name:'Deluxe Ocean View', totalUnits:3, minPax:2, maxPax:2,  price:8700000,  type:'private', hasThirdPerson:false, capacityMode:'fixed_private_2' },
+        'shakti-room':       { name:'Shakti Room',       totalUnits:1, minPax:2, maxPax:3,  price:9500000,  type:'private', hasThirdPerson:true,  capacityMode:'private_2_plus_optional_3rd' },
+        'sedana-room':       { name:'Sedana Room',       totalUnits:1, minPax:2, maxPax:3,  price:9500000,  type:'private', hasThirdPerson:true,  capacityMode:'private_2_plus_optional_3rd' },
+        'gayatri-room':      { name:'Gayatri Room',      totalUnits:1, minPax:2, maxPax:3,  price:12500000, type:'private', hasThirdPerson:true,  capacityMode:'private_2_plus_optional_3rd' }
       }
     },
     'kanha-natha': {
       thirdPersonFee: 3750000,
       validCabins: ['share-cabin-1','share-cabin-2','private-ocean-view-1','private-ocean-view-2'],
       cabinGroups: {
-        'share-cabin':       { name:'Share Cabin',        totalUnits:2, minPax:2, maxPax:4, price:4800000, type:'shared', hasThirdPerson:false },
-        'private-ocean-view':{ name:'Private Ocean View', totalUnits:2, minPax:2, maxPax:3, price:7800000, type:'private', hasThirdPerson:true }
+        'share-cabin':       { name:'Share Cabin',        totalUnits:2, minPax:2, maxPax:4, price:4800000, type:'shared',  hasThirdPerson:false, capacityMode:'shared_counter' },
+        'private-ocean-view':{ name:'Private Ocean View', totalUnits:2, minPax:2, maxPax:3, price:7800000, type:'private', hasThirdPerson:true,  capacityMode:'private_2_plus_optional_3rd' }
       }
     }
   };
@@ -1175,32 +1189,17 @@
         </label>
       `;
     }
-    // ── Enforce physical capacity on pax counter ──────────────────────────
-    const paxCtrl = document.getElementById('paxGroup');
-    if (paxCtrl) {
-      const invBoat  = KANHA_INVENTORY[kanhaCtx.boat_id] || {};
-      // Derive group key from unit-level cabin id
-      const cabinIdStr = kanhaCtx.cabin_id || '';
-      const groupKey   = cabinIdStr.replace(/-[0-9]+$/, '');
-      const cabinDef   = (invBoat.cabinGroups || {})[groupKey]
-                      || (invBoat.cabinGroups || {})[cabinIdStr];
-      if (cabinDef && cabinDef.maxPax) {
-        const maxAllowed = cabinDef.maxPax;
-        paxCtrl.setAttribute('data-max', String(maxAllowed));
-        // Clamp current value
-        const paxInput  = paxCtrl.querySelector('input[name="pax"]');
-        const paxDisplay= paxCtrl.querySelector('.pax-n');
-        if (paxInput && parseInt(paxInput.value,10) > maxAllowed) {
-          paxInput.value = maxAllowed;
-          if (paxDisplay) paxDisplay.textContent = maxAllowed;
-        }
-        // Show capacity note
-        const paxHint = document.querySelector('[data-bind="paxHint"]');
-        if (paxHint) {
-          paxHint.textContent = 'max ' + maxAllowed + ' guests for this cabin';
-          paxHint.style.color = '#B45309';
-        }
-      }
+    // ── Enforce physical capacity: replace pax UI based on cabin capacityMode ──
+    {
+      const invBoatRPU = KANHA_INVENTORY[kanhaCtx.boat_id] || {};
+      const cabIdStr   = kanhaCtx.cabin_id || '';
+      const grpKey     = cabIdStr.replace(/-[0-9]+$/, '');
+      const cabDefRPU  = (invBoatRPU.cabinGroups || {})[grpKey]
+                       || (invBoatRPU.cabinGroups || {})[cabIdStr];
+      const tpFeeRPU   = invBoatRPU.thirdPersonFee || 0;
+      // Read any incoming pax from URL (normalize it before rendering)
+      const rawPax = parseInt((new URLSearchParams(location.search)).get('pax') || '2', 10);
+      renderPaxUI(cabDefRPU, tpFeeRPU, rawPax, kanhaCtx.cabin_name || '');
     }
 
     // Prefill + lock the date input
@@ -1385,7 +1384,123 @@
     });
   }
 
-  function recalc() {
+  // ────────────────────────────────────────────────────────────────────────
+  // renderPaxUI — replaces paxGroup content based on cabin capacityMode
+  // Called once when kanhaCtx loads; re-wires all pax change events.
+  // ────────────────────────────────────────────────────────────────────────
+  function renderPaxUI(cabinDef, tpFee, initialPax, cabinName) {
+    const paxGroup = document.getElementById('paxGroup');
+    if (!paxGroup) return;
+    const mode = (cabinDef && cabinDef.capacityMode) || 'shared_counter';
+    const minP = (cabinDef && cabinDef.minPax) || 2;
+    const maxP = (cabinDef && cabinDef.maxPax) || 8;
+    const tpIDR = tpFee ? tpFee.toLocaleString('en-US') : '0';
+    const tpUSD = tpFee ? Math.round(tpFee / USD_IDR_RATE).toLocaleString('en-US') : '0';
+
+    // Clamp initial pax to valid range for this cabin
+    let initPax = Math.max(minP, Math.min(maxP, isNaN(initialPax) ? minP : initialPax));
+    let warnMsg = '';
+    if (!isNaN(initialPax) && initialPax > maxP) {
+      warnMsg = (cabinName || 'This cabin') + ' fits up to ' + maxP + ' guests. Guest count has been adjusted.';
+    }
+
+    if (mode === 'fixed_private_2') {
+      // ── LOCKED AT 2 ──────────────────────────────────────────────────────
+      paxGroup.removeAttribute('data-pax'); // prevent ex-core re-init
+      paxGroup.innerHTML =
+        '<div class="pax-lbl">' +
+          '<span class="t">Number of guests</span>' +
+          '<span class="s">Private cabin · fixed 2 guests</span>' +
+        '</div>' +
+        '<div class="pax-ctrl pax-locked">' +
+          '<span class="pax-n pax-fixed" aria-live="polite">2</span>' +
+          '<input type="hidden" name="pax" value="2">' +
+        '</div>' +
+        '<p class="pax-note">This private cabin is for exactly 2 guests.</p>';
+      paxGroup.dispatchEvent(new CustomEvent('pax:change', { bubbles: true, detail: { value: 2 } }));
+
+    } else if (mode === 'private_2_plus_optional_3rd') {
+      // ── 2 + OPTIONAL 3RD PERSON ──────────────────────────────────────────
+      paxGroup.removeAttribute('data-pax');
+      const pre3 = (initPax === 3);
+      paxGroup.innerHTML =
+        '<div class="pax-lbl">' +
+          '<span class="t">Number of guests</span>' +
+          '<span class="s">2 guests included in this private cabin</span>' +
+        '</div>' +
+        '<div class="pax-ctrl pax-locked">' +
+          '<span class="pax-n" id="paxDisplay" aria-live="polite">' + (pre3 ? '3' : '2') + '</span>' +
+          '<input type="hidden" name="pax" value="' + (pre3 ? '3' : '2') + '">' +
+        '</div>' +
+        '<label class="third-person-row' + (pre3 ? ' is-checked' : '') + '" id="thirdPersonRow">' +
+          '<input type="checkbox" id="thirdPersonChk" name="thirdPerson" value="1"' + (pre3 ? ' checked' : '') + '>' +
+          '<span>' +
+            '<strong style="font-size:13px;display:block">Add 3rd person</strong>' +
+            '<span style="font-size:12px;color:var(--muted)">+ IDR ' + tpIDR + ' &nbsp;<span style="font-weight:400">&#8776; USD ' + tpUSD + '</span></span>' +
+          '</span>' +
+        '</label>' +
+        '<p class="pax-note">Maximum 3 guests in this cabin.</p>' +
+        (warnMsg ? '<p class="pax-warn">' + warnMsg + '</p>' : '');
+      // Wire checkbox
+      var chk  = document.getElementById('thirdPersonChk');
+      var row  = document.getElementById('thirdPersonRow');
+      var inp  = paxGroup.querySelector('input[name="pax"]');
+      var disp = document.getElementById('paxDisplay');
+      chk.addEventListener('change', function() {
+        var v = chk.checked ? 3 : 2;
+        inp.value = String(v);
+        disp.textContent = String(v);
+        row.classList.toggle('is-checked', chk.checked);
+        paxGroup.dispatchEvent(new CustomEvent('pax:change', { bubbles: true, detail: { value: v } }));
+      });
+      paxGroup.dispatchEvent(new CustomEvent('pax:change', { bubbles: true, detail: { value: pre3 ? 3 : 2 } }));
+
+    } else {
+      // ── SHARED COUNTER (capped at maxPax) ────────────────────────────────
+      // Keep data-pax so ex-core manages it, but re-stamp min/max and rebuild innerHTML
+      paxGroup.setAttribute('data-pax', '');
+      paxGroup.setAttribute('data-min', String(minP));
+      paxGroup.setAttribute('data-max', String(maxP));
+      paxGroup.innerHTML =
+        '<div class="pax-lbl">' +
+          '<span class="t">Number of guests</span>' +
+          '<span class="s" id="paxSharedHint">Select guest count · Min ' + minP + ' · Max ' + maxP + '</span>' +
+        '</div>' +
+        '<div class="pax-ctrl">' +
+          '<button type="button" class="pax-btn" data-act="-" aria-label="Decrease guests">−</button>' +
+          '<span class="pax-n" aria-live="polite">' + initPax + '</span>' +
+          '<button type="button" class="pax-btn" data-act="+" aria-label="Increase guests">+</button>' +
+          '<input type="hidden" name="pax" value="' + initPax + '">' +
+        '</div>' +
+        (warnMsg ? '<p class="pax-warn">' + warnMsg + '</p>' : '');
+      // Re-initialize counter (ex-core already ran at DOMContentLoaded, but we replaced innerHTML)
+      var shInput = paxGroup.querySelector('input[name="pax"]');
+      var shOut   = paxGroup.querySelector('.pax-n');
+      var shMinus = paxGroup.querySelector('[data-act="-"]');
+      var shPlus  = paxGroup.querySelector('[data-act="+"]');
+      var shCur   = initPax;
+      var shMin   = minP; var shMax = maxP;
+      var shSet   = function(v) {
+        v = Math.max(shMin, Math.min(shMax, v));
+        shCur = v;
+        shInput.value = String(v);
+        shOut.textContent = String(v);
+        shMinus.disabled = v <= shMin;
+        shPlus.disabled  = v >= shMax;
+        var hint = document.getElementById('paxSharedHint');
+        if (hint) hint.textContent = v >= shMax ? 'Maximum capacity reached' : 'Select guest count · Min ' + shMin + ' · Max ' + shMax;
+        paxGroup.dispatchEvent(new CustomEvent('pax:change', { bubbles: true, detail: { value: v } }));
+      };
+      shMinus.addEventListener('click', function(e){ e.preventDefault(); shSet(shCur - 1); });
+      shPlus.addEventListener('click',  function(e){ e.preventDefault(); shSet(shCur + 1); });
+      shSet(shCur);
+    }
+    // Hide the old paxHint span (replaced by new copy inside renderPaxUI output)
+    var oldHint = document.querySelector('[data-bind="paxHint"]');
+    if (oldHint) oldHint.style.display = 'none';
+  }
+
+    function recalc() {
     const type = form.querySelector('input[name="type"]:checked');
     const paxVal = parseInt(form.querySelector('[name="pax"]').value || '1', 10);
     if (!type) return;
@@ -1430,7 +1545,21 @@
     const usdTotal = Math.round(total / USD_IDR_RATE);
     const usdLine  = '<span style="display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px">&#8776; USD ' + usdTotal.toLocaleString('en-US') + '</span>';
     setAllHTML('[data-out="total"]', fmt(total) + usdLine);
-    setAll('[data-out="sub"]',   mode === 'flat' ? 'whole group price' : chargeablePax + ' × ' + fmt(unit));
+    // ── Sub-line: show 3rd-person add-on if applicable ──────────────────────
+    if (slug === 'komodo-sailing-3d2n' && kanhaCtx && kanhaCtx.hasTrip && isPrivate) {
+      const invB3 = KANHA_INVENTORY[kanhaCtx.boat_id] || {};
+      const grpK3 = (kanhaCtx.cabin_id || '').replace(/-[0-9]+$/, '');
+      const cDef3 = (invB3.cabinGroups || {})[grpK3] || (invB3.cabinGroups || {})[kanhaCtx.cabin_id];
+      if (cDef3 && cDef3.hasThirdPerson && chargeablePax === 3 && invB3.thirdPersonFee) {
+        setAll('[data-out="sub"]', '2 × ' + fmt(unit) + ' + 3rd person');
+      } else if (cDef3 && cDef3.capacityMode === 'fixed_private_2') {
+        setAll('[data-out="sub"]', 'private cabin · 2 pax');
+      } else {
+        setAll('[data-out="sub"]', mode === 'flat' ? 'whole group price' : chargeablePax + ' × ' + fmt(unit));
+      }
+    } else {
+      setAll('[data-out="sub"]',   mode === 'flat' ? 'whole group price' : chargeablePax + ' × ' + fmt(unit));
+    }
 
     // Kanha sidebar: chargeable pax row + min pax note visibility
     const chargeableEl = document.getElementById('summChargeablePax');
@@ -1555,6 +1684,8 @@
         '*Travelers:* ' + p.pax,
         isPrivate ? '*Chargeable pax:* ' + chargeablePax : '',
         isPrivate ? '*Private cabin minimum:* 2 pax' : '',
+        (isPrivate && chargeablePax === 3 && p.thirdPerson) ? '*3rd person add-on:* Yes' : (isPrivate ? '*3rd person add-on:* No' : ''),
+        (isPrivate && chargeablePax === 3 && p.thirdPerson) ? (() => { const waB=KANHA_INVENTORY[k.boat_id||k.boat_name]||{}; const tpF=waB.thirdPersonFee||0; return tpF ? '*3rd person price:* IDR ' + tpF.toLocaleString('en-US') + ' (approx. USD ' + Math.round(tpF/USD_IDR_RATE).toLocaleString('en-US') + ')' : ''; })() : '',
         k.cabin_price ? '*Cabin price:* IDR ' + k.cabin_price.toLocaleString('en-US') + ' / guest (approx. USD ' + Math.round(k.cabin_price / USD_IDR_RATE).toLocaleString('en-US') + ' / guest)' : '',
         totalLine,
         '*Currency note:* Final invoice issued in IDR. USD shown for reference only.',
@@ -1643,6 +1774,29 @@
       return;
     }
 
+    // ── Validate cabin capacity before submit ─────────────────
+    if (typeof kanhaCtx !== 'undefined' && kanhaCtx && kanhaCtx.hasTrip) {
+      var valInvB = KANHA_INVENTORY[kanhaCtx.boat_id] || {};
+      var valGrp  = (kanhaCtx.cabin_id || '').replace(/-[0-9]+$/, '');
+      var valCDef = (valInvB.cabinGroups || {})[valGrp] || (valInvB.cabinGroups || {})[kanhaCtx.cabin_id];
+      if (valCDef) {
+        var submittedPax = parseInt(data.get('pax') || '2', 10);
+        if (submittedPax > valCDef.maxPax || submittedPax < (valCDef.minPax || 2)) {
+          toast('Guest count exceeds this cabin capacity. Please adjust before sending your request.');
+          return;
+        }
+        var thirdChk = document.getElementById('thirdPersonChk');
+        if (valCDef.capacityMode === 'fixed_private_2' && submittedPax !== 2) {
+          toast('This private cabin is fixed at 2 guests. Please refresh and try again.');
+          return;
+        }
+        if (valCDef.capacityMode === 'private_2_plus_optional_3rd' && submittedPax > 3) {
+          toast('Guest count exceeds this cabin capacity. Please adjust before sending your request.');
+          return;
+        }
+      }
+    }
+
     // ── TASK 11: Prevent double submit ─────────────────────────
     var btn = document.getElementById('submitBtn');
     var stickyBtn = document.getElementById('stickySubmitBtn');
@@ -1697,6 +1851,7 @@
       pax:          paxVal,
       chargeablePax: chargeablePax,
       kanhaIsPrivate: form._kanhaIsPrivate !== undefined ? form._kanhaIsPrivate : false,
+      thirdPerson:  (function(){ var chk=document.getElementById('thirdPersonChk'); return chk ? chk.checked : false; })(),
       name:        guestData.name,
       whatsapp:    guestData.whatsapp,
       email:       guestData.email,
