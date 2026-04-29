@@ -319,6 +319,19 @@
     cursor: pointer; padding: 4px 0;
     text-decoration: underline; text-underline-offset: 3px;
   }
+
+  /* ─── Inventory error card ─── */
+  .inventory-error-card {
+    max-width: 680px; margin: 20px auto; padding: 16px 20px;
+    background: #FEF2F2; border: 1.5px solid #FCA5A5;
+    border-radius: 12px; font-size: 13.5px; color: #991B1B; line-height: 1.6;
+  }
+  .inventory-error-card strong { display: block; margin-bottom: 6px; font-weight: 700; }
+  .inventory-error-card a {
+    display: inline-block; margin-top: 8px; color: #991B1B;
+    font-weight: 700; text-decoration: underline;
+  }
+
 </style>
 </head>
 
@@ -1144,6 +1157,25 @@
     }
     return ctx;
   })();
+
+  // ─── Show inventory error if URL was manipulated ────────────────────────
+  function showInventoryError(message) {
+    var errDiv = document.createElement('div');
+    errDiv.className = 'inventory-error-card';
+    errDiv.innerHTML =
+      '<strong>&#9888; Cabin Selection Error</strong>' +
+      '<p>' + message + '</p>' +
+      '<a href="kanha-liveaboard-booking.html?product=sailing-3d2n">Return to Booking Page</a>';
+    var target = document.querySelector('.book-summary') ||
+                 document.querySelector('main') ||
+                 document.body;
+    if (target && target.parentNode) {
+      target.parentNode.insertBefore(errDiv, target);
+    }
+  }
+  if (kanhaCtx && kanhaCtx.inventoryError) {
+    showInventoryError(kanhaCtx.inventoryError);
+  }
 
   // Override trust ribbon for komodo-sailing-3d2n
   if (slug === 'komodo-sailing-3d2n') {
@@ -2026,12 +2058,4 @@
 </noscript>
 
 </body>
-</html>    // Show inventory error if URL was manipulated
-    if (kanhaCtx.inventoryError) {
-      const errDiv = document.createElement('div');
-      errDiv.style.cssText = 'max-width:680px;margin:0 auto 20px;padding:16px 20px;background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:12px;font-size:13.5px;color:#991B1B;line-height:1.6';
-      errDiv.innerHTML = '<strong>⚠ Cabin Selection Error</strong><br>' + kanhaCtx.inventoryError + '<br><a href="kanha-liveaboard-booking.html" style="color:#B91C1C;font-weight:600;text-decoration:underline">← Return to booking page</a>';
-      const target = document.querySelector('.book-summary') || document.querySelector('main') || document.body;
-      if (target && target.parentNode) target.parentNode.insertBefore(errDiv, target);
-    }
-    
+</html>
