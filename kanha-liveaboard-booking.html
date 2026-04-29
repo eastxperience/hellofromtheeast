@@ -633,6 +633,9 @@ Tap a highlighted date to pick your departure.
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r=".5" fill="currentColor"/></svg>
           <span>Final cabin availability is confirmed by our team — <strong>no payment today.</strong> Continue to the booking form to complete your guest details.</span>
         </div>
+        <!-- Booking validation error -->
+        <div id="bookingError" style="display:none;background:#FEF2F2;border:1.5px solid #FCA5A5;border-radius:10px;padding:14px 18px;margin:0 0 12px;color:#B91C1C;font-size:13px;font-weight:500;line-height:1.5"></div>
+
         <div class="bk-wa-wrap">
           <a class="bk-wa-btn is-disabled" id="bkWaBtn" href="#" target="_self" aria-disabled="true" data-mode="idle">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
@@ -775,69 +778,1564 @@ const API_CABIN_KEYS = {
 // ─── SPREADSHEET SCHEDULE (source of truth: synced from Google Sheets) ───────
 const SCHEDULE = {
   'kanha-loka': {
-    departureDates: ["2026-05-01","2026-05-05","2026-05-08","2026-05-15","2026-05-18","2026-05-22","2026-05-26","2026-05-29","2026-06-02","2026-06-05","2026-06-09","2026-06-12","2026-06-16","2026-06-19","2026-06-23","2026-06-26","2026-06-29","2026-07-03","2026-07-06","2026-07-10","2026-07-13","2026-07-17","2026-07-21","2026-07-24","2026-07-28","2026-07-31","2026-08-04","2026-08-07","2026-08-11","2026-08-14","2026-08-18","2026-08-21","2026-08-25","2026-08-28","2026-09-01","2026-09-04","2026-09-08","2026-09-11","2026-09-15","2026-09-18","2026-09-22","2026-09-25","2026-09-29","2026-10-02","2026-10-09","2026-10-16","2026-10-23","2026-10-27","2026-10-30","2026-11-06","2026-11-13","2026-11-20","2026-11-27","2026-12-04","2026-12-11","2026-12-18"],
+    departureDates: ["2026-02-06", "2026-02-13", "2026-02-20", "2026-02-27", "2026-03-03", "2026-03-06", "2026-03-10", "2026-03-13", "2026-03-17", "2026-03-31", "2026-04-03", "2026-04-07", "2026-04-10", "2026-04-17", "2026-04-22", "2026-04-24", "2026-05-01", "2026-05-05", "2026-05-08", "2026-05-15", "2026-05-18", "2026-05-22", "2026-05-26", "2026-05-29", "2026-06-02", "2026-06-05", "2026-06-09", "2026-06-12", "2026-06-16", "2026-06-19", "2026-06-23", "2026-06-26", "2026-06-29", "2026-07-03", "2026-07-06", "2026-07-10", "2026-07-13", "2026-07-17", "2026-07-21", "2026-07-24", "2026-07-28", "2026-07-31", "2026-08-04", "2026-08-07", "2026-08-11", "2026-08-14", "2026-08-18", "2026-08-21", "2026-08-25", "2026-08-28", "2026-09-01", "2026-09-04", "2026-09-08", "2026-09-11", "2026-09-15", "2026-09-18", "2026-09-22", "2026-09-25", "2026-09-29", "2026-10-02", "2026-10-09", "2026-10-16", "2026-10-23", "2026-10-27", "2026-10-30", "2026-11-06", "2026-11-13", "2026-11-20", "2026-11-27", "2026-12-04", "2026-12-11", "2026-12-18"],
     unitStatus: {
-      '2026-05-01': {"share-cabin":"booked"},
-      '2026-05-08': {"superior-cabin-1":"booked","family-cabin":"booked","master-ocean-view":"booked"},
-      '2026-05-15': {"superior-cabin-2":"booked","deluxe-ocean-view-1":"booked","deluxe-ocean-view-2":"booked","family-cabin":"booked"},
-      '2026-05-29': {"share-cabin":"booked"},
-      '2026-06-02': {"share-cabin":"booked"},
-      '2026-06-09': {"deluxe-ocean-view-2":"booked","family-cabin":"booked"},
-      '2026-06-16': {"share-cabin":"booked","family-cabin":"booked"},
-      '2026-06-19': {"share-cabin":"booked","deluxe-ocean-view-1":"booked"},
-      '2026-06-23': {"master-ocean-view":"booked"},
-      '2026-07-03': {"family-cabin":"booked"},
-      '2026-07-06': {"share-cabin":"booked","family-cabin":"booked"},
-      '2026-07-10': {"master-ocean-view":"booked"},
-      '2026-07-13': {"share-cabin":"booked"},
-      '2026-07-21': {"share-cabin":"booked"},
-      '2026-07-31': {"deluxe-ocean-view-1":"booked","family-cabin":"booked"},
-      '2026-08-04': {"master-ocean-view":"booked"},
-      '2026-08-07': {"deluxe-ocean-view-2":"booked","family-cabin":"booked","master-ocean-view":"booked"},
-      '2026-08-11': {"share-cabin":"booked","deluxe-ocean-view-2":"booked","master-ocean-view":"booked"},
-      '2026-08-14': {"share-cabin":"booked"},
-      '2026-08-18': {"superior-cabin-1":"booked","superior-cabin-2":"booked","deluxe-ocean-view-1":"booked","family-cabin":"booked","master-ocean-view":"booked"},
-      '2026-08-21': {"superior-cabin-1":"booked"},
-      '2026-08-28': {"family-cabin":"booked"},
-      '2026-09-01': {"family-cabin":"booked"},
-      '2026-09-11': {"share-cabin":"booked"},
-      '2026-09-22': {"superior-cabin-1":"booked"},
-      '2026-09-25': {"deluxe-ocean-view-2":"booked"},
-      '2026-10-02': {"superior-cabin-2":"booked"},
-      '2026-10-16': {"family-cabin":"booked"}
-    }
+      "2026-02-06": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-02-13": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-02-20": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-02-27": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-03-03": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-03-06": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-03-10": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-03-13": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-03-17": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-03-31": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-04-03": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "booked"
+      },
+      "2026-04-07": {
+            "share-cabin": "booked",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "booked",
+            "deluxe-ocean-view-2": "booked",
+            "family-cabin": "available",
+            "master-ocean-view": "booked"
+      },
+      "2026-04-10": {
+            "share-cabin": "booked",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "booked",
+            "master-ocean-view": "booked"
+      },
+      "2026-04-17": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-04-22": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-04-24": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-05-01": {
+            "share-cabin": "booked",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-05-05": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-05-08": {
+            "share-cabin": "available",
+            "superior-cabin-1": "booked",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "booked",
+            "master-ocean-view": "booked"
+      },
+      "2026-05-15": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "booked",
+            "deluxe-ocean-view-1": "booked",
+            "deluxe-ocean-view-2": "booked",
+            "family-cabin": "booked",
+            "master-ocean-view": "available"
+      },
+      "2026-05-18": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-05-22": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-05-26": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-05-29": {
+            "share-cabin": "booked",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-06-02": {
+            "share-cabin": "booked",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-06-05": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-06-09": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "booked",
+            "family-cabin": "booked",
+            "master-ocean-view": "available"
+      },
+      "2026-06-12": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-06-16": {
+            "share-cabin": "booked",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "booked",
+            "master-ocean-view": "available"
+      },
+      "2026-06-19": {
+            "share-cabin": "booked",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "booked",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-06-23": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "booked"
+      },
+      "2026-06-26": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-06-29": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-07-03": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "booked",
+            "master-ocean-view": "available"
+      },
+      "2026-07-06": {
+            "share-cabin": "booked",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "booked",
+            "master-ocean-view": "available"
+      },
+      "2026-07-10": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "booked"
+      },
+      "2026-07-13": {
+            "share-cabin": "booked",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-07-17": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-07-21": {
+            "share-cabin": "booked",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-07-24": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-07-28": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-07-31": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "booked",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "booked",
+            "master-ocean-view": "available"
+      },
+      "2026-08-04": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "booked"
+      },
+      "2026-08-07": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "booked",
+            "family-cabin": "booked",
+            "master-ocean-view": "booked"
+      },
+      "2026-08-11": {
+            "share-cabin": "booked",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "booked",
+            "family-cabin": "available",
+            "master-ocean-view": "booked"
+      },
+      "2026-08-14": {
+            "share-cabin": "booked",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-08-18": {
+            "share-cabin": "available",
+            "superior-cabin-1": "booked",
+            "superior-cabin-2": "booked",
+            "deluxe-ocean-view-1": "booked",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "booked",
+            "master-ocean-view": "booked"
+      },
+      "2026-08-21": {
+            "share-cabin": "available",
+            "superior-cabin-1": "booked",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-08-25": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-08-28": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "booked",
+            "master-ocean-view": "available"
+      },
+      "2026-09-01": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "booked",
+            "master-ocean-view": "available"
+      },
+      "2026-09-04": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-09-08": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-09-11": {
+            "share-cabin": "booked",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-09-15": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-09-18": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-09-22": {
+            "share-cabin": "available",
+            "superior-cabin-1": "booked",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-09-25": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "booked",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-09-29": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-10-02": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "booked",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-10-09": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-10-16": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "booked",
+            "master-ocean-view": "available"
+      },
+      "2026-10-23": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-10-27": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-10-30": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-11-06": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-11-13": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-11-20": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-11-27": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-12-04": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-12-11": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      },
+      "2026-12-18": {
+            "share-cabin": "available",
+            "superior-cabin-1": "available",
+            "superior-cabin-2": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "family-cabin": "available",
+            "master-ocean-view": "available"
+      }
+}
   },
   'kanha-natha': {
-    departureDates: ["2026-05-01","2026-05-05","2026-05-08","2026-05-12","2026-05-15","2026-05-18","2026-05-22","2026-05-26","2026-05-29","2026-06-02","2026-06-05","2026-06-09","2026-06-12","2026-06-20","2026-10-23","2026-10-30","2026-11-06","2026-11-13","2026-11-20","2026-11-27","2026-12-04","2026-12-11","2026-12-18","2026-12-25"],
+    departureDates: ["2026-03-03", "2026-03-06", "2026-03-10", "2026-03-13", "2026-03-17", "2026-03-21", "2026-03-25", "2026-03-31", "2026-04-03", "2026-04-10", "2026-04-17", "2026-04-25", "2026-04-28", "2026-05-01", "2026-05-05", "2026-05-08", "2026-05-12", "2026-05-15", "2026-05-18", "2026-05-22", "2026-05-26", "2026-05-29", "2026-06-02", "2026-06-05", "2026-06-09", "2026-06-12", "2026-06-20", "2026-10-23", "2026-10-30", "2026-11-06", "2026-11-13", "2026-11-20", "2026-11-27", "2026-12-04", "2026-12-11", "2026-12-18", "2026-12-25"],
     unitStatus: {
-      '2026-05-08': {"share-cabin-1":"booked","private-ocean-view-1":"booked","private-ocean-view-2":"booked"},
-      '2026-05-12': {"private-ocean-view-1":"booked","private-ocean-view-2":"booked"},
-      '2026-05-15': {"share-cabin-1":"booked"},
-      '2026-05-18': {"share-cabin-1":"booked","private-ocean-view-2":"booked"},
-      '2026-05-22': {"private-ocean-view-2":"booked"},
-      '2026-05-29': {"share-cabin-1":"booked","private-ocean-view-2":"booked"},
-      '2026-06-05': {"private-ocean-view-2":"booked"},
-      '2026-06-20': {"private-ocean-view-2":"booked"}
-    }
+      "2026-03-03": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-03-06": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "booked"
+      },
+      "2026-03-10": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-03-13": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-03-17": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-03-21": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-03-25": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-03-31": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-04-03": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-04-10": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-04-17": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-04-25": {
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "private-ocean-view-1": "booked",
+            "private-ocean-view-2": "booked"
+      },
+      "2026-04-28": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-05-01": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-05-05": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-05-08": {
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "private-ocean-view-1": "booked",
+            "private-ocean-view-2": "booked"
+      },
+      "2026-05-12": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "booked",
+            "private-ocean-view-2": "booked"
+      },
+      "2026-05-15": {
+            "share-cabin-1": "booked",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-05-18": {
+            "share-cabin-1": "booked",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "booked"
+      },
+      "2026-05-22": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "booked"
+      },
+      "2026-05-26": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-05-29": {
+            "share-cabin-1": "booked",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "booked"
+      },
+      "2026-06-02": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-06-05": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "booked"
+      },
+      "2026-06-09": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-06-12": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-06-20": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "booked"
+      },
+      "2026-10-23": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-10-30": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-11-06": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-11-13": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-11-20": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-11-27": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-12-04": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-12-11": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-12-18": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      },
+      "2026-12-25": {
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "private-ocean-view-1": "available",
+            "private-ocean-view-2": "available"
+      }
+}
   },
   'kanha-citta': {
-    departureDates: ["2026-05-01","2026-05-05","2026-05-08","2026-05-12","2026-05-15","2026-05-18","2026-05-22","2026-05-26","2026-06-02","2026-06-05","2026-06-09","2026-06-12","2026-06-16","2026-06-19","2026-06-23","2026-06-26","2026-06-30","2026-07-03","2026-07-06","2026-07-10","2026-07-13","2026-07-17","2026-07-21","2026-07-24","2026-07-28","2026-07-31","2026-08-03","2026-08-11","2026-08-14","2026-08-18","2026-08-21","2026-08-24","2026-08-28","2026-09-01","2026-09-04","2026-09-08","2026-09-11","2026-09-15","2026-09-18","2026-09-22","2026-09-25","2026-09-29","2026-10-02","2026-10-09","2026-10-16","2026-10-23","2026-10-30","2026-11-06","2026-11-13","2026-11-20","2026-11-27","2026-12-04","2026-12-11","2026-12-18","2026-12-25"],
+    departureDates: ["2026-02-06", "2026-02-13", "2026-02-20", "2026-02-24", "2026-02-27", "2026-03-03", "2026-03-06", "2026-03-10", "2026-03-13", "2026-03-17", "2026-03-20", "2026-03-23", "2026-03-27", "2026-03-31", "2026-04-03", "2026-04-07", "2026-04-10", "2026-04-17", "2026-04-24", "2026-04-28", "2026-05-01", "2026-05-05", "2026-05-08", "2026-05-12", "2026-05-15", "2026-05-18", "2026-05-22", "2026-05-26", "2026-06-02", "2026-06-05", "2026-06-09", "2026-06-12", "2026-06-16", "2026-06-19", "2026-06-23", "2026-06-26", "2026-06-30", "2026-07-03", "2026-07-06", "2026-07-10", "2026-07-13", "2026-07-17", "2026-07-21", "2026-07-24", "2026-07-28", "2026-07-31", "2026-08-03", "2026-08-11", "2026-08-14", "2026-08-18", "2026-08-21", "2026-08-24", "2026-08-28", "2026-09-01", "2026-09-04", "2026-09-08", "2026-09-11", "2026-09-15", "2026-09-18", "2026-09-22", "2026-09-25", "2026-09-29", "2026-10-02", "2026-10-09", "2026-10-16", "2026-10-23", "2026-10-30", "2026-11-06", "2026-11-13", "2026-11-20", "2026-11-27", "2026-12-04", "2026-12-11", "2026-12-18", "2026-12-25"],
     unitStatus: {
-      '2026-05-01': {"share-room":"booked","deluxe-ocean-view-1":"booked","deluxe-ocean-view-2":"booked","shakti-room":"booked","sedana-room":"booked","gayatri-room":"booked"},
-      '2026-05-05': {"share-room":"booked","deluxe-ocean-view-1":"booked","deluxe-ocean-view-2":"booked","deluxe-ocean-view-3":"booked","sedana-room":"booked","gayatri-room":"booked"},
-      '2026-05-15': {"share-room":"booked","deluxe-ocean-view-1":"booked","deluxe-ocean-view-3":"booked"},
-      '2026-05-26': {"share-room":"booked","gayatri-room":"booked"},
-      '2026-06-16': {"share-room":"booked","sedana-room":"booked"},
-      '2026-06-26': {"deluxe-ocean-view-1":"booked"},
-      '2026-06-30': {"gayatri-room":"booked"},
-      '2026-07-06': {"share-room":"booked","sedana-room":"booked","gayatri-room":"booked"},
-      '2026-07-10': {"shakti-room":"booked"},
-      '2026-07-21': {"share-room":"booked"},
-      '2026-08-11': {"deluxe-ocean-view-1":"booked","deluxe-ocean-view-2":"booked","deluxe-ocean-view-3":"booked","gayatri-room":"booked"},
-      '2026-08-18': {"share-room":"booked"},
-      '2026-08-24': {"shakti-room":"booked"},
-      '2026-11-13': {"sedana-room":"booked"}
-    }
+      "2026-02-06": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-02-13": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-02-20": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "booked",
+            "shakti-room": "available",
+            "sedana-room": "booked",
+            "gayatri-room": "booked"
+      },
+      "2026-02-24": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-02-27": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-03-03": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-03-06": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-03-10": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-03-13": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "booked",
+            "gayatri-room": "booked"
+      },
+      "2026-03-17": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-03-20": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-03-23": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "booked",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "booked",
+            "sedana-room": "booked",
+            "gayatri-room": "booked"
+      },
+      "2026-03-27": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-03-31": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-04-03": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-04-07": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-04-10": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-04-17": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "booked",
+            "deluxe-ocean-view-2": "booked",
+            "deluxe-ocean-view-3": "booked",
+            "shakti-room": "booked",
+            "sedana-room": "booked",
+            "gayatri-room": "booked"
+      },
+      "2026-04-24": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-04-28": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "booked",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "booked"
+      },
+      "2026-05-01": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "booked",
+            "deluxe-ocean-view-2": "booked",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "booked",
+            "sedana-room": "booked",
+            "gayatri-room": "booked"
+      },
+      "2026-05-05": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "booked",
+            "deluxe-ocean-view-2": "booked",
+            "deluxe-ocean-view-3": "booked",
+            "shakti-room": "available",
+            "sedana-room": "booked",
+            "gayatri-room": "booked"
+      },
+      "2026-05-08": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-05-12": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-05-15": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "booked",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "booked",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-05-18": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-05-22": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-05-26": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "booked"
+      },
+      "2026-06-02": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-06-05": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-06-09": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-06-12": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-06-16": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "booked",
+            "gayatri-room": "available"
+      },
+      "2026-06-19": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-06-23": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-06-26": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "booked",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-06-30": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "booked"
+      },
+      "2026-07-03": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-07-06": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "booked",
+            "gayatri-room": "booked"
+      },
+      "2026-07-10": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "booked",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-07-13": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-07-17": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-07-21": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-07-24": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-07-28": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-07-31": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-08-03": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-08-11": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "booked",
+            "deluxe-ocean-view-2": "booked",
+            "deluxe-ocean-view-3": "booked",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "booked"
+      },
+      "2026-08-14": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-08-18": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-08-21": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-08-24": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "booked",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-08-28": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-09-01": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-09-04": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-09-08": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-09-11": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-09-15": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-09-18": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-09-22": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-09-25": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-09-29": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-10-02": {
+            "share-room": "booked",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-10-09": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-10-16": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-10-23": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-10-30": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-11-06": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-11-13": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "booked",
+            "gayatri-room": "available"
+      },
+      "2026-11-20": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-11-27": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-12-04": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-12-11": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-12-18": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      },
+      "2026-12-25": {
+            "share-room": "available",
+            "deluxe-ocean-view-1": "available",
+            "deluxe-ocean-view-2": "available",
+            "deluxe-ocean-view-3": "available",
+            "shakti-room": "available",
+            "sedana-room": "available",
+            "gayatri-room": "available"
+      }
+}
   }
 };
 
@@ -1239,8 +2737,41 @@ function resumeFromDraft(d) {
 /* ── goToBookingForm: single source of truth for final CTA action ── */
 function goToBookingForm(){
   if(!selBoat||!selDate||!selCabin) return;
+
+  // ── Capacity validation ──────────────────────────────────────────
+  const selCabinEl = document.querySelector(`.cabin-opt[data-cabin="${selCabin}"]`);
+  const maxPax = selCabinEl ? parseInt(selCabinEl.dataset.maxpax || '8', 10) : 8;
+  const minPax = selCabinEl ? parseInt(selCabinEl.dataset.minpax || '1', 10) : 1;
+
+  // Check departure date is valid (must be in SCHEDULE departureDates)
+  const boatSched = SCHEDULE[selBoat];
+  if (boatSched && boatSched.departureDates) {
+    if (boatSched.departureDates.indexOf(selDate) < 0) {
+      showBookingError('The selected date (' + selDate + ') is not a valid departure date. Please choose a departure start date from the calendar.');
+      return;
+    }
+  }
+
+  // Check cabin status
+  const cabinStatus = getCabinStatusForDate(selBoat, selCabin, selDate);
+  if (cabinStatus === 'booked' || cabinStatus === 'on_hold' || cabinStatus === 'private_charter' || cabinStatus === 'maintenance') {
+    showBookingError('This cabin is no longer available for the selected departure. Please choose another cabin.');
+    return;
+  }
+
   const url = buildBookingFormUrl();
   if(url) { window.location.href = url; }
+}
+
+function showBookingError(msg) {
+  const errEl = document.getElementById('bookingError');
+  if (errEl) {
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+    errEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  } else {
+    alert(msg);
+  }
 }
 
 function updateSteps(){
@@ -1681,7 +3212,7 @@ function buildCabinOpt(unit, dep, overrideName){
   const capNote = unit.type === 'shared'
     ? `<div style="font-size:10px;color:var(--muted);margin-top:5px">Up to ${unit.maxPax} guests per cabin</div>` : '';
   const displayName = overrideName || unit.name;
-  return `<div class="cabin-opt${isFull?' c-full':''}" data-cabin="${unit.id}" data-group="${unit.group}" data-status="${status}" data-cabin-type="${unit.type||'private'}" data-price="${unit.price}">
+  return `<div class="cabin-opt${isFull?' c-full':''}" data-cabin="${unit.id}" data-group="${unit.group}" data-status="${status}" data-cabin-type="${unit.type||'private'}" data-price="${unit.price}" data-maxpax="${unit.maxPax||8}" data-minpax="${unit.minPax||1}">
     <div class="co-top">
       <div class="co-name">${displayName}</div>
       <div class="co-price">${fmtIDR(unit.price)}</div>
@@ -1716,7 +3247,7 @@ function buildGroupCabinCard(group, units, dep){
     ? `<div style="font-size:10px;color:var(--muted);margin-top:5px">Up to ${repr.maxPax} guests per cabin</div>` : '';
   // Store first available unit id on the card for selection
   const selUnitId  = repr.id;
-  return `<div class="cabin-opt${isFull?' c-full':''}" data-cabin="${selUnitId}" data-group="${group}" data-status="${isFull?'booked':'available'}" data-cabin-type="${repr.type||'private'}" data-price="${price}">
+  return `<div class="cabin-opt${isFull?' c-full':''}" data-cabin="${selUnitId}" data-group="${group}" data-status="${isFull?'booked':'available'}" data-cabin-type="${repr.type||'private'}" data-price="${price}" data-maxpax="${repr.maxPax||8}" data-minpax="${repr.minPax||1}">
     <div class="co-top">
       <div class="co-name">${repr.name}</div>
       <div class="co-price">${fmtIDR(price)}</div>
