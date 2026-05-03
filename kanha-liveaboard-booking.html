@@ -470,7 +470,7 @@ button,a,.cabin-opt,.boat-card,.boat-photo-link{
         <p class="bc-cap">22 pax · 34m Phinisi · 5 cabin types</p>
         <div class="boat-divider"></div>
         <div class="bc-cabins">
-          <div class="bc-cabin-row"><span class="bc-cabin-name">Share Cabin (1 cabin)</span><span class="bc-cabin-price">IDR 5,500,000 <span style="color:var(--muted);font-size:10.5px">≈ USD 333</span>/pax</span></div>
+          <div class="bc-cabin-row"><span class="bc-cabin-name">Share Cabin (4 boxes · 8 pax total)</span><span class="bc-cabin-price">IDR 5,500,000 <span style="color:var(--muted);font-size:10.5px">≈ USD 333</span>/pax</span></div>
           <div class="bc-cabin-row"><span class="bc-cabin-name">Superior Cabin (2 rooms)</span><span class="bc-cabin-price">IDR 6,900,000 <span style="color:var(--muted);font-size:10.5px">≈ USD 418</span>/pax</span></div>
           <div class="bc-cabin-row"><span class="bc-cabin-name">Family / Share Cabin (1 room)</span><span class="bc-cabin-price">IDR 6,900,000 <span style="color:var(--muted);font-size:10.5px">≈ USD 418</span>/pax</span></div>
           <div class="bc-cabin-row"><span class="bc-cabin-name">Deluxe Ocean View (2 rooms)</span><span class="bc-cabin-price">IDR 8,500,000 <span style="color:var(--muted);font-size:10.5px">≈ USD 515</span>/pax</span></div>
@@ -751,17 +751,25 @@ const API_BOAT_SLUG = { 'kanha-loka':'Loka', 'kanha-citta':'Citta', 'kanha-natha
 // normalizeApiData: converts nested API response → per-date/per-cabin map
 // Input:  { boats: [{ id, departures: [{ departureDate, cabins: [{ id, status }] }] }] }
 // Output: { 'YYYY-MM-DD': { 'cabin-id': 'status', ... }, ... }
+const LEGACY_CABIN_EXPAND = {
+  'kanha-loka':  { 'share-cabin': ['share-cabin-1','share-cabin-2','share-cabin-3','share-cabin-4'] },
+  'kanha-citta': { 'share-room':  ['share-room-1','share-room-2'] }
+};
 function normalizeApiData(json, boatId) {
   const boats = (json && Array.isArray(json.boats)) ? json.boats : [];
   const boatData = boats.find(b => b.id === boatId);
   if (!boatData) return null;
+  const expandMap = LEGACY_CABIN_EXPAND[boatId] || {};
   const byDate = {};
   for (const dep of (boatData.departures || [])) {
     const date = dep.departureDate;
     if (!date) continue;
     byDate[date] = {};
     for (const cabin of (dep.cabins || [])) {
-      if (cabin.id) byDate[date][cabin.id] = cabin.status || 'unknown';
+      if (!cabin.id) continue;
+      const expanded = expandMap[cabin.id];
+      if (expanded) { for (const uid of expanded) byDate[date][uid] = cabin.status || 'unknown'; }
+      else byDate[date][cabin.id] = cabin.status || 'unknown';
     }
   }
   return byDate;
@@ -773,7 +781,10 @@ const SCHEDULE = {
     departureDates: ["2026-02-06", "2026-02-13", "2026-02-20", "2026-02-27", "2026-03-03", "2026-03-06", "2026-03-10", "2026-03-13", "2026-03-17", "2026-03-31", "2026-04-03", "2026-04-07", "2026-04-10", "2026-04-17", "2026-04-22", "2026-04-24", "2026-05-01", "2026-05-05", "2026-05-08", "2026-05-15", "2026-05-18", "2026-05-22", "2026-05-26", "2026-05-29", "2026-06-02", "2026-06-05", "2026-06-09", "2026-06-12", "2026-06-16", "2026-06-19", "2026-06-23", "2026-06-26", "2026-06-29", "2026-07-03", "2026-07-06", "2026-07-10", "2026-07-13", "2026-07-17", "2026-07-21", "2026-07-24", "2026-07-28", "2026-07-31", "2026-08-04", "2026-08-07", "2026-08-11", "2026-08-14", "2026-08-18", "2026-08-21", "2026-08-25", "2026-08-28", "2026-09-01", "2026-09-04", "2026-09-08", "2026-09-11", "2026-09-15", "2026-09-18", "2026-09-22", "2026-09-25", "2026-09-29", "2026-10-02", "2026-10-09", "2026-10-16", "2026-10-23", "2026-10-27", "2026-10-30", "2026-11-06", "2026-11-13", "2026-11-20", "2026-11-27", "2026-12-04", "2026-12-11", "2026-12-18"],
     unitStatus: {
       "2026-02-06": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -782,7 +793,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-02-13": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -791,7 +805,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-02-20": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -800,7 +817,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-02-27": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -809,7 +829,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-03-03": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -818,7 +841,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-03-06": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -827,7 +853,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-03-10": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -836,7 +865,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-03-13": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -845,7 +877,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-03-17": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -854,7 +889,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-03-31": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -863,7 +901,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-04-03": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -872,7 +913,10 @@ const SCHEDULE = {
             "master-ocean-view": "booked"
       },
       "2026-04-07": {
-            "share-cabin": "booked",
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "share-cabin-3": "booked",
+            "share-cabin-4": "booked",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "booked",
@@ -881,7 +925,10 @@ const SCHEDULE = {
             "master-ocean-view": "booked"
       },
       "2026-04-10": {
-            "share-cabin": "booked",
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "share-cabin-3": "booked",
+            "share-cabin-4": "booked",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -890,7 +937,10 @@ const SCHEDULE = {
             "master-ocean-view": "booked"
       },
       "2026-04-17": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -899,7 +949,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-04-22": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -908,7 +961,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-04-24": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -917,7 +973,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-05-01": {
-            "share-cabin": "booked",
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "share-cabin-3": "booked",
+            "share-cabin-4": "booked",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -926,7 +985,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-05-05": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -935,7 +997,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-05-08": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "booked",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -944,7 +1009,10 @@ const SCHEDULE = {
             "master-ocean-view": "booked"
       },
       "2026-05-15": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "booked",
             "deluxe-ocean-view-1": "booked",
@@ -953,7 +1021,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-05-18": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -962,7 +1033,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-05-22": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -971,7 +1045,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-05-26": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -980,7 +1057,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-05-29": {
-            "share-cabin": "booked",
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "share-cabin-3": "booked",
+            "share-cabin-4": "booked",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -989,7 +1069,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-06-02": {
-            "share-cabin": "booked",
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "share-cabin-3": "booked",
+            "share-cabin-4": "booked",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -998,7 +1081,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-06-05": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1007,7 +1093,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-06-09": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1016,7 +1105,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-06-12": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1025,7 +1117,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-06-16": {
-            "share-cabin": "booked",
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "share-cabin-3": "booked",
+            "share-cabin-4": "booked",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1034,7 +1129,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-06-19": {
-            "share-cabin": "booked",
+            "share-cabin-1": "on_hold",
+            "share-cabin-2": "on_hold",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "booked",
@@ -1043,7 +1141,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-06-23": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1052,7 +1153,10 @@ const SCHEDULE = {
             "master-ocean-view": "booked"
       },
       "2026-06-26": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1061,7 +1165,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-06-29": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1070,7 +1177,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-07-03": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1079,7 +1189,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-07-06": {
-            "share-cabin": "booked",
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "share-cabin-3": "booked",
+            "share-cabin-4": "booked",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1088,7 +1201,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-07-10": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1097,7 +1213,10 @@ const SCHEDULE = {
             "master-ocean-view": "booked"
       },
       "2026-07-13": {
-            "share-cabin": "booked",
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "share-cabin-3": "booked",
+            "share-cabin-4": "booked",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1106,7 +1225,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-07-17": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1115,7 +1237,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-07-21": {
-            "share-cabin": "booked",
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "share-cabin-3": "booked",
+            "share-cabin-4": "booked",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1124,7 +1249,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-07-24": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1133,7 +1261,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-07-28": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1142,7 +1273,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-07-31": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "booked",
@@ -1151,7 +1285,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-08-04": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1160,7 +1297,10 @@ const SCHEDULE = {
             "master-ocean-view": "booked"
       },
       "2026-08-07": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1169,7 +1309,10 @@ const SCHEDULE = {
             "master-ocean-view": "booked"
       },
       "2026-08-11": {
-            "share-cabin": "booked",
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "share-cabin-3": "booked",
+            "share-cabin-4": "booked",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1178,7 +1321,10 @@ const SCHEDULE = {
             "master-ocean-view": "booked"
       },
       "2026-08-14": {
-            "share-cabin": "booked",
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "share-cabin-3": "booked",
+            "share-cabin-4": "booked",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1187,7 +1333,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-08-18": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "booked",
             "superior-cabin-2": "booked",
             "deluxe-ocean-view-1": "booked",
@@ -1196,7 +1345,10 @@ const SCHEDULE = {
             "master-ocean-view": "booked"
       },
       "2026-08-21": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "booked",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1205,7 +1357,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-08-25": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1214,7 +1369,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-08-28": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1223,7 +1381,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-09-01": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1232,7 +1393,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-09-04": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1241,7 +1405,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-09-08": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1250,7 +1417,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-09-11": {
-            "share-cabin": "booked",
+            "share-cabin-1": "booked",
+            "share-cabin-2": "booked",
+            "share-cabin-3": "booked",
+            "share-cabin-4": "booked",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1259,7 +1429,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-09-15": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1268,7 +1441,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-09-18": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1277,7 +1453,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-09-22": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "booked",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1286,7 +1465,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-09-25": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1295,7 +1477,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-09-29": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1304,7 +1489,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-10-02": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "booked",
             "deluxe-ocean-view-1": "available",
@@ -1313,7 +1501,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-10-09": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1322,7 +1513,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-10-16": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1331,7 +1525,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-10-23": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1340,7 +1537,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-10-27": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1349,7 +1549,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-10-30": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1358,7 +1561,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-11-06": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1367,7 +1573,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-11-13": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1376,7 +1585,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-11-20": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1385,7 +1597,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-11-27": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1394,7 +1609,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-12-04": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1403,7 +1621,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-12-11": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1412,7 +1633,10 @@ const SCHEDULE = {
             "master-ocean-view": "available"
       },
       "2026-12-18": {
-            "share-cabin": "available",
+            "share-cabin-1": "available",
+            "share-cabin-2": "available",
+            "share-cabin-3": "available",
+            "share-cabin-4": "available",
             "superior-cabin-1": "available",
             "superior-cabin-2": "available",
             "deluxe-ocean-view-1": "available",
@@ -1653,7 +1877,8 @@ const SCHEDULE = {
     departureDates: ["2026-02-06", "2026-02-13", "2026-02-20", "2026-02-24", "2026-02-27", "2026-03-03", "2026-03-06", "2026-03-10", "2026-03-13", "2026-03-17", "2026-03-20", "2026-03-23", "2026-03-27", "2026-03-31", "2026-04-03", "2026-04-07", "2026-04-10", "2026-04-17", "2026-04-24", "2026-04-28", "2026-05-01", "2026-05-05", "2026-05-08", "2026-05-12", "2026-05-15", "2026-05-18", "2026-05-22", "2026-05-26", "2026-06-02", "2026-06-05", "2026-06-09", "2026-06-12", "2026-06-16", "2026-06-19", "2026-06-23", "2026-06-26", "2026-06-30", "2026-07-03", "2026-07-06", "2026-07-10", "2026-07-13", "2026-07-17", "2026-07-21", "2026-07-24", "2026-07-28", "2026-07-31", "2026-08-03", "2026-08-11", "2026-08-14", "2026-08-18", "2026-08-21", "2026-08-24", "2026-08-28", "2026-09-01", "2026-09-04", "2026-09-08", "2026-09-11", "2026-09-15", "2026-09-18", "2026-09-22", "2026-09-25", "2026-09-29", "2026-10-02", "2026-10-09", "2026-10-16", "2026-10-23", "2026-10-30", "2026-11-06", "2026-11-13", "2026-11-20", "2026-11-27", "2026-12-04", "2026-12-11", "2026-12-18", "2026-12-25"],
     unitStatus: {
       "2026-02-06": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1662,7 +1887,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-02-13": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1671,7 +1897,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-02-20": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "booked",
@@ -1680,7 +1907,8 @@ const SCHEDULE = {
             "gayatri-room": "booked"
       },
       "2026-02-24": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1689,7 +1917,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-02-27": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1698,7 +1927,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-03-03": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1707,7 +1937,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-03-06": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1716,7 +1947,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-03-10": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1725,7 +1957,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-03-13": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1734,7 +1967,8 @@ const SCHEDULE = {
             "gayatri-room": "booked"
       },
       "2026-03-17": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1743,7 +1977,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-03-20": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1752,7 +1987,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-03-23": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "booked",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1761,7 +1997,8 @@ const SCHEDULE = {
             "gayatri-room": "booked"
       },
       "2026-03-27": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1770,7 +2007,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-03-31": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1779,7 +2017,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-04-03": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1788,7 +2027,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-04-07": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1797,7 +2037,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-04-10": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1806,7 +2047,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-04-17": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "booked",
             "deluxe-ocean-view-2": "booked",
             "deluxe-ocean-view-3": "booked",
@@ -1815,7 +2057,8 @@ const SCHEDULE = {
             "gayatri-room": "booked"
       },
       "2026-04-24": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1824,7 +2067,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-04-28": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "booked",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1833,7 +2077,8 @@ const SCHEDULE = {
             "gayatri-room": "booked"
       },
       "2026-05-01": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "booked",
             "deluxe-ocean-view-2": "booked",
             "deluxe-ocean-view-3": "available",
@@ -1842,7 +2087,8 @@ const SCHEDULE = {
             "gayatri-room": "booked"
       },
       "2026-05-05": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "booked",
             "deluxe-ocean-view-2": "booked",
             "deluxe-ocean-view-3": "booked",
@@ -1851,7 +2097,8 @@ const SCHEDULE = {
             "gayatri-room": "booked"
       },
       "2026-05-08": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1860,7 +2107,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-05-12": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1869,7 +2117,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-05-15": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "booked",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "booked",
@@ -1878,7 +2127,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-05-18": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1887,7 +2137,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-05-22": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1896,7 +2147,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-05-26": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1905,7 +2157,8 @@ const SCHEDULE = {
             "gayatri-room": "booked"
       },
       "2026-06-02": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1914,7 +2167,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-06-05": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1923,7 +2177,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-06-09": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1932,7 +2187,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-06-12": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1941,7 +2197,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-06-16": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1950,7 +2207,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-06-19": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1959,7 +2217,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-06-23": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1968,7 +2227,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-06-26": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "booked",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1977,7 +2237,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-06-30": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1986,7 +2247,8 @@ const SCHEDULE = {
             "gayatri-room": "booked"
       },
       "2026-07-03": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -1995,7 +2257,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-07-06": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2004,7 +2267,8 @@ const SCHEDULE = {
             "gayatri-room": "booked"
       },
       "2026-07-10": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2013,7 +2277,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-07-13": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2022,7 +2287,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-07-17": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2031,7 +2297,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-07-21": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2040,7 +2307,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-07-24": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2049,7 +2317,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-07-28": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2058,7 +2327,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-07-31": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2067,7 +2337,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-08-03": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2076,7 +2347,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-08-11": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "booked",
             "deluxe-ocean-view-2": "booked",
             "deluxe-ocean-view-3": "booked",
@@ -2085,7 +2357,8 @@ const SCHEDULE = {
             "gayatri-room": "booked"
       },
       "2026-08-14": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2094,7 +2367,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-08-18": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2103,7 +2377,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-08-21": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2112,7 +2387,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-08-24": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2121,7 +2397,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-08-28": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2130,7 +2407,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-09-01": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2139,7 +2417,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-09-04": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2148,7 +2427,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-09-08": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2157,7 +2437,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-09-11": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2166,7 +2447,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-09-15": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2175,7 +2457,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-09-18": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2184,7 +2467,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-09-22": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2193,7 +2477,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-09-25": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2202,7 +2487,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-09-29": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2211,7 +2497,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-10-02": {
-            "share-room": "booked",
+            "share-room-1": "booked",
+            "share-room-2": "booked",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2220,7 +2507,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-10-09": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2229,7 +2517,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-10-16": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2238,7 +2527,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-10-23": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2247,7 +2537,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-10-30": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2256,7 +2547,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-11-06": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2265,7 +2557,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-11-13": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2274,7 +2567,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-11-20": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2283,7 +2577,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-11-27": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2292,7 +2587,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-12-04": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2301,7 +2597,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-12-11": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2310,7 +2607,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-12-18": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2319,7 +2617,8 @@ const SCHEDULE = {
             "gayatri-room": "available"
       },
       "2026-12-25": {
-            "share-room": "available",
+            "share-room-1": "available",
+            "share-room-2": "available",
             "deluxe-ocean-view-1": "available",
             "deluxe-ocean-view-2": "available",
             "deluxe-ocean-view-3": "available",
@@ -2340,8 +2639,14 @@ const BOATS = {
     thirdPersonFee:4250000,
     cabins:[
       // Each entry = 1 physical cabin unit. group = display grouping key.
-      { id:'share-cabin',         group:'share-cabin',       name:'Share Cabin',           unitIndex:1, totalUnits:1,
-        sub:'Bunk-style · social atmosphere · solo-friendly',                  price:5500000, type:'shared',  minPax:2, maxPax:8 },
+      { id:'share-cabin-1', group:'share-cabin', name:'Share Cabin', unitIndex:1, totalUnits:4,
+        sub:'Shared · 2 pax per box · social · up to 8 guests total', price:5500000, type:'shared', minPax:1, maxPax:2 },
+      { id:'share-cabin-2', group:'share-cabin', name:'Share Cabin', unitIndex:2, totalUnits:4,
+        sub:'Shared · 2 pax per box · social · up to 8 guests total', price:5500000, type:'shared', minPax:1, maxPax:2 },
+      { id:'share-cabin-3', group:'share-cabin', name:'Share Cabin', unitIndex:3, totalUnits:4,
+        sub:'Shared · 2 pax per box · social · up to 8 guests total', price:5500000, type:'shared', minPax:1, maxPax:2 },
+      { id:'share-cabin-4', group:'share-cabin', name:'Share Cabin', unitIndex:4, totalUnits:4,
+        sub:'Shared · 2 pax per box · social · up to 8 guests total', price:5500000, type:'shared', minPax:1, maxPax:2 },
       { id:'superior-cabin-1',    group:'superior-cabin',    name:'Superior Cabin',         unitIndex:1, totalUnits:2,
         sub:'Lower deck · en-suite · queen bed · min 2 pax',                  price:6900000, type:'private', minPax:2, maxPax:2 },
       { id:'superior-cabin-2',    group:'superior-cabin',    name:'Superior Cabin',         unitIndex:2, totalUnits:2,
@@ -2360,8 +2665,10 @@ const BOATS = {
     id:'kanha-citta', shortId:'citta', name:'Kanha Citta', color:'#0891B2', capacity:20,
     thirdPersonFee:4500000,
     cabins:[
-      { id:'share-room',          group:'share-room',        name:'Share Room',             unitIndex:1, totalUnits:1,
-        sub:'8 pax · top deck · 2 double beds + 4 single beds · social',      price:5800000, type:'shared',  minPax:2, maxPax:8 },
+      { id:'share-room-1', group:'share-room', name:'Share Room', unitIndex:1, totalUnits:2,
+        sub:'4 single beds · top deck · social · 4 pax capacity', price:5800000, type:'shared', minPax:1, maxPax:4 },
+      { id:'share-room-2', group:'share-room', name:'Share Room', unitIndex:2, totalUnits:2,
+        sub:'2 double beds · top deck · social · 4 pax capacity', price:5800000, type:'shared', minPax:1, maxPax:4 },
       { id:'deluxe-ocean-view-1', group:'deluxe-ocean-view', name:'Deluxe Ocean View 1',   unitIndex:1, totalUnits:3,
         sub:'Main deck · en-suite · ocean view · min 2 pax',                  price:8700000, type:'private', minPax:2, maxPax:2 },
       { id:'deluxe-ocean-view-2', group:'deluxe-ocean-view', name:'Deluxe Ocean View 2',   unitIndex:2, totalUnits:3,
@@ -2485,20 +2792,27 @@ function getDepartureDates(){
   return Array.from(merged).sort();
 }
 
+const LEGACY_UNIT_FALLBACK = {
+  'share-cabin-1':'share-cabin','share-cabin-2':'share-cabin','share-cabin-3':'share-cabin','share-cabin-4':'share-cabin',
+  'share-room-1':'share-room','share-room-2':'share-room'
+};
 function getCabinStatusForDate(boatId, cabinId, dateIso){
-  // PRIMARY: Check SCHEDULE static data (spreadsheet source of truth)
   const sched = SCHEDULE[boatId];
   if (sched) {
     const unitSt = (sched.unitStatus || {})[dateIso];
-    if (unitSt && unitSt[cabinId]) return unitSt[cabinId];
-    // If date is in schedule and no restriction for this unit: available
+    if (unitSt) {
+      if (unitSt[cabinId]) return unitSt[cabinId];
+      const legacyId = LEGACY_UNIT_FALLBACK[cabinId];
+      if (legacyId && unitSt[legacyId]) return unitSt[legacyId];
+    }
     if (sched.departureDates && sched.departureDates.indexOf(dateIso) >= 0) return 'available';
   }
-  // FALLBACK: normalized API data { 'YYYY-MM-DD': { 'cabin-id': status } }
   if (!API_DATA) return 'unknown';
   const dateMap = API_DATA[dateIso];
   if (!dateMap) return 'unknown';
-  return dateMap[cabinId] || 'unknown';
+  if (dateMap[cabinId]) return dateMap[cabinId];
+  const legacyId = LEGACY_UNIT_FALLBACK[cabinId];
+  return (legacyId && dateMap[legacyId]) ? dateMap[legacyId] : 'unknown';
 }
 
 // Returns status for a group (type): derives from all physical units in the group.
@@ -2854,17 +3168,14 @@ async function selectBoat(boatIdInput){
 
   if (loadEl) loadEl.style.display = 'none';
   if (!API_OK) {
-    if (errEl)  errEl.style.display = 'block';
-    if (lastEl) lastEl.textContent  = 'Live data — connection failed. Tap refresh or message us on WhatsApp.';
-    if (inputEl){ inputEl.disabled = true; inputEl.placeholder = 'Live data unavailable'; }
-    if (FP_INSTANCE) FP_INSTANCE.destroy();
-    FP_INSTANCE = null;
-    updateSteps();
-    return;
+    if (errEl)  errEl.style.display = 'none';
+    if (lastEl) lastEl.textContent = '📋 Showing cached 2026 schedule · final availability confirmed via WhatsApp';
+    if (inputEl){ inputEl.disabled = false; inputEl.placeholder = 'Choose a departure date…'; }
+    // Never return — render calendar from SCHEDULE
+  } else {
+    if (lastEl) lastEl.textContent = 'Live data · ' + boat.name + ' · updated ' + LAST_UPDATED;
+    if (inputEl){ inputEl.disabled = false; inputEl.placeholder = 'Choose a departure date…'; }
   }
-
-  if (lastEl) lastEl.textContent = 'Live data · ' + boat.name + ' · last updated ' + LAST_UPDATED;
-  if (inputEl){ inputEl.disabled = false; inputEl.placeholder = 'Choose a departure date…'; }
 
   initFlatpickr();
   updateSteps();
@@ -2950,9 +3261,8 @@ function buildBookingFormUrl(){
   const cabin = boat && boat.cabins.find(c => c.id === selCabin);
   if (!boat || !cabin) return null;
   const endDate = addDays(selDate, 2);
-  // TASK 5 — if API was unavailable, flag for manual reconfirmation
-  const cabinStatus = API_OK ? getCabinStatusForDate(selBoat, cabin.id, selDate) : 'pending_reconfirmation';
-  const availabilityStatus = API_OK ? getDepartureStatus(selBoat, selDate) : 'pending_reconfirmation';
+  const cabinStatus = getCabinStatusForDate(selBoat, cabin.id, selDate);
+  const availabilityStatus = getDepartureStatus(selBoat, selDate);
   const params = new URLSearchParams();
   params.set('product',             'komodo-sailing-3d2n');
   params.set('boat_id',             boat.id);
@@ -3076,6 +3386,7 @@ document.addEventListener('click', function(e){
       window.gtag('event', mode === 'form' ? 'continue_to_booking_form' : 'open_whatsapp', {
         boat_id: selBoat, cabin_id: selCabin, departure_date: selDate
       });
+      if (mode === 'form') window.gtag('event', 'select_komodo_trip_option', { boat_id: selBoat, cabin_id: selCabin, departure_date: selDate });
     }
   } catch(e){}
 });
@@ -3211,34 +3522,36 @@ function buildCabinOpt(unit, dep, overrideName){
   </div>`;
 }
 
-// Build a GROUP card: shows aggregated unit count (e.g. "Deluxe Ocean View — 2 of 3 available")
+// Build a GROUP card — shows pax spots for shared, rooms for private
 function buildGroupCabinCard(group, units, dep){
-  const statuses = units.map(u => getCabinStatusForDate(dep.boatId, u.id, dep.date));
-  const availUnits = units.filter((u,i) => statuses[i] !== 'booked' && statuses[i] !== 'on_hold');
+  const statuses   = units.map(u => getCabinStatusForDate(dep.boatId, u.id, dep.date));
+  const availUnits = units.filter((u,i) => !['booked','on_hold','private_charter','maintenance','not_operating'].includes(statuses[i]));
   const totalUnits = units.length;
   const availCount = availUnits.length;
+  const onHoldCount= units.filter((u,i) => statuses[i]==='on_hold').length;
   const isFull     = availCount === 0;
   const isLimited  = availCount === 1 && totalUnits > 1;
   const cls        = isFull ? 'full' : isLimited ? 'lim' : 'av';
-  // Pick first available unit as the selection target
   const repr       = availUnits[0] || units[0];
+  const isShared   = repr.type === 'shared';
   const price      = repr.price;
   const usdLine    = `<div style="font-size:10.5px;color:var(--muted);margin-top:2px">${fmtUSD(price)} / guest</div>`;
-  const availNote  = isFull ? 'Fully booked'
-    : isLimited  ? '1 room available'
-    : totalUnits === 1 ? '1 room available'
-    : `${availCount} of ${totalUnits} rooms available`;
-  const minNote    = repr.type === 'private'
-    ? `<div style="font-size:10px;color:#B45309;font-weight:600;margin-top:5px">Private cabin · min 2 pax · max ${repr.maxPax} pax</div>` : '';
-  const capNote    = repr.type === 'shared'
-    ? `<div style="font-size:10px;color:var(--muted);margin-top:5px">Up to ${repr.maxPax} guests per cabin</div>` : '';
-  // Store first available unit id on the card for selection
-  const selUnitId  = repr.id;
-  return `<div class="cabin-opt${isFull?' c-full':''}" data-cabin="${selUnitId}" data-group="${group}" data-status="${isFull?'booked':'available'}" data-cabin-type="${repr.type||'private'}" data-price="${price}" data-maxpax="${repr.maxPax||8}" data-minpax="${repr.minPax||1}">
-    <div class="co-top">
-      <div class="co-name">${repr.name}</div>
-      <div class="co-price">${fmtIDR(price)}</div>
-    </div>
+  let availNote;
+  if (isFull) { availNote = 'Fully booked'; }
+  else if (isShared) {
+    const availPax = availCount * repr.maxPax, totalPax = totalUnits * repr.maxPax;
+    const holdNote = onHoldCount > 0 ? ` · ${onHoldCount*repr.maxPax} on hold` : '';
+    availNote = availCount === totalUnits ? totalPax+' spots available' : availPax+' of '+totalPax+' spots available'+holdNote;
+  } else {
+    availNote = isLimited ? '1 room available' : (totalUnits===1 ? '1 room available' : availCount+' of '+totalUnits+' rooms available');
+  }
+  const sharedMaxPax = isShared ? (availCount>0 ? availCount*repr.maxPax : repr.maxPax) : repr.maxPax;
+  const minNote = !isShared ? `<div style="font-size:10px;color:#B45309;font-weight:600;margin-top:5px">Private cabin · min 2 pax · max ${repr.maxPax} pax</div>` : '';
+  const capNote = isShared  ? `<div style="font-size:10px;color:var(--muted);margin-top:5px">${totalUnits*repr.maxPax} pax total capacity · ${repr.maxPax} pax per box</div>` : '';
+  const selUnitId = repr.id;
+  const cardStatus = isFull ? 'booked' : (onHoldCount>0&&availCount>0 ? 'limited' : 'available');
+  return `<div class="cabin-opt${isFull?' c-full':''}" data-cabin="${selUnitId}" data-group="${group}" data-status="${cardStatus}" data-cabin-type="${repr.type||'private'}" data-price="${price}" data-maxpax="${sharedMaxPax||8}" data-minpax="${repr.minPax||1}">
+    <div class="co-top"><div class="co-name">${repr.name}</div><div class="co-price">${fmtIDR(price)}</div></div>
     ${usdLine}
     <div class="co-sub" style="margin-top:5px">${repr.sub}</div>
     <div class="co-avail ${cls}" style="margin-top:6px">${availNote}</div>
