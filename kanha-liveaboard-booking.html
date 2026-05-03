@@ -748,32 +748,24 @@ const API_TIMEOUT_MS = 14000;
 
 const API_BOAT_SLUG = { 'kanha-loka':'Loka', 'kanha-citta':'Citta', 'kanha-natha':'Natha' };
 
-const API_CABIN_KEYS = {
-  'kanha-loka': {
-    'share-cabin':         'shared1Pax',
-    'superior-cabin-1':    'deluxeCabin',
-    'superior-cabin-2':    'deluxeCabin',
-    'deluxe-ocean-view-1': 'upperDeluxeCabin',
-    'deluxe-ocean-view-2': 'upperDeluxeCabin',
-    'family-cabin':        'upperDeluxeCabin',
-    'master-ocean-view':   'masterGayatriCabin'
-  },
-  'kanha-citta': {
-    'share-room':          'shared1Pax',
-    'deluxe-ocean-view-1': 'upperDeluxeCabin',
-    'deluxe-ocean-view-2': 'upperDeluxeCabin',
-    'deluxe-ocean-view-3': 'upperDeluxeCabin',
-    'shakti-room':         'deluxeCabin',
-    'sedana-room':         'deluxeCabin',
-    'gayatri-room':        'masterGayatriCabin'
-  },
-  'kanha-natha': {
-    'share-cabin-1':        'shared1Pax',
-    'share-cabin-2':        'shared1Pax',
-    'private-ocean-view-1': 'masterGayatriCabin',
-    'private-ocean-view-2': 'masterGayatriCabin'
+// normalizeApiData: converts nested API response → per-date/per-cabin map
+// Input:  { boats: [{ id, departures: [{ departureDate, cabins: [{ id, status }] }] }] }
+// Output: { 'YYYY-MM-DD': { 'cabin-id': 'status', ... }, ... }
+function normalizeApiData(json, boatId) {
+  const boats = (json && Array.isArray(json.boats)) ? json.boats : [];
+  const boatData = boats.find(b => b.id === boatId);
+  if (!boatData) return null;
+  const byDate = {};
+  for (const dep of (boatData.departures || [])) {
+    const date = dep.departureDate;
+    if (!date) continue;
+    byDate[date] = {};
+    for (const cabin of (dep.cabins || [])) {
+      if (cabin.id) byDate[date][cabin.id] = cabin.status || 'unknown';
+    }
   }
-};
+  return byDate;
+}
 
 // ─── SPREADSHEET SCHEDULE (source of truth: synced from Google Sheets) ───────
 const SCHEDULE = {
@@ -2442,7 +2434,11 @@ function fmtLastUpdated(){
 }
 
 function statusLabel(s){
-  return ({ available:'Available', limited:'Limited', on_hold:'On Hold', booked:'Booked' })[s] || 'Confirm with team';
+  return ({
+    available:'Available', limited:'Limited', on_hold:'On Hold', booked:'Booked',
+    private_charter:'Private Charter', maintenance:'Maintenance',
+    not_operating:'Not Operating', unknown:'Confirm with team'
+  })[s] || 'Confirm with team';
 }
 
 /* ─────────────────────────────────────────────
@@ -2460,7 +2456,9 @@ async function fetchAvailability(boatId, force){
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const json = await res.json();
     if (!json || typeof json !== 'object') throw new Error('Bad JSON');
-    API_DATA = json;
+    const normalized = normalizeApiData(json, boatId);
+    if (!normalized) throw new Error('No boat data in API response for ' + boatId);
+    API_DATA = normalized;
     API_BOAT_LOADED = boatId;
     API_OK = true;
     LAST_UPDATED = fmtLastUpdated();
@@ -2480,7 +2478,8 @@ function getDepartureDates(){
   const sched = SCHEDULE[selBoat];
   const schedDates = (sched && sched.departureDates) ? sched.departureDates : [];
   if (!API_DATA) return schedDates;
-  const apiDates = API_DATA.departureDates || [];
+  // API_DATA is now a normalized per-date map: { 'YYYY-MM-DD': {...} }
+  const apiDates = Object.keys(API_DATA);
   // Merge: schedDates is authoritative, API may have additional dates
   const merged = new Set([...schedDates, ...apiDates]);
   return Array.from(merged).sort();
@@ -2495,24 +2494,11 @@ function getCabinStatusForDate(boatId, cabinId, dateIso){
     // If date is in schedule and no restriction for this unit: available
     if (sched.departureDates && sched.departureDates.indexOf(dateIso) >= 0) return 'available';
   }
-  // FALLBACK: API data if SCHEDULE has no entry for this date
+  // FALLBACK: normalized API data { 'YYYY-MM-DD': { 'cabin-id': status } }
   if (!API_DATA) return 'unknown';
-  const map = API_CABIN_KEYS[boatId];
-  if (!map || !map[cabinId]) return 'unknown';
-  const apiKey = map[cabinId];
-  if (apiKey === 'shared1Pax') {
-    let maxN = 0;
-    for (let n = 8; n >= 1; n--) {
-      const arr = API_DATA['shared' + n + 'Pax'];
-      if (Array.isArray(arr) && arr.indexOf(dateIso) >= 0) { maxN = n; break; }
-    }
-    if (maxN === 0)  return 'booked';
-    if (maxN <= 2)   return 'limited';
-    return 'available';
-  }
-  const arr = API_DATA[apiKey];
-  if (Array.isArray(arr) && arr.indexOf(dateIso) >= 0) return 'available';
-  return 'booked';
+  const dateMap = API_DATA[dateIso];
+  if (!dateMap) return 'unknown';
+  return dateMap[cabinId] || 'unknown';
 }
 
 // Returns status for a group (type): derives from all physical units in the group.
@@ -2554,17 +2540,18 @@ function validateCabinInventory(boatId, cabinId){
 function getDepartureStatus(boatId, dateIso){
   const boat = BOATS[boatId];
   if (!boat) return 'unknown';
-  // Aggregate: most restrictive per-unit status wins
   const statuses = boat.cabins.map(c => getCabinStatusForDate(boatId, c.id, dateIso));
-  const priority = { 'booked':0,'on_hold':1,'private_charter':2,'docking':3,'cancelled':4,'limited':5,'available_soon':6,'available':7,'unknown':8 };
-  const sorted   = statuses.slice().sort((a,b) => (priority[a]||8) - (priority[b]||8));
-  const worst    = sorted[0] || 'unknown';
-  const avail    = statuses.filter(s => s === 'available').length;
-  // If all booked: booked. If some avail but count low: limited. Else available.
-  if (worst === 'available' || avail === statuses.length) return 'available';
-  if (avail === 0) return worst;
-  if (avail <= 2)  return 'limited';
-  return 'available';
+  // Boat-wide status: if ANY cabin has a special status, whole departure inherits it
+  if (statuses.some(s => s === 'private_charter')) return 'private_charter';
+  if (statuses.some(s => s === 'maintenance'))     return 'maintenance';
+  if (statuses.some(s => s === 'not_operating'))   return 'not_operating';
+  const avail  = statuses.filter(s => s === 'available' || s === 'limited').length;
+  const booked = statuses.filter(s => s === 'booked').length;
+  if (avail === statuses.length) return 'available';
+  if (booked === statuses.length) return 'booked';
+  if (avail > 0) return 'limited';
+  if (statuses.some(s => s === 'on_hold')) return 'on_hold';
+  return 'booked';
 }
 
 function _genRef(boatId, departureDate, cabinId) {
@@ -3029,7 +3016,7 @@ function updateWALink(){
 
   const cabinStatus = getCabinStatusForDate(selBoat, selCabin, selDate);
   const depStatus   = getDepartureStatus(selBoat, selDate);
-  const unbookable  = ['booked','private_charter','maintenance','not_operating','unknown'];
+  const unbookable  = ['booked','private_charter','maintenance','not_operating'];
   const blocked     = unbookable.indexOf(cabinStatus) >= 0 || unbookable.indexOf(depStatus) >= 0;
 
   btn.classList.remove('is-disabled');
@@ -3203,7 +3190,7 @@ function renderCabinList(dep, boat){
 // Build a cabin card for a PHYSICAL UNIT (used for unique named rooms)
 function buildCabinOpt(unit, dep, overrideName){
   const status  = getCabinStatusForDate(dep.boatId, unit.id, dep.date);
-  const isFull  = (status === 'booked' || status === 'on_hold');
+  const isFull  = ['booked','on_hold','private_charter','maintenance','not_operating'].indexOf(status) >= 0;
   const cls     = status === 'available' ? 'av' : (status === 'limited') ? 'lim' : 'full';
   const note    = statusLabel(status);
   const usdLine = `<div style="font-size:10.5px;color:var(--muted);margin-top:2px">${fmtUSD(unit.price)} / guest</div>`;
