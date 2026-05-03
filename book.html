@@ -1822,6 +1822,7 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
+    var data = new FormData(form);
 
     // ── Honeypot — silently drop bots ───────────────────────────
     if (form.elements['website'] && form.elements['website'].value) {
@@ -1873,7 +1874,6 @@
     btn.textContent = 'Preparing request…';
     if (stickyBtn) stickyBtn.disabled = true;
 
-    var data = new FormData(form);
     var type = form.querySelector('input[name="type"]:checked');
     var unit = parseInt(type.dataset.price, 10);
     var mode = type.dataset.mode;
