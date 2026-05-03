@@ -20,16 +20,13 @@
 <meta name="description" content="Komodo Sailing 3D2N liveaboard from Labuan Bajo on the Kanha Fleet. Padar sunrise, Pink Beach, Manta Point, Taka Makassar, island sunsets, and curated cabin availability. Operated by EastXperience.">
 <link rel="canonical" href="https://eastxperience.github.io/hellofromtheeast/komodo-sailing-3d2n-final.html">
 
-<!-- ═══ GOOGLE ADS CONVERSION TRACKING ═══
-     REPLACE: AW-XXXXXXXX  → your Google Ads Conversion ID
-     REPLACE: CONV_LABEL   → your conversion label from Google Ads
-     Find these in: Google Ads → Tools → Conversions → select conversion → Tag setup -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-XXXXXXXX"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18125626922"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'AW-XXXXXXXX');
+  gtag('config', 'AW-18125626922');
   // Store UTM params for attribution chain
   try {
     const _u = Object.fromEntries(new URLSearchParams(location.search));
@@ -1171,7 +1168,15 @@
   updateDynamicLinks();
 
   document.querySelectorAll('[data-bind-cta]').forEach(el => {
-    el.addEventListener('click', () => track('cta_primary_click', { ctx: el.dataset.ctx || 'unknown', path: location.pathname }));
+    el.addEventListener('click', () => {
+      track('cta_primary_click', { ctx: el.dataset.ctx || 'unknown', path: location.pathname });
+      track('start_booking_selection', { ctx: el.dataset.ctx || 'unknown' });
+    });
+  });
+  document.querySelectorAll('a[href*="kanha-liveaboard-booking"]').forEach(function(el) {
+    if (!el.hasAttribute('data-bind-cta')) {
+      el.addEventListener('click', function() { track('start_booking_selection', { ctx: 'price_card' }); });
+    }
   });
   document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
     el.addEventListener('click', () => track('whatsapp_open', { ctx: el.dataset.ctx || 'inline', path: location.pathname }));
