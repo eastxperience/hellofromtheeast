@@ -1596,7 +1596,113 @@
     if (oldHint) oldHint.style.display = 'none';
   }
 
+
+  // ═════════════ BANGGAI EXPLORE — DYNAMIC PRICING ═════════════
+  var BANGGAI_PRICING = {
+    'open-trip-5d4n': { label: 'Open Trip 5D4N', minPax: 5, pricePerPerson: 4700000 },
+    'private-4d3n': {
+      label: '4D3N Private Journey',
+      brackets: [
+        { min: 2, max: 2, price: 10400000 }, { min: 3, max: 3, price: 8800000 },
+        { min: 4, max: 4, price: 7700000 },  { min: 5, max: 7, price: 6900000 },
+        { min: 8, max: 10, price: 5450000 }
+      ]
+    },
+    'private-5d4n': {
+      label: '5D4N Private Journey',
+      brackets: [
+        { min: 2, max: 2, price: 12000000 }, { min: 3, max: 3, price: 9300000 },
+        { min: 4, max: 4, price: 8500000 },  { min: 5, max: 7, price: 8000000 },
+        { min: 8, max: 10, price: 7200000 }
+      ]
+    }
+  };
+  var banggaiPriceCard = null;
+  var banggaiCurrentResult = null;
+
+  function getBanggaiRate(packageType, pax) {
+    var pkg = BANGGAI_PRICING[packageType];
+    if (!pkg) return { isCustom: true, status: 'unknown', pricePerPerson: null, estimatedTotal: null, note: 'Package not found.' };
+    if (packageType === 'open-trip-5d4n') {
+      if (pax >= 5) return { isCustom: false, status: 'confirmed-rate', pricePerPerson: pkg.pricePerPerson, estimatedTotal: pax * pkg.pricePerPerson, note: 'Open Trip requires minimum 5 participants.' };
+      return { isCustom: true, status: 'below-minimum', pricePerPerson: null, estimatedTotal: null, note: 'Minimum 5 participants required. Adjusted cost will be confirmed by our team.' };
+    }
+    if (pax === 1) return { isCustom: true, status: 'custom-solo', pricePerPerson: null, estimatedTotal: null, note: 'Custom quotation required for solo traveler. Solo arrangement available by request.' };
+    if (pax > 10) return { isCustom: true, status: 'custom-group', pricePerPerson: null, estimatedTotal: null, note: 'Custom quotation required for groups above 10 guests.' };
+    for (var i = 0; i < pkg.brackets.length; i++) {
+      var b = pkg.brackets[i];
+      if (pax >= b.min && pax <= b.max) return { isCustom: false, status: 'confirmed-rate', pricePerPerson: b.price, estimatedTotal: pax * b.price, note: 'Private journey · rate based on group size.' };
+    }
+    return { isCustom: true, status: 'unknown', pricePerPerson: null, estimatedTotal: null, note: 'Custom quotation required.' };
+  }
+
+  function fmtIDRB(n) { return 'IDR ' + n.toLocaleString('en-US'); }
+
+  function updateBanggaiPricing() {
+    if (slug !== 'banggai-explore') return;
+    var selectedOpt = document.querySelector('[data-bind-options] input[name="type"]:checked');
+    var paxInput = form ? form.querySelector('[name="pax"]') : null;
+    if (!selectedOpt || !paxInput) return;
+    var packageType = selectedOpt.value;
+    var pax = parseInt(paxInput.value || '2', 10);
+    var result = getBanggaiRate(packageType, pax);
+    banggaiCurrentResult = result;
+    // Update dataset.price so recalc sidebar picks up correct value
+    selectedOpt.dataset.price = result.pricePerPerson || 0;
+    // Render price card
+    if (!banggaiPriceCard) return;
+    var pkg = BANGGAI_PRICING[packageType];
+    var pkgLabel = pkg ? pkg.label : packageType;
+    var accentCol = 'var(--accent, #3A8EA0)';
+    if (result.isCustom) {
+      var customIcon = result.status === 'below-minimum' ? '⚠' : 'ℹ';
+      var customColor = result.status === 'below-minimum' ? '#B45309' : accentCol;
+      banggaiPriceCard.innerHTML =
+        '<div style="font:700 11px/1 -apple-system,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:' + accentCol + ';margin-bottom:10px">Selected Journey</div>' +
+        '<div style="font-weight:600;font-size:14px">Banggai Explore · ' + pkgLabel + '</div>' +
+        '<div style="color:var(--muted,#4A7A85);font-size:13px;margin-top:2px">Guests: ' + pax + '</div>' +
+        '<div style="margin-top:12px;padding:12px 16px;background:rgba(0,0,0,.04);border-radius:10px">' +
+          '<div style="font-weight:700;color:var(--ink)">Rate: Custom quotation required</div>' +
+          '<div style="margin-top:4px;font-size:12.5px;color:var(--muted,#4A7A85)">' + result.note + '</div>' +
+        '</div>' +
+        (result.status === 'below-minimum' ? '<div style="margin-top:8px;font-size:12px;font-weight:600;color:#B45309">' + customIcon + ' Below Open Trip minimum · adjusted cost will be confirmed</div>' : '') +
+        '<div style="margin-top:10px;font-size:12px;color:var(--muted,#4A7A85)">Our team will confirm pricing and availability via WhatsApp.</div>';
+    } else {
+      banggaiPriceCard.innerHTML =
+        '<div style="font:700 11px/1 -apple-system,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:' + accentCol + ';margin-bottom:10px">Selected Journey</div>' +
+        '<div style="font-weight:600;font-size:14px">Banggai Explore · ' + pkgLabel + '</div>' +
+        '<div style="color:var(--muted,#4A7A85);font-size:13px;margin-top:2px">Guests: ' + pax + '</div>' +
+        '<div style="margin-top:12px;display:grid;gap:8px">' +
+          '<div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(0,0,0,.07);padding-bottom:6px">' +
+            '<span style="color:var(--muted,#4A7A85);font-size:13px">Rate per person</span>' +
+            '<strong style="font-size:14px">' + fmtIDRB(result.pricePerPerson) + '</strong>' +
+          '</div>' +
+          '<div style="display:flex;justify-content:space-between;align-items:baseline">' +
+            '<span style="color:var(--muted,#4A7A85);font-size:13px">Estimated Total</span>' +
+            '<strong style="font-size:16px;color:' + accentCol + '">' + fmtIDRB(result.estimatedTotal) + '</strong>' +
+          '</div>' +
+        '</div>' +
+        '<div style="margin-top:10px;font-size:12px;color:var(--muted,#4A7A85)">' + result.note + ' No payment today.</div>' +
+        (packageType === 'open-trip-5d4n' ? '<div style="margin-top:6px;font-size:12px;font-weight:600;color:' + accentCol + '">★ Open Trip — joining other guests · small group journey</div>' : '');
+    }
+  }
+
+  if (slug === 'banggai-explore') {
+    banggaiPriceCard = document.createElement('div');
+    banggaiPriceCard.id = 'banggaiPriceCard';
+    banggaiPriceCard.style.cssText = 'background:rgba(58,142,160,.06);border:1px solid rgba(58,142,160,.22);border-radius:14px;padding:18px 22px;margin:16px 0 4px;line-height:1.65;min-height:80px';
+    var optWrapB = document.querySelector ? null : null; // inserted below after DOM
+    // Deferred DOM insertion — runs after options are rendered
+    setTimeout(function() {
+      var ow = document.querySelector('[data-bind-options]');
+      if (ow && ow.parentNode) ow.parentNode.insertBefore(banggaiPriceCard, ow.nextSibling);
+      updateBanggaiPricing();
+    }, 0);
+  }
+
     function recalc() {
+    // ── Banggai: update tiered price before sidebar recalc ──
+    if (slug === 'banggai-explore') updateBanggaiPricing();
     const type = form.querySelector('input[name="type"]:checked');
     const paxVal = parseInt(form.querySelector('[name="pax"]').value || '1', 10);
     if (!type) return;
@@ -1811,6 +1917,38 @@
       return lines.filter(Boolean).join('\n');
     }
 
+    // ─── Banggai Explore summary ───
+    if (p.product_id === 'banggai-explore') {
+      var br = p.banggaiResult || {};
+      var rateText = br.pricePerPerson ? ('IDR ' + br.pricePerPerson.toLocaleString('en-US') + ' / person') : 'Custom quotation required';
+      var totalText = br.estimatedTotal ? ('IDR ' + br.estimatedTotal.toLocaleString('en-US')) : 'Our team will confirm manually';
+      var statusLine = '';
+      if (br.status === 'below-minimum') statusLine = '*Status:* Below open trip minimum quota · adjusted cost required';
+      else if (br.status === 'custom-solo' || br.status === 'custom-group' || br.status === 'unknown') statusLine = '*Status:* Custom quotation required';
+      var pkgLabel = (BANGGAI_PRICING[p.option_id] && BANGGAI_PRICING[p.option_id].label) ? BANGGAI_PRICING[p.option_id].label : p.option_label;
+      var lines = [
+        'Hello eastXperience, I would like to book Banggai Explore.',
+        '—',
+        '*Product:* Banggai Explore',
+        '*Package:* ' + pkgLabel,
+        '*Travel Date:* ' + (p.date || '—'),
+        '*Number of Guests:* ' + p.pax,
+        '*Rate:* ' + rateText,
+        '*Estimated Total:* ' + totalText,
+        statusLine,
+        '—',
+        '*Name:* ' + (p.name || '—'),
+        '*WhatsApp:* ' + (p.whatsapp || '—'),
+        '*Email:* ' + (p.email || '—'),
+        p.pickup ? '*Arrival Point:* ' + p.pickup : '',
+        p.dietary ? '*Dietary:* ' + p.dietary : '',
+        p.notes ? '*Notes:* ' + p.notes : '',
+        '—',
+        'Please help confirm availability and next steps.'
+      ];
+      return lines.filter(Boolean).join('\n');
+    }
+
     // ─── Default summary for other products ───
     return [
       '*EastXperience · Booking Request*',
@@ -1965,6 +2103,7 @@
       seasickness:      data.get('seasickness')      || '',
       payment_method:   data.get('payment_method')   || '',
       kanha: kCtx,
+      banggaiResult: (slug === 'banggai-explore' && typeof banggaiCurrentResult !== 'undefined') ? banggaiCurrentResult : null,
       ref:   refCode
     };
     payload.summaryText = buildSummary(payload);
