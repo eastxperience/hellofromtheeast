@@ -1071,10 +1071,11 @@
       testimonial: 'Banggai was the most unexpectedly beautiful destination we have visited. EastXperience handled every detail with care and warmth.',
       testimonialWho: 'Laura M. · Singapore · Banggai 5D4N',
       options: [
-        { val: '4d3n', label: '4D3N Private Journey', price: 2500000, mode: 'per-person', desc: 'Crystal lakes, waterfall, beaches, island crossing. 3 nights — the essential Banggai.', priceText: 'From IDR 2,500,000 / person' },
-        { val: '5d4n', label: '5D4N Private Journey', price: 3200000, mode: 'per-person', desc: 'Full Banggai arc — adds Pulo Dua hill view, deeper island rhythm, and extra beach time. 4 nights.', priceText: 'From IDR 3,200,000 / person' }
+        { val: 'open-trip-5d4n', label: 'Open Trip 5D4N',      price: 4700000, mode: 'per-person', desc: 'Join in Tour · Minimum 5 participants required.',                               priceText: 'IDR 4,700,000 / pax · Join in Tour' },
+        { val: 'private-4d3n',   label: '4D3N Private Journey', price: 5450000, mode: 'per-person', desc: 'Private journey for your group only. Price varies by group size (2–10 guests).', priceText: 'Based on group size · 2–10 guests' },
+        { val: 'private-5d4n',   label: '5D4N Private Journey', price: 7200000, mode: 'per-person', desc: 'Private journey for your group only. Price varies by group size (2–10 guests).', priceText: 'Based on group size · 2–10 guests' }
       ],
-      maxPax: 10
+      maxPax: 20
     }
   };
 
@@ -1744,6 +1745,20 @@
     setAll('[data-out="unit"]', fmt(unit) + (mode === 'flat' ? ' · whole group' : ' / person'));
     setAll('[data-out="pax"]',  paxVal + (paxVal === 1 ? ' traveler' : ' travelers'));
     setAll('[data-out="type"]', type.dataset.label);
+    // ── Banggai: custom quotation — override sidebar to never show IDR 0 ──
+    if (slug === 'banggai-explore' && banggaiCurrentResult && banggaiCurrentResult.isCustom) {
+      const customLabel = banggaiCurrentResult.status === 'below-minimum'
+        ? 'Below minimum quota'
+        : 'Custom quotation required';
+      const customSub = banggaiCurrentResult.status === 'below-minimum'
+        ? 'Open Trip requires min. 5 pax · team will confirm'
+        : 'Our team will confirm pricing via WhatsApp';
+      setAllHTML('[data-out="total"]', customLabel);
+      setAll('[data-out="unit"]', '—');
+      setAll('[data-out="sub"]', customSub);
+      return;
+    }
+
     const usdTotal = Math.round(total / USD_IDR_RATE);
     const usdLine  = '<span style="display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px">&#8776; USD ' + usdTotal.toLocaleString('en-US') + '</span>';
     setAllHTML('[data-out="total"]', fmt(total) + usdLine);
