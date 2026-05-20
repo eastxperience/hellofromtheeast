@@ -35,7 +35,7 @@
   (function () {
     var p = (new URLSearchParams(location.search).get('product') || 'waerebo').toLowerCase();
     // Whitelist to prevent attribute-selector injection of unknown slugs
-    var valid = ['waerebo','komodo-speedboat','komodo-sailing-3d2n','todo-village','bandung-rafting','bandung-volcano'];
+    var valid = ['waerebo','komodo-speedboat','komodo-sailing-3d2n','todo-village','bandung-rafting','bandung-volcano','banggai-explore'];
     if (valid.indexOf(p) === -1) p = 'waerebo';
     document.documentElement.setAttribute('data-product', p);
   })();
@@ -52,6 +52,7 @@
   :root[data-product="bandung-rafting"]     { --bg:#F2F4F1; --ink:#0F2A1C; --ink-deep:#071810; --accent:#2A8FD4; --accent-2:#66B8ED; --muted:#5E7368; }
   :root[data-product="bandung-volcano"]     { --bg:#EFEBE3; --ink:#1C1F1A; --ink-deep:#0E100C; --accent:#A38256; --accent-2:#D8BB8A; --muted:#6F6E66; }
   :root[data-product="waerebo"]             { --bg:#F6F1E7; --ink:#203328; --ink-deep:#0B1F17; --accent:#C98E5B; --accent-2:#C9A24B; --muted:#6B7280; }
+  :root[data-product="banggai-explore"]     { --bg:#EDF4F6; --ink:#0D2830; --ink-deep:#06181F; --accent:#3A8EA0; --accent-2:#6DB8CC; --muted:#4A7A85; }
 
   body { background: var(--bg); color: var(--ink); }
   .btn-primary { background: var(--ink); color:#fff; }
@@ -1045,6 +1046,35 @@
         { val: 'private', label: 'Private Journey', price: 5400000, mode: 'flat',       desc: 'Exclusive van, guide & pacing. Ideal for couples and families.',   priceText: 'From IDR 5,400,000 · whole group' }
       ],
       maxPax: 6
+    },
+    'banggai-explore': {
+      name: 'Banggai Explore · Central Sulawesi',
+      shortName: 'Banggai Explore',
+      headline: 'Beyond the Obvious <em>Indonesia.</em>',
+      subhead: 'A quiet island journey through crystal lakes, waterfalls, coastal villages, hill views, and the slower rhythm of Central Sulawesi.',
+      heroImg: 'banggai-eastxperience/assets/images/hero-banggai.jpg',
+      detailsUrl: 'banggai-eastxperience/',
+      duration: '4D3N or 5D4N · Private Journey',
+      nights: 3,
+      rating: '★ Curated by EastXperience · Banggai, Central Sulawesi',
+      reschedule: 'Flexible scheduling available',
+      depositNote: '(50% down payment to confirm · balance due 14 days before departure)',
+      pickupLabel: 'Arrival Point in Luwuk',
+      pickupPlaceholder: 'Luwuk Airport or hotel name',
+      notesPlaceholder: 'Group size, travel dates, hotel preference (with hotel / without hotel), any special requirements, dietary needs.',
+      dateHint: 'Available year-round. Best Apr–Oct. Ferry crossing Luwuk–Salakan is included in the journey.',
+      paxHint: 'Private journey · 2–10 guests',
+      optionsSub: 'Choose your journey duration. Both are private — your group only. Price varies by group size.',
+      prefsSub: 'Meals are locally prepared. Let us know about dietary restrictions or preferences.',
+      submitLabel: 'Send My Booking Request →',
+      legal: 'No payment today. Our team will confirm availability and send a clear invoice. 50% deposit secures your booking. Balance due 14 days before departure.',
+      testimonial: 'Banggai was the most unexpectedly beautiful destination we have visited. EastXperience handled every detail with care and warmth.',
+      testimonialWho: 'Laura M. · Singapore · Banggai 5D4N',
+      options: [
+        { val: '4d3n', label: '4D3N Private Journey', price: 2500000, mode: 'per-person', desc: 'Crystal lakes, waterfall, beaches, island crossing. 3 nights — the essential Banggai.', priceText: 'From IDR 2,500,000 / person' },
+        { val: '5d4n', label: '5D4N Private Journey', price: 3200000, mode: 'per-person', desc: 'Full Banggai arc — adds Pulo Dua hill view, deeper island rhythm, and extra beach time. 4 nights.', priceText: 'From IDR 3,200,000 / person' }
+      ],
+      maxPax: 10
     }
   };
 
