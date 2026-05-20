@@ -1601,7 +1601,7 @@
 
   // ═════════════ BANGGAI EXPLORE — DYNAMIC PRICING ═════════════
   var BANGGAI_PRICING = {
-    'open-trip-5d4n': { label: 'Open Trip 5D4N', minPax: 5, pricePerPerson: 4700000 },
+    'open-trip-5d4n': { label: 'Open Trip 5D4N', minPax: 4, pricePerPerson: 4700000 },
     'private-4d3n': {
       label: '4D3N Private Journey',
       brackets: [
@@ -1619,73 +1619,213 @@
       ]
     }
   };
-  var banggaiPriceCard = null;
+
+  // Private bracket definitions — used for bracket-selector UI
+  var BANGGAI_BRACKET_DEFS = [
+    { id: 'pax-2',    label: '2 pax',           min: 2, max: 2,  defPax: 2 },
+    { id: 'pax-3',    label: '3 pax',           min: 3, max: 3,  defPax: 3 },
+    { id: 'pax-4',    label: '4 pax',           min: 4, max: 4,  defPax: 4 },
+    { id: 'pax-5-7',  label: '5 – 7 pax',  min: 5, max: 7,  defPax: 5 },
+    { id: 'pax-8-10', label: '8 – 10 pax', min: 8, max: 10, defPax: 8 }
+  ];
+
+  var banggaiPriceCard  = null;
   var banggaiCurrentResult = null;
+  var banggaiBracket    = 'pax-2';  // active private bracket
+  var banggaiBracketPax = 2;        // exact pax within bracket
+  var banggaiLastPackage = null;    // detect package switches
+
+  function fmtIDRB(n) { return 'IDR ' + n.toLocaleString('en-US'); }
+
+  function banggaiSetPax(val) {
+    var pi = form ? form.querySelector('[name="pax"]') : null;
+    var pd = document.querySelector('#paxGroup .pax-n');
+    if (pi) pi.value = val;
+    if (pd) pd.textContent = val;
+  }
+
+  function banggaiFindBD(id) {
+    for (var i = 0; i < BANGGAI_BRACKET_DEFS.length; i++) {
+      if (BANGGAI_BRACKET_DEFS[i].id === id) return BANGGAI_BRACKET_DEFS[i];
+    }
+    return BANGGAI_BRACKET_DEFS[0];
+  }
 
   function getBanggaiRate(packageType, pax) {
     var pkg = BANGGAI_PRICING[packageType];
     if (!pkg) return { isCustom: true, status: 'unknown', pricePerPerson: null, estimatedTotal: null, note: 'Package not found.' };
     if (packageType === 'open-trip-5d4n') {
-      if (pax >= 5) return { isCustom: false, status: 'confirmed-rate', pricePerPerson: pkg.pricePerPerson, estimatedTotal: pax * pkg.pricePerPerson, note: 'Open Trip requires minimum 5 participants.' };
-      return { isCustom: true, status: 'below-minimum', pricePerPerson: null, estimatedTotal: null, note: 'Minimum 5 participants required. Adjusted cost will be confirmed by our team.' };
+      if (pax >= 4) return { isCustom: false, status: 'confirmed-rate', pricePerPerson: pkg.pricePerPerson, estimatedTotal: pax * pkg.pricePerPerson, note: 'Open Trip requires minimum 4 participants.' };
+      return { isCustom: true, status: 'below-minimum', pricePerPerson: null, estimatedTotal: null, note: 'Minimum 4 participants required. Adjusted cost will be confirmed by our team.' };
     }
     if (pax === 1) return { isCustom: true, status: 'custom-solo', pricePerPerson: null, estimatedTotal: null, note: 'Custom quotation required for solo traveler. Solo arrangement available by request.' };
     if (pax > 10) return { isCustom: true, status: 'custom-group', pricePerPerson: null, estimatedTotal: null, note: 'Custom quotation required for groups above 10 guests.' };
     for (var i = 0; i < pkg.brackets.length; i++) {
       var b = pkg.brackets[i];
-      if (pax >= b.min && pax <= b.max) return { isCustom: false, status: 'confirmed-rate', pricePerPerson: b.price, estimatedTotal: pax * b.price, note: 'Private journey · rate based on group size.' };
+      if (pax >= b.min && pax <= b.max) return { isCustom: false, status: 'confirmed-rate', pricePerPerson: b.price, estimatedTotal: pax * b.price, note: 'Private journey · rate based on selected group size.' };
     }
     return { isCustom: true, status: 'unknown', pricePerPerson: null, estimatedTotal: null, note: 'Custom quotation required.' };
   }
 
-  function fmtIDRB(n) { return 'IDR ' + n.toLocaleString('en-US'); }
+  function buildPrivateSelectorHTML(packageType, pkgLabel, currentPax, result, ac) {
+    var pkg = BANGGAI_PRICING[packageType];
+    var html = '';
+    html += '<div style="font:700 11px/1 -apple-system,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:' + ac + ';margin-bottom:8px">Private Group Size</div>';
+    html += '<div style="font-size:12.5px;color:var(--muted,#4A7A85);margin-bottom:12px">Choose your group size to see the correct rate.</div>';
+    html += '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px">';
+    for (var i = 0; i < BANGGAI_BRACKET_DEFS.length; i++) {
+      var bd = BANGGAI_BRACKET_DEFS[i];
+      var bPrice = null;
+      for (var j = 0; j < pkg.brackets.length; j++) {
+        var b = pkg.brackets[j];
+        if (bd.defPax >= b.min && bd.defPax <= b.max) { bPrice = b.price; break; }
+      }
+      var isAct = (bd.id === banggaiBracket);
+      var bg = isAct
+        ? 'background:' + ac + ';color:#fff;border-color:' + ac
+        : 'background:rgba(255,255,255,0.85);color:var(--ink,#111);border-color:rgba(58,142,160,.35)';
+      html += '<button type="button" data-bracket="' + bd.id + '" style="cursor:pointer;border:1.5px solid;border-radius:24px;padding:8px 14px;font-size:12.5px;font-weight:600;line-height:1.2;' + bg + '">';
+      html += bd.label;
+      if (bPrice) html += '<span style="display:block;font-size:11px;font-weight:400;opacity:.85;margin-top:3px">' + fmtIDRB(bPrice) + '/pax</span>';
+      html += '</button>';
+    }
+    html += '</div>';
+    var abd = banggaiFindBD(banggaiBracket);
+    if (abd.min !== abd.max) {
+      html += '<div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;padding:10px 14px;background:rgba(58,142,160,.07);border-radius:10px">';
+      html += '<span style="font-size:13px;color:var(--muted,#4A7A85);flex:1">Exact guests (' + abd.min + '–' + abd.max + ')</span>';
+      html += '<button type="button" id="bgSubMinus" style="width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(58,142,160,.5);background:transparent;font-size:18px;cursor:pointer;line-height:1;color:var(--ink,#111)">&#8722;</button>';
+      html += '<span id="bgSubCount" style="font-size:16px;font-weight:700;min-width:22px;text-align:center">' + currentPax + '</span>';
+      html += '<button type="button" id="bgSubPlus" style="width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(58,142,160,.5);background:transparent;font-size:18px;cursor:pointer;line-height:1;color:var(--ink,#111)">&#43;</button>';
+      html += '</div>';
+    }
+    if (!result.isCustom && result.pricePerPerson) {
+      html += '<div style="display:grid;gap:8px;padding:12px 16px;background:rgba(0,0,0,.03);border-radius:10px">';
+      html += '<div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(0,0,0,.07);padding-bottom:6px">';
+      html += '<span style="color:var(--muted,#4A7A85);font-size:13px">Rate per person</span>';
+      html += '<strong style="font-size:14px">' + fmtIDRB(result.pricePerPerson) + '</strong>';
+      html += '</div>';
+      html += '<div style="display:flex;justify-content:space-between;align-items:baseline">';
+      html += '<span style="color:var(--muted,#4A7A85);font-size:13px">Estimated Total (' + currentPax + ' guests)</span>';
+      html += '<strong style="font-size:16px;color:' + ac + '">' + fmtIDRB(result.estimatedTotal) + '</strong>';
+      html += '</div></div>';
+      html += '<div style="margin-top:8px;font-size:12px;color:var(--muted,#4A7A85)">Private journey · rate based on selected group size. No payment today.</div>';
+    } else {
+      html += '<div style="padding:12px 16px;background:rgba(180,83,9,.06);border:1px solid rgba(180,83,9,.2);border-radius:10px">';
+      html += '<div style="font-weight:600;font-size:13px;color:#B45309">Custom quotation required</div>';
+      html += '<div style="margin-top:4px;font-size:12px;color:var(--muted,#4A7A85)">' + result.note + '</div></div>';
+      html += '<div style="margin-top:8px;font-size:12px;color:var(--muted,#4A7A85)">Our team will confirm pricing and availability via WhatsApp.</div>';
+    }
+    return html;
+  }
+
+  function attachPrivateBracketEvents(packageType) {
+    if (!banggaiPriceCard) return;
+    var pills = banggaiPriceCard.querySelectorAll('[data-bracket]');
+    for (var pi = 0; pi < pills.length; pi++) {
+      (function(pill) {
+        pill.addEventListener('click', function() {
+          var bId = pill.getAttribute('data-bracket');
+          var bd  = banggaiFindBD(bId);
+          banggaiBracket    = bId;
+          banggaiBracketPax = bd.defPax;
+          banggaiSetPax(banggaiBracketPax);
+          recalc();
+        });
+      })(pills[pi]);
+    }
+    var minus = document.getElementById('bgSubMinus');
+    var plus  = document.getElementById('bgSubPlus');
+    if (!minus || !plus) return;
+    var abd = banggaiFindBD(banggaiBracket);
+    minus.addEventListener('click', function() {
+      if (banggaiBracketPax > abd.min) {
+        banggaiBracketPax--;
+        banggaiSetPax(banggaiBracketPax);
+        recalc();
+      }
+    });
+    plus.addEventListener('click', function() {
+      if (banggaiBracketPax < abd.max) {
+        banggaiBracketPax++;
+        banggaiSetPax(banggaiBracketPax);
+        recalc();
+      }
+    });
+  }
 
   function updateBanggaiPricing() {
     if (slug !== 'banggai-explore') return;
     var selectedOpt = document.querySelector('[data-bind-options] input[name="type"]:checked');
-    var paxInput = form ? form.querySelector('[name="pax"]') : null;
-    if (!selectedOpt || !paxInput) return;
+    if (!selectedOpt) return;
     var packageType = selectedOpt.value;
-    var pax = parseInt(paxInput.value || '2', 10);
+    var isPrivate   = (packageType === 'private-4d3n' || packageType === 'private-5d4n');
+
+    // Reset bracket when switching to a different private type
+    if (isPrivate && packageType !== banggaiLastPackage) {
+      banggaiBracket    = 'pax-2';
+      banggaiBracketPax = 2;
+    }
+    banggaiLastPackage = packageType;
+
+    // Show generic pax row for Open Trip; hide for Private (bracket selector takes over)
+    var paxGroup = document.getElementById('paxGroup');
+    var paxField = paxGroup ? paxGroup.parentElement : null;
+    if (paxField) paxField.style.display = isPrivate ? 'none' : '';
+
+    // Determine effective pax
+    var pax;
+    if (isPrivate) {
+      pax = banggaiBracketPax;
+      banggaiSetPax(pax);
+    } else {
+      var paxInput = form ? form.querySelector('[name="pax"]') : null;
+      pax = parseInt(paxInput ? (paxInput.value || '4') : '4', 10);
+      if (pax < 4) { pax = 4; banggaiSetPax(4); }
+    }
+
     var result = getBanggaiRate(packageType, pax);
     banggaiCurrentResult = result;
-    // Update dataset.price so recalc sidebar picks up correct value
     selectedOpt.dataset.price = result.pricePerPerson || 0;
-    // Render price card
+
     if (!banggaiPriceCard) return;
-    var pkg = BANGGAI_PRICING[packageType];
+    var pkg      = BANGGAI_PRICING[packageType];
     var pkgLabel = pkg ? pkg.label : packageType;
-    var accentCol = 'var(--accent, #3A8EA0)';
-    if (result.isCustom) {
-      var customIcon = result.status === 'below-minimum' ? '⚠' : 'ℹ';
-      var customColor = result.status === 'below-minimum' ? '#B45309' : accentCol;
-      banggaiPriceCard.innerHTML =
-        '<div style="font:700 11px/1 -apple-system,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:' + accentCol + ';margin-bottom:10px">Selected Journey</div>' +
-        '<div style="font-weight:600;font-size:14px">Banggai Explore · ' + pkgLabel + '</div>' +
-        '<div style="color:var(--muted,#4A7A85);font-size:13px;margin-top:2px">Guests: ' + pax + '</div>' +
-        '<div style="margin-top:12px;padding:12px 16px;background:rgba(0,0,0,.04);border-radius:10px">' +
-          '<div style="font-weight:700;color:var(--ink)">Rate: Custom quotation required</div>' +
-          '<div style="margin-top:4px;font-size:12.5px;color:var(--muted,#4A7A85)">' + result.note + '</div>' +
-        '</div>' +
-        (result.status === 'below-minimum' ? '<div style="margin-top:8px;font-size:12px;font-weight:600;color:#B45309">' + customIcon + ' Below Open Trip minimum · adjusted cost will be confirmed</div>' : '') +
-        '<div style="margin-top:10px;font-size:12px;color:var(--muted,#4A7A85)">Our team will confirm pricing and availability via WhatsApp.</div>';
+    var ac       = 'var(--accent,#3A8EA0)';
+
+    if (isPrivate) {
+      banggaiPriceCard.innerHTML = buildPrivateSelectorHTML(packageType, pkgLabel, pax, result, ac);
+      attachPrivateBracketEvents(packageType);
     } else {
-      banggaiPriceCard.innerHTML =
-        '<div style="font:700 11px/1 -apple-system,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:' + accentCol + ';margin-bottom:10px">Selected Journey</div>' +
-        '<div style="font-weight:600;font-size:14px">Banggai Explore · ' + pkgLabel + '</div>' +
-        '<div style="color:var(--muted,#4A7A85);font-size:13px;margin-top:2px">Guests: ' + pax + '</div>' +
-        '<div style="margin-top:12px;display:grid;gap:8px">' +
-          '<div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(0,0,0,.07);padding-bottom:6px">' +
-            '<span style="color:var(--muted,#4A7A85);font-size:13px">Rate per person</span>' +
-            '<strong style="font-size:14px">' + fmtIDRB(result.pricePerPerson) + '</strong>' +
+      // Open Trip rendering
+      if (result.isCustom) {
+        banggaiPriceCard.innerHTML =
+          '<div style="font:700 11px/1 -apple-system,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:' + ac + ';margin-bottom:10px">Selected Journey</div>' +
+          '<div style="font-weight:600;font-size:14px">Banggai Explore · Open Trip 5D4N</div>' +
+          '<div style="color:var(--muted,#4A7A85);font-size:13px;margin-top:2px">Join in Tour · ' + pax + ' guests</div>' +
+          '<div style="margin-top:12px;padding:12px 16px;background:rgba(180,83,9,.06);border:1px solid rgba(180,83,9,.2);border-radius:10px">' +
+            '<div style="font-weight:700;color:#B45309">&#9888; Below Open Trip minimum</div>' +
+            '<div style="margin-top:4px;font-size:12.5px;color:var(--muted,#4A7A85)">' + result.note + '</div>' +
           '</div>' +
-          '<div style="display:flex;justify-content:space-between;align-items:baseline">' +
-            '<span style="color:var(--muted,#4A7A85);font-size:13px">Estimated Total</span>' +
-            '<strong style="font-size:16px;color:' + accentCol + '">' + fmtIDRB(result.estimatedTotal) + '</strong>' +
+          '<div style="margin-top:10px;font-size:12px;color:var(--muted,#4A7A85)">Our team will confirm pricing and availability via WhatsApp.</div>';
+      } else {
+        banggaiPriceCard.innerHTML =
+          '<div style="font:700 11px/1 -apple-system,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:' + ac + ';margin-bottom:10px">Selected Journey</div>' +
+          '<div style="font-weight:600;font-size:14px">Banggai Explore · Open Trip 5D4N</div>' +
+          '<div style="color:var(--muted,#4A7A85);font-size:13px;margin-top:2px">Join in Tour · ' + pax + ' guests</div>' +
+          '<div style="margin-top:12px;display:grid;gap:8px">' +
+            '<div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(0,0,0,.07);padding-bottom:6px">' +
+              '<span style="color:var(--muted,#4A7A85);font-size:13px">Rate per person</span>' +
+              '<strong style="font-size:14px">' + fmtIDRB(result.pricePerPerson) + '</strong>' +
+            '</div>' +
+            '<div style="display:flex;justify-content:space-between;align-items:baseline">' +
+              '<span style="color:var(--muted,#4A7A85);font-size:13px">Estimated Total</span>' +
+              '<strong style="font-size:16px;color:' + ac + '">' + fmtIDRB(result.estimatedTotal) + '</strong>' +
+            '</div>' +
           '</div>' +
-        '</div>' +
-        '<div style="margin-top:10px;font-size:12px;color:var(--muted,#4A7A85)">' + result.note + ' No payment today.</div>' +
-        (packageType === 'open-trip-5d4n' ? '<div style="margin-top:6px;font-size:12px;font-weight:600;color:' + accentCol + '">★ Open Trip — joining other guests · small group journey</div>' : '');
+          '<div style="margin-top:10px;font-size:12px;color:var(--muted,#4A7A85)">' + result.note + ' No payment today.</div>' +
+          '<div style="margin-top:6px;font-size:12px;font-weight:600;color:' + ac + '">★ Open Trip — joining other guests · small group journey</div>';
+      }
     }
   }
 
@@ -1693,17 +1833,16 @@
     banggaiPriceCard = document.createElement('div');
     banggaiPriceCard.id = 'banggaiPriceCard';
     banggaiPriceCard.style.cssText = 'background:rgba(58,142,160,.06);border:1px solid rgba(58,142,160,.22);border-radius:14px;padding:18px 22px;margin:16px 0 4px;line-height:1.65;min-height:80px';
-    var optWrapB = document.querySelector ? null : null; // inserted below after DOM
     // Deferred DOM insertion — runs after options are rendered
     setTimeout(function() {
       var ow = document.querySelector('[data-bind-options]');
       if (ow && ow.parentNode) ow.parentNode.insertBefore(banggaiPriceCard, ow.nextSibling);
-      // Default pax to 5 for Banggai (Open Trip minimum)
-      var paxInputB = form ? form.querySelector('[name="pax"]') : document.querySelector('[name="pax"]');
+      // Default pax to 4 for Banggai Open Trip (minimum)
+      var paxInputB   = form ? form.querySelector('[name="pax"]') : document.querySelector('[name="pax"]');
       var paxDisplayB = document.querySelector('#paxGroup .pax-n');
-      if (paxInputB && parseInt(paxInputB.value, 10) < 5) {
-        paxInputB.value = 5;
-        if (paxDisplayB) paxDisplayB.textContent = '5';
+      if (paxInputB && parseInt(paxInputB.value, 10) < 4) {
+        paxInputB.value = 4;
+        if (paxDisplayB) paxDisplayB.textContent = '4';
       }
       updateBanggaiPricing();
       recalc();
@@ -1760,7 +1899,7 @@
         ? 'Below minimum quota'
         : 'Custom quotation required';
       const customSub = banggaiCurrentResult.status === 'below-minimum'
-        ? 'Open Trip requires min. 5 pax · team will confirm'
+        ? 'Open Trip requires min. 4 pax · team will confirm'
         : 'Our team will confirm pricing via WhatsApp';
       setAllHTML('[data-out="total"]', customLabel);
       setAll('[data-out="unit"]', '—');
@@ -1948,19 +2087,23 @@
     // ─── Banggai Explore summary ───
     if (p.product_id === 'banggai-explore') {
       var br = p.banggaiResult || {};
-      var rateText = br.pricePerPerson ? ('IDR ' + br.pricePerPerson.toLocaleString('en-US') + ' / person') : 'Custom quotation required';
-      var totalText = br.estimatedTotal ? ('IDR ' + br.estimatedTotal.toLocaleString('en-US')) : 'Our team will confirm manually';
+      var rateText  = br.pricePerPerson ? ('IDR ' + br.pricePerPerson.toLocaleString('en-US') + ' / person') : 'Custom quotation required';
+      var totalText = br.estimatedTotal  ? ('IDR ' + br.estimatedTotal.toLocaleString('en-US'))  : 'Our team will confirm manually';
       var statusLine = '';
       if (br.status === 'below-minimum') statusLine = '*Status:* Below open trip minimum quota · adjusted cost required';
       else if (br.status === 'custom-solo' || br.status === 'custom-group' || br.status === 'unknown') statusLine = '*Status:* Custom quotation required';
       var pkgLabel = (BANGGAI_PRICING[p.option_id] && BANGGAI_PRICING[p.option_id].label) ? BANGGAI_PRICING[p.option_id].label : p.option_label;
+      var isPrivateJourney = (p.option_id === 'private-4d3n' || p.option_id === 'private-5d4n');
+      var typeLabel = isPrivateJourney ? 'Private Journey' : 'Join in Tour';
       var lines = [
         'Hello eastXperience, I would like to book Banggai Explore.',
         '—',
         '*Product:* Banggai Explore',
         '*Package:* ' + pkgLabel,
+        '*Type:* ' + typeLabel,
+        isPrivateJourney && p.banggaiBracketLabel ? '*Private Group Size:* ' + p.banggaiBracketLabel : '',
+        '*Exact Guests:* ' + p.pax,
         '*Travel Date:* ' + (p.date || '—'),
-        '*Number of Guests:* ' + p.pax,
         '*Rate:* ' + rateText,
         '*Estimated Total:* ' + totalText,
         statusLine,
@@ -2132,6 +2275,8 @@
       payment_method:   data.get('payment_method')   || '',
       kanha: kCtx,
       banggaiResult: (slug === 'banggai-explore' && typeof banggaiCurrentResult !== 'undefined') ? banggaiCurrentResult : null,
+      banggaiBracketId:    (slug === 'banggai-explore') ? banggaiBracket : null,
+      banggaiBracketLabel: (slug === 'banggai-explore') ? banggaiFindBD(banggaiBracket).label : null,
       ref:   refCode
     };
     payload.summaryText = buildSummary(payload);
