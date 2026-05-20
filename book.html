@@ -849,7 +849,8 @@
 
   // ── TASK 9: Reliable WhatsApp opener ─────────────────────────
   function openWhatsApp(message) {
-    var url = 'https://wa.me/61415097538?text=' + encodeURIComponent(message);
+    var waNum = (typeof slug !== 'undefined' && slug === 'komodo-sailing-3d2n') ? '61415097538' : '62811342473';
+    var url = 'https://wa.me/' + waNum + '?text=' + encodeURIComponent(message);
     // Create and click a real anchor — most reliable cross-platform approach
     var a = document.createElement('a');
     a.href = url; a.target = '_blank'; a.rel = 'noopener';
@@ -1697,7 +1698,15 @@
     setTimeout(function() {
       var ow = document.querySelector('[data-bind-options]');
       if (ow && ow.parentNode) ow.parentNode.insertBefore(banggaiPriceCard, ow.nextSibling);
+      // Default pax to 5 for Banggai (Open Trip minimum)
+      var paxInputB = form ? form.querySelector('[name="pax"]') : document.querySelector('[name="pax"]');
+      var paxDisplayB = document.querySelector('#paxGroup .pax-n');
+      if (paxInputB && parseInt(paxInputB.value, 10) < 5) {
+        paxInputB.value = 5;
+        if (paxDisplayB) paxDisplayB.textContent = '5';
+      }
       updateBanggaiPricing();
+      recalc();
     }, 0);
   }
 
@@ -1759,9 +1768,13 @@
       return;
     }
 
-    const usdTotal = Math.round(total / USD_IDR_RATE);
-    const usdLine  = '<span style="display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px">&#8776; USD ' + usdTotal.toLocaleString('en-US') + '</span>';
-    setAllHTML('[data-out="total"]', fmt(total) + usdLine);
+    if (slug === 'banggai-explore') {
+      setAllHTML('[data-out="total"]', fmt(total));
+    } else {
+      const usdTotal = Math.round(total / USD_IDR_RATE);
+      const usdLine  = '<span style="display:block;font-size:11px;font-weight:400;color:var(--muted);margin-top:2px">&#8776; USD ' + usdTotal.toLocaleString('en-US') + '</span>';
+      setAllHTML('[data-out="total"]', fmt(total) + usdLine);
+    }
     // ── Sub-line: show 3rd-person add-on if applicable ──────────────────────
     if (slug === 'komodo-sailing-3d2n' && kanhaCtx && kanhaCtx.hasTrip && isPrivate) {
       const invB3 = KANHA_INVENTORY[kanhaCtx.boat_id] || {};
