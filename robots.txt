@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://eastxperience.github.io/sitemap.xml
+
+Sitemap: https://eastxperience.com/sitemap.xml
