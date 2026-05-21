@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Banggai Explore | Beyond the Obvious Indonesia | EastXperience</title>
+<meta name="description" content="Explore Banggai, Central Sulawesi with EastXperience. A quiet island journey through crystal lakes, waterfalls, beaches, hill views, and slow island crossings." />
+<link rel="canonical" href="https://eastxperience.github.io/hellofromtheeast/banggai-eastxperience/" />
+<meta property="og:title" content="Banggai Explore | Beyond the Obvious Indonesia | EastXperience" />
+<meta property="og:description" content="A quiet island journey through crystal lakes, waterfalls, beaches, hill views, and slow island crossings in Central Sulawesi." />
+<meta property="og:image" content="https://eastxperience.github.io/hellofromtheeast/banggai-eastxperience/assets/images/hero-banggai.jpg" />
+<meta property="og:url" content="https://eastxperience.github.io/hellofromtheeast/banggai-eastxperience/" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Banggai Explore | Beyond the Obvious Indonesia | EastXperience" />
+<meta name="twitter:description" content="A quiet island journey through crystal lakes, waterfalls, beaches, hill views, and slow island crossings in Central Sulawesi." />
+<meta name="twitter:image" content="https://eastxperience.github.io/hellofromtheeast/banggai-eastxperience/assets/images/hero-banggai.jpg" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: #FAFAF7;
+    color: #2C2C2C;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  .sans { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; }
+  h1, h2, h3, h4 { font-family: 'Georgia', 'Times New Roman', serif; font-weight: normal; letter-spacing: -0.02em; }
+  p { font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif; font-weight: 300; }
+
+  :root {
+    --navy:    #1A2840;
+    --lagoon:  #3A8EA0;
+    --moss:    #4A6741;
+    --sand:    #C8A882;
+    --ivory:   #FAFAF7;
+    --charcoal:#2C2C2C;
+    --white:   #FFFFFF;
+    --border:  rgba(42,66,80,0.12);
+    --shadow:  0 4px 32px rgba(26,40,64,0.08);
+    --shadow-lg: 0 12px 60px rgba(26,40,64,0.14);
+  }
+
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .fade-in-delay-1 { transition-delay: 0.1s; }
+  .fade-in-delay-2 { transition-delay: 0.2s; }
+  .fade-in-delay-3 { transition-delay: 0.3s; }
+  .fade-in-delay-4 { transition-delay: 0.4s; }
+
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 96px 0; }
+  .section-sm { padding: 64px 0; }
+  .divider { width: 48px; height: 1px; background: var(--sand); margin: 24px 0; }
+  .divider-center { margin: 24px auto; }
+  .text-center { text-align: center; }
+  .label-tag {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--lagoon);
+    display: inline-block; margin-bottom: 16px;
+  }
+
+  /* ── Navbar ── */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 20px 0;
+    transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+  }
+  .navbar.scrolled {
+    background: rgba(26,40,64,0.97); padding: 14px 0;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+  }
+  .navbar-inner { display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: 'Georgia', serif; font-size: 20px; color: var(--white); text-decoration: none; letter-spacing: -0.01em; }
+  .logo span { color: var(--sand); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 400;
+    letter-spacing: 0.06em; color: rgba(255,255,255,0.82); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    font-family: -apple-system, sans-serif; font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--white);
+    background: var(--lagoon); border: none; padding: 10px 22px;
+    border-radius: 40px; text-decoration: none; transition: background 0.2s, transform 0.2s; cursor: pointer;
+  }
+  .nav-cta:hover { background: #2d7a8c; transform: translateY(-1px); }
+  @media (max-width: 768px) { .nav-links { display: none; } .nav-cta { padding: 8px 18px; font-size: 11px; } }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative; height: 100vh; min-height: 600px;
+    display: flex; align-items: flex-end; padding-bottom: 80px; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('assets/images/hero-banggai.jpg');
+    background-size: cover; background-position: center 40%;
+    background-color: var(--navy);
+    transform: scale(1.05); transition: transform 12s ease;
+  }
+  .hero-bg.loaded { transform: scale(1); }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(26,40,64,0.2) 0%, rgba(26,40,64,0.1) 40%, rgba(26,40,64,0.72) 100%);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 760px; }
+  .hero-trust {
+    font-family: -apple-system, sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--sand);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+  }
+  .hero-trust::before { content: ''; display: inline-block; width: 32px; height: 1px; background: var(--sand); }
+  .hero h1 {
+    font-size: clamp(36px, 6vw, 72px); color: var(--white);
+    line-height: 1.08; margin-bottom: 24px; font-weight: normal;
+  }
+  .hero-subtitle {
+    font-size: clamp(15px, 2vw, 18px); color: rgba(255,255,255,0.82);
+    font-family: -apple-system, sans-serif; font-weight: 300;
+    max-width: 520px; margin-bottom: 40px; line-height: 1.7;
+  }
+  .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--white);
+    background: var(--lagoon); border: none; padding: 16px 32px; border-radius: 48px;
+    text-decoration: none; cursor: pointer;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-primary:hover { background: #2d7a8c; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(58,142,160,0.4); }
+  .btn-outline {
+    font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--white);
+    background: transparent; border: 1px solid rgba(255,255,255,0.5);
+    padding: 16px 32px; border-radius: 48px; text-decoration: none; cursor: pointer;
+    transition: border-color 0.25s, background 0.25s, transform 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+  .hero-scroll {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    z-index: 2; display: flex; flex-direction: column; align-items: center;
+    gap: 8px; opacity: 0.6; animation: scrollBounce 2s infinite;
+  }
+  .hero-scroll span { font-family: -apple-system, sans-serif; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--white); }
+  .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.7), transparent); }
+  @keyframes scrollBounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ── Intro ── */
+  .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .intro-img { position: relative; border-radius: 4px; overflow: hidden; }
+  .intro-img img { width: 100%; height: 520px; object-fit: cover; display: block; border-radius: 4px; }
+  .intro-img-badge {
+    position: absolute; bottom: 28px; left: 28px;
+    background: rgba(26,40,64,0.88); color: var(--white);
+    font-family: -apple-system, sans-serif; font-size: 11px; letter-spacing: 0.14em;
+    text-transform: uppercase; padding: 10px 18px; border-radius: 32px; backdrop-filter: blur(8px);
+  }
+  .intro-text h2 { font-size: clamp(28px, 3.5vw, 44px); color: var(--navy); margin-bottom: 24px; line-height: 1.2; }
+  .intro-text p { font-size: 16px; color: #4A4A4A; margin-bottom: 20px; line-height: 1.8; }
+  .intro-text p:last-child { margin-bottom: 0; }
+  .intro-positioning {
+    margin-top: 32px; padding: 24px 28px;
+    border-left: 2px solid var(--lagoon); background: rgba(58,142,160,0.05); border-radius: 0 4px 4px 0;
+  }
+  .intro-positioning p { font-size: 15px; color: var(--navy); font-style: italic; margin: 0; }
+  .activities-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+  .activity-tag {
+    font-family: -apple-system, sans-serif; font-size: 12px; font-weight: 500;
+    letter-spacing: 0.06em; color: var(--moss); background: rgba(74,103,65,0.08);
+    border: 1px solid rgba(74,103,65,0.2); padding: 7px 16px; border-radius: 32px;
+  }
+  @media (max-width: 768px) { .intro-grid { grid-template-columns: 1fr; gap: 40px; } .intro-img img { height: 320px; } }
+
+  /* ── Moments ── */
+  .moments-section { background: var(--ivory); }
+  .moments-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; }
+  .moment-card {
+    background: var(--white); border-radius: 12px; overflow: hidden;
+    box-shadow: var(--shadow); transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .moment-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .moment-card-img { position: relative; height: 220px; overflow: hidden; }
+  .moment-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .moment-card:hover .moment-card-img img { transform: scale(1.05); }
+  .moment-card-body { padding: 24px 28px 28px; }
+  .moment-number {
+    font-family: -apple-system, sans-serif; font-size: 10px; font-weight: 700;
+    letter-spacing: 0.2em; color: var(--lagoon); text-transform: uppercase; margin-bottom: 10px;
+  }
+  .moment-card-body h3 { font-size: 20px; color: var(--navy); margin-bottom: 12px; line-height: 1.3; }
+  .moment-card-body p { font-size: 14px; color: #5A5A5A; line-height: 1.75; }
+  @media (max-width: 900px) { .moments-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .moments-grid { grid-template-columns: 1fr; } .moment-card-img { height: 200px; } }
+
+  /* ── Journey Cards ── */
+  .journey-section { background: var(--white); }
+  .journey-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 56px; }
+  .journey-card {
+    position: relative; border-radius: 12px; overflow: hidden;
+    min-height: 480px; display: flex; flex-direction: column; justify-content: flex-end;
+    box-shadow: var(--shadow-lg);
+  }
+  .journey-card-img { position: absolute; inset: 0; }
+  .journey-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .journey-card:hover .journey-card-img img { transform: scale(1.04); }
+  .journey-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(26,40,64,0.88) 0%, rgba(26,40,64,0.2) 60%, transparent 100%);
+  }
+  .journey-card-content { position: relative; z-index: 2; padding: 36px 36px 40px; }
+  .journey-badge {
+    display: inline-block; font-family: -apple-system, sans-serif; font-size: 10px;
+    font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    background: var(--lagoon); color: var(--white); padding: 6px 14px; border-radius: 20px; margin-bottom: 16px;
+  }
+  .journey-card h3 { font-size: clamp(22px, 2.5vw, 30px); color: var(--white); margin-bottom: 14px; line-height: 1.2; }
+  .journey-card p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.75; margin-bottom: 24px; }
+  .journey-open-trip {
+    margin-top: 8px; display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.85); font-family: -apple-system, sans-serif; font-size: 12px;
+    padding: 8px 16px; border-radius: 24px; backdrop-filter: blur(4px);
+  }
+  @media (max-width: 720px) { .journey-grid { grid-template-columns: 1fr; } .journey-card { min-height: 380px; } .journey-card-content { padding: 28px 28px 32px; } }
+
+  /* ── Itinerary ── */
+  .itinerary-section { background: var(--ivory); }
+  .itinerary-tabs {
+    display: flex; gap: 0; margin-bottom: 48px; border-radius: 48px;
+    background: rgba(26,40,64,0.06); padding: 5px; width: fit-content;
+  }
+  .itinerary-tab {
+    font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.06em; color: var(--navy); background: transparent; border: none;
+    padding: 12px 28px; border-radius: 42px; cursor: pointer;
+    transition: background 0.25s, color 0.25s; opacity: 0.6;
+  }
+  .itinerary-tab.active { background: var(--navy); color: var(--white); opacity: 1; }
+  .itinerary-panel { display: none; }
+  .itinerary-panel.active { display: block; }
+  .itinerary-intro { font-size: 17px; color: #4A4A4A; font-style: italic; max-width: 640px; margin-bottom: 40px; line-height: 1.8; font-family: 'Georgia', serif; }
+  .accordion-item {
+    border: 1px solid var(--border); border-radius: 10px; margin-bottom: 12px;
+    background: var(--white); overflow: hidden; transition: box-shadow 0.25s;
+  }
+  .accordion-item.open { box-shadow: var(--shadow); }
+  .accordion-trigger {
+    width: 100%; display: flex; align-items: center; justify-content: space-between;
+    padding: 24px 28px; background: none; border: none; cursor: pointer; text-align: left; gap: 16px;
+  }
+  .accordion-trigger-left { display: flex; align-items: center; gap: 20px; }
+  .accordion-day { font-family: -apple-system, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--lagoon); flex-shrink: 0; min-width: 44px; }
+  .accordion-trigger h4 { font-size: 18px; color: var(--navy); font-weight: normal; line-height: 1.3; }
+  .accordion-arrow {
+    width: 32px; height: 32px; border-radius: 50%; background: rgba(26,40,64,0.06);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    transition: background 0.25s, transform 0.35s;
+  }
+  .accordion-item.open .accordion-arrow { background: var(--lagoon); transform: rotate(180deg); }
+  .accordion-body { display: none; padding: 0 28px 28px 28px; border-top: 1px solid var(--border); }
+  .accordion-body.open { display: block; }
+  .accordion-meals {
+    font-family: -apple-system, sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--moss);
+    margin-top: 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+  }
+  .accordion-meals::before { content: ''; display: inline-block; width: 20px; height: 1px; background: var(--moss); }
+  .accordion-narrative { font-size: 15px; color: #4A4A4A; line-height: 1.8; margin-bottom: 20px; font-family: -apple-system, sans-serif; font-style: italic; }
+  .accordion-activities { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .accordion-activities li {
+    font-family: -apple-system, sans-serif; font-size: 14px; color: #3A3A3A;
+    display: flex; align-items: flex-start; gap: 12px; padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .accordion-activities li:last-child { border-bottom: none; }
+  .activity-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--lagoon); flex-shrink: 0; margin-top: 6px; }
+  @media (max-width: 560px) { .accordion-trigger { padding: 20px; } .accordion-body { padding: 0 20px 20px; } .accordion-trigger h4 { font-size: 16px; } }
+
+  /* ── Inclusions ── */
+  .inclusions-section { background: var(--white); }
+  .inclusions-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 56px; }
+  .inclusion-card { border: 1px solid var(--border); border-radius: 12px; padding: 40px 36px; background: var(--ivory); }
+  .inclusion-card-header { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+  .inclusion-card-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--lagoon); flex-shrink: 0; }
+  .inclusion-card h3 { font-size: 20px; color: var(--navy); font-weight: normal; }
+  .inclusion-list { list-style: none; display: flex; flex-direction: column; gap: 13px; margin-bottom: 32px; }
+  .inclusion-list li {
+    font-family: -apple-system, sans-serif; font-size: 14px; color: #3A3A3A;
+    display: flex; align-items: flex-start; gap: 12px; line-height: 1.6;
+  }
+  .check-icon {
+    width: 18px; height: 18px; background: rgba(74,103,65,0.12); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+  }
+  .check-icon svg { stroke: var(--moss); }
+  .exclusions-box {
+    margin-top: 40px; background: rgba(26,40,64,0.03); border: 1px solid var(--border);
+    border-radius: 10px; padding: 28px 32px;
+  }
+  .exclusions-box h4 {
+    font-size: 14px; color: var(--navy); font-family: -apple-system, sans-serif;
+    font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .exclusion-list { list-style: none; display: flex; flex-wrap: wrap; gap: 10px; }
+  .exclusion-list li {
+    font-family: -apple-system, sans-serif; font-size: 13px; color: #5A5A5A;
+    background: var(--white); border: 1px solid var(--border); padding: 6px 16px;
+    border-radius: 24px; display: flex; align-items: center; gap: 7px;
+  }
+  .surcharges-box {
+    margin-top: 24px; background: rgba(58,142,160,0.05);
+    border: 1px solid rgba(58,142,160,0.18); border-radius: 10px; padding: 24px 32px;
+  }
+  .surcharges-box h4 {
+    font-size: 13px; color: var(--lagoon); font-family: -apple-system, sans-serif;
+    font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;
+  }
+  .surcharge-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid rgba(58,142,160,0.12);
+    font-family: -apple-system, sans-serif; font-size: 13px;
+  }
+  .surcharge-row:last-child { border-bottom: none; }
+  .surcharge-row span:first-child { color: #4A4A4A; }
+  .surcharge-row span:last-child { color: var(--navy); font-weight: 600; }
+  @media (max-width: 720px) { .inclusions-grid { grid-template-columns: 1fr; } .inclusion-card { padding: 28px 24px; } }
+
+  /* ── Pricing ── */
+  .pricing-section { background: var(--navy); position: relative; overflow: hidden; }
+  .pricing-bg-img { position: absolute; inset: 0; opacity: 0.08; }
+  .pricing-bg-img img { width: 100%; height: 100%; object-fit: cover; }
+  .pricing-section .label-tag { color: var(--sand); }
+  .pricing-section h2 { font-size: clamp(28px, 3.5vw, 44px); color: var(--white); margin-bottom: 8px; }
+  .pricing-section .divider { background: var(--sand); }
+  .pricing-section > .container > p { color: rgba(255,255,255,0.6); font-family: -apple-system, sans-serif; font-size: 15px; max-width: 540px; }
+  .pricing-block { position: relative; z-index: 2; }
+  .open-trip-card {
+    background: rgba(58,142,160,0.15); border: 1px solid rgba(58,142,160,0.35);
+    border-radius: 12px; padding: 36px 40px; margin-top: 48px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap;
+  }
+  .open-trip-left h3 { font-size: 22px; color: var(--white); margin-bottom: 8px; font-weight: normal; }
+  .open-trip-left p { font-family: -apple-system, sans-serif; font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.65; }
+  .open-trip-right { text-align: right; flex-shrink: 0; }
+  .open-trip-note { font-family: -apple-system, sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sand); margin-bottom: 6px; }
+  .open-trip-price { font-size: clamp(26px, 3vw, 36px); color: var(--white); letter-spacing: -0.02em; }
+  .open-trip-price span { font-family: -apple-system, sans-serif; font-size: 14px; color: rgba(255,255,255,0.5); }
+  .open-trip-min { font-family: -apple-system, sans-serif; font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 6px; }
+  .pricing-tables { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px; }
+  .pricing-table { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; overflow: hidden; }
+  .pricing-table-header { background: rgba(58,142,160,0.22); border-bottom: 1px solid rgba(255,255,255,0.1); padding: 22px 28px; }
+  .pricing-table-header h3 { font-size: 17px; color: var(--white); font-weight: normal; margin-bottom: 4px; }
+  .pricing-table-header span { font-family: -apple-system, sans-serif; font-size: 12px; color: rgba(255,255,255,0.5); }
+  .pricing-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 28px; border-bottom: 1px solid rgba(255,255,255,0.06); transition: background 0.2s;
+  }
+  .pricing-row:last-child { border-bottom: none; }
+  .pricing-row:hover { background: rgba(255,255,255,0.04); }
+  .pricing-group { font-family: -apple-system, sans-serif; font-size: 13px; color: rgba(255,255,255,0.65); }
+  .pricing-amount { font-size: 16px; color: var(--white); letter-spacing: -0.01em; }
+  .pricing-amount-sub { font-family: -apple-system, sans-serif; font-size: 11px; color: rgba(255,255,255,0.4); display: block; text-align: right; }
+  .pricing-note {
+    margin-top: 28px; padding: 20px 24px; background: rgba(255,255,255,0.04);
+    border-radius: 8px; border: 1px solid rgba(255,255,255,0.07);
+  }
+  .pricing-note p { font-family: -apple-system, sans-serif; font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+  .pricing-meeting { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .meeting-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 22px 24px; }
+  .meeting-card h4 { font-size: 13px; color: var(--sand); font-family: -apple-system, sans-serif; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; font-style: normal; }
+  .meeting-card p { font-family: -apple-system, sans-serif; font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+  @media (max-width: 720px) { .pricing-tables { grid-template-columns: 1fr; } .open-trip-card { flex-direction: column; } .open-trip-right { text-align: left; } .pricing-meeting { grid-template-columns: 1fr; } }
+
+  /* ── Terms ── */
+  .terms-section { background: var(--ivory); }
+  .terms-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; align-items: start; margin-top: 56px; }
+  .terms-sticky { position: sticky; top: 100px; }
+  .terms-sticky h2 { font-size: clamp(28px, 3vw, 40px); color: var(--navy); line-height: 1.2; margin-bottom: 16px; }
+  .terms-sticky p { font-size: 15px; color: #6A6A6A; line-height: 1.75; }
+  .terms-items { display: flex; flex-direction: column; gap: 0; }
+  .term-item { padding: 28px 0; border-bottom: 1px solid var(--border); display: flex; gap: 24px; align-items: flex-start; }
+  .term-item:first-child { padding-top: 0; }
+  .term-num { font-family: 'Georgia', serif; font-size: 32px; color: rgba(26,40,64,0.1); line-height: 1; flex-shrink: 0; min-width: 40px; font-style: italic; }
+  .term-content h4 { font-size: 16px; color: var(--navy); margin-bottom: 8px; font-weight: normal; }
+  .term-content p { font-size: 14px; color: #5A5A5A; line-height: 1.75; }
+  @media (max-width: 768px) { .terms-grid { grid-template-columns: 1fr; gap: 40px; } .terms-sticky { position: static; } }
+
+  /* ── How to Book ── */
+  .howtbook-section { background: var(--white); }
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 56px; }
+  .step-card {
+    padding: 32px 28px; background: var(--ivory); border: 1px solid var(--border);
+    border-radius: 12px; transition: box-shadow 0.25s, transform 0.25s;
+  }
+  .step-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+  .step-num { font-family: 'Georgia', serif; font-size: 48px; color: rgba(58,142,160,0.15); line-height: 1; margin-bottom: 16px; font-style: italic; }
+  .step-card h3 { font-size: 17px; color: var(--navy); margin-bottom: 10px; font-weight: normal; line-height: 1.3; }
+  .step-card p { font-size: 14px; color: #5A5A5A; line-height: 1.75; }
+  @media (max-width: 900px) { .steps-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .steps-grid { grid-template-columns: 1fr; } .step-card { padding: 24px 20px; } }
+
+  /* ── Final CTA ── */
+  .final-cta { position: relative; min-height: 520px; display: flex; align-items: center; overflow: hidden; }
+  .final-cta-bg { position: absolute; inset: 0; background-color: var(--navy); }
+  .final-cta-bg img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; }
+  .final-cta-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26,40,64,0.88) 0%, rgba(26,40,64,0.6) 100%); }
+  .final-cta-content { position: relative; z-index: 2; max-width: 640px; }
+  .final-cta h2 { font-size: clamp(32px, 4vw, 54px); color: var(--white); margin-bottom: 20px; line-height: 1.15; }
+  .final-cta p { font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.8; margin-bottom: 40px; font-family: -apple-system, sans-serif; font-weight: 300; max-width: 480px; }
+  .final-cta-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn-whatsapp {
+    background: #25D366; color: var(--white); display: inline-flex; align-items: center; gap: 8px;
+    font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
+    padding: 16px 30px; border-radius: 48px; text-decoration: none; transition: background 0.25s, transform 0.2s;
+  }
+  .btn-whatsapp:hover { background: #1fba58; transform: translateY(-2px); }
+  .btn-navy {
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); color: var(--white);
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.06em;
+    padding: 16px 30px; border-radius: 48px; text-decoration: none;
+    transition: background 0.25s, transform 0.2s; backdrop-filter: blur(4px);
+  }
+  .btn-navy:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+  /* ── Footer (homepage-style) ── */
+  footer { background: #0B1F17; padding: 64px 0 0; color: rgba(255,255,255,0.75); }
+  .footer-inner { display: grid; grid-template-columns: 1.4fr 1fr 1.4fr; gap: 48px; padding-bottom: 56px; }
+  .footer-wordmark { font-family: 'Georgia', serif; font-size: 20px; color: #F5F0E8; display: block; margin-bottom: 14px; text-decoration: none; letter-spacing: -0.01em; }
+  .footer-wordmark span { color: var(--sand); }
+  .footer-brand > p { font-family: -apple-system, sans-serif; font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.75; max-width: 280px; margin-bottom: 20px; }
+  .footer-wa-btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #25D366; color: #fff; padding: 11px 20px;
+    border-radius: 40px; text-decoration: none;
+    font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.03em; transition: opacity 0.2s;
+  }
+  .footer-wa-btn:hover { opacity: 0.88; }
+  .footer-col-label { font-family: -apple-system, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 16px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-family: -apple-system, sans-serif; font-size: 14px; color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: rgba(255,255,255,1); }
+  .footer-concierge { font-family: -apple-system, sans-serif; font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.9; }
+  .footer-concierge a { color: rgba(255,255,255,0.65); text-decoration: none; transition: color 0.2s; }
+  .footer-concierge a:hover { color: #fff; }
+  .footer-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .footer-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 7px 12px; border-radius: 40px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8); font-family: -apple-system, sans-serif;
+    font-size: 12px; text-decoration: none; transition: background 0.2s, border-color 0.2s;
+  }
+  .footer-pill:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+  .footer-trust-line { font-family: -apple-system, sans-serif; font-size: 11.5px; color: rgba(255,255,255,0.35); margin-top: 16px; letter-spacing: 0.02em; }
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding: 20px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+  .footer-bottom p { font-family: -apple-system, sans-serif; font-size: 13px; color: rgba(255,255,255,0.4); }
+  @media (max-width: 900px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 560px) { .footer-inner { grid-template-columns: 1fr; } }
+
+  /* ── Mobile Sticky CTA ── */
+  .mobile-sticky-cta {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+    background: var(--white); border-top: 1px solid var(--border);
+    padding: 14px 20px;
+    padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    display: none; gap: 12px;
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
+  }
+  .mobile-sticky-cta a { flex: 1; text-align: center; font-family: -apple-system, sans-serif; font-size: 13px; font-weight: 600; padding: 13px 16px; border-radius: 40px; text-decoration: none; letter-spacing: 0.04em; min-height: 48px; display: flex; align-items: center; justify-content: center; }
+  .mobile-cta-wa { background: #25D366; color: var(--white); }
+  .mobile-cta-view { background: var(--navy); color: var(--white); }
+  @media (max-width: 768px) {
+    .mobile-sticky-cta { display: flex; }
+    body { padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px)); }
+    .section { padding: 64px 0; }
+    .section-sm { padding: 48px 0; }
+  }
+  @media (max-width: 480px) {
+    .hero-btns { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+    .hero h1 { font-size: clamp(30px, 8vw, 44px); }
+    .pricing-row { padding: 14px 18px; }
+    .pricing-amount { font-size: 14px; }
+    .container { padding: 0 16px; }
+  }
+
+  /* ── Section Header ── */
+  .section-header { margin-bottom: 56px; }
+  .section-header.center { text-align: center; }
+  .section-header h2 { font-size: clamp(28px, 3.5vw, 44px); color: var(--navy); line-height: 1.2; margin-bottom: 8px; }
+  .section-header .subtitle-p { font-size: 16px; color: #6A6A6A; font-family: -apple-system, sans-serif; font-weight: 300; max-width: 560px; line-height: 1.75; }
+  .section-header.center .subtitle-p { margin: 0 auto; }
+
+  .social-row { display: flex; gap: 14px; margin-top: 4px; }
+  .social-pill {
+    font-family: -apple-system, sans-serif; font-size: 12px; font-weight: 500;
+    color: rgba(255,255,255,0.55); background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1); padding: 6px 14px; border-radius: 24px;
+    text-decoration: none; transition: color 0.2s, border-color 0.2s;
+  }
+  .social-pill:hover { color: var(--white); border-color: rgba(255,255,255,0.25); }
+
+  /* ── Hero Trust Line ── */
+  .hero-trust-line {
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px; font-weight: 400; letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgba(255,255,255,0.45);
+    margin-bottom: 20px; line-height: 1.7;
+  }
+  .hero-ask-link {
+    display: inline-block; margin-top: 12px;
+    font-family: -apple-system, 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px; font-weight: 400; letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.52); text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,0.18); padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .hero-ask-link:hover { color: rgba(255,255,255,0.82); border-color: rgba(255,255,255,0.4); }
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="navbar-inner">
+      <a href="../" class="logo">east<span>X</span>perience</a>
+      <ul class="nav-links">
+        <li><a href="#destination">Destination</a></li>
+        <li><a href="#moments">Moments</a></li>
+        <li><a href="#journey">Journeys</a></li>
+        <li><a href="#pricing">Investment</a></li>
+        <li><a href="#book">How to Book</a></li>
+      </ul>
+      <a href="../book.html?product=banggai-explore" class="nav-cta sans">Book This Journey</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="container">
+    <div class="hero-content fade-in">
+      <div class="hero-trust">Curated by eastXperience</div>
+      <h1>Banggai,<br>Beyond the Obvious<br>Indonesia.</h1>
+      <p class="hero-subtitle">A quiet island journey through lagoons, waterfalls, beaches, hill views, and the slower rhythm of Central Sulawesi.</p>
+      <p class="hero-trust-line">Direct Local Operator &nbsp;·&nbsp; Private Banggai Journey &nbsp;·&nbsp; Real Human Support &nbsp;·&nbsp; Curated by EastXperience</p>
+      <div class="hero-btns">
+        <a href="../book.html?product=banggai-explore" class="btn-primary">Book Banggai Explore</a>
+        <a href="#journey" class="btn-outline">View Journey Options</a>
+      </div>
+      <a href="https://wa.me/62811342473?text=Hello%20eastXperience%2C%20I%20would%20like%20to%20ask%20about%20the%20Banggai%20Explore%20journey." target="_blank" class="hero-ask-link">Ask Before Booking</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- Destination Intro -->
+<section class="section" id="destination">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-img fade-in">
+        <img src="assets/images/intro-lagoon.jpg" alt="Aerial view of turquoise lagoon and islands in Central Sulawesi, Indonesia" loading="lazy" />
+        <div class="intro-img-badge sans">Central Sulawesi, Indonesia</div>
+      </div>
+      <div class="intro-text fade-in fade-in-delay-2">
+        <div class="label-tag">The Destination</div>
+        <h2>Where the sea holds its breath and time moves gently.</h2>
+        <div class="divider"></div>
+        <p>Picture yourself waking up near crystal-clear waters, with islands scattered across the horizon and a silence that feels increasingly rare. Banggai is where deep blue ocean, gentle waterfalls, forest roads, coastal villages, and slow island crossings come together into something whole.</p>
+        <p>No loud crowds. No overdone tourist rhythm. Just the sea, the sky, the water, and the feeling of being far enough to breathe again.</p>
+        <p>Tucked away in Central Sulawesi, Indonesia, Banggai is a place where time slows down, nature feels raw, and every corner carries the quiet beauty of eastern Indonesia.</p>
+        <div class="intro-positioning">
+          <p>Banggai is for travelers who have experienced Bali, Komodo, Lombok, or Raja Ampat — and now want something quieter, more intimate, less commercial, and more grounded.</p>
+        </div>
+        <div class="activities-list">
+          <span class="activity-tag">Scenic Hill View</span>
+          <span class="activity-tag">Beach Chill</span>
+          <span class="activity-tag">Island Trekking</span>
+          <span class="activity-tag">Snorkeling</span>
+          <span class="activity-tag">Sunset Chasing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Signature Moments -->
+<section class="section moments-section" id="moments">
+  <div class="container">
+    <div class="section-header center fade-in">
+      <div class="label-tag">What Awaits</div>
+      <h2>Signature Moments</h2>
+      <div class="divider divider-center"></div>
+      <p class="subtitle-p">Six encounters that quietly shape the entire journey — each one a different facet of what Banggai quietly offers.</p>
+    </div>
+    <div class="moments-grid">
+      <div class="moment-card fade-in fade-in-delay-1">
+        <div class="moment-card-img"><img src="assets/images/paisupok-lake.jpg" alt="Paisupok Lake - crystal clear waters in Banggai, Central Sulawesi" loading="lazy" /></div>
+        <div class="moment-card-body">
+          <div class="moment-number">01 &nbsp;·&nbsp; Paisupok Lake</div>
+          <h3>A stillness you have to see to believe.</h3>
+          <p>A glass-clear lake experience where the water feels almost unreal in its stillness and color — one of Banggai's most quietly arresting sights.</p>
+        </div>
+      </div>
+      <div class="moment-card fade-in fade-in-delay-2">
+        <div class="moment-card-img"><img src="assets/images/piala-waterfall.jpg" alt="Piala Waterfall surrounded by lush tropical forest in Banggai" loading="lazy" /></div>
+        <div class="moment-card-body">
+          <div class="moment-number">02 &nbsp;·&nbsp; Piala Waterfall</div>
+          <h3>A forest pause that resets everything.</h3>
+          <p>A refreshing forest encounter on the way into Banggai's quieter side — cool air, green canopy, and the simple sound of falling water.</p>
+        </div>
+      </div>
+      <div class="moment-card fade-in fade-in-delay-3">
+        <div class="moment-card-img"><img src="assets/images/paisu-batango.jpg" alt="Paisu Batango - tropical water stop with clear blue water" loading="lazy" /></div>
+        <div class="moment-card-body">
+          <div class="moment-number">03 &nbsp;·&nbsp; Paisu Batango</div>
+          <h3>A cooling rhythm in the middle of the day.</h3>
+          <p>A tropical water stop that gives the journey a soft, natural pause — clear, calm, and unhurried in exactly the right way.</p>
+        </div>
+      </div>
+      <div class="moment-card fade-in fade-in-delay-1">
+        <div class="moment-card-img"><img src="assets/images/poganda-beach.jpg" alt="Poganda Beach - soft sand and quiet blue water in Banggai" loading="lazy" /></div>
+        <div class="moment-card-body">
+          <div class="moment-number">04 &nbsp;·&nbsp; Poganda Beach</div>
+          <h3>Slow walking. Soft sand. Quiet blue.</h3>
+          <p>A coastal retreat shaped for lingering — gentle waves, clean shoreline, and the particular calm that only comes from a beach that has not been discovered by everyone.</p>
+        </div>
+      </div>
+      <div class="moment-card fade-in fade-in-delay-2">
+        <div class="moment-card-img"><img src="assets/images/pulo-dua-hill.jpg" alt="Pulo Dua Hill View overlooking sea and coastline in Banggai" loading="lazy" /></div>
+        <div class="moment-card-body">
+          <div class="moment-number">05 &nbsp;·&nbsp; Pulo Dua Hill View</div>
+          <h3>Where the land meets the horizon.</h3>
+          <p>A scenic hilltop experience overlooking the sea, coastline, and dramatic island contours — the kind of view that stays with you long after you have left.</p>
+        </div>
+      </div>
+      <div class="moment-card fade-in fade-in-delay-3">
+        <div class="moment-card-img"><img src="assets/images/salakan-crossing.jpg" alt="Island crossing by boat to Salakan in Banggai waters" loading="lazy" /></div>
+        <div class="moment-card-body">
+          <div class="moment-number">06 &nbsp;·&nbsp; Island Crossing to Salakan</div>
+          <h3>The journey itself becomes the story.</h3>
+          <p>A long sea crossing that becomes part of the narrative — open water, island silhouettes, and the rare feeling of genuine distance from the everyday world.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Journey Options -->
+<section class="section journey-section" id="journey">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="label-tag">Journey Options</div>
+      <h2>Choose Your Pace</h2>
+      <div class="divider"></div>
+      <p class="subtitle-p">Two private journey formats, each designed with intention. Choose the depth that matches how you want to move through Banggai.</p>
+    </div>
+    <div class="journey-grid">
+      <div class="journey-card fade-in fade-in-delay-1">
+        <div class="journey-card-img"><img src="assets/images/journey-4d3n.jpg" alt="4D3N Banggai journey - waterfall and tropical landscape" loading="lazy" /></div>
+        <div class="journey-card-overlay"></div>
+        <div class="journey-card-content">
+          <div class="journey-badge">4 Days · 3 Nights</div>
+          <h3>Banggai 4D3N Private Journey</h3>
+          <p>A compact and refined introduction to Banggai for travelers who want the essence of the destination in a shorter, well-curated time frame. Waterfalls, lakes, hill views, and the sea — all within four meaningful days.</p>
+          <a href="#itinerary" class="btn-outline" style="font-size:12px; padding:12px 24px;">View Itinerary</a>
+        </div>
+      </div>
+      <div class="journey-card fade-in fade-in-delay-2">
+        <div class="journey-card-img"><img src="assets/images/journey-5d4n.jpg" alt="5D4N Banggai journey - island crossing and lagoon views" loading="lazy" /></div>
+        <div class="journey-card-overlay"></div>
+        <div class="journey-card-content">
+          <div class="journey-badge">5 Days · 4 Nights</div>
+          <h3>Banggai 5D4N Private Journey</h3>
+          <p>A deeper, slower, and more complete journey through Banggai's island rhythm, beaches, waterfalls, lakes, and crossings. For those who want the full arc of the destination.</p>
+          <a href="#itinerary" class="btn-outline" style="font-size:12px; padding:12px 24px;">View Itinerary</a>
+          <div class="journey-open-trip">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Open Trip 5D4N available — min. 4 participants
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Itinerary -->
+<section class="section itinerary-section" id="itinerary">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="label-tag">Day by Day</div>
+      <h2>The Journey Unfolded</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="itinerary-tabs fade-in">
+      <button class="itinerary-tab active sans" onclick="switchTab('4d3n',this)">4D3N Journey</button>
+      <button class="itinerary-tab sans" onclick="switchTab('5d4n',this)">5D4N Journey</button>
+    </div>
+
+    <!-- 4D3N -->
+    <div class="itinerary-panel active" id="panel-4d3n">
+      <p class="itinerary-intro fade-in">Three nights are enough to fall in love with Banggai — from the whisper of waterfalls and crystal-clear lakes to hilltop panoramas that open toward the sea.</p>
+      <div class="accordion-item fade-in" id="acc-4d1">
+        <button class="accordion-trigger" onclick="toggleAccordion('acc-4d1')">
+          <div class="accordion-trigger-left"><span class="accordion-day">Day 1</span><h4>First Glimpse of Banggai</h4></div>
+          <div class="accordion-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A2840" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-meals">Meals included: Lunch · Dinner</div>
+          <p class="accordion-narrative">Your journey begins in Luwuk, where the first rhythm of Banggai reveals itself slowly. After arrival and check-in, the day continues with a refreshing visit to Piala Waterfall before an easy evening to settle into the journey.</p>
+          <ul class="accordion-activities">
+            <li><span class="activity-dot"></span>Arrival at Syukuran Aminuddin Amir Airport, Luwuk</li>
+            <li><span class="activity-dot"></span>Hotel check-in</li>
+            <li><span class="activity-dot"></span>Piala Waterfall — refreshing forest stop</li>
+            <li><span class="activity-dot"></span>Relax by the falls</li>
+            <li><span class="activity-dot"></span>Dinner and free evening</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item fade-in" id="acc-4d2">
+        <button class="accordion-trigger" onclick="toggleAccordion('acc-4d2')">
+          <div class="accordion-trigger-left"><span class="accordion-day">Day 2</span><h4>Across the Blue Horizon</h4></div>
+          <div class="accordion-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A2840" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-meals">Meals included: Breakfast · Lunch · Dinner</div>
+          <p class="accordion-narrative">The second day brings you closer to Banggai's water world. From the coast to Paisupok Lake, Paisu Batango, and Poganda Beach, the day is shaped by clarity, blue tones, and soft tropical pauses.</p>
+          <ul class="accordion-activities">
+            <li><span class="activity-dot"></span>Morning at Pantai Kilo 5</li>
+            <li><span class="activity-dot"></span>Boat crossing to Paisupok</li>
+            <li><span class="activity-dot"></span>Paisupok Lake — glass-clear water experience</li>
+            <li><span class="activity-dot"></span>Paisu Batango — natural water stop</li>
+            <li><span class="activity-dot"></span>Poganda Beach — slow coastal afternoon</li>
+            <li><span class="activity-dot"></span>Return to Luwuk hotel · Dinner and rest</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item fade-in" id="acc-4d3">
+        <button class="accordion-trigger" onclick="toggleAccordion('acc-4d3')">
+          <div class="accordion-trigger-left"><span class="accordion-day">Day 3</span><h4>Chasing Hidden Wonders</h4></div>
+          <div class="accordion-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A2840" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-meals">Meals included: Breakfast · Lunch · Dinner</div>
+          <p class="accordion-narrative">A scenic road journey leads toward Pulo Dua, where the landscape opens into hill views and coastal drama. The day continues to Weer Malino Lagoon before returning to Luwuk for a relaxed evening.</p>
+          <ul class="accordion-activities">
+            <li><span class="activity-dot"></span>Road trip toward Pulo Dua</li>
+            <li><span class="activity-dot"></span>Pulo Dua Hill View — panoramic sea and island vista</li>
+            <li><span class="activity-dot"></span>Lunch stop along the way</li>
+            <li><span class="activity-dot"></span>Weer Malino Lagoon</li>
+            <li><span class="activity-dot"></span>Return to Luwuk · Dinner and free evening</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item fade-in" id="acc-4d4">
+        <button class="accordion-trigger" onclick="toggleAccordion('acc-4d4')">
+          <div class="accordion-trigger-left"><span class="accordion-day">Day 4</span><h4>The Island's Embrace</h4></div>
+          <div class="accordion-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A2840" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-meals">Meals included: Breakfast</div>
+          <p class="accordion-narrative">The final morning is kept gentle — time for a short walk and one last waterfall visit before check-out and airport transfer.</p>
+          <ul class="accordion-activities">
+            <li><span class="activity-dot"></span>Morning walk at leisure</li>
+            <li><span class="activity-dot"></span>Kamumu or Mokokawa Waterfall (weather permitting)</li>
+            <li><span class="activity-dot"></span>Check-out · Airport drop-off</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5D4N -->
+    <div class="itinerary-panel" id="panel-5d4n">
+      <p class="itinerary-intro fade-in">Four nights allow the journey to unfold more slowly — crossing seas, wandering along secluded beaches, and entering deeper into Banggai's lakes, hills, and island rhythm.</p>
+      <div class="accordion-item fade-in" id="acc-5d1">
+        <button class="accordion-trigger" onclick="toggleAccordion('acc-5d1')">
+          <div class="accordion-trigger-left"><span class="accordion-day">Day 1</span><h4>Into the Island's Heart</h4></div>
+          <div class="accordion-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A2840" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-meals">Meals included: Lunch · Dinner</div>
+          <p class="accordion-narrative">Arrive in Luwuk and begin with a gentle introduction to Banggai through Piala Waterfall. From there, the journey continues across the water to Salakan, where the island pace begins to take over.</p>
+          <ul class="accordion-activities">
+            <li><span class="activity-dot"></span>Arrival at Syukuran Aminuddin Amir Airport, Luwuk</li>
+            <li><span class="activity-dot"></span>Lunch in Luwuk · Piala Waterfall</li>
+            <li><span class="activity-dot"></span>Ferry crossing to Salakan (approx. 4 hours)</li>
+            <li><span class="activity-dot"></span>Check-in at hotel · Dinner and rest</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item fade-in" id="acc-5d2">
+        <button class="accordion-trigger" onclick="toggleAccordion('acc-5d2')">
+          <div class="accordion-trigger-left"><span class="accordion-day">Day 2</span><h4>Secrets of the Sea</h4></div>
+          <div class="accordion-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A2840" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-meals">Meals included: Breakfast · Lunch · Dinner</div>
+          <p class="accordion-narrative">A day shaped by sea movement, beach pauses, and island textures — from Batu Gundul to Long Beach, Oyama Beach, and Bontolan Beach.</p>
+          <ul class="accordion-activities">
+            <li><span class="activity-dot"></span>Road trip to Pelabuhan Tobing · Boat to Batu Gundul Island</li>
+            <li><span class="activity-dot"></span>Long Beach · Oyama Beach</li>
+            <li><span class="activity-dot"></span>Bontolan Beach — cardinal fish encounter</li>
+            <li><span class="activity-dot"></span>Return to hotel · Dinner and free evening</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item fade-in" id="acc-5d3">
+        <button class="accordion-trigger" onclick="toggleAccordion('acc-5d3')">
+          <div class="accordion-trigger-left"><span class="accordion-day">Day 3</span><h4>Lakes and Hilltop Wonders</h4></div>
+          <div class="accordion-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A2840" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-meals">Meals included: Breakfast · Lunch · Dinner</div>
+          <p class="accordion-narrative">A slower day of water, forest, and coast — Paisupok Lake, Paisu Batango, and the soft shoreline of Poganda Beach.</p>
+          <ul class="accordion-activities">
+            <li><span class="activity-dot"></span>Paisupok Lake — glass-clear water experience</li>
+            <li><span class="activity-dot"></span>Paisu Batango · Poganda Beach</li>
+            <li><span class="activity-dot"></span>Return to Salakan · Dinner and rest</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item fade-in" id="acc-5d4">
+        <button class="accordion-trigger" onclick="toggleAccordion('acc-5d4')">
+          <div class="accordion-trigger-left"><span class="accordion-day">Day 4</span><h4>Ocean Breeze and Island Calm</h4></div>
+          <div class="accordion-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A2840" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-meals">Meals included: Breakfast · Lunch · Dinner</div>
+          <p class="accordion-narrative">Mandel Beach in the morning, then the return ferry crossing to Luwuk — a transition day that still carries the journey's rhythm.</p>
+          <ul class="accordion-activities">
+            <li><span class="activity-dot"></span>Mandel Beach — morning coastal calm</li>
+            <li><span class="activity-dot"></span>Return to Salakan · Lunch · Ferry back to Luwuk</li>
+            <li><span class="activity-dot"></span>Check-in at Hotel Santika Luwuk · Dinner and rest</li>
+          </ul>
+        </div>
+      </div>
+      <div class="accordion-item fade-in" id="acc-5d5">
+        <button class="accordion-trigger" onclick="toggleAccordion('acc-5d5')">
+          <div class="accordion-trigger-left"><span class="accordion-day">Day 5</span><h4>A Gentle Goodbye</h4></div>
+          <div class="accordion-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A2840" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></div>
+        </button>
+        <div class="accordion-body">
+          <div class="accordion-meals">Meals included: Breakfast</div>
+          <p class="accordion-narrative">The journey closes softly — a final morning walk and a waterfall visit when conditions allow, before check-out and airport transfer.</p>
+          <ul class="accordion-activities">
+            <li><span class="activity-dot"></span>Morning walk at leisure</li>
+            <li><span class="activity-dot"></span>Kamumu or Mokokawa Waterfall (weather permitting)</li>
+            <li><span class="activity-dot"></span>Check-out · Airport drop-off</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Inclusions -->
+<section class="section inclusions-section" id="inclusions">
+  <div class="container">
+    <div class="section-header fade-in">
+      <div class="label-tag">What's Included</div>
+      <h2>Journey Inclusions</h2>
+      <div class="divider"></div>
+      <p class="subtitle-p">Everything you need for the journey — thoughtfully prepared so you can focus entirely on the experience.</p>
+    </div>
+    <div class="inclusions-grid">
+      <div class="inclusion-card fade-in fade-in-delay-1">
+        <div class="inclusion-card-header"><div class="inclusion-card-dot"></div><h3>4D3N Private Journey</h3></div>
+        <ul class="inclusion-list">
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>3 nights at Hotel Santika Luwuk</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>3× Breakfast · 3× Lunch · 3× Dinner</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Private boat transfers throughout</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Private land transportation</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Documentation — photography and drone</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Entrance tickets to all destinations</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Trip buddy assistance throughout</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Free-flow mineral water</li>
+        </ul>
+      </div>
+      <div class="inclusion-card fade-in fade-in-delay-2">
+        <div class="inclusion-card-header"><div class="inclusion-card-dot" style="background:var(--moss)"></div><h3>5D4N Private Journey</h3></div>
+        <ul class="inclusion-list">
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>3 nights at Wisma Sidapore or Alprend (Salakan)</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>1 night at Hotel Santika Luwuk</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>4× Breakfast · 4× Lunch · 4× Dinner</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Regular boat and ferry transfers</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Private land transportation</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Documentation — photography and drone</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Entrance tickets to all destinations</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Trip buddy assistance throughout</li>
+          <li><div class="check-icon"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>Free-flow mineral water</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exclusions-box fade-in">
+      <h4>Not Included</h4>
+      <ul class="exclusion-list">
+        <li><span style="color:var(--sand)">–</span>Flight tickets to/from Luwuk</li>
+        <li><span style="color:var(--sand)">–</span>Snorkeling gear rental</li>
+        <li><span style="color:var(--sand)">–</span>Personal expenses</li>
+        <li><span style="color:var(--sand)">–</span>Tipping for guide and driver</li>
+      </ul>
+    </div>
+    <div class="surcharges-box fade-in">
+      <h4>Additional Charges</h4>
+      <div class="surcharge-row"><span>4D3N · Foreign traveler surcharge</span><span>IDR 300,000 / person</span></div>
+      <div class="surcharge-row"><span>4D3N · Single occupancy surcharge</span><span>IDR 1,500,000 / person</span></div>
+      <div class="surcharge-row"><span>5D4N · Foreign traveler surcharge</span><span>IDR 500,000 / person</span></div>
+      <div class="surcharge-row"><span>5D4N · Single occupancy surcharge</span><span>IDR 2,000,000 / person</span></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Pricing -->
+<section class="section pricing-section" id="pricing">
+  <div class="pricing-bg-img">
+    <img src="assets/images/hero-banggai.jpg" alt="" aria-hidden="true" loading="lazy" />
+  </div>
+  <div class="container pricing-block">
+    <div class="fade-in">
+      <div class="label-tag">Travel Investment</div>
+      <h2>Rates and Journey Costs</h2>
+      <div class="divider" style="background:var(--sand)"></div>
+      <p>Rates are based on group size, room arrangement, and current operational conditions. Final confirmation is subject to availability and booking date.</p>
+    </div>
+    <div class="open-trip-card fade-in">
+      <div class="open-trip-left">
+        <h3>Open Trip 5D4N</h3>
+        <p>Join a small group journey through Banggai at a shared rate.<br>Minimum 4 participants. Below quota, the trip remains available with adjusted cost.</p>
+      </div>
+      <div class="open-trip-right">
+        <div class="open-trip-note">From — per person</div>
+        <div class="open-trip-price">IDR 4,700,000 <span>/ pax</span></div>
+        <div class="open-trip-min">Minimum 4 participants required</div>
+      </div>
+    </div>
+    <div class="pricing-tables fade-in fade-in-delay-2">
+      <div class="pricing-table">
+        <div class="pricing-table-header"><h3>5D4N Private Journey</h3><span>Rate per person by group size</span></div>
+        <div class="pricing-row"><span class="pricing-group">2 pax</span><div><div class="pricing-amount">IDR 12,000,000</div><span class="pricing-amount-sub">per person</span></div></div>
+        <div class="pricing-row"><span class="pricing-group">3 pax</span><div><div class="pricing-amount">IDR 9,300,000</div><span class="pricing-amount-sub">per person</span></div></div>
+        <div class="pricing-row"><span class="pricing-group">4 pax</span><div><div class="pricing-amount">IDR 8,500,000</div><span class="pricing-amount-sub">per person</span></div></div>
+        <div class="pricing-row"><span class="pricing-group">5 – 7 pax</span><div><div class="pricing-amount">IDR 8,000,000</div><span class="pricing-amount-sub">per person</span></div></div>
+        <div class="pricing-row"><span class="pricing-group">8 – 10 pax</span><div><div class="pricing-amount">IDR 7,200,000</div><span class="pricing-amount-sub">per person</span></div></div>
+      </div>
+      <div class="pricing-table">
+        <div class="pricing-table-header"><h3>4D3N Private Journey</h3><span>Rate per person by group size</span></div>
+        <div class="pricing-row"><span class="pricing-group">2 pax</span><div><div class="pricing-amount">IDR 10,400,000</div><span class="pricing-amount-sub">per person</span></div></div>
+        <div class="pricing-row"><span class="pricing-group">3 pax</span><div><div class="pricing-amount">IDR 8,800,000</div><span class="pricing-amount-sub">per person</span></div></div>
+        <div class="pricing-row"><span class="pricing-group">4 pax</span><div><div class="pricing-amount">IDR 7,700,000</div><span class="pricing-amount-sub">per person</span></div></div>
+        <div class="pricing-row"><span class="pricing-group">5 – 7 pax</span><div><div class="pricing-amount">IDR 6,900,000</div><span class="pricing-amount-sub">per person</span></div></div>
+        <div class="pricing-row"><span class="pricing-group">8 – 10 pax</span><div><div class="pricing-amount">IDR 5,450,000</div><span class="pricing-amount-sub">per person</span></div></div>
+      </div>
+    </div>
+    <div class="pricing-note fade-in">
+      <p>All rates are in Indonesian Rupiah (IDR) and based on twin-share accommodation. Foreign traveler and single occupancy surcharges apply as listed above. Rates may be updated for new year departures. Contact eastXperience to confirm current pricing for your preferred dates.</p>
+    </div>
+    <div class="pricing-meeting fade-in">
+      <div class="meeting-card"><h4>4D3N · Meeting &amp; End Point</h4><p>Syukuran Aminuddin Amir Airport, Luwuk<br>Day 1 arrival &amp; Day 4 departure<br>Recommended meeting time: 12:00 WITA</p></div>
+      <div class="meeting-card"><h4>5D4N · Meeting &amp; End Point</h4><p>Syukuran Aminuddin Amir Airport, Luwuk<br>Day 1 arrival &amp; Day 5 departure<br>Recommended meeting time: 12:00 WITA</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Booking Terms -->
+<section class="section terms-section">
+  <div class="container">
+    <div class="terms-grid">
+      <div class="terms-sticky fade-in">
+        <div class="label-tag">Before You Book</div>
+        <h2>Booking Terms</h2>
+        <div class="divider"></div>
+        <p>Clear, fair, and professional. We want your journey to begin with full clarity on what to expect from both sides.</p>
+      </div>
+      <div class="terms-items fade-in fade-in-delay-2">
+        <div class="term-item"><div class="term-num">01</div><div class="term-content"><h4>Down Payment to Confirm</h4><p>Your journey is confirmed with a 30% down payment at the time of booking. This secures your dates and allows trip preparation to begin.</p></div></div>
+        <div class="term-item"><div class="term-num">02</div><div class="term-content"><h4>Balance Payment</h4><p>The remaining balance is required 14 days before your departure date. Full payment completes your confirmation and triggers the pre-departure preparation guide.</p></div></div>
+        <div class="term-item"><div class="term-num">03</div><div class="term-content"><h4>Cancellation Policy</h4><p>Payments are non-refundable unless the trip is cancelled by the operator. We recommend ensuring your travel dates are confirmed before completing payment.</p></div></div>
+        <div class="term-item"><div class="term-num">04</div><div class="term-content"><h4>Rescheduling</h4><p>Reschedule requests are accepted within the same calendar year as the original departure date. Rescheduling to the following year may incur additional charges based on updated pricing and operational conditions.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How to Book -->
+<section class="section howtbook-section" id="book">
+  <div class="container">
+    <div class="section-header center fade-in">
+      <div class="label-tag">The Process</div>
+      <h2>How to Book</h2>
+      <div class="divider divider-center"></div>
+      <p class="subtitle-p">Six straightforward steps from first enquiry to departure — handled with care and clarity throughout.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card fade-in fade-in-delay-1"><div class="step-num">01</div><h3>Check Availability</h3><p>Reach out to the eastXperience team to confirm your preferred date, group size, and journey option.</p></div>
+      <div class="step-card fade-in fade-in-delay-2"><div class="step-num">02</div><h3>Share Traveler Details</h3><p>Send the basic traveler information required for trip preparation and coordination.</p></div>
+      <div class="step-card fade-in fade-in-delay-3"><div class="step-num">03</div><h3>Complete Booking Form</h3><p>Once your spot is confirmed available, complete a simple booking and health assessment form.</p></div>
+      <div class="step-card fade-in fade-in-delay-1"><div class="step-num">04</div><h3>Receive Invoice</h3><p>The team will issue an invoice based on your confirmed package, group size, and arrangement.</p></div>
+      <div class="step-card fade-in fade-in-delay-2"><div class="step-num">05</div><h3>Secure Your Journey</h3><p>Confirm your booking with a 30% down payment. The remaining balance is due 14 days before departure.</p></div>
+      <div class="step-card fade-in fade-in-delay-3"><div class="step-num">06</div><h3>Receive Trip Guide</h3><p>After payment, you will receive a trip preparation guide and your facilitator contact before departure.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta">
+  <div class="final-cta-bg"><img src="assets/images/closing-cta.jpg" alt="Lush tropical landscape with sea view — Banggai, Central Sulawesi" loading="lazy" /></div>
+  <div class="final-cta-overlay"></div>
+  <div class="container">
+    <div class="final-cta-content fade-in">
+      <div class="label-tag" style="color:var(--sand)">Begin Here</div>
+      <h2>Begin Your Banggai Journey</h2>
+      <p>When you are ready to experience a quieter side of Indonesia, eastXperience will help you design the journey with clarity, care, and genuine local understanding.</p>
+      <div class="final-cta-btns">
+        <a href="../book.html?product=banggai-explore" class="btn-primary">Book Banggai Explore</a>
+        <a href="https://wa.me/62811342473?text=Hello%20eastXperience%2C%20I%20would%20like%20to%20ask%20about%20the%20Banggai%20Explore%20journey." target="_blank" class="btn-navy">Ask Before Booking</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="../" class="footer-wordmark">east<span>X</span>perience</a>
+        <p>Private journeys, curated by locals. Handcrafted across Indonesia since day one.</p>
+        <a href="https://wa.me/62811342473?text=Hello%20eastXperience%2C%20I%20would%20like%20to%20start%20planning%20my%20journey." target="_blank" class="footer-wa-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+          Start Planning · +62 811 3424 73
+        </a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">Explore</div>
+        <ul class="footer-links">
+          <li><a href="../#experiences">Experiences</a></li>
+          <li><a href="../#destinations">Destinations</a></li>
+          <li><a href="../#why">Why Us</a></li>
+          <li><a href="../#how">How It Works</a></li>
+          <li><a href="../#stories">Guest Stories</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-label">Concierge</div>
+        <div class="footer-concierge">
+          <p>WhatsApp · <a href="https://wa.me/62811342473">+62 811 3424 73</a></p>
+          <p>Email · <a href="mailto:hello@eastxperience.com">hello@eastxperience.com</a></p>
+          <p style="font-size:13px;color:rgba(255,255,255,0.45);margin-top:6px;">WhatsApp reply · avg 4 min · 7 days a week</p>
+        </div>
+        <div class="footer-col-label" style="margin-top:28px;">Trust &amp; Follow</div>
+        <div class="footer-pills">
+          <a href="https://share.google/uChTLFKbFX80jNEz0" target="_blank" rel="noopener" class="footer-pill">
+            <svg width="12" height="12" viewBox="0 0 48 48" aria-hidden="true"><path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/><path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/><path fill="#FBBC05" d="M11.69 28.18c-.44-1.32-.69-2.73-.69-4.18s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/><path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/></svg>
+            Google
+          </a>
+          <a href="https://www.tripadvisor.com/Attraction_Review-g297697-d20265683-Reviews-EastXperience-Kuta_Kuta_District_Bali.html" target="_blank" rel="noopener" class="footer-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#00AF87"/><circle cx="8.4" cy="12" r="2.2" fill="#fff"/><circle cx="15.6" cy="12" r="2.2" fill="#fff"/><circle cx="8.4" cy="12" r="0.9" fill="#000"/><circle cx="15.6" cy="12" r="0.9" fill="#000"/></svg>
+            TripAdvisor
+          </a>
+          <a href="https://www.instagram.com/eastxperience" target="_blank" rel="noopener" class="footer-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.youtube.com/@eastxperience" target="_blank" rel="noopener" class="footer-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FF0000" d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8z"/><path fill="#fff" d="M9.6 15.6V8.4L15.8 12z"/></svg>
+            YouTube
+          </a>
+          <a href="https://wa.me/62811342473" target="_blank" rel="noopener" class="footer-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true"><path d="M12.04 2.003c-5.514 0-9.99 4.476-9.99 9.99 0 1.76.46 3.48 1.333 5l-1.41 5.16 5.29-1.388a9.96 9.96 0 0 0 4.777 1.218h.004c5.513 0 9.99-4.476 9.99-9.99a9.93 9.93 0 0 0-2.927-7.07 9.93 9.93 0 0 0-7.067-2.92Z"/></svg>
+            WhatsApp
+          </a>
+          <a href="https://maps.google.com/?q=EastXperience+Bali" target="_blank" rel="noopener" class="footer-pill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Maps
+          </a>
+        </div>
+        <p class="footer-trust-line">★ 4.9 · 5,000+ Guests · Direct Operator · Indonesia</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 EastXperience. Crafted with care in Indonesia.</p>
+      <p>Private Journeys · Komodo · Bandung · Flores · Java · Bali</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile Sticky CTA -->
+<div class="mobile-sticky-cta">
+  <a href="../book.html?product=banggai-explore" class="mobile-cta-view">Book Banggai</a>
+  <a href="https://wa.me/62811342473?text=Hello%20eastXperience%2C%20I%20would%20like%20to%20ask%20about%20the%20Banggai%20Explore%20journey." target="_blank" class="mobile-cta-wa">WhatsApp</a>
+</div>
+
+<script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 60); });
+
+  // Hero background
+  const heroBg = document.getElementById('heroBg');
+  setTimeout(() => heroBg.classList.add('loaded'), 100);
+
+  // Fade-in on scroll
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  fadeEls.forEach(el => observer.observe(el));
+
+  // Tabs
+  function switchTab(id, btn) {
+    document.querySelectorAll('.itinerary-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.itinerary-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  // Accordion
+  function toggleAccordion(id) {
+    const item = document.getElementById(id);
+    const body = item.querySelector('.accordion-body');
+    const isOpen = item.classList.contains('open');
+    item.closest('.itinerary-panel').querySelectorAll('.accordion-item').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.accordion-body').classList.remove('open');
+    });
+    if (!isOpen) { item.classList.add('open'); body.classList.add('open'); }
+  }
+</script>
+</body>
+</html>
