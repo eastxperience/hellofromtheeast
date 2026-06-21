@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#203328">
+<title>Wae Rebo Guest Briefing · EastXperience</title>
+<meta name="description" content="Your complete cultural briefing before visiting Wae Rebo with EastXperience. Official LPBW guidelines, dress code, journey timeline, village etiquette, and what to pack.">
+<link rel="icon" type="image/svg+xml" href="images/logo-eastxperience.svg">
+<link rel="preload" as="image" href="waerebo images/IMG_0799.JPG" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300;9..144,0,400;9..144,1,300;9..144,1,400;9..144,1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --mist:#ECE8E0;--earth:#7A5C43;--moss:#55624D;
+  --forest:#203328;--sunrise:#C98E5B;--stone:#6D6B67;
+  --white:#fff;--border:rgba(32,51,40,.09);
+  --gold:#C8A86B;--ivory:#F7F2E8;
+  --rc:20px;--rp:999px;--t:220ms ease;
+  --shadow:0 20px 56px rgba(32,51,40,.13);
+  --green:#3A8A4F;--red:#C94040;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--mist);color:var(--forest);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:300;letter-spacing:-.025em;line-height:1.1}
+
+/* ── Progress bar ── */
+#pbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--sunrise),var(--gold));z-index:300;width:0;transition:width .08s linear;pointer-events:none}
+
+/* ── Alert banner ── */
+.alert-banner{background:var(--forest);padding:11px 20px;text-align:center;font-size:12.5px;font-weight:600;color:rgba(201,142,91,.85);letter-spacing:.03em;position:relative;z-index:10}
+.alert-banner a{color:rgba(201,142,91,.9);text-decoration:underline}
+
+/* ── Header ── */
+.site-header{position:sticky;top:0;z-index:80;background:rgba(236,232,224,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(32,51,40,.07)}
+.hdr{max-width:1160px;margin:0 auto;padding:0 22px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.back-link{display:flex;align-items:center;gap:6px;color:rgba(32,51,40,.38);font-size:13px;font-weight:500;text-decoration:none;transition:color var(--t);flex-shrink:0}
+.back-link svg{opacity:.6}
+.back-link:hover{color:var(--forest)}
+.brand{display:flex;align-items:center;gap:8px;font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--forest);letter-spacing:-.01em;text-decoration:none}
+.brand img{width:30px;height:30px}
+.hdr-wa{display:flex;align-items:center;gap:6px;padding:7px 16px;border-radius:var(--rp);background:var(--forest);color:var(--ivory);font-size:12px;font-weight:600;text-decoration:none;transition:all var(--t);flex-shrink:0}
+.hdr-wa:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(32,51,40,.25)}
+.hdr-wa svg{flex-shrink:0}
+
+/* ── Hero ── */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:80px 0 72px;overflow:hidden}
+.hero-img{position:absolute;inset:0;background:url("waerebo images/IMG_0799.JPG") center 38%/cover no-repeat;z-index:0;animation:hZoom 14s ease-out forwards}
+@keyframes hZoom{from{transform:scale(1)}to{transform:scale(1.07)}}
+.hero-ov{position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(to right,rgba(10,24,16,.92) 0%,rgba(10,24,16,.76) 42%,rgba(10,24,16,.28) 68%,rgba(10,24,16,.1) 100%),
+    linear-gradient(to top,rgba(10,24,16,.72) 0%,transparent 38%)}
+.hero-grain{position:absolute;inset:0;z-index:2;opacity:.028;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") 200px}
+.hero-inner{position:relative;z-index:4;max-width:1160px;margin:0 auto;padding:0 24px;width:100%}
+.hero-kicker{display:inline-flex;align-items:center;gap:7px;padding:5px 14px;border-radius:var(--rp);font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(201,142,91,.38);background:rgba(201,142,91,.1);color:rgba(201,142,91,.9);margin-bottom:22px}
+.hero-kicker-dot{width:6px;height:6px;border-radius:50%;background:var(--sunrise);animation:blink 2.4s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{font-size:clamp(38px,6.8vw,80px);color:#fff;max-width:820px;margin-bottom:18px;line-height:1.03}
+.hero h1 em{font-style:italic;color:rgba(201,142,91,.88)}
+.hero-sub{font-size:clamp(14.5px,2vw,18px);color:rgba(255,255,255,.6);max-width:520px;line-height:1.72;margin-bottom:32px}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.hero-chip{padding:6px 15px;border-radius:var(--rp);font-size:12px;font-weight:500;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:rgba(255,255,255,.78);backdrop-filter:blur(4px)}
+.scroll-cue{display:flex;align-items:center;gap:9px;margin-top:28px;cursor:pointer;width:fit-content}
+.scroll-ring{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:15px;animation:bob 2.2s ease infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}55%{transform:translateY(6px)}}
+.scroll-label{font-size:12px;color:rgba(255,255,255,.3);letter-spacing:.04em}
+
+/* ── Stats bar ── */
+.stat-bar{background:var(--forest)}
+.stats{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr)}
+.stat{padding:22px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.055)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Fraunces',serif;font-size:clamp(22px,3.2vw,34px);color:var(--sunrise);line-height:1;margin-bottom:5px}
+.stat-l{font-size:10.5px;color:rgba(236,232,224,.38);text-transform:uppercase;letter-spacing:.11em}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}.stat{border-bottom:1px solid rgba(255,255,255,.055)}.stat:nth-child(2){border-right:none}.stat:nth-child(3){border-bottom:none}}
+
+/* ── Layout ── */
+.sec{padding:80px 0}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.sec-label{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--sunrise);display:block;margin-bottom:12px}
+.sec-head{margin-bottom:48px}
+.sec-head h2{font-size:clamp(28px,4.2vw,50px);margin-bottom:12px}
+.sec-head p{color:var(--stone);font-size:15.5px;max-width:560px;line-height:1.68}
+.sec-head.center{text-align:center}
+.sec-head.center p{margin:0 auto}
+@media(max-width:768px){.sec{padding:60px 0}.sec-head{margin-bottom:36px}}
+
+/* ── Fade-up animations ── */
+.fu{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+.fu.vis{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* ── Why section ── */
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.intro-quote{font-family:'Fraunces',serif;font-size:clamp(21px,3.2vw,34px);font-style:italic;line-height:1.42;color:var(--forest);margin-bottom:24px;padding-left:20px;border-left:3px solid var(--sunrise)}
+.intro-body p{color:var(--stone);font-size:15px;line-height:1.72;margin-bottom:16px}
+.intro-body p:last-child{margin-bottom:0}
+.intro-img-wrap{position:relative;border-radius:22px;overflow:hidden}
+.intro-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/5}
+.intro-img-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,24,16,.62) 0%,transparent 52%)}
+.intro-img-cap{position:absolute;bottom:20px;left:20px;right:20px;z-index:2;font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:rgba(255,255,255,.68)}
+@media(max-width:820px){.intro-grid{grid-template-columns:1fr;gap:36px}.intro-img-wrap img{aspect-ratio:16/9}}
+
+/* ── 4 Pillars ── */
+.pillars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+@media(max-width:640px){.pillars-grid{grid-template-columns:1fr}}
+.pillar{background:var(--white);border:1.5px solid var(--border);border-radius:var(--rc);padding:32px 28px;position:relative;overflow:hidden;transition:border-color var(--t),transform var(--t),box-shadow var(--t)}
+.pillar:hover{border-color:rgba(201,142,91,.4);transform:translateY(-4px);box-shadow:var(--shadow)}
+.pillar::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sunrise),var(--gold))}
+.pillar-num{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:var(--sunrise);margin-bottom:14px}
+.pillar-icon{font-size:36px;margin-bottom:16px;display:block;line-height:1}
+.pillar h3{font-family:'Fraunces',serif;font-size:23px;font-weight:300;color:var(--forest);margin-bottom:10px}
+.pillar p{font-size:14px;color:var(--stone);line-height:1.68}
+.pillar-rule{margin-top:18px;padding:12px 16px;background:rgba(201,142,91,.07);border-radius:10px;border-left:3px solid rgba(201,142,91,.4);font-size:12.5px;color:var(--forest);line-height:1.55;font-weight:500}
+
+/* ── Timeline ── */
+.tl-sec{background:var(--forest);padding:80px 0;position:relative;overflow:hidden}
+.tl-sec::before{content:'';position:absolute;inset:0;background:url("waerebo images/morning-mist-waerebo.jpg") center/cover no-repeat;opacity:.08}
+.tl-wrap{max-width:880px;margin:0 auto;padding:0 24px;position:relative}
+.tl-container{position:relative;padding:24px 0}
+.tl-line{position:absolute;left:22px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,rgba(201,142,91,.25) 5%,rgba(201,142,91,.25) 95%,transparent)}
+@media(min-width:640px){.tl-line{left:50%;transform:translateX(-1px)}}
+.tl-item{position:relative;padding-left:58px;margin-bottom:36px}
+@media(min-width:640px){
+  .tl-item{width:46%;padding-left:0;margin-bottom:40px}
+  .tl-item:nth-child(odd){padding-right:48px;text-align:right}
+  .tl-item:nth-child(even){margin-left:54%;padding-left:48px}
+}
+.tl-dot{position:absolute;left:14px;top:5px;width:18px;height:18px;border-radius:50%;background:var(--sunrise);border:2px solid rgba(201,142,91,.25);z-index:2;box-shadow:0 0 0 4px rgba(201,142,91,.08)}
+@media(min-width:640px){
+  .tl-item:nth-child(odd) .tl-dot{right:-9px;left:auto}
+  .tl-item:nth-child(even) .tl-dot{left:-9px}
+}
+.tl-dot.white{background:rgba(255,255,255,.7);border-color:rgba(255,255,255,.2);box-shadow:0 0 0 4px rgba(255,255,255,.05)}
+.tl-dot.accent{background:var(--sunrise);box-shadow:0 0 0 6px rgba(201,142,91,.15)}
+.tl-time{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--sunrise);margin-bottom:4px}
+.tl-title{font-family:'Fraunces',serif;font-size:18px;color:var(--ivory);font-weight:300;margin-bottom:5px}
+.tl-desc{font-size:13px;color:rgba(236,232,224,.48);line-height:1.58}
+.tl-note{margin-top:9px;padding:8px 13px;background:rgba(201,142,91,.1);border-radius:8px;border-left:2px solid rgba(201,142,91,.4);font-size:12.5px;color:rgba(201,142,91,.82);line-height:1.52}
+@media(min-width:640px){.tl-item:nth-child(odd) .tl-note{border-left:none;border-right:2px solid rgba(201,142,91,.4)}}
+.tl-divider{text-align:center;position:relative;margin:28px 0;padding:6px 0}
+.tl-divider::before{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:rgba(255,255,255,.07)}
+.tl-divider span{background:var(--forest);padding:0 16px;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.22);position:relative;z-index:1}
+
+/* ── Dress Code ── */
+.dress-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:640px){.dress-grid{grid-template-columns:1fr}}
+.dress-card{border-radius:var(--rc);padding:28px 24px;border:1.5px solid}
+.dress-do{background:rgba(58,138,79,.05);border-color:rgba(58,138,79,.22)}
+.dress-dont{background:rgba(201,64,64,.05);border-color:rgba(201,64,64,.2)}
+.dress-head{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.dress-badge{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;padding:5px 13px;border-radius:var(--rp)}
+.dress-do .dress-badge{background:rgba(58,138,79,.13);color:var(--green)}
+.dress-dont .dress-badge{background:rgba(201,64,64,.1);color:var(--red)}
+.dress-items{display:flex;flex-direction:column;gap:11px}
+.dress-item{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--stone);line-height:1.55}
+.dress-ic{width:30px;height:30px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;margin-top:1px}
+.dress-do .dress-ic{background:rgba(58,138,79,.1)}
+.dress-dont .dress-ic{background:rgba(201,64,64,.09)}
+.dress-callout{margin-top:28px;padding:22px 26px;background:var(--forest);border-radius:var(--rc);font-size:14px;line-height:1.68;color:rgba(236,232,224,.75)}
+.dress-callout strong{color:var(--sunrise)}
+
+/* ── Etiquette accordion ── */
+.etiq-list{display:flex;flex-direction:column;gap:9px}
+.etiq-item{background:var(--white);border:1.5px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color var(--t)}
+.etiq-item.open{border-color:rgba(201,142,91,.3)}
+.etiq-btn{width:100%;display:flex;align-items:center;gap:14px;padding:17px 20px;background:none;border:none;cursor:pointer;text-align:left;font-family:'Inter',sans-serif;transition:background var(--t)}
+.etiq-btn:hover{background:rgba(201,142,91,.04)}
+.etiq-ic{width:38px;height:38px;border-radius:10px;background:rgba(201,142,91,.09);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:18px;transition:background var(--t)}
+.etiq-item.open .etiq-ic{background:rgba(201,142,91,.18)}
+.etiq-title{flex:1;font-size:15px;font-weight:600;color:var(--forest);text-align:left}
+.etiq-chev{font-size:12px;color:var(--stone);transition:transform var(--t);flex-shrink:0}
+.etiq-item.open .etiq-chev{transform:rotate(180deg)}
+.etiq-body{max-height:0;overflow:hidden;transition:max-height .36s ease}
+.etiq-item.open .etiq-body{max-height:280px}
+.etiq-content{padding:2px 22px 20px 72px;font-size:13.5px;color:var(--stone);line-height:1.72}
+
+/* ── Pack list ── */
+.pack-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:640px){.pack-grid{grid-template-columns:1fr}}
+.pack-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--rc);padding:28px 24px}
+.pack-head{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.pack-head-ic{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.bring .pack-head-ic{background:rgba(58,138,79,.1)}
+.leave .pack-head-ic{background:rgba(201,64,64,.08)}
+.pack-head h3{font-family:'Fraunces',serif;font-size:20px;font-weight:300;color:var(--forest)}
+.pack-items{display:flex;flex-direction:column;gap:10px}
+.pack-item{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--stone);line-height:1.5;cursor:pointer;transition:color var(--t)}
+.pack-item.done{color:rgba(109,107,103,.4)}
+.pack-item.done .pack-label{text-decoration:line-through}
+.pack-chk{width:22px;height:22px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;transition:all var(--t);margin-top:0;border:1.5px solid}
+.bring .pack-chk{border-color:rgba(58,138,79,.3);background:rgba(58,138,79,.07);color:var(--green)}
+.leave .pack-chk{border-color:rgba(201,64,64,.28);background:rgba(201,64,64,.06);color:var(--red)}
+.pack-item.done .pack-chk{background:var(--green);border-color:var(--green);color:#fff}
+
+/* ── Kantor Informasi ── */
+.kantor-box{background:linear-gradient(140deg,#1a3427 0%,var(--forest) 100%);border-radius:var(--rc);padding:44px 40px;position:relative;overflow:hidden}
+.kantor-box::after{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:rgba(201,142,91,.04)}
+.kantor-tag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.14em;color:rgba(201,142,91,.6);display:block;margin-bottom:10px}
+.kantor-box h3{font-family:'Fraunces',serif;font-size:clamp(24px,3.5vw,34px);font-weight:300;color:var(--ivory);margin-bottom:10px}
+.kantor-box .sub{font-size:14.5px;color:rgba(236,232,224,.5);max-width:580px;line-height:1.65;margin-bottom:36px}
+.kantor-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative;z-index:1}
+@media(max-width:640px){.kantor-steps{grid-template-columns:repeat(2,1fr)}}
+.k-step{text-align:center;padding:22px 14px;background:rgba(255,255,255,.04);border-radius:14px;border:1px solid rgba(255,255,255,.07);transition:background var(--t)}
+.k-step:hover{background:rgba(255,255,255,.07)}
+.k-step-num{font-family:'Fraunces',serif;font-size:36px;color:var(--sunrise);margin-bottom:8px;line-height:1}
+.k-step-label{font-size:13px;color:rgba(236,232,224,.58);line-height:1.52}
+.kantor-warn{margin-top:26px;padding:16px 20px;background:rgba(201,142,91,.1);border-radius:12px;border:1px solid rgba(201,142,91,.22);font-size:14px;color:rgba(201,142,91,.88);line-height:1.62;position:relative;z-index:1}
+.kantor-warn strong{color:rgba(201,142,91,1)}
+@media(max-width:768px){.kantor-box{padding:28px 24px}}
+
+/* ── Late arrival ── */
+.late-box{background:var(--white);border:1.5px solid var(--border);border-radius:var(--rc);padding:36px 32px}
+.late-body{font-size:14.5px;color:var(--stone);line-height:1.72;margin-bottom:26px}
+.late-scenarios{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px}
+@media(max-width:640px){.late-scenarios{grid-template-columns:1fr}}
+.late-card{padding:20px;border-radius:14px;border:1.5px solid}
+.late-ok{border-color:rgba(58,138,79,.22);background:rgba(58,138,79,.04)}
+.late-oh{border-color:rgba(201,142,91,.28);background:rgba(201,142,91,.04)}
+.late-tag{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.late-ok .late-tag{color:var(--green)}
+.late-oh .late-tag{color:var(--sunrise)}
+.late-card p{font-size:13.5px;color:var(--stone);line-height:1.62}
+.late-footnote{font-size:13px;color:var(--stone);line-height:1.65}
+.late-footnote strong{color:var(--forest)}
+@media(max-width:768px){.late-box{padding:24px 20px}}
+
+/* ── Alignment grid ── */
+.align-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:768px){.align-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.align-grid{grid-template-columns:1fr}}
+.align-card{background:var(--white);border:1.5px solid var(--border);border-radius:var(--rc);padding:26px 22px;transition:border-color var(--t),transform var(--t),box-shadow var(--t)}
+.align-card:hover{border-color:rgba(58,138,79,.3);transform:translateY(-3px);box-shadow:var(--shadow)}
+.align-check{width:38px;height:38px;border-radius:11px;background:rgba(58,138,79,.1);display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:14px}
+.align-card h4{font-family:'Fraunces',serif;font-size:17.5px;font-weight:300;color:var(--forest);margin-bottom:8px}
+.align-card p{font-size:13.5px;color:var(--stone);line-height:1.65}
+
+/* ── Photo band ── */
+.photo-band{display:grid;grid-template-columns:1.7fr 1fr 1fr;grid-template-rows:220px 220px;gap:10px;border-radius:var(--rc);overflow:hidden}
+.pb-item{position:relative;overflow:hidden;background:var(--forest)}
+.pb-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .65s ease}
+.pb-item:hover img{transform:scale(1.06)}
+.pb-item::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,24,16,.5) 0%,transparent 50%)}
+.pb-cap{position:absolute;bottom:12px;left:14px;z-index:2;font-family:'Fraunces',serif;font-style:italic;font-size:12.5px;color:rgba(255,255,255,.68)}
+.pb-tall{grid-row:1/3}
+.pb-wide{grid-column:2/4}
+@media(max-width:640px){.photo-band{grid-template-columns:1fr 1fr;grid-template-rows:160px 160px}.pb-tall{grid-row:auto}.pb-wide{grid-column:auto}}
+
+/* ── Final CTA ── */
+.cta-fin{background:var(--forest);padding:100px 0;text-align:center;position:relative;overflow:hidden}
+.cta-fin::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(201,142,91,.07) 0%,transparent 70%)}
+.cta-fin .wrap{position:relative;z-index:1}
+.cta-fin h2{font-size:clamp(30px,5vw,58px);color:var(--ivory);margin-bottom:14px;font-style:italic}
+.cta-fin .cta-sub{max-width:480px;margin:0 auto 40px;color:rgba(236,232,224,.5);font-size:16px;line-height:1.68}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-ready{display:inline-flex;align-items:center;gap:9px;padding:18px 36px;border-radius:var(--rp);background:var(--white);color:var(--forest);font-family:'Fraunces',serif;font-size:17px;font-weight:600;text-decoration:none;cursor:pointer;border:none;transition:all var(--t)}
+.btn-ready:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(255,255,255,.15)}
+.btn-ready.done{background:var(--sunrise);color:#fff;pointer-events:none}
+.btn-wa-fin{display:inline-flex;align-items:center;gap:8px;padding:17px 28px;border-radius:var(--rp);border:1.5px solid rgba(255,255,255,.16);color:rgba(255,255,255,.78);font-size:15px;font-weight:500;text-decoration:none;transition:all var(--t)}
+.btn-wa-fin:hover{border-color:rgba(201,142,91,.5);background:rgba(201,142,91,.08)}
+.cta-cap{margin-top:22px;font-family:'Fraunces',serif;font-style:italic;font-size:13px;color:rgba(236,232,224,.22)}
+
+/* ── Footer ── */
+footer{padding:44px 24px;text-align:center;border-top:1px solid var(--border);background:var(--mist)}
+footer .logo-row{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px}
+footer .logo-row img{height:26px;opacity:.65}
+footer p{font-size:13px;color:var(--stone);line-height:1.7}
+footer a{color:var(--sunrise);font-weight:500;text-decoration:none}
+footer a:hover{text-decoration:underline}
+footer .small{font-size:11.5px;color:rgba(109,107,103,.45);margin-top:6px}
+
+/* ── Confetti ── */
+.confetti-piece{position:fixed;width:9px;height:9px;border-radius:50%;pointer-events:none;z-index:9999;animation:cfall 1.4s ease-out forwards}
+@keyframes cfall{0%{opacity:1;transform:translateY(-20px) rotate(0deg) scale(1)}100%{opacity:0;transform:translateY(80px) rotate(540deg) scale(0)}}
+
+/* ── Responsive tweaks ── */
+@media(max-width:480px){
+  .hero h1{font-size:36px}
+  .pillar{padding:22px 18px}
+  .pillar h3{font-size:20px}
+  .kantor-box h3{font-size:24px}
+  .cta-fin h2{font-size:30px}
+}
+</style>
+</head>
+<body>
+
+<div id="pbar"></div>
+
+<!-- Alert banner -->
+<div class="alert-banner">
+  📋 Official guidelines from Lembaga Pengelola Budaya Wae Rebo (LPBW) &nbsp;·&nbsp; Please read fully before your visit
+</div>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="hdr">
+    <a href="waerebo-final.html" class="back-link">
+      <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M9.5 3L4.5 7.5l5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Wae Rebo Experience
+    </a>
+    <a href="waerebo-final.html" class="brand">
+      <img src="images/logo-eastxperience.svg" alt="EastXperience" onerror="this.style.display='none'">
+      EastXperience
+    </a>
+    <a href="https://wa.me/62811342473?text=Hi%2C%20I%20have%20a%20question%20about%20the%20Wae%20Rebo%20briefing." class="hdr-wa" target="_blank" rel="noopener noreferrer">
+      <svg width="14" height="14" viewBox="0 0 15 15" fill="currentColor"><path d="M7.5 0C3.358 0 0 3.358 0 7.5c0 1.32.346 2.56.949 3.635L.078 14.61a.469.469 0 0 0 .577.566l3.371-.91A7.462 7.462 0 0 0 7.5 15C11.642 15 15 11.642 15 7.5S11.642 0 7.5 0Zm3.914 10.294c-.162.456-.944.87-1.313.925-.34.05-.77.07-1.24-.078-.286-.09-.655-.21-1.125-.413-1.978-.854-3.27-2.854-3.369-2.985-.1-.131-.808-1.074-.808-2.049s.51-1.454.692-1.654a.73.73 0 0 1 .53-.25c.132 0 .265.002.38.008.122.007.286-.046.447.341.162.387.55 1.338.598 1.435.048.097.08.21.016.338-.065.128-.097.208-.193.32-.097.112-.203.25-.29.336-.097.096-.198.2-.085.392.112.193.498.822 1.069 1.332.734.654 1.352.856 1.544.952.193.097.306.08.418-.048.112-.129.48-.56.608-.752.128-.193.257-.161.433-.097.177.065 1.124.53 1.317.627.193.097.321.145.369.225.048.08.048.464-.114.92Z"/></svg>
+      Ask a Question
+    </a>
+  </div>
+</header>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-grain"></div>
+  <div class="hero-inner">
+    <div class="hero-kicker">
+      <span class="hero-kicker-dot"></span>
+      Guest Briefing · Wae Rebo Village · Flores
+    </div>
+    <h1>Before You Enter<br><em>the Mountain</em></h1>
+    <p class="hero-sub">A cultural briefing prepared by EastXperience, fully aligned with official guidelines from the Lembaga Pengelola Budaya Wae Rebo (LPBW). Please read before your visit.</p>
+    <div class="hero-chips">
+      <span class="hero-chip">🏔 1,200m altitude</span>
+      <span class="hero-chip">🏛 1,000+ year tradition</span>
+      <span class="hero-chip">🧭 ~4 hr trek each way</span>
+      <span class="hero-chip">📜 LPBW Compliant</span>
+      <span class="hero-chip">🌿 Community-led</span>
+    </div>
+    <div class="scroll-cue" onclick="document.getElementById('start').scrollIntoView({behavior:'smooth'})">
+      <div class="scroll-ring">↓</div>
+      <span class="scroll-label">Scroll to read the briefing</span>
+    </div>
+  </div>
+</section>
+
+<!-- Stats bar -->
+<div class="stat-bar">
+  <div class="stats">
+    <div class="stat fu">
+      <div class="stat-n">1,200m</div>
+      <div class="stat-l">Village altitude</div>
+    </div>
+    <div class="stat fu d1">
+      <div class="stat-n">7</div>
+      <div class="stat-l">Mbaru Niang houses</div>
+    </div>
+    <div class="stat fu d2">
+      <div class="stat-n">~4 hr</div>
+      <div class="stat-l">Trek to village</div>
+    </div>
+    <div class="stat fu d3">
+      <div class="stat-n">1,000+</div>
+      <div class="stat-l">Years of tradition</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ WHY THIS MATTERS ═══════════════════ -->
+<section id="start" class="sec" style="background:var(--white)">
+  <div class="wrap">
+    <div class="intro-grid">
+      <div class="fu">
+        <span class="sec-label">Why This Briefing Exists</span>
+        <p class="intro-quote">"Wae Rebo is not a tourist attraction.<br>It is a living home."</p>
+        <div class="intro-body">
+          <p>Wae Rebo is a traditional Manggarai village nestled at 1,200 metres in the mountains of Flores. Its seven iconic <strong>Mbaru Niang</strong> — towering conical homes — have stood for over a thousand years and carry the cultural memory of the entire community.</p>
+          <p>The <strong>Lembaga Pengelola Budaya Wae Rebo (LPBW)</strong> is the village's official cultural governance body. They have published formal guidelines for all visitors — not as restrictions, but as the minimum standard of respect the community expects from anyone entering their ancestral home.</p>
+          <p>At EastXperience, we are fully aligned with these guidelines. This briefing is mandatory before your visit — not just because the rules say so, but because you deserve to arrive informed, respectful, and ready for something genuinely extraordinary.</p>
+        </div>
+      </div>
+      <div class="intro-img-wrap fu d2">
+        <img src="waerebo images/a1b7ac46-5463-4a72-bf9c-dffba47034e7.JPG" alt="The seven conical Mbaru Niang of Wae Rebo in highland mist" loading="lazy">
+        <div class="intro-img-cap">The seven Mbaru Niang, hidden in the Flores highland mist</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 4 PILLARS ═══════════════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head fu">
+      <span class="sec-label">Official LPBW Guidelines</span>
+      <h2>Four Requirements.<br>Zero Exceptions.</h2>
+      <p>Issued formally by the Lembaga Pengelola Budaya Wae Rebo to all tour operators, guides, and visitors. These apply to every guest on every visit.</p>
+    </div>
+    <div class="pillars-grid">
+
+      <div class="pillar fu">
+        <div class="pillar-num">Requirement 01</div>
+        <span class="pillar-icon">👗</span>
+        <h3>Dress With Respect</h3>
+        <p>All guests must wear clothing that reflects Manggarai adat values. The village community expects visitors to cover their shoulders, midriff, and legs to at least the knee at all times within the visit area.</p>
+        <div class="pillar-rule">Shirt with sleeves · No open back or stomach · Shorts/pants must reach the knee</div>
+      </div>
+
+      <div class="pillar fu d1">
+        <div class="pillar-num">Requirement 02</div>
+        <span class="pillar-icon">⏰</span>
+        <h3>Begin Trek Before 16:00</h3>
+        <p>The trek to Wae Rebo must begin no later than 16:00. Guests who arrive at the Information Office after 16:00 will be required to stay overnight at the base village and continue the trek the following morning.</p>
+        <div class="pillar-rule">Target start: 12:30–14:00 · Absolute limit: 16:00 WIT</div>
+      </div>
+
+      <div class="pillar fu d2">
+        <div class="pillar-num">Requirement 03</div>
+        <span class="pillar-icon">📋</span>
+        <h3>Register at Kantor Informasi</h3>
+        <p>Every guest must stop at the Wae Rebo Information Office before the trek begins. This is where registration, official entrance fees, and a formal cultural briefing from village representatives all take place.</p>
+        <div class="pillar-rule">No trekking before completing registration and briefing at the office</div>
+      </div>
+
+      <div class="pillar fu d3">
+        <div class="pillar-num">Requirement 04</div>
+        <span class="pillar-icon">🚫</span>
+        <h3>No Alcohol or Narcotics</h3>
+        <p>Alcohol and narcotics are strictly and completely prohibited throughout the entire Wae Rebo visit — from the Information Office to the village and back. Guides must also deliver a cultural briefing before any guest enters the village.</p>
+        <div class="pillar-rule">Strictly prohibited by village adat law · No exceptions whatsoever</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ TIMELINE ═══════════════════ -->
+<section class="tl-sec">
+  <div class="tl-wrap">
+    <div class="sec-head center fu">
+      <span class="sec-label" style="color:rgba(201,142,91,.65)">Your 2 Days, 1 Night Journey</span>
+      <h2 style="color:var(--ivory)">The Road to Wae Rebo</h2>
+      <p style="color:rgba(236,232,224,.45)">From the coast of Labuan Bajo to the highland village and back. Know your timeline — it keeps everyone safe and on schedule.</p>
+    </div>
+    <div class="tl-container">
+      <div class="tl-line"></div>
+
+      <div class="tl-item fu">
+        <div class="tl-dot accent"></div>
+        <div class="tl-time">07:00 · Day 1</div>
+        <div class="tl-title">Pickup from Labuan Bajo</div>
+        <div class="tl-desc">Your certified EastXperience guide meets you at your hotel or agreed pickup point. Comfortable overland vehicle to Ruteng direction.</div>
+      </div>
+
+      <div class="tl-item fu d1">
+        <div class="tl-dot"></div>
+        <div class="tl-time">~10:30</div>
+        <div class="tl-title">Arrive at Denge Village</div>
+        <div class="tl-desc">The gateway village at the mountain's base. Your last chance to change into trekking clothes and pack your overnight bag.</div>
+      </div>
+
+      <div class="tl-item fu">
+        <div class="tl-dot"></div>
+        <div class="tl-time">~11:30</div>
+        <div class="tl-title">Lunch & Final Preparation</div>
+        <div class="tl-desc">Local lunch at Denge. Finalise gear — only bring what you need overnight. Heavier bags can be left securely at base.</div>
+      </div>
+
+      <div class="tl-item fu d1">
+        <div class="tl-dot white"></div>
+        <div class="tl-time">~12:00–12:30</div>
+        <div class="tl-title">Kantor Informasi · Mandatory Stop</div>
+        <div class="tl-desc">Official registration, entrance fee payment, and cultural briefing from village representatives. Your guide leads the process.</div>
+        <div class="tl-note">⚑ This step is mandatory. Do not begin the trek without completing it.</div>
+      </div>
+
+      <div class="tl-item fu">
+        <div class="tl-dot accent"></div>
+        <div class="tl-time">~12:30 · Trek Begins</div>
+        <div class="tl-title">The Highland Trek</div>
+        <div class="tl-desc">~4 hours through highland forest on a moderate trail with some steep sections. Bring water, trail snacks, rain jacket, and your camera.</div>
+        <div class="tl-note">⚑ Must begin by 14:00–15:00 at the latest. Hard LPBW limit: 16:00.</div>
+      </div>
+
+      <div class="tl-item fu d1">
+        <div class="tl-dot"></div>
+        <div class="tl-time">~16:30</div>
+        <div class="tl-title">Arrive at Wae Rebo Village</div>
+        <div class="tl-desc">Welcome by the kepala desa with traditional offerings. The seven Mbaru Niang appear through the mist as you climb the final ridge.</div>
+      </div>
+
+      <div class="tl-item fu">
+        <div class="tl-dot"></div>
+        <div class="tl-time">18:00</div>
+        <div class="tl-title">Dinner with the Community</div>
+        <div class="tl-desc">Simple, warm Manggarai cooking shared inside the conical home. Eat together with your host family.</div>
+      </div>
+
+      <div class="tl-item fu d1">
+        <div class="tl-dot"></div>
+        <div class="tl-time">20:00+</div>
+        <div class="tl-title">Stories Under the Stars</div>
+        <div class="tl-desc">No signal, no news, no noise. Just the mountain dark, a fire, and a thousand years of stories from your host family.</div>
+      </div>
+
+      <div class="tl-divider"><span>Day 2</span></div>
+
+      <div class="tl-item fu">
+        <div class="tl-dot accent"></div>
+        <div class="tl-time">05:00 · Day 2</div>
+        <div class="tl-title">Sunrise from the Ridge</div>
+        <div class="tl-desc">The cloud sea rolls below the village as the sky turns gold above the Flores mountains. The single best moment of the journey.</div>
+      </div>
+
+      <div class="tl-item fu d1">
+        <div class="tl-dot"></div>
+        <div class="tl-time">07:00</div>
+        <div class="tl-title">Breakfast · Say Farewell</div>
+        <div class="tl-desc">Breakfast with your host family. Thank the kepala desa. Begin the descent through the highland forest.</div>
+      </div>
+
+      <div class="tl-item fu">
+        <div class="tl-dot"></div>
+        <div class="tl-time">~11:00</div>
+        <div class="tl-title">Back at Denge · Lunch</div>
+        <div class="tl-desc">Rest, freshen up, and enjoy a final meal at the base village before the road journey home.</div>
+      </div>
+
+      <div class="tl-item fu d1">
+        <div class="tl-dot accent"></div>
+        <div class="tl-time">~17:00</div>
+        <div class="tl-title">Return to Labuan Bajo</div>
+        <div class="tl-desc">Back at your hotel by early evening. A quieter person than you were when you left yesterday morning.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ DRESS CODE ═══════════════════ -->
+<section class="sec" style="background:var(--white)">
+  <div class="wrap">
+    <div class="sec-head fu">
+      <span class="sec-label">Dress Code</span>
+      <h2>Dress Like You're<br>Entering Someone's Home</h2>
+      <p>Because you are. The Manggarai people follow adat values where modest dress is a sign of mutual respect. This is not optional — it is required by LPBW for all guests.</p>
+    </div>
+    <div class="dress-grid">
+
+      <div class="dress-card dress-do fu">
+        <div class="dress-head">
+          <div class="dress-badge">✓ Wear This</div>
+        </div>
+        <div class="dress-items">
+          <div class="dress-item">
+            <div class="dress-ic">👕</div>
+            <div>Shirts or tops <strong>with sleeves</strong> — no sleeveless, no tank tops</div>
+          </div>
+          <div class="dress-item">
+            <div class="dress-ic">👖</div>
+            <div>Pants, skirts, or shorts that <strong>cover the knee</strong> (or longer)</div>
+          </div>
+          <div class="dress-item">
+            <div class="dress-ic">🥾</div>
+            <div>Closed trekking shoes with grip — the trail is steep and can be wet</div>
+          </div>
+          <div class="dress-item">
+            <div class="dress-ic">🧥</div>
+            <div>Warm layer for the night — the village drops to 12–16°C at 1,200m</div>
+          </div>
+          <div class="dress-item">
+            <div class="dress-ic">🧣</div>
+            <div>A sarong (optional but appreciated — can be borrowed if needed)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dress-card dress-dont fu d1">
+        <div class="dress-head">
+          <div class="dress-badge">✗ Do Not Wear</div>
+        </div>
+        <div class="dress-items">
+          <div class="dress-item">
+            <div class="dress-ic">🚫</div>
+            <div>Sleeveless tops, spaghetti straps, or any strapless clothing</div>
+          </div>
+          <div class="dress-item">
+            <div class="dress-ic">🚫</div>
+            <div>Open-back tops, backless shirts, or crop tops exposing the stomach</div>
+          </div>
+          <div class="dress-item">
+            <div class="dress-ic">🚫</div>
+            <div>Shorts or skirts that end above the knee</div>
+          </div>
+          <div class="dress-item">
+            <div class="dress-ic">🚫</div>
+            <div>Tight-fitting or revealing clothing of any kind</div>
+          </div>
+          <div class="dress-item">
+            <div class="dress-ic">🚫</div>
+            <div>Flip-flops, heels, or any open footwear (unsafe on the highland trail)</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="dress-callout fu">
+      <strong>A note from your guide:</strong> Many guests arrive to Labuan Bajo in beach mode — swimwear, shorts, sandals. That's perfect for the coast. The morning before your trek, your guide will remind you to change. Bring your modest clothes in your daypack from Labuan Bajo so you're ready. If you're ever unsure about a specific item, ask your EastXperience guide before packing.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ETIQUETTE ═══════════════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head fu">
+      <span class="sec-label">Village Etiquette</span>
+      <h2>How to Move Through<br>a Living Heritage Village</h2>
+      <p>Wae Rebo is not a museum or a set piece. Families live, raise children, pray, and work inside these conical homes. Move through it with that awareness.</p>
+    </div>
+    <div class="etiq-list fu">
+
+      <div class="etiq-item">
+        <button class="etiq-btn" aria-expanded="false">
+          <div class="etiq-ic">📸</div>
+          <div class="etiq-title">Photography — Ask First, Always</div>
+          <div class="etiq-chev">▼</div>
+        </button>
+        <div class="etiq-body">
+          <div class="etiq-content">Always ask before photographing community members — especially elders and children. During ceremonies or rituals, put your camera away unless explicitly invited to photograph. Photography inside the Mbaru Niang is generally not permitted without the family's direct permission. If in doubt, don't shoot. The memory in your mind outlasts any photo.</div>
+        </div>
+      </div>
+
+      <div class="etiq-item">
+        <button class="etiq-btn" aria-expanded="false">
+          <div class="etiq-ic">🙏</div>
+          <div class="etiq-title">Ceremonies &amp; Sacred Moments</div>
+          <div class="etiq-chev">▼</div>
+        </button>
+        <div class="etiq-body">
+          <div class="etiq-content">If a ceremony or ritual is underway, follow your guide's instructions precisely. Do not enter ritual spaces, do not raise your voice, and do not touch or move any sacred objects or offering items. Some ceremonies are entirely closed to outside observation — accept this without question. You are a guest in their spiritual life, not a spectator in a performance.</div>
+        </div>
+      </div>
+
+      <div class="etiq-item">
+        <button class="etiq-btn" aria-expanded="false">
+          <div class="etiq-ic">🔇</div>
+          <div class="etiq-title">Sound &amp; Volume in the Village</div>
+          <div class="etiq-chev">▼</div>
+        </button>
+        <div class="etiq-body">
+          <div class="etiq-content">Speak in low voices throughout the village, particularly in the mornings and evenings. No Bluetooth speakers, no loud music, no boisterous behaviour after dark. The silence of the highland is itself part of the Wae Rebo experience — one of the most precious things you will bring home. Protect it for the guests who come after you.</div>
+        </div>
+      </div>
+
+      <div class="etiq-item">
+        <button class="etiq-btn" aria-expanded="false">
+          <div class="etiq-ic">🚶</div>
+          <div class="etiq-title">Moving Around the Village</div>
+          <div class="etiq-chev">▼</div>
+        </button>
+        <div class="etiq-body">
+          <div class="etiq-content">Follow your guide when moving around the village — do not wander independently. Do not enter any Mbaru Niang without being invited by the family inside. Do not approach altars, ritual areas, or communal sacred spaces. The central open area is shared, but private sections of each home are private in every sense of the word.</div>
+        </div>
+      </div>
+
+      <div class="etiq-item">
+        <button class="etiq-btn" aria-expanded="false">
+          <div class="etiq-ic">🎁</div>
+          <div class="etiq-title">Gifts &amp; Supporting the Community</div>
+          <div class="etiq-chev">▼</div>
+        </button>
+        <div class="etiq-body">
+          <div class="etiq-content">If you want to give back to the community, the most meaningful way is to purchase handwoven textiles (tenun) or locally grown coffee directly from artisans in the village. Direct cash gifts to individuals — especially children — can create imbalance and dependency. Discuss with your EastXperience guide if you'd like to support the community in a meaningful, respectful way.</div>
+        </div>
+      </div>
+
+      <div class="etiq-item">
+        <button class="etiq-btn" aria-expanded="false">
+          <div class="etiq-ic">🌿</div>
+          <div class="etiq-title">Zero Waste on the Mountain</div>
+          <div class="etiq-chev">▼</div>
+        </button>
+        <div class="etiq-body">
+          <div class="etiq-content">There is no waste collection system at Wae Rebo. Everything you bring up, you carry back down. Pack your wrappers, bottles, tissues, and personal waste out with you. Minimise single-use plastics before you even start packing. If you see litter on the trail or in the village, pick it up — your example sets the standard for every guest who comes after you.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PACK LIST ═══════════════════ -->
+<section class="sec" style="background:var(--white)">
+  <div class="wrap">
+    <div class="sec-head fu">
+      <span class="sec-label">Packing Guide</span>
+      <h2>Pack Light.<br>Trek Smart.</h2>
+      <p>You will be walking approximately 4 hours each way on a highland forest trail. Pack for function, modesty, and the mountain — not the resort.</p>
+    </div>
+    <div class="pack-grid">
+
+      <div class="pack-card bring fu">
+        <div class="pack-head">
+          <div class="pack-head-ic">✅</div>
+          <h3>Bring This</h3>
+        </div>
+        <div class="pack-items" id="bring-list">
+          <div class="pack-item" onclick="togglePack(this)"><div class="pack-chk">✓</div><div class="pack-label">Modest clothes — 2 sets for the 2D1N (see dress code above)</div></div>
+          <div class="pack-item" onclick="togglePack(this)"><div class="pack-chk">✓</div><div class="pack-label">Warm fleece or jacket for the cold mountain night</div></div>
+          <div class="pack-item" onclick="togglePack(this)"><div class="pack-chk">✓</div><div class="pack-label">Waterproof trekking shoes with solid grip</div></div>
+          <div class="pack-item" onclick="togglePack(this)"><div class="pack-chk">✓</div><div class="pack-label">Rain jacket or lightweight poncho</div></div>
+          <div class="pack-item" onclick="togglePack(this)"><div class="pack-chk">✓</div><div class="pack-label">Headlamp with fresh batteries</div></div>
+          <div class="pack-item" onclick="togglePack(this)"><div class="pack-chk">✓</div><div class="pack-label">Personal medications &amp; basic first aid</div></div>
+          <div class="pack-item" onclick="togglePack(this)"><div class="pack-chk">✓</div><div class="pack-label">Cash in IDR — no ATM near the village</div></div>
+          <div class="pack-item" onclick="togglePack(this)"><div class="pack-chk">✓</div><div class="pack-label">Reusable water bottle (min. 1.5L)</div></div>
+          <div class="pack-item" onclick="togglePack(this)"><div class="pack-chk">✓</div><div class="pack-label">Sunscreen &amp; insect repellent</div></div>
+          <div class="pack-item" onclick="togglePack(this)"><div class="pack-chk">✓</div><div class="pack-label">Small daypack, max 15kg if using a porter</div></div>
+        </div>
+      </div>
+
+      <div class="pack-card leave fu d1">
+        <div class="pack-head">
+          <div class="pack-head-ic">🚫</div>
+          <h3>Leave Behind</h3>
+        </div>
+        <div class="pack-items">
+          <div class="pack-item"><div class="pack-chk">✗</div><div class="pack-label"><strong>Alcohol</strong> — strictly prohibited, LPBW requirement</div></div>
+          <div class="pack-item"><div class="pack-chk">✗</div><div class="pack-label"><strong>Narcotics</strong> — strictly prohibited, LPBW requirement</div></div>
+          <div class="pack-item"><div class="pack-chk">✗</div><div class="pack-label">Bluetooth speakers or anything that makes loud noise</div></div>
+          <div class="pack-item"><div class="pack-chk">✗</div><div class="pack-label">Drones (require prior permission from LPBW)</div></div>
+          <div class="pack-item"><div class="pack-chk">✗</div><div class="pack-label">Excessive single-use plastics or packaging</div></div>
+          <div class="pack-item"><div class="pack-chk">✗</div><div class="pack-label">Beach or revealing clothing (see dress code)</div></div>
+          <div class="pack-item"><div class="pack-chk">✗</div><div class="pack-label">Hard-shell suitcases — use a soft duffle or daypack</div></div>
+          <div class="pack-item"><div class="pack-chk">✗</div><div class="pack-label">Flip-flops or sandals for the trek</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ KANTOR INFORMASI ═══════════════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head fu">
+      <span class="sec-label">Mandatory Stop</span>
+      <h2>The Kantor Informasi Is<br>Not Optional</h2>
+      <p>The single most important logistical step of your Wae Rebo visit. Your guide knows exactly what to do — and so should you.</p>
+    </div>
+    <div class="kantor-box fu">
+      <span class="kantor-tag">Wae Rebo Information Office · Kantor Informasi</span>
+      <h3>What Happens Here — Before The Trek</h3>
+      <p class="sub">Located at the base of the mountain, before the trailhead. Every guest must stop and complete all four steps before the trek begins. Your EastXperience guide will manage this entire process.</p>
+      <div class="kantor-steps">
+        <div class="k-step">
+          <div class="k-step-num">01</div>
+          <div class="k-step-label">Register all guests with full names &amp; passport info</div>
+        </div>
+        <div class="k-step">
+          <div class="k-step-num">02</div>
+          <div class="k-step-label">Pay official LPBW entrance fee (included in your EastXperience package)</div>
+        </div>
+        <div class="k-step">
+          <div class="k-step-num">03</div>
+          <div class="k-step-label">Receive formal cultural briefing from village representatives</div>
+        </div>
+        <div class="k-step">
+          <div class="k-step-num">04</div>
+          <div class="k-step-label">Begin the trek only after all steps are confirmed complete</div>
+        </div>
+      </div>
+      <div class="kantor-warn">
+        ⚑ <strong>Do not begin the trek before completing registration.</strong> This is official LPBW policy. Your guide will ensure every step is followed correctly — trust the process and enjoy the journey.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ LATE ARRIVAL ═══════════════════ -->
+<section class="sec" style="background:var(--white)">
+  <div class="wrap">
+    <div class="sec-head fu">
+      <span class="sec-label">If Things Run Late</span>
+      <h2>The 16:00 Rule</h2>
+      <p>We always aim to arrive at the Kantor Informasi by midday. But mountains and roads don't always cooperate. Here's the protocol.</p>
+    </div>
+    <div class="late-box fu">
+      <p class="late-body">LPBW requires that all guests begin the trek before 16:00. If your group arrives at the Information Office after 16:00, the trek is postponed to the following morning. Your EastXperience guide will immediately arrange overnight accommodation in Denge village — and the trek begins at first light the next day.</p>
+      <div class="late-scenarios">
+        <div class="late-card late-ok">
+          <div class="late-tag">✓ Arrive by 15:30</div>
+          <p>Registration → briefing → begin trek → arrive at Wae Rebo before dark. Your 2D1N program runs exactly as planned.</p>
+        </div>
+        <div class="late-card late-oh">
+          <div class="late-tag">⚑ Arrive after 16:00</div>
+          <p>Trek postponed to dawn. Guide arranges homestay at Denge base village. Trek begins at first light. Extended program applies — your guide will coordinate everything.</p>
+        </div>
+      </div>
+      <p class="late-footnote">This is the reason we depart Labuan Bajo at <strong>07:00</strong> sharp. Early pickup gives ample time for the road journey, lunch, gear preparation, and the Kantor Informasi stop — with a safe buffer before the 16:00 limit. Punctuality at pickup protects everyone's program.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PHOTO BAND ═══════════════════ -->
+<section style="padding:0 0 0;background:var(--white)">
+  <div class="wrap" style="padding-bottom:80px">
+    <div class="photo-band fu">
+      <div class="pb-item pb-tall">
+        <img src="waerebo images/DSC04099.JPG" alt="Wae Rebo village" loading="lazy">
+        <div class="pb-cap">First light on the Mbaru Niang</div>
+      </div>
+      <div class="pb-item">
+        <img src="waerebo images/Authentic-human-conections.JPG" alt="Community connection" loading="lazy">
+        <div class="pb-cap">With the hosts</div>
+      </div>
+      <div class="pb-item">
+        <img src="waerebo images/DSC07890.JPEG" alt="Highland mist" loading="lazy">
+        <div class="pb-cap">Cloud sea below the village</div>
+      </div>
+      <div class="pb-item pb-wide">
+        <img src="waerebo images/IMG_0795.JPG" alt="The trek" loading="lazy">
+        <div class="pb-cap">The highland forest trail</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ALIGNMENT ═══════════════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head fu">
+      <span class="sec-label">EastXperience Commitment</span>
+      <h2>Not Just Aligned.<br><em>Accountable.</em></h2>
+      <p>The LPBW guidelines don't change how we operate — they confirm what we have always done. Here is how EastXperience already meets every requirement.</p>
+    </div>
+    <div class="align-grid">
+
+      <div class="align-card fu">
+        <div class="align-check">✅</div>
+        <h4>Eco &amp; Cultural Briefing</h4>
+        <p>Every guest receives this briefing before arrival. Cultural awareness starts long before you board the plane, not at the trailhead.</p>
+      </div>
+
+      <div class="align-card fu d1">
+        <div class="align-check">✅</div>
+        <h4>07:00 Pickup, Every Time</h4>
+        <p>Our early morning departure from Labuan Bajo ensures you reach the Kantor Informasi well before the 16:00 limit — with a comfortable safety buffer built in.</p>
+      </div>
+
+      <div class="align-card fu d2">
+        <div class="align-check">✅</div>
+        <h4>Certified HPI Local Guide</h4>
+        <p>We always assign a certified HPI guide. They know the LPBW requirements, lead the registration process, and deliver the cultural briefing at the office.</p>
+      </div>
+
+      <div class="align-card fu">
+        <div class="align-check">✅</div>
+        <h4>Cultural Briefing Included</h4>
+        <p>Your guide delivers a full cultural briefing at the Kantor Informasi before trekking begins — exactly as required by LPBW guidelines. No shortcuts.</p>
+      </div>
+
+      <div class="align-card fu d1">
+        <div class="align-check">✅</div>
+        <h4>Respectful Guest Selection</h4>
+        <p>We don't just bring bodies to Wae Rebo. This briefing is part of how we ensure every guest arrives prepared to respect the community they're entering.</p>
+      </div>
+
+      <div class="align-card fu d2">
+        <div class="align-check">✅</div>
+        <h4>Authentic &amp; Ethical Tourism</h4>
+        <p>Wae Rebo is a cultural journey, not a tourism product. We have never — and will never — compromise village comfort or custom for guest convenience.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FINAL CTA ═══════════════════ -->
+<section class="cta-fin">
+  <div class="wrap">
+    <span class="sec-label" style="color:rgba(201,142,91,.55)">You're ready</span>
+    <h2>I've Read.<br><em>Let's Go to Wae Rebo.</em></h2>
+    <p class="cta-sub">Have questions before your trip? Your EastXperience guide is always one WhatsApp message away.</p>
+    <div class="cta-row">
+      <button class="btn-ready" id="ready-btn" onclick="confirmReady()">
+        <span id="ready-text">✓ I understand the guidelines</span>
+      </button>
+      <a href="https://wa.me/62811342473?text=Hi%20EastXperience%2C%20I've%20read%20the%20Wae%20Rebo%20briefing%20and%20I%20have%20a%20question." class="btn-wa-fin" target="_blank" rel="noopener noreferrer">
+        💬 Ask via WhatsApp
+      </a>
+    </div>
+    <p class="cta-cap">Thank you for reading this briefing fully. The community of Wae Rebo thanks you too.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="logo-row">
+    <img src="Eastxperience-Logo.svg" alt="EastXperience" onerror="this.style.display='none'">
+  </div>
+  <p>© 2025 EastXperience &nbsp;·&nbsp; <a href="waerebo-final.html">Wae Rebo Experience</a> &nbsp;·&nbsp; <a href="https://wa.me/62811342473">WhatsApp</a> &nbsp;·&nbsp; <a href="book-waerebo-final.html">Book Now</a></p>
+  <p class="small">Cultural guidelines aligned with official LPBW (Lembaga Pengelola Budaya Wae Rebo) directives &nbsp;·&nbsp; EastXperience operates in full compliance with village adat governance</p>
+</footer>
+
+<script>
+// ── Progress bar ──────────────────────────────────────────
+const pbar = document.getElementById('pbar');
+function updateProgress() {
+  const d = document.documentElement;
+  const scrolled = d.scrollTop || document.body.scrollTop;
+  const total = d.scrollHeight - d.clientHeight;
+  pbar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0';
+}
+window.addEventListener('scroll', updateProgress, {passive:true});
+
+// ── Fade-up on scroll ─────────────────────────────────────
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+
+// ── Accordion ─────────────────────────────────────────────
+document.querySelectorAll('.etiq-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.etiq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.etiq-item.open').forEach(i => {
+      i.classList.remove('open');
+      i.querySelector('.etiq-btn').setAttribute('aria-expanded','false');
+    });
+    if (!isOpen) {
+      item.classList.add('open');
+      btn.setAttribute('aria-expanded','true');
+    }
+  });
+});
+
+// ── Bring list checkboxes ─────────────────────────────────
+function togglePack(item) {
+  item.classList.toggle('done');
+}
+
+// ── Ready button ──────────────────────────────────────────
+function confirmReady() {
+  const btn = document.getElementById('ready-btn');
+  const txt = document.getElementById('ready-text');
+  btn.classList.add('done');
+  txt.textContent = '🌿 Amazing — see you on the mountain!';
+  btn.disabled = true;
+  spawnConfetti();
+}
+
+function spawnConfetti() {
+  const colors = ['#C98E5B','#C8A86B','#203328','#55624D','#ECE8E0','#F7F2E8'];
+  for (let i = 0; i < 56; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    const size = 6 + Math.random() * 8;
+    el.style.cssText = [
+      'left:' + (20 + Math.random() * 60) + 'vw',
+      'top:' + (30 + Math.random() * 40) + 'vh',
+      'width:' + size + 'px',
+      'height:' + size + 'px',
+      'background:' + colors[i % colors.length],
+      'border-radius:' + (Math.random() > .5 ? '50%' : '3px'),
+      'animation-duration:' + (.8 + Math.random() * 1.2) + 's',
+      'animation-delay:' + (Math.random() * .4) + 's'
+    ].join(';');
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
+}
+</script>
+</body>
+</html>
