@@ -35,7 +35,7 @@
   (function () {
     var p = (new URLSearchParams(location.search).get('product') || 'waerebo').toLowerCase();
     // Whitelist to prevent attribute-selector injection of unknown slugs
-    var valid = ['waerebo','komodo-speedboat','komodo-sailing-3d2n','todo-village','bandung-rafting','bandung-volcano','bandung-gunung-padang','banggai-explore'];
+    var valid = ['waerebo','komodo-speedboat','komodo-sailing-3d2n','todo-village','bandung-rafting','bandung-volcano','bandung-gunung-padang','lombok-sasak-cooking','banggai-explore'];
     if (valid.indexOf(p) === -1) p = 'waerebo';
     document.documentElement.setAttribute('data-product', p);
   })();
@@ -52,6 +52,7 @@
   :root[data-product="bandung-rafting"]     { --bg:#F2F4F1; --ink:#0F2A1C; --ink-deep:#071810; --accent:#2A8FD4; --accent-2:#66B8ED; --muted:#5E7368; }
   :root[data-product="bandung-volcano"]     { --bg:#EFEBE3; --ink:#1C1F1A; --ink-deep:#0E100C; --accent:#A38256; --accent-2:#D8BB8A; --muted:#6F6E66; }
   :root[data-product="bandung-gunung-padang"] { --bg:#F1ECE1; --ink:#2A2418; --ink-deep:#18130B; --accent:#B0822E; --accent-2:#D7B36A; --muted:#6E6655; }
+  :root[data-product="lombok-sasak-cooking"]  { --bg:#F4EFE6; --ink:#2E211A; --ink-deep:#1C130D; --accent:#C2562B; --accent-2:#E0915F; --muted:#6E6055; }
   :root[data-product="waerebo"]             { --bg:#F6F1E7; --ink:#203328; --ink-deep:#0B1F17; --accent:#C98E5B; --accent-2:#C9A24B; --muted:#6B7280; }
   :root[data-product="banggai-explore"]     { --bg:#EDF4F6; --ink:#0D2830; --ink-deep:#06181F; --accent:#3A8EA0; --accent-2:#6DB8CC; --muted:#4A7A85; }
 
@@ -1003,6 +1004,35 @@
         { val: 'private', label: 'Private Journey', price: 6800000, mode: 'flat',       desc: 'Exclusive 4WD & guide · deep-interview sessions · flexible pace.', priceText: 'From IDR 6,800,000 · whole group' }
       ],
       maxPax: 8
+    },
+
+    'lombok-sasak-cooking': {
+      name: 'Lombok Sasak Cooking Class \u00b7 Bonjeruk Village',
+      shortName: 'Sasak Cooking Class',
+      headline: 'Cook traditional <em>Sasak food.</em>',
+      subhead: 'Hands-on cooking class in Bonjeruk Village, Central Lombok \u00b7 grind spices, cook with local families \u00b7 village lunch included.',
+      heroImg: 'https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=auto,quality=75,width=1800,height=1000,dpr=1/tour_img/d8bb8652733968bea5ab695854f470808ba94276780a7947e5e34cf3ae635e16.jpg',
+      detailsUrl: 'lombok-sasak-cooking-class-final.html',
+      duration: '~4 hours \u00b7 half day',
+      nights: 0,
+      rating: '\u2605 New community experience for 2026',
+      reschedule: 'Free reschedule \u2014 just let us know',
+      depositNote: '(30% deposit to confirm \u00b7 balance on the day)',
+      pickupLabel: 'Hotel / area in Lombok (optional pickup)',
+      pickupPlaceholder: 'Your Lombok hotel or area',
+      notesPlaceholder: 'Allergies / dietary needs, number of cooks, kids\u2019 ages, hotel pickup, etc.',
+      dateHint: 'Small village classes \u2014 best booked a few days ahead.',
+      paxHint: 'all ages & levels \u00b7 beginners welcome',
+      optionsSub: 'Join the class, or message us for a private/family session.',
+      prefsSub: 'Village-style Sasak lunch \u2014 tell us about any allergy or dietary need.',
+      submitLabel: 'Reserve This Date  \u2192',
+      legal: 'No payment today. We confirm availability via WhatsApp, then send a secure payment link (30% deposit). Free reschedule with advance notice.',
+      testimonial: 'Some of the best food in Lombok is in village kitchens \u2014 this opens that door, and your seat helps keep the tradition alive.',
+      testimonialWho: 'EastXperience \u00b7 Bonjeruk community experience',
+      options: [
+        { val: 'class', label: 'Join the Class', price: 750000, mode: 'per-person', desc: 'Shared session. Instructor, ingredients, recipes & village lunch.', priceText: 'IDR 750,000 / person' }
+      ],
+      maxPax: 12
     },
 
     'bandung-gunung-padang': {
