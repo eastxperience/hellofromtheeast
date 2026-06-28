@@ -469,3 +469,9 @@ h1 em, h2 em { font-style: italic; color: var(--accent); }
 .book-thankyou-card h3 { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 400; margin-bottom: 10px; }
 .book-thankyou-card p  { font-size: 14.5px; color: var(--muted); line-height: 1.65; margin-bottom: 24px; }
 .book-thankyou-card .btn { width: 100%; justify-content: center; }
+
+/* ─── A11Y: keyboard focus + reduced motion (added in enhancement pass) ─── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
+}
