@@ -35,7 +35,7 @@
   (function () {
     var p = (new URLSearchParams(location.search).get('product') || 'waerebo').toLowerCase();
     // Whitelist to prevent attribute-selector injection of unknown slugs
-    var valid = ['waerebo','komodo-speedboat','komodo-sailing-3d2n','todo-village','bandung-rafting','bandung-volcano','banggai-explore'];
+    var valid = ['waerebo','komodo-speedboat','komodo-sailing-3d2n','todo-village','bandung-rafting','bandung-volcano','bandung-gunung-padang','banggai-explore'];
     if (valid.indexOf(p) === -1) p = 'waerebo';
     document.documentElement.setAttribute('data-product', p);
   })();
@@ -51,6 +51,7 @@
   :root[data-product="todo-village"]        { --bg:#EFE6D8; --ink:#3B2416; --ink-deep:#261308; --accent:#B8522E; --accent-2:#E89B6F; --muted:#7A6556; }
   :root[data-product="bandung-rafting"]     { --bg:#F2F4F1; --ink:#0F2A1C; --ink-deep:#071810; --accent:#2A8FD4; --accent-2:#66B8ED; --muted:#5E7368; }
   :root[data-product="bandung-volcano"]     { --bg:#EFEBE3; --ink:#1C1F1A; --ink-deep:#0E100C; --accent:#A38256; --accent-2:#D8BB8A; --muted:#6F6E66; }
+  :root[data-product="bandung-gunung-padang"] { --bg:#F1ECE1; --ink:#2A2418; --ink-deep:#18130B; --accent:#B0822E; --accent-2:#D7B36A; --muted:#6E6655; }
   :root[data-product="waerebo"]             { --bg:#F6F1E7; --ink:#203328; --ink-deep:#0B1F17; --accent:#C98E5B; --accent-2:#C9A24B; --muted:#6B7280; }
   :root[data-product="banggai-explore"]     { --bg:#EDF4F6; --ink:#0D2830; --ink-deep:#06181F; --accent:#3A8EA0; --accent-2:#6DB8CC; --muted:#4A7A85; }
 
@@ -355,6 +356,21 @@
   }
 
 </style>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="EastXperience">
+<meta property="og:url" content="https://eastxperience.com/book.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Reserve Your Journey · EastXperience">
+<meta name="twitter:description" content="Reserve direct — Indonesia's most iconic experiences. No payment today. Confirmed in under 10 minutes. Free reschedule.">
+<meta name="twitter:image" content="https://eastxperience.com/assets/images/hero.webp">
+<meta property="og:image" content="https://eastxperience.com/assets/images/hero.webp">
+<meta property="og:image:alt" content="EastXperience — private Indonesia journeys">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "WebPage", "name": "Reserve Your Journey · EastXperience", "url": "https://eastxperience.com/book.html", "description": "Reserve direct with EastXperience — Indonesia's most iconic experiences. No payment today, confirmed in minutes, free reschedule.", "isPartOf": {"@type": "WebSite", "name": "EastXperience", "url": "https://eastxperience.com/"}, "about": {"@type": "TravelAgency", "name": "EastXperience", "telephone": "+62811342473", "url": "https://eastxperience.com/"}}
+</script>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://eastxperience.com/"}, {"@type": "ListItem", "position": 2, "name": "Reserve Your Journey", "item": "https://eastxperience.com/book.html"}]}
+</script>
 </head>
 
 <body>
@@ -964,7 +980,7 @@
       shortName: 'Todo Village',
       headline: 'The ancestral village <em>time forgot.</em>',
       subhead: 'Traditional Manggarai homes · sacred songke weaving · Cunca Plias waterfall · home-cooked highland lunch.',
-      heroImg: 'https://images.unsplash.com/photo-1541679486598-05f8bbb21b7e?auto=format&fit=crop&w=1800&q=82',
+      heroImg: 'https://eastxperience.com/assets/images/todo.webp',
       detailsUrl: 'todo-village-final.html',
       duration: '~10 hours · sunrise to dusk',
       nights: 0,
@@ -987,6 +1003,35 @@
         { val: 'private', label: 'Private Journey', price: 6800000, mode: 'flat',       desc: 'Exclusive 4WD & guide · deep-interview sessions · flexible pace.', priceText: 'From IDR 6,800,000 · whole group' }
       ],
       maxPax: 8
+    },
+
+    'bandung-gunung-padang': {
+      name: 'Gunung Padang \u00b7 Megalithic Day Trek',
+      shortName: 'Gunung Padang',
+      headline: 'Older than <em>the pyramids.</em>',
+      subhead: 'Full-day guided trek to the world\u2019s oldest megalithic site \u00b7 Sundanese lunch \u00b7 English guide \u00b7 hotel pickup from Bandung.',
+      heroImg: 'https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=auto,quality=75,width=1800,height=1000,dpr=1/tour_img/e9a74621aaf0b1cc0ca638e24ae344af93f18edf1b63c0bc7f6b4eaa3e5d5500.jpg',
+      detailsUrl: 'bandung-gunung-padang-final.html',
+      duration: '~11 hours \u00b7 pickup to drop-off',
+      nights: 0,
+      rating: '\u2605 Featured in Netflix Ancient Apocalypse',
+      reschedule: 'Free cancellation up to 24 hours before',
+      depositNote: '(30% deposit to confirm \u00b7 balance on the day)',
+      pickupLabel: 'Hotel / Pickup in Bandung',
+      pickupPlaceholder: 'Bandung hotel name or area',
+      notesPlaceholder: 'Dietary needs (veg/halal), optional symbol workshop or Stone Garden add-on, kids\u2019 ages, etc.',
+      dateHint: 'Scheduled departures. Weekends fill first \u2014 book early.',
+      paxHint: 'all ages \u00b7 moderate fitness (steps & uneven ground)',
+      optionsSub: 'Join the small-group day, or message us for a private charter.',
+      prefsSub: 'Sundanese village lunch \u2014 tell us about any dietary restriction.',
+      submitLabel: 'Reserve This Date  \u2192',
+      legal: 'No payment today. We confirm availability via WhatsApp, then send a secure payment link (30% deposit). Free cancellation up to 24 hours before departure.',
+      testimonial: 'A genuinely fascinating day \u2014 the guide brought the history and theories to life, and the Sundanese lunch was a highlight.',
+      testimonialWho: 'Marcin \u00b7 Poland \u00b7 verified booking',
+      options: [
+        { val: 'shared', label: 'Join Trip (Shared)', price: 850000, mode: 'per-person', desc: 'Small-group day. English guide, site entry & Sundanese lunch.', priceText: 'IDR 850,000 / person' }
+      ],
+      maxPax: 12
     },
 
     'bandung-rafting': {
