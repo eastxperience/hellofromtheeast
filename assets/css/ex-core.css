@@ -475,3 +475,14 @@ h1 em, h2 em { font-style: italic; color: var(--accent); }
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
 }
+
+
+/* ─── Mobile header: prevent overflow, declutter (QA fix) ─── */
+@media (max-width: 600px){
+  .hdr{ padding:0 14px; gap:8px; }
+  .hdr-back{ font-size:0; gap:0; flex-shrink:0; }
+  .hdr-back::before{ content:"\2190"; font-size:19px; }
+  .lang-btn{ display:none; }
+  .hdr-brand span{ font-size:14px; }
+  .hdr-wa{ padding:7px 12px; font-size:12px; }
+}
