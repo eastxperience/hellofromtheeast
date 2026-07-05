@@ -1,0 +1,8 @@
+# internal — jangan ikut ter-deploy ke situs publik
+*.heic
+*.md
+!README.md
+index.backup*.html
+index-v3.html
+booking-capture-script.gs
+komodo images/hero-labuanbajo-720.mp4
