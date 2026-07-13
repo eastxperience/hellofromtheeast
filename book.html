@@ -39,7 +39,7 @@
   (function () {
     var p = (new URLSearchParams(location.search).get('product') || 'waerebo').toLowerCase();
     // Whitelist to prevent attribute-selector injection of unknown slugs
-    var valid = ['waerebo','komodo-speedboat','komodo-sailing-3d2n','todo-village','bandung-rafting','bandung-volcano','bandung-gunung-padang','lombok-sasak-cooking','banggai-explore'];
+    var valid = ['waerebo','komodo-speedboat','komodo-sailing-3d2n','todo-village','bandung-rafting','bandung-volcano','bandung-gunung-padang','lombok-sasak-cooking','sumbawa-whale-shark','banggai-explore'];
     if (valid.indexOf(p) === -1) p = 'waerebo';
     document.documentElement.setAttribute('data-product', p);
   })();
@@ -59,6 +59,7 @@
   :root[data-product="lombok-sasak-cooking"]  { --bg:#F4EFE6; --ink:#2E211A; --ink-deep:#1C130D; --accent:#C2562B; --accent-2:#E0915F; --muted:#6E6055; }
   :root[data-product="waerebo"]             { --bg:#F6F1E7; --ink:#203328; --ink-deep:#0B1F17; --accent:#C98E5B; --accent-2:#C9A24B; --muted:#6B7280; }
   :root[data-product="banggai-explore"]     { --bg:#EDF4F6; --ink:#0D2830; --ink-deep:#06181F; --accent:#3A8EA0; --accent-2:#6DB8CC; --muted:#4A7A85; }
+  :root[data-product="sumbawa-whale-shark"] { --bg:#EBF3F5; --ink:#082330; --ink-deep:#04141C; --accent:#0E93B8; --accent-2:#5FC6DD; --muted:#4E6E79; }
 
   body { background: var(--bg); color: var(--ink); }
   .btn-primary { background: var(--ink); color:#fff; }
@@ -1035,6 +1036,35 @@
       testimonialWho: 'EastXperience \u00b7 Bonjeruk community experience',
       options: [
         { val: 'class', label: 'Join the Class', price: 750000, mode: 'per-person', desc: 'Shared session. Instructor, ingredients, recipes & village lunch.', priceText: 'IDR 750,000 / person' }
+      ],
+      maxPax: 12
+    },
+
+    'sumbawa-whale-shark': {
+      name: 'Sumbawa Whale Shark Overland \u00b7 3D2N',
+      shortName: 'Sumbawa Whale Shark',
+      headline: 'Swim with <em>gentle giants.</em>',
+      subhead: 'Sunrise whale sharks in Saleh Bay, Moyo Island snorkeling & Mata Jitu waterfall \u00b7 3 days overland Sumbawa \u00b7 private boats & GoPro footage.',
+      heroImg: 'whale-shark/ws-hero.jpg',
+      detailsUrl: 'sumbawa-whale-shark-final.html',
+      duration: '3 days \u00b7 2 nights',
+      nights: 2,
+      rating: '\u2605 New \u00b7 real whale sharks of Saleh Bay',
+      reschedule: 'Free reschedule with advance notice',
+      depositNote: '(30% deposit to confirm \u00b7 balance before departure)',
+      pickupLabel: 'Meeting point / hotel in Sumbawa',
+      pickupPlaceholder: 'Sumbawa Besar airport / hotel',
+      notesPlaceholder: 'Swimming confidence, flight details, dietary needs, group size, etc.',
+      dateHint: 'Min 4 guests \u00b7 best in season \u2014 we advise the best dates.',
+      paxHint: 'min 4 pax \u00b7 comfortable in open water',
+      optionsSub: 'Shared overland trip, or message us for a private departure.',
+      prefsSub: 'Meals as listed \u2014 tell us about any dietary need.',
+      submitLabel: 'Reserve This Date  \u2192',
+      legal: 'No payment today. We confirm availability via WhatsApp, then send a secure payment link (30% deposit). Whale sharks are wild animals \u2014 sightings are very likely in season but never guaranteed.',
+      testimonial: 'Floating next to a whale shark at sunrise is something I\u2019ll never forget \u2014 and Moyo\u2019s waterfall was the perfect finish.',
+      testimonialWho: 'EastXperience guest \u00b7 Saleh Bay',
+      options: [
+        { val: 'shared', label: 'Overland Trip (Shared)', price: 5400000, mode: 'per-person', desc: 'Min 4 pax. Car, hotel 2N, private boats, snorkeling & GoPro footage.', priceText: 'IDR 5,400,000 / person' }
       ],
       maxPax: 12
     },
